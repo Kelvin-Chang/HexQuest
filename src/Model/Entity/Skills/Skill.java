@@ -1,4 +1,6 @@
 package Model.Entity.Skills;
 
-public class Skill {
+public abstract class Skill {
+
+    public abstract void effect();
 }
