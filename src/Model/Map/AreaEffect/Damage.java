@@ -1,4 +1,4 @@
 package Model.Map.AreaEffect;
 
-public class Damage {
+public class Damage extends AreaEffect {
 }

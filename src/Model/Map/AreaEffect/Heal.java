@@ -1,4 +1,4 @@
 package Model.Map.AreaEffect;
 
-public class Heal {
+public class Heal extends AreaEffect {
 }
