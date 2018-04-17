@@ -1,4 +1,6 @@
 package Model.Entity.Skills;
 
-public class RemoveTrap {
+public class RemoveTrap extends Skill {
+
+    public RemoveTrap() {}
 }

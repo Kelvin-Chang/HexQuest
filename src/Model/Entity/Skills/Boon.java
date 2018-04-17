@@ -1,4 +1,6 @@
 package Model.Entity.Skills;
 
-public class Boon {
+public class Boon extends Skill {
+
+    public Boon() {}
 }

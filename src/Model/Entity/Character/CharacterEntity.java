@@ -5,7 +5,7 @@ import Model.Entity.Skills.Skill;
 import Model.Enums.Orientation;
 import Model.Items.Item;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public abstract class CharacterEntity {
 
@@ -20,11 +20,15 @@ public abstract class CharacterEntity {
     private int speed;
     private Inventory inventory;
     private Orientation orientation;
-    private List<Skill> skills;
-    private List<Item> useableItems;
+    private ArrayList<Skill> skills;
+    private ArrayList<Item> useableItems;
     private Pet pet;
 
     public CharacterEntity() {}
+
+    public CharacterEntity(ArrayList<Skill> skillList) {
+        this.skills = skillList;
+    }
 
     public void setLevel(int level) {
         this.level = level;
@@ -62,10 +66,10 @@ public abstract class CharacterEntity {
     public void setPet(Pet pet) {
         this.pet = pet;
     }
-    public void setSkills(List<Skill> skills) {
+    public void setSkills(ArrayList<Skill> skills) {
         this.skills = skills;
     }
-    public void setUseableItems(List<Item> useableItems) {
+    public void setUseableItems(ArrayList<Item> useableItems) {
         this.useableItems = useableItems;
     }
 
@@ -105,10 +109,10 @@ public abstract class CharacterEntity {
     public Pet getPet() {
         return pet;
     }
-    public List<Skill> getSkills() {
+    public ArrayList<Skill> getSkills() {
         return skills;
     }
-    public List<Item> getUseableItems() {
+    public ArrayList<Item> getUseableItems() {
         return useableItems;
     }
 
@@ -132,5 +136,19 @@ public abstract class CharacterEntity {
             currentMana = currentMana + manaChange;
         }
     }
+
+    public void levelUp() {
+        level = level + 1;
+    }
+
+    public void modifySpeed(int speedChange) {
+        if (speed + speedChange <= 0) {
+            speed = 0;
+        } else {
+            speed = speed + speedChange;
+        }
+    }
+
+
 
 }

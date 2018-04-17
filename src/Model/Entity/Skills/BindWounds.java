@@ -1,4 +1,6 @@
 package Model.Entity.Skills;
 
-public class BindWounds {
+public class BindWounds extends Skill{
+
+    public BindWounds() {}
 }

@@ -1,4 +1,6 @@
 package Model.Entity.Skills;
 
-public class RangedWeapon {
+public class RangedWeapon extends Skill {
+
+    public RangedWeapon() {}
 }
