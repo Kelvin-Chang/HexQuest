@@ -3,6 +3,7 @@ package Model.Map;
 import Model.Entity.Entity;
 import Model.Map.Terrain.Terrain;
 import Model.Item.Item;
+import View.Map.TileView;
 
 public class Tile {
     private boolean isPassable;
@@ -35,10 +36,10 @@ public class Tile {
     public boolean canEnter(Entity e) {
         return isPassable;
     }
-    public void detach(View v) {
+    public void detach(TileView v) {
 
     }
-    public void attach(View v) {
+    public void attach(TileView v) {
 
     }
 }
