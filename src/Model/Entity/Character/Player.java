@@ -1,4 +1,6 @@
 package Model.Entity.Character;
 
-public class Player {
+
+public class Player extends CharacterEntity {
+
 }

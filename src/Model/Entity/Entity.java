@@ -59,6 +59,4 @@ public class Entity {
         orientation = 60;
     }
 
-    
-
 }
