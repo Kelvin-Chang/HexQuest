@@ -1,75 +1,103 @@
 import Model.Entity.Character.Player;
+import Model.Entity.Character.PlayerFactory;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class CharacterEntityTests {
-    Player character;
+    PlayerFactory playerFactory = new PlayerFactory();
+    Player smasher;
 
     @Before
     public void setUp() {
-        character = new Player();
+        smasher = playerFactory.produceSmasher();
     }
 
     @Test
     public void testChangingHealthToBelowZero() {
-        character.setCurrentHealth(100);
+        smasher.setCurrentHealth(100);
 
-        character.modifyHealth(-101);
+        smasher.modifyHealth(-101);
 
-        assertEquals(0, character.getCurrentHealth());
+        assertEquals(0, smasher.getCurrentHealth());
     }
 
     @Test
     public void testChangingHealthToAboveMaxHealth() {
-        character.setCurrentHealth(99);
-        character.setMaxHealth(100);
+        smasher.setCurrentHealth(99);
+        smasher.setMaxHealth(100);
 
-        character.modifyHealth(100);
+        smasher.modifyHealth(100);
 
-        assertEquals(100, character.getCurrentHealth());
+        assertEquals(100, smasher.getCurrentHealth());
     }
 
     @Test
     public void testChangingHealthToValidValue() {
-        character.setCurrentHealth(50);
-        character.setMaxHealth(100);
+        smasher.setCurrentHealth(50);
+        smasher.setMaxHealth(100);
 
-        character.modifyHealth(25);
+        smasher.modifyHealth(25);
 
-        assertEquals(75, character.getCurrentHealth());
+        assertEquals(75, smasher.getCurrentHealth());
     }
 
     @Test
     public void testChangingManaToBelowZero() {
-        character.setCurrentMana(100);
+        smasher.setCurrentMana(100);
 
-        character.modifyMana(-101);
+        smasher.modifyMana(-101);
 
-        assertEquals(0, character.getCurrentMana());
+        assertEquals(0, smasher.getCurrentMana());
     }
 
     @Test
     public void testChangingManaToAboveMaxMana() {
-        character.setCurrentMana(99);
-        character.setMaxMana(100);
+        smasher.setCurrentMana(99);
+        smasher.setMaxMana(100);
 
-        character.modifyMana(100);
+        smasher.modifyMana(100);
 
-        assertEquals(100, character.getCurrentMana());
+        assertEquals(100, smasher.getCurrentMana());
     }
 
     @Test
     public void testChangingManaToValidValue() {
-        character.setCurrentMana(50);
-        character.setMaxMana(100);
+        smasher.setCurrentMana(50);
+        smasher.setMaxMana(100);
 
-        character.modifyMana(25);
+        smasher.modifyMana(25);
 
-        assertEquals(75, character.getCurrentMana());
+        assertEquals(75, smasher.getCurrentMana());
     }
 
+    @Test
+    public void testChangingSpeedToBelowZero() {
+        smasher.setSpeed(50);
 
+        smasher.modifySpeed(-51);
+
+        assertEquals(0, smasher.getSpeed());
+    }
+
+    @Test
+    public void testChangingSpeedToValidValue() {
+        smasher.setSpeed(50);
+
+        smasher.modifySpeed(25);
+
+        assertEquals(75, smasher.getSpeed());
+    }
+
+    @Test
+    public void testTriggeringBindWoundsSkill() {
+        smasher.useSkill(0);
+    }
+
+    @Test
+    public void testTriggeringSkillOutOfBounds() {
+        smasher.useSkill(99999);
+    }
 
 }

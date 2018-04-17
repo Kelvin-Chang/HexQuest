@@ -3,10 +3,10 @@ package Model.Entity.Character;
 import Model.Entity.Pet;
 import Model.Entity.Skills.Skill;
 import Model.Enums.Orientation;
-import Model.Items.Item;
+import Model.Item.Item;
 import Model.Map.World;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class CharacterEntity {
 
@@ -21,11 +21,15 @@ public class CharacterEntity {
     private int speed;
     private Inventory inventory;
     private Orientation orientation;
-    private List<Skill> skills;
-    private List<Item> useableItems;
+    private ArrayList<Skill> skills;
+    private ArrayList<Item> useableItems;
     private Pet pet;
     private World world;
     public CharacterEntity() {}
+
+    public CharacterEntity(ArrayList<Skill> skillList) {
+        this.skills = skillList;
+    }
 
     public void setLevel(int level) {
         this.level = level;
@@ -58,16 +62,15 @@ public class CharacterEntity {
         this.inventory = inventory;
     }
     public void setOrientation(Orientation orientation) {
-
         this.orientation = orientation;
     }
     public void setPet(Pet pet) {
         this.pet = pet;
     }
-    public void setSkills(List<Skill> skills) {
+    public void setSkills(ArrayList<Skill> skills) {
         this.skills = skills;
     }
-    public void setUseableItems(List<Item> useableItems) {
+    public void setUseableItems(ArrayList<Item> useableItems) {
         this.useableItems = useableItems;
     }
 
@@ -107,10 +110,10 @@ public class CharacterEntity {
     public Pet getPet() {
         return pet;
     }
-    public List<Skill> getSkills() {
+    public ArrayList<Skill> getSkills() {
         return skills;
     }
-    public List<Item> getUseableItems() {
+    public ArrayList<Item> getUseableItems() {
         return useableItems;
     }
 
@@ -137,4 +140,25 @@ public class CharacterEntity {
     public void move(){
         world.attemptMove(this);
     }
+
+    public void levelUp() {
+        level = level + 1;
+    }
+
+    public void modifySpeed(int speedChange) {
+        if (speed + speedChange <= 0) {
+            speed = 0;
+        } else {
+            speed = speed + speedChange;
+        }
+    }
+
+
+    // refer to PlayerFactory to determine the order that the skills are in in the ArrayList
+    public void useSkill(int skillIndex) {
+        if ( !(skillIndex >= skills.size()) && !(skillIndex < 0) ) {
+            skills.get(skillIndex).effect();
+        }
+    }
+
 }

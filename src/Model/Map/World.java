@@ -32,8 +32,6 @@ public class World {
     public void attemptMove(CharacterEntity character){
         Orientation orientation = character.getOrientation();
         Point sourcePoint = getCharacterLocation(character);
-       // int dx = orientation.getDx();
-        //int dy = orientation.getDy();
         //System.out.println("dx: " + dx + " | dy: " + dy);
         Point destination = oddq_offset_neighbor(sourcePoint, orientation);
         System.out.println("Entity at [" + (int) sourcePoint.getX() + "," + (int) sourcePoint.getY() + "] attempting move to ["

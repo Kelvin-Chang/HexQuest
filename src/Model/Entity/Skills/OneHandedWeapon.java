@@ -1,4 +1,11 @@
 package Model.Entity.Skills;
 
-public class OneHandedWeapon {
+public class OneHandedWeapon extends Skill {
+
+    public OneHandedWeapon() {}
+
+    @Override
+    public void effect() {
+
+    }
 }
