@@ -3,14 +3,14 @@ package Model.Entity.Character;
 import Model.Entity.Pet;
 import Model.Entity.Skills.Skill;
 import Model.Enums.Orientation;
-import Model.Item.Item;
+import Model.Items.Item;
+import Model.Map.World;
 
 import java.util.ArrayList;
 
-public abstract class CharacterEntity {
+public class CharacterEntity {
 
     private int level;
-    private String name;
     private int maxHealth;
     private int currentHealth;
     private int maxMana;
@@ -22,9 +22,27 @@ public abstract class CharacterEntity {
     private Orientation orientation;
     private ArrayList<Skill> skills;
     private ArrayList<Item> useableItems;
-    private Pet pet;
+    private World world;
 
-    public CharacterEntity() {}
+    public CharacterEntity() {
+        this.level = 0;
+        this.maxHealth = 100;
+        this.currentHealth = 100;
+        this.maxMana = 100;
+        this.currentMana = 100;
+        this.attack = 1;
+        this.defense = 1;
+        this.speed = 1;
+        this.inventory = new Inventory();
+        this.orientation = Orientation.UP;
+        this.skills = new ArrayList<Skill>();
+        this.useableItems = new ArrayList<Item>();
+        this.world = new World();
+    }
+    public CharacterEntity(World world){
+        this();
+        this.world = world;
+    }
 
     public CharacterEntity(ArrayList<Skill> skillList) {
         this.skills = skillList;
@@ -32,9 +50,6 @@ public abstract class CharacterEntity {
 
     public void setLevel(int level) {
         this.level = level;
-    }
-    public void setName(String name) {
-        this.name = name;
     }
     public void setMaxHealth(int maxHealth) {
         this.maxHealth = maxHealth;
@@ -63,9 +78,6 @@ public abstract class CharacterEntity {
     public void setOrientation(Orientation orientation) {
         this.orientation = orientation;
     }
-    public void setPet(Pet pet) {
-        this.pet = pet;
-    }
     public void setSkills(ArrayList<Skill> skills) {
         this.skills = skills;
     }
@@ -75,9 +87,6 @@ public abstract class CharacterEntity {
 
     public int getLevel() {
         return level;
-    }
-    public String getName() {
-        return name;
     }
     public int getMaxHealth() {
         return maxHealth;
@@ -106,9 +115,6 @@ public abstract class CharacterEntity {
     public Orientation getOrientation() {
         return orientation;
     }
-    public Pet getPet() {
-        return pet;
-    }
     public ArrayList<Skill> getSkills() {
         return skills;
     }
@@ -136,6 +142,9 @@ public abstract class CharacterEntity {
             currentMana = currentMana + manaChange;
         }
     }
+    public void move(){
+        world.attemptMove(this);
+    }
 
     public void levelUp() {
         level = level + 1;
@@ -148,8 +157,6 @@ public abstract class CharacterEntity {
             speed = speed + speedChange;
         }
     }
-
-    public void move(){}
 
     // refer to PlayerFactory to determine the order that the skills are in in the ArrayList
     public void useSkill(int skillIndex) {
