@@ -6,6 +6,8 @@ import Model.Enums.ItemSlots;
 import Model.Enums.Orientation;
 import Model.Items.Item;
 import Model.Items.TakeableItems.TakeableItem;
+import Model.Items.Item;
+import Model.Map.World;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,8 +28,27 @@ public abstract class CharacterEntity {
     private ArrayList<Skill> skills;
     private ArrayList<Item> useableItems;
     private Pet pet;
+    private World world;
 
-    public CharacterEntity() {}
+    public CharacterEntity() {
+        this.level = 0;
+        this.maxHealth = 100;
+        this.currentHealth = 100;
+        this.maxMana = 100;
+        this.currentMana = 100;
+        this.attack = 1;
+        this.defense = 1;
+        this.speed = 1;
+        this.inventory = new Inventory();
+        this.orientation = Orientation.UP;
+        this.skills = new ArrayList<Skill>();
+        this.useableItems = new ArrayList<Item>();
+        this.world = new World();
+    }
+    public CharacterEntity(World world){
+        this();
+        this.world = world;
+    }
 
     public CharacterEntity(ArrayList<Skill> skillList) {
         this.skills = skillList;
@@ -139,6 +160,9 @@ public abstract class CharacterEntity {
             currentMana = currentMana + manaChange;
         }
     }
+    public void move(){
+        world.attemptMove(this);
+    }
 
     public void levelUp() {
         level = level + 1;
@@ -151,8 +175,6 @@ public abstract class CharacterEntity {
             speed = speed + speedChange;
         }
     }
-
-    public void move(){}
 
     // refer to PlayerFactory to determine the order that the skills are in in the ArrayList
     public void useSkill(int skillIndex) {
