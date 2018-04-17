@@ -15,7 +15,7 @@ public class World {
     private Map<Point, Terrain> terrainMap;
     private Map<Point, CharacterEntity> characterMap;
 
-    World(){
+    public World(){
         this.terrainMap = new HashMap<>();
         this.characterMap = new HashMap<>();
     }
