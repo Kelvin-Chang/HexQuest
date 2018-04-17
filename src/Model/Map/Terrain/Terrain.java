@@ -1,4 +1,8 @@
 package Model.Map.Terrain;
 
-public class Terrain {
+import java.awt.*;
+
+public interface Terrain {
+    boolean getPassable();
+    Image getSprite();
 }
