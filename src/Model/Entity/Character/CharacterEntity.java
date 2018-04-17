@@ -3,7 +3,7 @@ package Model.Entity.Character;
 import Model.Entity.Pet;
 import Model.Entity.Skills.Skill;
 import Model.Enums.Orientation;
-import Model.Items.Item;
+import Model.Item.Item;
 
 import java.util.ArrayList;
 
