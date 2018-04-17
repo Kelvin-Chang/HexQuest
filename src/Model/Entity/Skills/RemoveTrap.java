@@ -7,7 +7,7 @@ public class RemoveTrap extends Skill {
     public RemoveTrap() {}
 
     @Override
-    public void effect(CharacterEntity player) {
+    public void activateSkill(CharacterEntity player) {
 
     }
 }

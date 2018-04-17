@@ -7,7 +7,7 @@ public class Boon extends Skill {
     public Boon() {}
 
     @Override
-    public void effect(CharacterEntity player) {
+    public void activateSkill(CharacterEntity player) {
 
     }
 }

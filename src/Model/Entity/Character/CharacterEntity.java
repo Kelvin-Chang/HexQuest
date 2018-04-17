@@ -194,7 +194,7 @@ public abstract class CharacterEntity {
     // refer to PlayerFactory to determine the order that the skills are in in the ArrayList
     public void useSkill(int skillIndex) {
         if ( !(skillIndex >= skills.size()) && !(skillIndex < 0) ) {
-            skills.get(skillIndex).effect(this);
+            skills.get(skillIndex).activateSkill(this);
         }
     }
 

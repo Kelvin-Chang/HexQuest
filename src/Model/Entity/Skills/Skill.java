@@ -4,5 +4,5 @@ import Model.Entity.Character.CharacterEntity;
 
 public abstract class Skill {
 
-    public abstract void effect(CharacterEntity player);
+    public abstract void activateSkill(CharacterEntity player);
 }

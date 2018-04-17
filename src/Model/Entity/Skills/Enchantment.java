@@ -7,7 +7,7 @@ public class Enchantment extends Skill {
     public Enchantment() {}
 
     @Override
-    public void effect(CharacterEntity player) {
+    public void activateSkill(CharacterEntity player) {
 
     }
 }

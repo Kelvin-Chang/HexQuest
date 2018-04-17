@@ -9,7 +9,7 @@ public class TwoHandedWeapon extends Skill {
     public TwoHandedWeapon() {}
 
     @Override
-    public void effect(CharacterEntity player) {
+    public void activateSkill(CharacterEntity player) {
         player.useItemSlot(TWOHANDED);
     }
 }

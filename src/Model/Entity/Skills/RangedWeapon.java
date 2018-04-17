@@ -7,7 +7,7 @@ public class RangedWeapon extends Skill {
     public RangedWeapon() {}
 
     @Override
-    public void effect(CharacterEntity player) {
+    public void activateSkill(CharacterEntity player) {
 
     }
 }

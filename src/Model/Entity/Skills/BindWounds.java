@@ -7,7 +7,7 @@ public class BindWounds extends Skill{
     public BindWounds() {}
 
     @Override
-    public void effect(CharacterEntity player) {
+    public void activateSkill(CharacterEntity player) {
 
     }
 }

@@ -9,7 +9,7 @@ public class Brawl extends Skill {
     public Brawl() {}
 
     @Override
-    public void effect(CharacterEntity player) {
+    public void activateSkill(CharacterEntity player) {
         player.useItemSlot(BRAWL);
     }
 }

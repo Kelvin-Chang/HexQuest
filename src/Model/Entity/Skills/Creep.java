@@ -7,7 +7,7 @@ public class Creep extends Skill {
     public Creep() {}
 
     @Override
-    public void effect(CharacterEntity player) {
+    public void activateSkill(CharacterEntity player) {
 
     }
 }
