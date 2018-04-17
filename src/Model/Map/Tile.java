@@ -2,7 +2,7 @@ package Model.Map;
 
 import Model.Entity.Entity;
 import Model.Map.Terrain.Terrain;
-import Model.Item.Item;
+import Model.Items.Item;
 import View.Map.TileView;
 
 public class Tile {

@@ -2,10 +2,13 @@ package Model.Entity.Character;
 
 import Model.Entity.Pet;
 import Model.Entity.Skills.Skill;
+import Model.Enums.ItemSlots;
 import Model.Enums.Orientation;
-import Model.Item.Item;
+import Model.Items.Item;
+import Model.Items.TakeableItems.TakeableItem;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public abstract class CharacterEntity {
 
@@ -154,8 +157,12 @@ public abstract class CharacterEntity {
     // refer to PlayerFactory to determine the order that the skills are in in the ArrayList
     public void useSkill(int skillIndex) {
         if ( !(skillIndex >= skills.size()) && !(skillIndex < 0) ) {
-            skills.get(skillIndex).effect();
+            skills.get(skillIndex).effect(this);
         }
+    }
+
+    public void useItemSlot(ItemSlots slot) {
+        inventory.useItemSlot(slot);
     }
 
 }

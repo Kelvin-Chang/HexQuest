@@ -1,11 +1,13 @@
 package Model.Entity.Skills;
 
+import Model.Entity.Character.CharacterEntity;
+
 public class Bane extends Skill {
 
     public Bane() {}
 
     @Override
-    public void effect() {
+    public void effect(CharacterEntity player) {
 
     }
 }

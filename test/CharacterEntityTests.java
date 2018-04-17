@@ -1,5 +1,9 @@
+import Model.Entity.Character.Inventory;
 import Model.Entity.Character.Player;
 import Model.Entity.Character.PlayerFactory;
+import Model.Items.TakeableItems.BrawlItem;
+import Model.Items.TakeableItems.OneHandedItem;
+import Model.Items.TakeableItems.TwoHandedItem;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,6 +16,15 @@ public class CharacterEntityTests {
     @Before
     public void setUp() {
         smasher = playerFactory.produceSmasher();
+    }
+
+    @Test
+    public void testLevelUp() {
+        smasher.setLevel(9);
+
+        smasher.levelUp();
+
+        assertEquals(10, smasher.getLevel());
     }
 
     @Test
@@ -91,13 +104,30 @@ public class CharacterEntityTests {
     }
 
     @Test
-    public void testTriggeringBindWoundsSkill() {
-        smasher.useSkill(0);
+    public void testUsingBrawlItem() {
+        smasher.setInventory(new Inventory());
+        BrawlItem brawlItem = new BrawlItem();
+
+        smasher.getInventory().equipItem(brawlItem);
+        smasher.useSkill(3);
     }
 
     @Test
-    public void testTriggeringSkillOutOfBounds() {
-        smasher.useSkill(99999);
+    public void testUsingOneHandedItem() {
+        smasher.setInventory(new Inventory());
+        OneHandedItem oneHandedItem = new OneHandedItem();
+
+        smasher.getInventory().equipItem(oneHandedItem);
+        smasher.useSkill(4);
+    }
+
+    @Test
+    public void testUsingTwoHandedItem() {
+        smasher.setInventory(new Inventory());
+        TwoHandedItem twoHandedItem = new TwoHandedItem();
+
+        smasher.getInventory().equipItem(twoHandedItem);
+        smasher.useSkill(5);
     }
 
 }

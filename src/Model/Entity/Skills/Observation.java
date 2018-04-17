@@ -1,11 +1,13 @@
 package Model.Entity.Skills;
 
+import Model.Entity.Character.CharacterEntity;
+
 public class Observation extends Skill {
 
     public Observation() {}
 
     @Override
-    public void effect() {
+    public void effect(CharacterEntity player) {
 
     }
 }
