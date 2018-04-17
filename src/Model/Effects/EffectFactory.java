@@ -12,4 +12,8 @@ public class EffectFactory {
         return new DefenseModifierEffect(defenseChange);
     }
 
+    public Effect produceManaModifierEffect(int manaChange) {
+        return new ManaModifierEffect(manaChange);
+    }
+
 }

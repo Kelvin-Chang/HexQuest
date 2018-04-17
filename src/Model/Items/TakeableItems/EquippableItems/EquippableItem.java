@@ -21,12 +21,16 @@ public abstract class EquippableItem extends TakeableItem {
     @Override
     public void equip(Inventory inventory, CharacterEntity characterEntity) {
         inventory.setEquippedItemSlot(itemSlot, this);
-        equipEffect.trigger(characterEntity);
+        if (equipEffect != null) {
+            equipEffect.trigger(characterEntity);
+        }
     }
 
     public void unequip(Inventory inventory, CharacterEntity characterEntity) {
         inventory.clearEquippedItemSlot(itemSlot);
-        unequipEffect.trigger(characterEntity);
+        if (unequipEffect != null) {
+            unequipEffect.trigger(characterEntity);
+        }
     }
 
     public void triggerItem() {};
@@ -34,12 +38,12 @@ public abstract class EquippableItem extends TakeableItem {
     public static EffectFactory getEffectFactory() {
         return effectFactory;
     }
-    public abstract void makeEquipEffect();
-    public abstract void makeUnequipEffect();
-    public void makeEquippingRelatedEffects() {
-        makeEquipEffect();
-        makeUnequipEffect();
-    }
+    //public abstract void makeEquipEffect();
+    //public abstract void makeUnequipEffect();
+//    public void makeEquippingRelatedEffects() {
+//        makeEquipEffect();
+//        makeUnequipEffect();
+//    }
     public void setEquipEffect(Effect equipEffect) {
         this.equipEffect = equipEffect;
     }

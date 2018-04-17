@@ -14,4 +14,5 @@ public class DefenseModifierEffect extends Effect {
     public void trigger(CharacterEntity character) {
         character.modifyDefense(defenseChange);
     }
+
 }

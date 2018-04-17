@@ -2,6 +2,7 @@ import Model.Entity.Character.Inventory;
 import Model.Entity.Character.Player;
 import Model.Entity.Character.PlayerFactory;
 import Model.Items.TakeableItems.EquippableItems.Armor;
+import Model.Items.TakeableItems.EquippableItems.Ring;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.BrawlItem;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.OneHandedItem;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.TwoHandedItem;
@@ -14,10 +15,12 @@ import static org.junit.Assert.assertEquals;
 public class CharacterEntityTests {
     PlayerFactory playerFactory = new PlayerFactory();
     Player smasher;
+    Player summoner;
 
     @Before
     public void setUp() {
         smasher = playerFactory.produceSmasher();
+        summoner = playerFactory.produceSummoner();
     }
 
     @Test
@@ -113,7 +116,6 @@ public class CharacterEntityTests {
 
         smasher.getInventory().equipItem(brawlItem, smasher);
         smasher.useSkill(3);
-        assertEquals(10, smasher.getAttack());
     }
 
     @Test
@@ -124,7 +126,6 @@ public class CharacterEntityTests {
 
         smasher.getInventory().equipItem(oneHandedItem, smasher);
         smasher.useSkill(4);
-        assertEquals(10, smasher.getAttack());
     }
 
     @Test
@@ -135,7 +136,6 @@ public class CharacterEntityTests {
 
         smasher.getInventory().equipItem(twoHandedItem, smasher);
         smasher.useSkill(5);
-        assertEquals(10, smasher.getAttack());
     }
 
     @Test
@@ -154,6 +154,32 @@ public class CharacterEntityTests {
 
         smasher.getInventory().equipItem(armor, smasher);
         assertEquals(10, smasher.getDefense());
+    }
+
+    @Test
+    public void testEquippingRing() {
+        summoner.setInventory(new Inventory());
+        summoner.setMaxMana(10);
+        summoner.setCurrentMana(5);
+        Ring ring = new Ring(5);
+
+        summoner.getInventory().equipItem(ring, summoner);
+        assertEquals(10, summoner.getCurrentMana());
+    }
+
+    @Test
+    public void testEquippingRingAndArmor() {
+        summoner.setInventory(new Inventory());
+        summoner.setMaxMana(10);
+        summoner.setCurrentMana(5);
+        summoner.setDefense(10);
+        Ring ring = new Ring(5);
+        Armor armor = new Armor(5);
+
+        summoner.getInventory().equipItem(ring, summoner);
+        summoner.getInventory().equipItem(armor, summoner);
+        assertEquals(10, summoner.getCurrentMana());
+        assertEquals(15, summoner.getDefense());
     }
 
 }
