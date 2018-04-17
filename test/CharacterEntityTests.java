@@ -5,7 +5,7 @@ import Model.Items.TakeableItems.EquippableItems.Armor;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.BrawlItem;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.OneHandedItem;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.TwoHandedItem;
-import Model.Items.TakeableItems.Ring;
+import Model.Items.TakeableItems.Key;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -141,9 +141,9 @@ public class CharacterEntityTests {
     @Test
     public void testEquippingNotEquippableItem() {
         smasher.setInventory(new Inventory());
-        Ring ring = new Ring();
+        Key key = new Key();
 
-        smasher.getInventory().equipItem(ring, smasher);
+        smasher.getInventory().equipItem(key, smasher);
     }
 
     @Test
