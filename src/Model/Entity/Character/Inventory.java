@@ -2,6 +2,7 @@ package Model.Entity.Character;
 
 import Model.Enums.ItemSlot;
 import Model.Items.TakeableItems.EquippableItems.EquippableItem;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.UsableItem;
 import Model.Items.TakeableItems.TakeableItem;
 
 import java.util.ArrayList;
@@ -27,7 +28,8 @@ public class Inventory {
 
     public void useItemSlot(ItemSlot slot) {
         if (equippedItems.get(slot) != null) {
-            equippedItems.get(slot).triggerItem();
+            UsableItem usableItem = (UsableItem) equippedItems.get(slot);
+            usableItem.triggerItem();
         }
     }
 

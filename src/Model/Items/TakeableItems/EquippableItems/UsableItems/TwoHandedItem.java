@@ -11,7 +11,6 @@ public class TwoHandedItem extends UsableItem {
         this.damage = damage;
     }
 
-    @Override
     public void triggerItem(){
         System.out.println("TwoHanded item used");
     }

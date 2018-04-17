@@ -33,20 +33,14 @@ public abstract class EquippableItem extends TakeableItem {
         }
     }
 
-    public void triggerItem() {};
-
     public static EffectFactory getEffectFactory() {
         return effectFactory;
     }
-    //public abstract void makeEquipEffect();
-    //public abstract void makeUnequipEffect();
-//    public void makeEquippingRelatedEffects() {
-//        makeEquipEffect();
-//        makeUnequipEffect();
-//    }
+
     public void setEquipEffect(Effect equipEffect) {
         this.equipEffect = equipEffect;
     }
+
     public void setUnequipEffect(Effect unequipEffect) {
         this.unequipEffect = unequipEffect;
     }
