@@ -6,10 +6,6 @@ import java.util.ArrayList;
 
 public class Player extends CharacterEntity {
 
-
-    Player(){
-
-    }
     public Player(ArrayList<Skill> skillList) {
         super(skillList);
     }

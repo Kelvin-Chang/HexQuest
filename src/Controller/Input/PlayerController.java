@@ -1,61 +1,60 @@
 package Controller.Input;
 
-import Model.Entity.Character.CharacterEntity;
 import Model.Entity.Character.Player;
 import Model.Enums.Orientation;
 
 public class PlayerController {
-    private CharacterEntity character;
+    private Player player;
 
     public PlayerController(Player player)
     {
-        this.character = player;
+        this.player = player;
     }
 
     public void pressUp() {
-        this.character.setOrientation(Orientation.UP);
-        this.character.move();
+        this.player.setOrientation(Orientation.UP);
+        this.player.move();
     }
 
     public void pressUpRight() {
-        this.character.setOrientation(Orientation.UPRIGHT);
-        this.character.move();
+        this.player.setOrientation(Orientation.UPRIGHT);
+        this.player.move();
     }
 
     public void pressUpLeft() {
-        this.character.setOrientation(Orientation.UPLEFT);
-        this.character.move();
+        this.player.setOrientation(Orientation.UPLEFT);
+        this.player.move();
     }
 
     public void pressDown() {
-        this.character.setOrientation(Orientation.DOWN);
-        this.character.move();
+        this.player.setOrientation(Orientation.DOWN);
+        this.player.move();
     }
 
     public void pressDownRight() {
-        this.character.setOrientation(Orientation.DOWNRIGHT);
-        this.character.move();
+        this.player.setOrientation(Orientation.DOWNRIGHT);
+        this.player.move();
     }
 
     public void pressDownLeft() {
-        this.character.setOrientation(Orientation.DOWNLEFT);
-        this.character.move();
+        this.player.setOrientation(Orientation.DOWNLEFT);
+        this.player.move();
     }
     /*
     public void setActiveSkill(int index)
     {
-        List<Skill> skills = character.getSkills();
+        List<Skill> skills = player.getSkills();
         if(index < skills.size())
-            character.setActiveSkill(skills.get(index));
+            player.setActiveSkill(skills.get(index));
     }
 
     public void useActiveSkill() {
-        character.useSkill(character.getActiveSkill());
+        player.useSkill(player.getActiveSkill());
 
     }
 
     public void useWeaponAttack() {
-        character.useWeaponSkill();
+        player.useWeaponSkill();
     }
     */
 }
