@@ -1,14 +1,9 @@
 package Model.Entity;
 
 
-public class Entity {
-    private Orientation orientation;
+import Model.Enums.Orientation;
 
-    Entity(){
+public abstract class Entity {
 
-    }
-
-    public Orientation getOrientation() { return orientation;     }
-    void setOrientation(Orientation orientation){ this.orientation = orientation;     }
 
 }

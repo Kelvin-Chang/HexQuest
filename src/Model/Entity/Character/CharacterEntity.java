@@ -4,10 +4,11 @@ import Model.Entity.Pet;
 import Model.Entity.Skills.Skill;
 import Model.Enums.Orientation;
 import Model.Items.Item;
+import Model.Map.World;
 
 import java.util.List;
 
-public abstract class CharacterEntity {
+public class CharacterEntity {
 
     private int level;
     private String name;
@@ -23,7 +24,7 @@ public abstract class CharacterEntity {
     private List<Skill> skills;
     private List<Item> useableItems;
     private Pet pet;
-
+    private World world;
     public CharacterEntity() {}
 
     public void setLevel(int level) {
@@ -57,6 +58,7 @@ public abstract class CharacterEntity {
         this.inventory = inventory;
     }
     public void setOrientation(Orientation orientation) {
+
         this.orientation = orientation;
     }
     public void setPet(Pet pet) {
@@ -132,5 +134,7 @@ public abstract class CharacterEntity {
             currentMana = currentMana + manaChange;
         }
     }
-
+    public void move(){
+        world.attemptMove(this);
+    }
 }
