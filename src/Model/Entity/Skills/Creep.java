@@ -1,4 +1,11 @@
 package Model.Entity.Skills;
 
-public class Creep {
+public class Creep extends Skill {
+
+    public Creep() {}
+
+    @Override
+    public void effect() {
+
+    }
 }
