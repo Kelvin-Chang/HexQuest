@@ -1,4 +1,4 @@
 package Model.Items;
 
-public class Items {
+public class Item {
 }
