@@ -90,4 +90,14 @@ public class CharacterEntityTests {
         assertEquals(75, smasher.getSpeed());
     }
 
+    @Test
+    public void testTriggeringBindWoundsSkill() {
+        smasher.useSkill(0);
+    }
+
+    @Test
+    public void testTriggeringSkillOutOfBounds() {
+        smasher.useSkill(99999);
+    }
+
 }
