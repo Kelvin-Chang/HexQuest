@@ -1,10 +1,10 @@
 package Model.Items.TakeableItems;
 
+import Model.Entity.Character.CharacterEntity;
 import Model.Entity.Character.Inventory;
 
-public interface TakeableItem {
+public abstract class TakeableItem {
 
-    void equip(Inventory inventory);
-    void unequip(Inventory inventory);
-    void effect();
+    public void equip(Inventory inventory, CharacterEntity characterEntity) {};
+
 }

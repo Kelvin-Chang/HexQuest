@@ -1,6 +1,7 @@
 package Model.Entity.Character;
 
-import Model.Enums.ItemSlots;
+import Model.Enums.ItemSlot;
+import Model.Items.TakeableItems.EquippableItems.EquippableItem;
 import Model.Items.TakeableItems.TakeableItem;
 
 import java.util.ArrayList;
@@ -9,28 +10,28 @@ import java.util.HashMap;
 public class Inventory {
 
     private ArrayList<TakeableItem> unequippedItems;
-    private HashMap<ItemSlots, TakeableItem> equippedItems;
+    private HashMap<ItemSlot, EquippableItem> equippedItems;
 
     public Inventory() {
         unequippedItems = new ArrayList<TakeableItem>();
-        equippedItems = new HashMap<ItemSlots, TakeableItem>();
+        equippedItems = new HashMap<ItemSlot, EquippableItem>();
     }
 
-    public void equipItem(TakeableItem item) {
-        item.equip(this);
+    public void equipItem(TakeableItem item, CharacterEntity characterEntity) {
+        item.equip(this, characterEntity);
     }
 
-    public void unequipItem(TakeableItem item) {
-        item.unequip(this);
+    public void unequipItem(EquippableItem item, CharacterEntity characterEntity) {
+        item.unequip(this, characterEntity);
     }
 
-    public void useItemSlot(ItemSlots slot) {
+    public void useItemSlot(ItemSlot slot) {
         if (equippedItems.get(slot) != null) {
-            equippedItems.get(slot).effect();
+            equippedItems.get(slot).triggerItem();
         }
     }
 
-    public void setEquippedItemSlot(ItemSlots slot, TakeableItem item) {
+    public void setEquippedItemSlot(ItemSlot slot, EquippableItem item) {
         if (equippedItems.get(slot) != null) {
             unequippedItems.add(equippedItems.get(slot));
             equippedItems.put(slot, item);
@@ -39,7 +40,7 @@ public class Inventory {
         }
     }
 
-    public void clearEquippedItemSlot(ItemSlots slot) {
+    public void clearEquippedItemSlot(ItemSlot slot) {
         equippedItems.remove(slot);
     }
 }

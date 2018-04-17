@@ -2,15 +2,13 @@ package Model.Entity.Character;
 
 import Model.Entity.Pet;
 import Model.Entity.Skills.Skill;
-import Model.Enums.ItemSlots;
+import Model.Enums.ItemSlot;
 import Model.Enums.Orientation;
 import Model.Items.Item;
 import Model.Items.TakeableItems.TakeableItem;
-import Model.Items.Item;
 import Model.Map.World;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public abstract class CharacterEntity {
 
@@ -160,6 +158,23 @@ public abstract class CharacterEntity {
             currentMana = currentMana + manaChange;
         }
     }
+
+    public void modifyAttack(int attackChange) {
+        if (attack + attackChange <= 0) {
+            attack = 0;
+        } else {
+            attack = attack + attackChange;
+        }
+    }
+
+    public void modifyDefense(int defenseChange) {
+        if (defense + defenseChange <= 0) {
+            defense = 0;
+        } else {
+            defense = defense + defenseChange;
+        }
+    }
+
     public void move(){
         world.attemptMove(this);
     }
@@ -183,8 +198,12 @@ public abstract class CharacterEntity {
         }
     }
 
-    public void useItemSlot(ItemSlots slot) {
+    public void useItemSlot(ItemSlot slot) {
         inventory.useItemSlot(slot);
+    }
+
+    public void equipItem(TakeableItem item) {
+        inventory.equipItem(item, this);
     }
 
 }

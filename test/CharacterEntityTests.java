@@ -1,9 +1,11 @@
 import Model.Entity.Character.Inventory;
 import Model.Entity.Character.Player;
 import Model.Entity.Character.PlayerFactory;
-import Model.Items.TakeableItems.BrawlItem;
-import Model.Items.TakeableItems.OneHandedItem;
-import Model.Items.TakeableItems.TwoHandedItem;
+import Model.Items.TakeableItems.EquippableItems.Armor;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.BrawlItem;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.OneHandedItem;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.TwoHandedItem;
+import Model.Items.TakeableItems.Ring;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -105,29 +107,53 @@ public class CharacterEntityTests {
 
     @Test
     public void testUsingBrawlItem() {
+        smasher.setAttack(5);
         smasher.setInventory(new Inventory());
-        BrawlItem brawlItem = new BrawlItem();
+        BrawlItem brawlItem = new BrawlItem(5);
 
-        smasher.getInventory().equipItem(brawlItem);
+        smasher.getInventory().equipItem(brawlItem, smasher);
         smasher.useSkill(3);
+        assertEquals(10, smasher.getAttack());
     }
 
     @Test
     public void testUsingOneHandedItem() {
+        smasher.setAttack(5);
         smasher.setInventory(new Inventory());
-        OneHandedItem oneHandedItem = new OneHandedItem();
+        OneHandedItem oneHandedItem = new OneHandedItem(5);
 
-        smasher.getInventory().equipItem(oneHandedItem);
+        smasher.getInventory().equipItem(oneHandedItem, smasher);
         smasher.useSkill(4);
+        assertEquals(10, smasher.getAttack());
     }
 
     @Test
     public void testUsingTwoHandedItem() {
+        smasher.setAttack(5);
         smasher.setInventory(new Inventory());
-        TwoHandedItem twoHandedItem = new TwoHandedItem();
+        TwoHandedItem twoHandedItem = new TwoHandedItem(5);
 
-        smasher.getInventory().equipItem(twoHandedItem);
+        smasher.getInventory().equipItem(twoHandedItem, smasher);
         smasher.useSkill(5);
+        assertEquals(10, smasher.getAttack());
+    }
+
+    @Test
+    public void testEquippingNotEquippableItem() {
+        smasher.setInventory(new Inventory());
+        Ring ring = new Ring();
+
+        smasher.getInventory().equipItem(ring, smasher);
+    }
+
+    @Test
+    public void testEquippingArmor() {
+        smasher.setInventory(new Inventory());
+        smasher.setDefense(5);
+        Armor armor = new Armor(5);
+
+        smasher.getInventory().equipItem(armor, smasher);
+        assertEquals(10, smasher.getDefense());
     }
 
 }

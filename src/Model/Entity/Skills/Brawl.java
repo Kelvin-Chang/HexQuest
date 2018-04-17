@@ -2,7 +2,7 @@ package Model.Entity.Skills;
 
 import Model.Entity.Character.CharacterEntity;
 
-import static Model.Enums.ItemSlots.BRAWL;
+import static Model.Enums.ItemSlot.BRAWL;
 
 public class Brawl extends Skill {
 
