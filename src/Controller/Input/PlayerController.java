@@ -1,6 +1,7 @@
 package Controller.Input;
 
 import Model.Entity.Character.Player;
+import Model.Enums.Orientation;
 
 public class PlayerController {
     private Player player;

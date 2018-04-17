@@ -149,6 +149,6 @@ public abstract class CharacterEntity {
         }
     }
 
-
+    public void move(){}
 
 }
