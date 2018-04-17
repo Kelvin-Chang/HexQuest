@@ -30,6 +30,7 @@ public class ViewController {
     // initializes a blank window
     public void displayStage(Stage primaryStage) {
         stage = primaryStage;
+//        stage.centerOnScreen();
         stage.show();
     }
 
@@ -39,15 +40,21 @@ public class ViewController {
     }
 
     public void switchToNewGameView() {
-
+        NewGameView view = new NewGameView();
+        createScene(view);
     }
 
     public void switchToLoadGameView() {
-
+        LoadGameView view = new LoadGameView();
+        createScene(view);
     }
 
     public void switchToSettingsView() {
 
+    }
+
+
+    public void switchToStartNewGameView() {
     }
 
     public void switchToGlobalGamePlayView() {

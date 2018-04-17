@@ -1,14 +1,18 @@
 package View.Menu;
 
-import View.buttons.*;
+import View.buttons.Button;
+import View.buttons.MainMenuButton;
+import View.buttons.StartNewGameButton;
 import javafx.geometry.Insets;
 import javafx.scene.layout.GridPane;
 
 import java.util.ArrayList;
 
-public class LoadGameView extends AbstractView {
 
-    public LoadGameView() {
+public class NewGameView extends AbstractView{
+
+    public NewGameView() {
+
         ViewController viewController = new ViewController();
         GridPane grid = new GridPane();
 
