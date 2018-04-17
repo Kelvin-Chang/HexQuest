@@ -1,4 +1,4 @@
 package Model.Map.AreaEffect;
 
-public class Death {
+public class Death extends AreaEffect {
 }
