@@ -3,17 +3,16 @@ package View.buttons;
 import View.Menu.ViewController;
 import javafx.event.ActionEvent;
 
-public class SettingsButton extends Button {
+public class ExitProgramSelectable extends Selectable {
 
     private ViewController viewController;
 
-    public SettingsButton(String name, ViewController viewController) {
+    public ExitProgramSelectable(String name, ViewController viewController) {
         super(name);
         this.viewController = viewController;
     }
-
     @Override
     public void handle(ActionEvent event) {
-        viewController.switchToSettingsView();
+        viewController.exitProgram();
     }
 }

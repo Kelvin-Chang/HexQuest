@@ -1,9 +1,10 @@
 package View.Menu;
 
-import View.buttons.Button;
-import View.buttons.MainMenuButton;
-import View.buttons.StartNewGameButton;
+import View.buttons.Selectable;
+import View.buttons.MainMenuSelectable;
+import View.buttons.StartNewGameSelectable;
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 
 import java.util.ArrayList;
@@ -20,19 +21,19 @@ public class NewGameView extends AbstractView{
         grid.setHgap(10);
         grid.setPadding(new Insets(10,10,10,10));
 
-        ArrayList<Button> options = new ArrayList<Button>() {{
-            add(new StartNewGameButton("Start", viewController));
-            add(new MainMenuButton("Main Menu", viewController));
+        ArrayList<Selectable> options = new ArrayList<Selectable>() {{
+            add(new StartNewGameSelectable("Start", viewController));
+            add(new MainMenuSelectable("Main Menu", viewController));
         }};
 
-        for(Button clickable: options) {
-            javafx.scene.control.Button button = new javafx.scene.control.Button(clickable.getName());
+        for(Selectable clickable: options) {
+            Button selectable = new Button(clickable.getName());
 
-            // sets button style
-            button.getStyleClass().add("button1");
+            // sets selectable style
+            selectable.getStyleClass().add("button1");
 
-            button.setOnAction(clickable);
-            grid.add(button, 5, 35 + options.indexOf(clickable));
+            selectable.setOnAction(clickable);
+            grid.add(selectable, 5, options.indexOf(clickable));
         }
 
         this.getChildren().add(grid);

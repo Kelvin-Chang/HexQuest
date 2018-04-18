@@ -3,14 +3,14 @@ package View.buttons;
 import View.Menu.ViewController;
 import javafx.event.ActionEvent;
 
-public class MainMenuButton extends Button{
+public class MainMenuSelectable extends Selectable {
     private ViewController viewController;
 
-    public MainMenuButton() {
+    public MainMenuSelectable() {
 
     }
 
-    public MainMenuButton(String name, ViewController viewController) {
+    public MainMenuSelectable(String name, ViewController viewController) {
         super(name);
         this.viewController = viewController;
     }

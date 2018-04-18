@@ -1,8 +1,10 @@
 package View.Menu;
 
 import View.buttons.*;
+import com.sun.org.apache.bcel.internal.generic.Select;
 import javafx.geometry.Insets;
 import javafx.scene.layout.GridPane;
+import javafx.scene.control.Button;
 
 import java.util.ArrayList;
 
@@ -16,21 +18,21 @@ public class MainMenuView extends AbstractView{
         grid.setHgap(10);
         grid.setPadding(new Insets(10,10,10,10));
 
-        ArrayList<Button> options = new ArrayList<Button>() {{
-            add(new NewGameButton("New Game", viewController));
-            add(new LoadGameButton("Load Game", viewController));
-            add(new SettingsButton("Settings", viewController));
-            add(new ExitProgramButton("Exit", viewController));
+        ArrayList<Selectable> options = new ArrayList<Selectable>() {{
+            add(new NewGameSelectable("New Game", viewController));
+            add(new LoadGameSelectable("Load Game", viewController));
+            add(new SettingsSelectable("Settings", viewController));
+            add(new ExitProgramSelectable("Exit", viewController));
         }};
 
-        for(Button clickable: options) {
-            javafx.scene.control.Button button = new javafx.scene.control.Button(clickable.getName());
+        for(Selectable clickable: options) {
+            Button selectable = new Button(clickable.getName());
 
-            // sets button style
-            button.getStyleClass().add("button1");
+            // sets selectable style
+            selectable.getStyleClass().add("button1");
 
-            button.setOnAction(clickable);
-            grid.add(button, 5, options.indexOf(clickable));
+            selectable.setOnAction(clickable);
+            grid.add(selectable, 5, options.indexOf(clickable));
         }
 
         this.getChildren().add(grid);

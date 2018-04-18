@@ -1,20 +1,26 @@
 package View.buttons;
 
+
 import View.Menu.ViewController;
 import javafx.event.ActionEvent;
 
-public class LoadGameButton extends Button {
+
+public class NewGameSelectable extends Selectable {
 
     private ViewController viewController;
 
+    public NewGameSelectable() {
 
-    public LoadGameButton(String name, ViewController viewController) {
+    }
+
+    public NewGameSelectable(String name, ViewController viewController) {
         super(name);
         this.viewController = viewController;
     }
 
     @Override
     public void handle(ActionEvent event) {
-        viewController.switchToLoadGameView();;
+        viewController.switchToNewGameView();
     }
+
 }

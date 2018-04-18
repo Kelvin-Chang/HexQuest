@@ -3,16 +3,25 @@ package View.buttons;
 import View.Menu.ViewController;
 import javafx.event.ActionEvent;
 
-public class ExitProgramButton extends Button{
+public class StartNewGameSelectable extends Selectable {
 
+    // dont know if necessary
     private ViewController viewController;
 
-    public ExitProgramButton(String name, ViewController viewController) {
+    public StartNewGameSelectable() {
+
+    }
+
+    public StartNewGameSelectable(String name, ViewController viewController) {
         super(name);
         this.viewController = viewController;
     }
+
     @Override
     public void handle(ActionEvent event) {
-        viewController.exitProgram();
+        // load
+
     }
+
+
 }

@@ -16,12 +16,12 @@ public class LoadGameView extends AbstractView {
         grid.setHgap(10);
         grid.setPadding(new Insets(10,10,10,10));
 
-        ArrayList<Button> options = new ArrayList<Button>() {{
-            add(new StartNewGameButton("Start", viewController));
-            add(new MainMenuButton("Main Menu", viewController));
+        ArrayList<Selectable> options = new ArrayList<Selectable>() {{
+            add(new StartNewGameSelectable("Start", viewController));
+            add(new MainMenuSelectable("Main Menu", viewController));
         }};
 
-        for(Button clickable: options) {
+        for(Selectable clickable: options) {
             javafx.scene.control.Button button = new javafx.scene.control.Button(clickable.getName());
 
             // sets button style
