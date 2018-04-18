@@ -14,10 +14,10 @@ public class Ring extends EquippableItem implements HasEquipUnequipEffects{
     }
 
     public void makeEquipEffect() {
-        super.setEquipEffect(getEffectFactory().produceManaModifierEffect(manaChange));
+        super.setEquipEffect(getEffectFactory().produceMaxManaModifierEffect(manaChange));
     }
 
     public void makeUnequipEffect() {
-        super.setUnequipEffect(getEffectFactory().produceManaModifierEffect(-manaChange));
+        super.setUnequipEffect(getEffectFactory().produceMaxManaModifierEffect(-manaChange));
     }
 }

@@ -177,6 +177,14 @@ public abstract class CharacterEntity {
         }
     }
 
+    public void modifyMaxMana(int manaChange) {
+        if (maxMana + manaChange <= 0) {
+            maxMana = 0;
+        } else {
+            maxMana = maxMana + manaChange;
+        }
+    }
+
     public void modifyAttack(int attackChange) {
         if (attack + attackChange <= 0) {
             attack = 0;

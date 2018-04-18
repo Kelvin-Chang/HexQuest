@@ -16,6 +16,10 @@ public class EffectFactory {
         return new ManaModifierEffect(manaChange);
     }
 
+    public Effect produceMaxManaModifierEffect(int manaChange) {
+        return new MaxManaModifierEffect(manaChange);
+    }
+
     public Effect produceHealthModifierEffect(int healthChange) {
         return new HealthModifierEffect(healthChange);
     }

@@ -2,40 +2,37 @@ package Model.Items.TakeableItems.EquippableItems.UsableItems;
 
 import Model.Effects.Effect;
 import Model.Entity.Character.CharacterEntity;
-import Model.Entity.Skills.HealthChangingSkill;
-import Model.Entity.Skills.Skill;
 import Model.Enums.EffectShape;
-import Model.Enums.SkillType;
+import Model.Items.TakeableItems.EquippableItems.HasEquipUnequipEffects;
 import Model.Map.EffectedAreaCoordinatesCalculator;
 
 import java.awt.*;
 import java.util.ArrayList;
 
-import static Model.Enums.ItemSlot.BRAWL;
+import static Model.Enums.ItemSlot.STAFF;
 
-public class BrawlItem extends UsableItem {
+public class StaffItem extends UsableItem {
 
     private int damage;
+    private int manaChange;
     private Effect triggerEffect;
 
-    public BrawlItem(int damage) {
-        super(BRAWL);
+    public StaffItem(int damage, int manaChange) {
+        super(STAFF);
         this.damage = damage;
+        this.manaChange = manaChange;
     }
 
+    @Override
     public void triggerItem(CharacterEntity player) {
 
-        HealthChangingSkill brawlSkill = (HealthChangingSkill) player.getSpecificSkill(SkillType.BRAWLSKILL);
-        int healthChange = brawlSkill.calculateHealthChange(damage + player.getAttack());
-
-        triggerEffect = getEffectFactory().produceHealthModifierEffect(-healthChange);
+        triggerEffect = getEffectFactory().produceHealthModifierEffect(-damage);
 
         EffectedAreaCoordinatesCalculator coordinatesCalculator = new EffectedAreaCoordinatesCalculator();
         ArrayList<Point> effectedCoordinates =
                 coordinatesCalculator.calculateCoordinates(player.getLocation(), player.getOrientation(), EffectShape.LINEAR, 1);
 
         player.effectEntities(effectedCoordinates, triggerEffect);
-        System.out.println("Brawl item used");
+        System.out.println("Staff item used");
     }
-
 }

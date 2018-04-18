@@ -184,25 +184,23 @@ public class CharacterEntityTests {
     public void testEquippingRing() {
         summoner.setInventory(new Inventory());
         summoner.setMaxMana(10);
-        summoner.setCurrentMana(5);
         Ring ring = new Ring(5);
 
         summoner.getInventory().equipItem(ring, summoner);
-        assertEquals(10, summoner.getCurrentMana());
+        assertEquals(15, summoner.getMaxMana());
     }
 
     @Test
     public void testEquippingRingAndArmor() {
         summoner.setInventory(new Inventory());
         summoner.setMaxMana(10);
-        summoner.setCurrentMana(5);
         summoner.setDefense(10);
         Ring ring = new Ring(5);
         Armor armor = new Armor(5);
 
         summoner.getInventory().equipItem(ring, summoner);
         summoner.getInventory().equipItem(armor, summoner);
-        assertEquals(10, summoner.getCurrentMana());
+        assertEquals(15, summoner.getMaxMana());
         assertEquals(15, summoner.getDefense());
     }
 
