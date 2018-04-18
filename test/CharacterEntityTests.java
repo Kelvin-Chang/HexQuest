@@ -6,6 +6,7 @@ import Model.Items.TakeableItems.EquippableItems.Armor;
 import Model.Items.TakeableItems.EquippableItems.Ring;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.BrawlItem;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.OneHandedItem;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.StaffItem;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.TwoHandedItem;
 import Model.Items.TakeableItems.Key;
 import Model.Map.Map;
@@ -160,6 +161,16 @@ public class CharacterEntityTests {
         smasher.getInventory().equipItem(twoHandedItem, smasher);
         smasher.useSkill(SkillType.TWOHANDEDWEAPONSKILL);
         assertEquals(90, summoner.getCurrentHealth());
+    }
+
+    @Test
+    public void testUsingStaff() {
+        summoner.setInventory(new Inventory());
+        summoner.getSpecificSkill(SkillType.STAFFSKILL).setSkillLevel(100);
+        StaffItem staffItem = new StaffItem(5);
+
+        summoner.getInventory().equipItem(staffItem, summoner);
+        summoner.useSkill(SkillType.STAFFSKILL);
     }
 
     @Test

@@ -14,13 +14,11 @@ import static Model.Enums.ItemSlot.STAFF;
 public class StaffItem extends UsableItem {
 
     private int damage;
-    private int manaChange;
     private Effect triggerEffect;
 
-    public StaffItem(int damage, int manaChange) {
+    public StaffItem(int damage) {
         super(STAFF);
         this.damage = damage;
-        this.manaChange = manaChange;
     }
 
     @Override
