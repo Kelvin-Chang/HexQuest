@@ -15,7 +15,7 @@ public class ViewController {
 
     // creates the scene in the window, to be called each time you switch scenes
     private void createScene(AbstractView view) {
-        scene = new Scene(view, 500, 500);
+        scene = new Scene(view, 1000, 800);
         scene.getStylesheets().add("assets/stylesheet");
 //        scene.setFill(Paint.valueOf("#1d1d1d"));
         stage.setScene(scene);
@@ -30,7 +30,9 @@ public class ViewController {
     // initializes a blank window
     public void displayStage(Stage primaryStage) {
         stage = primaryStage;
-//        stage.centerOnScreen();
+        stage.setWidth(1000);
+        stage.setHeight(800);
+        stage.centerOnScreen();
         stage.show();
     }
 
