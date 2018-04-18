@@ -164,13 +164,22 @@ public class CharacterEntityTests {
     }
 
     @Test
-    public void testUsingStaff() {
+    public void testUsingStaffAsSummoner() {
         summoner.setInventory(new Inventory());
         summoner.getSpecificSkill(SkillType.STAFFSKILL).setSkillLevel(100);
         StaffItem staffItem = new StaffItem(5);
 
         summoner.getInventory().equipItem(staffItem, summoner);
         summoner.useSkill(SkillType.STAFFSKILL);
+    }
+
+    @Test
+    public void testUsingStaffAsSmasher() {
+        smasher.setInventory(new Inventory());
+        StaffItem staffItem = new StaffItem(5);
+
+        smasher.getInventory().equipItem(staffItem, smasher);
+        smasher.useSkill(SkillType.STAFFSKILL);
     }
 
     @Test
