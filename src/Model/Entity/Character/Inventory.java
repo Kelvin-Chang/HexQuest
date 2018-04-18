@@ -26,10 +26,10 @@ public class Inventory {
         item.unequip(this, characterEntity);
     }
 
-    public void useItemSlot(ItemSlot slot) {
+    public void useItemSlot(ItemSlot slot, CharacterEntity characterEntity) {
         if (equippedItems.get(slot) != null) {
             UsableItem usableItem = (UsableItem) equippedItems.get(slot);
-            usableItem.triggerItem();
+            usableItem.triggerItem(characterEntity);
         }
     }
 

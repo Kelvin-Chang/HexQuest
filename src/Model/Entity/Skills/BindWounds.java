@@ -2,7 +2,7 @@ package Model.Entity.Skills;
 
 import Model.Entity.Character.CharacterEntity;
 
-public class BindWounds extends Skill{
+public class BindWounds extends HealthChangingSkill {
 
     public BindWounds() {}
 

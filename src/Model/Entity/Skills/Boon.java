@@ -4,7 +4,7 @@ import Model.Entity.Character.CharacterEntity;
 
 import static Model.Enums.ItemSlot.BOON;
 
-public class Boon extends Skill {
+public class Boon extends HealthChangingSkill {
 
     public Boon() {}
 

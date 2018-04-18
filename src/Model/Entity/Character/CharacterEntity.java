@@ -1,13 +1,16 @@
 package Model.Entity.Character;
 
+import Model.Effects.Effect;
 import Model.Entity.Pet;
 import Model.Entity.Skills.Skill;
 import Model.Enums.ItemSlot;
 import Model.Enums.Orientation;
 import Model.Items.Item;
 import Model.Items.TakeableItems.TakeableItem;
+import Model.Map.Map;
 import Model.Map.World;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public abstract class CharacterEntity {
@@ -26,7 +29,7 @@ public abstract class CharacterEntity {
     private ArrayList<Skill> skills;
     private ArrayList<Item> useableItems;
     private Pet pet;
-    private World world;
+    private Map currentMap;
 
     public CharacterEntity() {
         this.level = 0;
@@ -41,11 +44,11 @@ public abstract class CharacterEntity {
         this.orientation = Orientation.UP;
         this.skills = new ArrayList<Skill>();
         this.useableItems = new ArrayList<Item>();
-        this.world = new World();
+        this.currentMap = new Map();
     }
-    public CharacterEntity(World world){
+    public CharacterEntity(Map map){
         this();
-        this.world = world;
+        this.currentMap = map;
     }
 
     public CharacterEntity(ArrayList<Skill> skillList) {
@@ -94,6 +97,9 @@ public abstract class CharacterEntity {
     public void setUseableItems(ArrayList<Item> useableItems) {
         this.useableItems = useableItems;
     }
+    public void setCurrentMap(Map currentMap) {
+        this.currentMap = currentMap;
+    }
 
     public int getLevel() {
         return level;
@@ -137,7 +143,13 @@ public abstract class CharacterEntity {
     public ArrayList<Item> getUseableItems() {
         return useableItems;
     }
+    public Map getCurrentMap() {
+        return currentMap;
+    }
 
+    public Point getLocation() {
+        return currentMap.characterLocation(this);
+    }
 
     public void modifyHealth(int healthChange) {
         if (currentHealth + healthChange <= 0) {
@@ -175,9 +187,7 @@ public abstract class CharacterEntity {
         }
     }
 
-    public void move(){
-        world.attemptMove(this);
-    }
+    public void move(){}
 
     public void levelUp() {
         level = level + 1;
@@ -199,11 +209,18 @@ public abstract class CharacterEntity {
     }
 
     public void useItemSlot(ItemSlot slot) {
-        inventory.useItemSlot(slot);
+        inventory.useItemSlot(slot, this);
     }
 
     public void equipItem(TakeableItem item) {
         inventory.equipItem(item, this);
+    }
+
+    public void effectEntities(ArrayList<Point> area, Effect effect) {
+        ArrayList<CharacterEntity> entities = currentMap.getEntitiesOnArea(area);
+        for (CharacterEntity entity: entities) {
+            effect.trigger(entity);
+        }
     }
 
 }

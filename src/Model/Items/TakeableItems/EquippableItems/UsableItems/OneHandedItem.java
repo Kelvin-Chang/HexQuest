@@ -1,5 +1,7 @@
 package Model.Items.TakeableItems.EquippableItems.UsableItems;
 
+import Model.Entity.Character.CharacterEntity;
+
 import static Model.Enums.ItemSlot.ONEHANDED;
 
 public class OneHandedItem extends UsableItem {
@@ -11,7 +13,7 @@ public class OneHandedItem extends UsableItem {
         this.damage = damage;
     }
 
-    public void triggerItem(){
+    public void triggerItem(CharacterEntity player){
         System.out.println("OneHanded item used");
     }
 

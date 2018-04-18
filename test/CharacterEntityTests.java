@@ -7,20 +7,31 @@ import Model.Items.TakeableItems.EquippableItems.UsableItems.BrawlItem;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.OneHandedItem;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.TwoHandedItem;
 import Model.Items.TakeableItems.Key;
+import Model.Map.Map;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.awt.*;
 
 import static org.junit.Assert.assertEquals;
 
 public class CharacterEntityTests {
+
     PlayerFactory playerFactory = new PlayerFactory();
     Player smasher;
     Player summoner;
+    Map map;
 
     @Before
     public void setUp() {
         smasher = playerFactory.produceSmasher();
         summoner = playerFactory.produceSummoner();
+
+        map = new Map();
+        map.getCharacterMap().put(new Point(1,1), smasher);
+        smasher.setCurrentMap(map);
+        map.getCharacterMap().put(new Point(1,2), summoner);
+        summoner.setCurrentMap(map);
     }
 
     @Test
@@ -112,10 +123,13 @@ public class CharacterEntityTests {
     public void testUsingBrawlItem() {
         smasher.setAttack(5);
         smasher.setInventory(new Inventory());
+        summoner.setCurrentHealth(100);
+        summoner.setMaxHealth(100);
         BrawlItem brawlItem = new BrawlItem(5);
 
         smasher.getInventory().equipItem(brawlItem, smasher);
         smasher.useSkill(3);
+        assertEquals(90, summoner.getCurrentHealth());
     }
 
     @Test
