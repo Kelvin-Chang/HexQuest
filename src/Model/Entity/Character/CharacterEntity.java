@@ -5,6 +5,7 @@ import Model.Entity.Pet;
 import Model.Entity.Skills.Skill;
 import Model.Enums.ItemSlot;
 import Model.Enums.Orientation;
+import Model.Enums.SkillType;
 import Model.Items.Item;
 import Model.Items.TakeableItems.TakeableItem;
 import Model.Map.Map;
@@ -12,6 +13,7 @@ import Model.Map.World;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public abstract class CharacterEntity {
 
@@ -26,7 +28,7 @@ public abstract class CharacterEntity {
     private int speed;
     private Inventory inventory;
     private Orientation orientation;
-    private ArrayList<Skill> skills;
+    private HashMap<SkillType, Skill> skills;
     private ArrayList<Item> useableItems;
     private Pet pet;
     private Map currentMap;
@@ -42,7 +44,7 @@ public abstract class CharacterEntity {
         this.speed = 1;
         this.inventory = new Inventory();
         this.orientation = Orientation.UP;
-        this.skills = new ArrayList<Skill>();
+        this.skills = new HashMap<>();
         this.useableItems = new ArrayList<Item>();
         this.currentMap = new Map();
     }
@@ -51,7 +53,7 @@ public abstract class CharacterEntity {
         this.currentMap = map;
     }
 
-    public CharacterEntity(ArrayList<Skill> skillList) {
+    public CharacterEntity(HashMap<SkillType, Skill> skillList) {
         this.skills = skillList;
     }
 
@@ -91,7 +93,7 @@ public abstract class CharacterEntity {
     public void setPet(Pet pet) {
         this.pet = pet;
     }
-    public void setSkills(ArrayList<Skill> skills) {
+    public void setSkills(HashMap<SkillType, Skill> skills) {
         this.skills = skills;
     }
     public void setUseableItems(ArrayList<Item> useableItems) {
@@ -137,7 +139,7 @@ public abstract class CharacterEntity {
     public Pet getPet() {
         return pet;
     }
-    public ArrayList<Skill> getSkills() {
+    public HashMap<SkillType, Skill> getSkills() {
         return skills;
     }
     public ArrayList<Item> getUseableItems() {
@@ -149,6 +151,10 @@ public abstract class CharacterEntity {
 
     public Point getLocation() {
         return currentMap.characterLocation(this);
+    }
+
+    public Skill getSpecificSkill(SkillType skillType) {
+        return skills.get(skillType);
     }
 
     public void modifyHealth(int healthChange) {
@@ -202,9 +208,11 @@ public abstract class CharacterEntity {
     }
 
     // refer to PlayerFactory to determine the order that the skills are in in the ArrayList
-    public void useSkill(int skillIndex) {
-        if ( !(skillIndex >= skills.size()) && !(skillIndex < 0) ) {
-            skills.get(skillIndex).activateSkill(this);
+    public void useSkill(SkillType skillType) {
+        if (skills.get(skillType) != null) {
+            if (skills.get(skillType).skillSuccessful()) {
+                skills.get(skillType).activateSkill(this);
+            }
         }
     }
 

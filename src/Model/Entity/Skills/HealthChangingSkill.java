@@ -1,17 +1,16 @@
 package Model.Entity.Skills;
 
-import java.util.Random;
-
 public abstract class HealthChangingSkill extends Skill {
 
-    private static final Random random = new Random();
-
     public int calculateHealthChange(int maxHealthChange) {
-        return (int) percentOfMaxHealthChangeToBeDealt() * maxHealthChange;
+        double percent = percentOfMaxHealthChangeToBeDealt();
+        int healthChange = (int) (percent * maxHealthChange);
+        return healthChange;
     }
 
     protected double percentOfMaxHealthChangeToBeDealt() {
-        return (double) ( random.nextInt(101 - getSkillLevel()) + getSkillLevel() ) / 100;
+        double percent = (double) ( getRandom().nextInt(101 - getSkillLevel()) + getSkillLevel() ) / 100;
+        return percent;
     }
 
 }

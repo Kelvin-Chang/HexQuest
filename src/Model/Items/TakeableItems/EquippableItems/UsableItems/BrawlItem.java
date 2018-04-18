@@ -2,7 +2,10 @@ package Model.Items.TakeableItems.EquippableItems.UsableItems;
 
 import Model.Effects.Effect;
 import Model.Entity.Character.CharacterEntity;
+import Model.Entity.Skills.HealthChangingSkill;
+import Model.Entity.Skills.Skill;
 import Model.Enums.EffectShape;
+import Model.Enums.SkillType;
 import Model.Map.EffectedAreaCoordinatesCalculator;
 
 import java.awt.*;
@@ -20,9 +23,12 @@ public class BrawlItem extends UsableItem {
         this.damage = damage;
     }
 
-    public void triggerItem(CharacterEntity player){
+    public void triggerItem(CharacterEntity player) {
 
-        triggerEffect = getEffectFactory().produceHealthModifierEffect(-(damage + player.getAttack()));
+        HealthChangingSkill brawlSkill = (HealthChangingSkill) player.getSpecificSkill(SkillType.BRAWLSKILL);
+        int healthChange = brawlSkill.calculateHealthChange(damage + player.getAttack());
+
+        triggerEffect = getEffectFactory().produceHealthModifierEffect(-healthChange);
 
         EffectedAreaCoordinatesCalculator coordinatesCalculator = new EffectedAreaCoordinatesCalculator();
         ArrayList<Point> effectedCoordinates =

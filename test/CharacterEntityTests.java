@@ -1,6 +1,7 @@
 import Model.Entity.Character.Inventory;
 import Model.Entity.Character.Player;
 import Model.Entity.Character.PlayerFactory;
+import Model.Enums.SkillType;
 import Model.Items.TakeableItems.EquippableItems.Armor;
 import Model.Items.TakeableItems.EquippableItems.Ring;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.BrawlItem;
@@ -123,12 +124,13 @@ public class CharacterEntityTests {
     public void testUsingBrawlItem() {
         smasher.setAttack(5);
         smasher.setInventory(new Inventory());
+        smasher.getSpecificSkill(SkillType.BRAWLSKILL).setSkillLevel(100);
         summoner.setCurrentHealth(100);
         summoner.setMaxHealth(100);
         BrawlItem brawlItem = new BrawlItem(5);
 
         smasher.getInventory().equipItem(brawlItem, smasher);
-        smasher.useSkill(3);
+        smasher.useSkill(SkillType.BRAWLSKILL);
         assertEquals(90, summoner.getCurrentHealth());
     }
 
@@ -136,20 +138,28 @@ public class CharacterEntityTests {
     public void testUsingOneHandedItem() {
         smasher.setAttack(5);
         smasher.setInventory(new Inventory());
+        smasher.getSpecificSkill(SkillType.ONEHANDEDWEAPONSKILL).setSkillLevel(100);
+        summoner.setCurrentHealth(100);
+        summoner.setMaxHealth(100);
         OneHandedItem oneHandedItem = new OneHandedItem(5);
 
         smasher.getInventory().equipItem(oneHandedItem, smasher);
-        smasher.useSkill(4);
+        smasher.useSkill(SkillType.ONEHANDEDWEAPONSKILL);
+        assertEquals(90, summoner.getCurrentHealth());
     }
 
     @Test
     public void testUsingTwoHandedItem() {
         smasher.setAttack(5);
         smasher.setInventory(new Inventory());
+        smasher.getSpecificSkill(SkillType.TWOHANDEDWEAPONSKILL).setSkillLevel(100);
+        summoner.setCurrentHealth(100);
+        summoner.setMaxHealth(100);
         TwoHandedItem twoHandedItem = new TwoHandedItem(5);
 
         smasher.getInventory().equipItem(twoHandedItem, smasher);
-        smasher.useSkill(5);
+        smasher.useSkill(SkillType.TWOHANDEDWEAPONSKILL);
+        assertEquals(90, summoner.getCurrentHealth());
     }
 
     @Test
