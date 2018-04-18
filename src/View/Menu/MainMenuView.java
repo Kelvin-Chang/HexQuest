@@ -1,13 +1,14 @@
 package View.Menu;
 
 import View.buttons.*;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 
@@ -45,11 +46,11 @@ public class MainMenuView extends AbstractView{
 //        }
 
         /*
-        this.getChildren().add(buttonVBox); is perfectly valid
+        this.getChildren().add(centerPane); is perfectly valid
         this.getChildren().add(mainMenuFormat()); is better because it allows more formatting options in the future
         by using a BorderPane
          */
-        this.getChildren().add(mainMenuFormat());
+        this.getChildren().add(borderPane());
     }
 
     // list of buttons
@@ -66,13 +67,13 @@ public class MainMenuView extends AbstractView{
     }
 
     // creates vbox to hold buttons
-    private VBox buttonVBox() {
+    private VBox centerPane() {
         ArrayList<Selectable> options = createButtons(viewController);
         VBox vbox = new VBox();
 //        vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
         vbox.setPrefSize(1000,800);
-        vbox.setAlignment(Pos.CENTER);
+        vbox.setAlignment(Pos.TOP_CENTER);
 
         // changes the vbox dimensions
 //        vbox.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
@@ -94,7 +95,16 @@ public class MainMenuView extends AbstractView{
         return vbox;
     }
 
-    private BorderPane mainMenuFormat() {
+    private Text gameTitle() {
+        Text t = new Text();
+        t.setText("Game Title");
+        t.setFont(Font.font("Elephant", 50));
+        t.setFill(Paint.valueOf("#ff00ff"));
+
+        return t;
+    }
+
+    private BorderPane borderPane() {
 
         // TODO: add in game title to top pane, possibly move vbox from centerpane to bottom pane? (unnecessary move)
 
@@ -113,22 +123,22 @@ public class MainMenuView extends AbstractView{
 //        paneleft.setPrefWidth(100);
 //        paneright.setPrefWidth(100);
 //        panecenter.setPrefWidth(100);
-//        panetop.setPrefHeight(100);
+        panetop.setPrefHeight(100);
 //        panebottom.setPrefHeight(100);
 
-        // limits pane size to 0, leaving only the center pane
+        // limits pane size to max
         paneleft.setMaxSize(0,0);
         paneright.setMaxSize(0,0);
 //        panecenter.setMaxSize(0,0);
-        panetop.setMaxSize(0,0);
+//        panetop.setMaxSize(0,0);
         panebottom.setMaxSize(0,0);
 
         bp.setLeft(paneleft);
         bp.setRight(paneright);
-        bp.setTop(panetop);
+        bp.setTop(gameTitle());
         bp.setBottom(panebottom);
 
-        bp.setCenter(buttonVBox());
+        bp.setCenter(centerPane());
 
         return bp;
     }

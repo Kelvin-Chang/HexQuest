@@ -11,6 +11,9 @@ public class RunGame extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        // prints out available text fonts
+//        System.out.println(javafx.scene.text.Font.getFamilies());
+
         // create ViewController
         ViewController viewController = new ViewController();
 
