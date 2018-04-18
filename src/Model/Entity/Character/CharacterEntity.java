@@ -31,7 +31,7 @@ public abstract class CharacterEntity {
     private HashMap<SkillType, Skill> skills;
     private ArrayList<Item> useableItems;
     private Pet pet;
-    private Map currentMap;
+    private World world;
 
     public CharacterEntity() {
         this.level = 0;
@@ -46,11 +46,11 @@ public abstract class CharacterEntity {
         this.orientation = Orientation.UP;
         this.skills = new HashMap<>();
         this.useableItems = new ArrayList<Item>();
-        this.currentMap = new Map();
+        this.world = new World();
     }
-    public CharacterEntity(Map map){
+    public CharacterEntity(World world){
         this();
-        this.currentMap = map;
+        this.world = world;
     }
 
     public CharacterEntity(HashMap<SkillType, Skill> skillList) {
@@ -99,8 +99,8 @@ public abstract class CharacterEntity {
     public void setUseableItems(ArrayList<Item> useableItems) {
         this.useableItems = useableItems;
     }
-    public void setCurrentMap(Map currentMap) {
-        this.currentMap = currentMap;
+    public void setWorld(World world) {
+        this.world = world;
     }
 
     public int getLevel() {
@@ -145,12 +145,12 @@ public abstract class CharacterEntity {
     public ArrayList<Item> getUseableItems() {
         return useableItems;
     }
-    public Map getCurrentMap() {
-        return currentMap;
+    public World getWorld() {
+        return world;
     }
 
     public Point getLocation() {
-        return currentMap.characterLocation(this);
+        return world.getCharacterLocation(this);
     }
 
     public Skill getSpecificSkill(SkillType skillType) {
@@ -240,7 +240,7 @@ public abstract class CharacterEntity {
     }
 
     public void effectEntities(ArrayList<Point> area, Effect effect) {
-        ArrayList<CharacterEntity> entities = currentMap.getEntitiesOnArea(area);
+        ArrayList<CharacterEntity> entities = world.getEntitiesOnArea(area);
         for (CharacterEntity entity: entities) {
             effect.trigger(entity);
         }

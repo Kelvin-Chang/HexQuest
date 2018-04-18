@@ -14,6 +14,7 @@ import Model.Items.TakeableItems.EquippableItems.UsableItems.StaffItem;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.TwoHandedItem;
 import Model.Items.TakeableItems.Key;
 import Model.Map.Map;
+import Model.Map.World;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -26,18 +27,18 @@ public class CharacterEntityTests {
     PlayerFactory playerFactory = new PlayerFactory();
     Player smasher;
     Player summoner;
-    Map map;
+    World world;
 
     @Before
     public void setUp() {
         smasher = playerFactory.produceSmasher();
         summoner = playerFactory.produceSummoner();
 
-        map = new Map();
-        map.getCharacterMap().put(new Point(1,1), summoner);
-        smasher.setCurrentMap(map);
-        map.getCharacterMap().put(new Point(1,2), smasher);
-        summoner.setCurrentMap(map);
+        world = new World();
+        world.getCharacterMap().put(new Point(1,1), summoner);
+        smasher.setWorld(world);
+        world.getCharacterMap().put(new Point(1,2), smasher);
+        summoner.setWorld(world);
     }
 
     @Test
