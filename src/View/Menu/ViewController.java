@@ -2,6 +2,7 @@ package View.Menu;
 
 import javafx.application.Platform;
 import javafx.scene.Scene;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 public class ViewController {
@@ -17,7 +18,7 @@ public class ViewController {
     private void createScene(AbstractView view) {
         scene = new Scene(view, 1000, 800);
         scene.getStylesheets().add("assets/stylesheet");
-//        scene.setFill(Paint.valueOf("#1d1d1d"));
+        scene.setFill(Paint.valueOf("#1d1d1d"));
         stage.setScene(scene);
     }
 

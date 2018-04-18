@@ -18,6 +18,7 @@ public class MainMenuView extends AbstractView{
 
     public MainMenuView() {
         viewController = new ViewController();
+        // GridPane is unused for the formatting, might need for future code
 //        GridPane grid = new GridPane();
 
 //        grid.setVgap(10);
@@ -43,6 +44,11 @@ public class MainMenuView extends AbstractView{
 //            grid.add(selectable, 5, options.indexOf(clickable));
 //        }
 
+        /*
+        this.getChildren().add(buttonVBox); is perfectly valid
+        this.getChildren().add(mainMenuFormat()); is better because it allows more formatting options in the future
+        by using a BorderPane
+         */
         this.getChildren().add(mainMenuFormat());
     }
 
@@ -60,11 +66,12 @@ public class MainMenuView extends AbstractView{
     }
 
     // creates vbox to hold buttons
-    private VBox buttonVbox() {
+    private VBox buttonVBox() {
         ArrayList<Selectable> options = createButtons(viewController);
         VBox vbox = new VBox();
-        vbox.setPadding(new Insets(10,10,10,10));
+//        vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
+        vbox.setPrefSize(1000,800);
         vbox.setAlignment(Pos.CENTER);
 
         // changes the vbox dimensions
@@ -89,26 +96,39 @@ public class MainMenuView extends AbstractView{
 
     private BorderPane mainMenuFormat() {
 
+        // TODO: add in game title to top pane, possibly move vbox from centerpane to bottom pane? (unnecessary move)
+
         // create new borderpane for formatting
         BorderPane bp = new BorderPane();
 
+        // commented out pane is the one being replaced by other pane formatting created through other functions
+
         Pane paneleft = new Pane();
         Pane paneright = new Pane();
-        Pane panecenter = new Pane();
+//        Pane panecenter = new Pane();
         Pane panetop = new Pane();
         Pane panebottom = new Pane();
 
-        paneleft.setPrefWidth(100);
-        paneright.setPrefWidth(100);
-        panetop.setPrefHeight(100);
-        panebottom.setPrefHeight(100);
+        // preferred widths but resize based on window size
+//        paneleft.setPrefWidth(100);
+//        paneright.setPrefWidth(100);
+//        panecenter.setPrefWidth(100);
+//        panetop.setPrefHeight(100);
+//        panebottom.setPrefHeight(100);
+
+        // limits pane size to 0, leaving only the center pane
+        paneleft.setMaxSize(0,0);
+        paneright.setMaxSize(0,0);
+//        panecenter.setMaxSize(0,0);
+        panetop.setMaxSize(0,0);
+        panebottom.setMaxSize(0,0);
 
         bp.setLeft(paneleft);
         bp.setRight(paneright);
         bp.setTop(panetop);
         bp.setBottom(panebottom);
 
-        bp.setCenter(buttonVbox());
+        bp.setCenter(buttonVBox());
 
         return bp;
     }
