@@ -1,11 +1,15 @@
 package Model.Entity.Skills;
 
-public class Bane extends Skill {
+import Model.Entity.Character.CharacterEntity;
+
+import static Model.Enums.ItemSlot.BANE;
+
+public class Bane extends VariableEffectSkill {
 
     public Bane() {}
 
     @Override
-    public void effect() {
-
+    public void activateSkill(CharacterEntity player) {
+        player.useItemSlot(BANE);
     }
 }

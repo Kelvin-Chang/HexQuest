@@ -2,12 +2,14 @@ package Model.Entity.Skills;
 
 import Model.Entity.Character.CharacterEntity;
 
-public class RemoveTrap extends Skill {
+import static Model.Enums.ItemSlot.STAFF;
 
-    public RemoveTrap() {}
+public class Staff extends VariableEffectSkill {
+
+    public Staff() {}
 
     @Override
     public void activateSkill(CharacterEntity player) {
-
+        player.useItemSlot(STAFF);
     }
 }

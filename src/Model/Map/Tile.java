@@ -1,8 +1,8 @@
 package Model.Map;
 
 import Model.Entity.Entity;
-import Model.Map.Terrain.Terrain;
-import Model.Item.Item;
+//import Model.Map.Terrain.Terrain;
+import Model.Items.Item;
 import View.Map.TileView;
 
 public class Tile {
@@ -15,7 +15,7 @@ public class Tile {
 
     public Tile() {
         isPassable = true;
-        terrain = new Terrain();
+        //terrain = new Terrain();
         decal = new Decal();
         visited = false;
         inView = false;
