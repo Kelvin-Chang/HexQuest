@@ -4,7 +4,6 @@ import View.buttons.*;
 import javafx.geometry.Pos;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
@@ -81,6 +80,27 @@ public class MainMenuView extends AbstractView{
         return stackPane;
     }
 
+    // following panes set the panes to size 0 so the borderpane is essentially two panes stacked on top of each other
+    private StackPane leftPane() {
+        StackPane stackPane = new StackPane();
+        stackPane.setMaxWidth(0);
+        return stackPane;
+    }
+
+    private StackPane rightPane() {
+        StackPane stackPane = new StackPane();
+        stackPane.setMaxWidth(0);
+
+        return stackPane;
+    }
+
+    private StackPane bottomPane() {
+        StackPane stackPane = new StackPane();
+        stackPane.setMaxHeight(0);
+
+        return stackPane;
+    }
+
     private BorderPane borderPane() {
 
         // create new borderpane for formatting
@@ -88,6 +108,10 @@ public class MainMenuView extends AbstractView{
 
         bp.setTop(topPane());
         bp.setCenter(centerPane());
+
+        bp.setBottom(bottomPane());
+        bp.setLeft(leftPane());
+        bp.setRight(rightPane());
 
         return bp;
     }
