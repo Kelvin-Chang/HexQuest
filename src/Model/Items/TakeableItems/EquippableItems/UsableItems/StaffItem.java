@@ -3,7 +3,6 @@ package Model.Items.TakeableItems.EquippableItems.UsableItems;
 import Model.Effects.Effect;
 import Model.Entity.Character.CharacterEntity;
 import Model.Enums.EffectShape;
-import Model.Items.TakeableItems.EquippableItems.HasEquipUnequipEffects;
 import Model.Map.EffectedAreaCoordinatesCalculator;
 
 import java.awt.*;

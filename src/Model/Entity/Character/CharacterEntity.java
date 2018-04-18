@@ -185,6 +185,13 @@ public abstract class CharacterEntity {
         }
     }
 
+    public boolean hasEnoughManaToCastSpell(int manaCost) {
+        if (currentMana >= manaCost) {
+            return true;
+        }
+        return false;
+    }
+
     public void modifyAttack(int attackChange) {
         if (attack + attackChange <= 0) {
             attack = 0;

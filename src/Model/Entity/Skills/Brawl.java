@@ -4,7 +4,7 @@ import Model.Entity.Character.CharacterEntity;
 
 import static Model.Enums.ItemSlot.BRAWL;
 
-public class Brawl extends HealthChangingSkill {
+public class Brawl extends VariableEffectSkill {
 
     public Brawl() {}
 

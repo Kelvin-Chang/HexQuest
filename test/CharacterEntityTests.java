@@ -1,11 +1,15 @@
 import Model.Entity.Character.Inventory;
 import Model.Entity.Character.Player;
 import Model.Entity.Character.PlayerFactory;
+import Model.Enums.EffectShape;
 import Model.Enums.SkillType;
 import Model.Items.TakeableItems.EquippableItems.Armor;
 import Model.Items.TakeableItems.EquippableItems.Ring;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.BrawlItem;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.OneHandedItem;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItems.DefenseBane;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItems.HealthBane;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BoonItems.HealthBoon;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.StaffItem;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.TwoHandedItem;
 import Model.Items.TakeableItems.Key;
@@ -30,9 +34,9 @@ public class CharacterEntityTests {
         summoner = playerFactory.produceSummoner();
 
         map = new Map();
-        map.getCharacterMap().put(new Point(1,1), smasher);
+        map.getCharacterMap().put(new Point(1,1), summoner);
         smasher.setCurrentMap(map);
-        map.getCharacterMap().put(new Point(1,2), summoner);
+        map.getCharacterMap().put(new Point(1,2), smasher);
         summoner.setCurrentMap(map);
     }
 
@@ -222,6 +226,66 @@ public class CharacterEntityTests {
         summoner.getInventory().equipItem(armor, summoner);
         assertEquals(15, summoner.getMaxMana());
         assertEquals(15, summoner.getDefense());
+    }
+
+    @Test
+    public void testUsingSpellWithoutEnoughMana() {
+        summoner.setInventory(new Inventory());
+        summoner.getSpecificSkill(SkillType.BANESKILL).setSkillLevel(100);
+        summoner.setMaxMana(100);
+        summoner.setCurrentMana(5);
+        DefenseBane bane = new DefenseBane(50, 5, EffectShape.LINEAR, 2);
+
+        summoner.getInventory().equipItem(bane, summoner);
+        summoner.useSkill(SkillType.BANESKILL);
+        assertEquals(5, summoner.getCurrentMana());
+    }
+
+    @Test
+    public void testUsingDefenseReducingBaneItem() {
+        summoner.setInventory(new Inventory());
+        summoner.getSpecificSkill(SkillType.BANESKILL).setSkillLevel(100);
+        summoner.setMaxMana(100);
+        summoner.setCurrentMana(100);
+        smasher.setDefense(100);
+        DefenseBane bane = new DefenseBane(50, 5, EffectShape.LINEAR, 2);
+
+        summoner.getInventory().equipItem(bane, summoner);
+        summoner.useSkill(SkillType.BANESKILL);
+        assertEquals(95, smasher.getDefense());
+        assertEquals(50, summoner.getCurrentMana());
+    }
+
+    @Test
+    public void testUsingHealthReducingBaneItem() {
+        summoner.setInventory(new Inventory());
+        summoner.getSpecificSkill(SkillType.BANESKILL).setSkillLevel(100);
+        summoner.setMaxMana(100);
+        summoner.setCurrentMana(100);
+        smasher.setMaxHealth(100);
+        smasher.setCurrentHealth(100);
+        HealthBane bane = new HealthBane(50, 5, EffectShape.LINEAR, 2);
+
+        summoner.getInventory().equipItem(bane, summoner);
+        summoner.useSkill(SkillType.BANESKILL);
+        assertEquals(95, smasher.getCurrentHealth());
+        assertEquals(50, summoner.getCurrentMana());
+    }
+
+    @Test
+    public void testUsingHealthBoon() {
+        summoner.setInventory(new Inventory());
+        summoner.getSpecificSkill(SkillType.BOONSKILL).setSkillLevel(100);
+        summoner.setMaxMana(100);
+        summoner.setCurrentMana(100);
+        summoner.setMaxHealth(100);
+        summoner.setCurrentHealth(50);
+        HealthBoon boon = new HealthBoon(50, 25);
+
+        summoner.getInventory().equipItem(boon, summoner);
+        summoner.useSkill(SkillType.BOONSKILL);
+        assertEquals(75, summoner.getCurrentHealth());
+        assertEquals(50, summoner.getCurrentMana());
     }
 
 }

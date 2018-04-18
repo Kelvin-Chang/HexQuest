@@ -2,7 +2,7 @@ package Model.Items.TakeableItems.EquippableItems.UsableItems;
 
 import Model.Effects.Effect;
 import Model.Entity.Character.CharacterEntity;
-import Model.Entity.Skills.HealthChangingSkill;
+import Model.Entity.Skills.VariableEffectSkill;
 import Model.Enums.EffectShape;
 import Model.Enums.SkillType;
 import Model.Map.EffectedAreaCoordinatesCalculator;
@@ -24,8 +24,8 @@ public class TwoHandedItem extends UsableItem {
 
     public void triggerItem(CharacterEntity player){
 
-        HealthChangingSkill brawlSkill = (HealthChangingSkill) player.getSpecificSkill(SkillType.TWOHANDEDWEAPONSKILL);
-        int healthChange = brawlSkill.calculateHealthChange(damage + player.getAttack());
+        VariableEffectSkill brawlSkill = (VariableEffectSkill) player.getSpecificSkill(SkillType.TWOHANDEDWEAPONSKILL);
+        int healthChange = brawlSkill.calculateChange(damage + player.getAttack());
 
         triggerEffect = getEffectFactory().produceHealthModifierEffect(-healthChange);
 

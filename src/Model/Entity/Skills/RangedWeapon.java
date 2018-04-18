@@ -4,7 +4,7 @@ import Model.Entity.Character.CharacterEntity;
 
 import static Model.Enums.ItemSlot.RANGED;
 
-public class RangedWeapon extends HealthChangingSkill {
+public class RangedWeapon extends VariableEffectSkill {
 
     public RangedWeapon() {}
 
