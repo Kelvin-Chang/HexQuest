@@ -1,4 +1,5 @@
 package Model.Map;
 
-public class Decal {
+public enum Decal {
+    CROSS, SKULL;
 }

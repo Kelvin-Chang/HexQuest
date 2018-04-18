@@ -15,8 +15,6 @@ public class GameLoader {
         this.gb = gb;
     }
 
-    private String savePath = "resources/maps/map0.json";
-
     public void loadGame(String savePath) {
         File file = new File(savePath);
 

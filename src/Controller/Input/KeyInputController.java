@@ -1,6 +1,8 @@
 package Controller.Input;
 
-public class KeyInputController {
+import javafx.scene.input.InputEvent;
+
+public class KeyInputController extends InputEvent {
 
 
 
