@@ -14,9 +14,9 @@ public class UnpackSave {
     private Viewport viewport = new Viewport();
 
     public UnpackSave(JSONObject jso, GameBuilder gb) {
-        this.gameBuilder = gb
+        this.gameBuilder = gb;
 
-        unpackWorld(jso.getJSONObject("World");
+        unpackWorld(jso.getJSONObject("World"));
     }
 
     public void unpackWorld(JSONObject world) {
@@ -37,13 +37,13 @@ public class UnpackSave {
         for (int i = 0; i < tileArray.length(); i++) {
             unpackTile(tileArray.getJSONObject(i));
         }
-        gameBuilder.initMap(map.id, map.xSize, map.ySize);
+        //gameBuilder.initMap(map.id, map.xSize, map.ySize);
     }
 
     public void unpackTile(JSONObject tile) {
         System.out.println("Unpacking tile: " + tile);
 
-        gameBuilder.initTile(map.terrain, map.areaEffect, map.decal, map.item, map.entity);
+        //gameBuilder.initTile(map.terrain, map.areaEffect, map.decal, map.item, map.entity);
     }
 
 }

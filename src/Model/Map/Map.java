@@ -13,6 +13,8 @@ public class Map {
         size = new Point(5,5);
     }
 
+    public Map(int id, int xSize, int ySize) {}
+
     public Map(Tile[][] g) {
         grid = g;
         size = new Point(grid.length, grid[0].length);

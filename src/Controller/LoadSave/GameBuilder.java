@@ -5,7 +5,7 @@ import Model.Entity.Entity;
 import Model.Map.AreaEffect.AreaEffect;
 import Model.Map.Decal;
 import Model.Map.Map;
-import Model.Map.Terrain.Terrain;
+import Model.Map.Terrain;
 import Model.Map.Tile;
 import View.Map.MapView;
 import View.Menu.MainMenuView;
@@ -46,7 +46,7 @@ public class GameBuilder {
         Map map = new Map(id, xSize, ySize);
     }
 
-    public void initTile(Terrain terrain, AreaEffect areaEffect, Decal decal, Model.Item.Item item, Entity entity) {
-        Tile tile = new Tile(terrain, areaEffect, decal, item);
+    public void initTile(Terrain terrain, AreaEffect areaEffect, Decal decal, Model.Items.Item item, Entity entity) {
+        //Tile tile = new Tile(terrain, areaEffect, decal, item);
     }
 }
