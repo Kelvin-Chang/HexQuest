@@ -3,16 +3,14 @@ package View.buttons;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-public abstract class Button implements EventHandler<ActionEvent> {
+public abstract class Selectable implements EventHandler<ActionEvent> {
 
     private String name;
 
-    public Button() {
-
-    }
+    public Selectable() {}
 
     // set the name for the button label
-    public Button(String name) {
+    public Selectable(String name) {
         this.name = name;
     }
 
