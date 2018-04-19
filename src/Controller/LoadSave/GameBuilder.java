@@ -65,44 +65,44 @@ public class GameBuilder {
                 tile = new Tile(Terrain.GRASS);
         }
 
-//        switch (areaEffect) {
-//            case "none":
-//                break;
-//            case "damage":
-//                tile.setAreaEffect(new Damage());
-//                break;
-//            case "death":
-//                tile.setAreaEffect(new Death());
-//                break;
-//            case "heal":
-//                tile.setAreaEffect(new Heal());
-//                break;
-//            case "level":
-//                tile.setAreaEffect(new River());
-//                break;
-//            case "teleport":
-//                tile.setAreaEffect(new Teleport());
-//                break;
-//        }
-//
-//        switch (decal) {
-//            case "none":
-//                break;
-//            case "cross":
-//                tile.setDecal(Decal.CROSS);
-//                break;
-//            case "skull":
-//                tile.setDecal(Decal.SKULL);
-//                break;
-//        }
-//
-//        switch (item) {
-//            case "interactive":
-////                tile.setItem(new InteractiveItem());
-//                break;
-//            case "obstacle":
-//                tile.setItem(new ObstacleItem());
-//                break;
-//        }
+        switch (areaEffect) {
+            case "none":
+                break;
+            case "damage":
+                tile.setAreaEffect(new Damage());
+                break;
+            case "death":
+                tile.setAreaEffect(new Death());
+                break;
+            case "heal":
+                tile.setAreaEffect(new Heal());
+                break;
+            case "level":
+                tile.setAreaEffect(new River());
+                break;
+            case "teleport":
+                tile.setAreaEffect(new Teleport());
+                break;
+        }
+
+        switch (decal) {
+            case "none":
+                break;
+            case "cross":
+                tile.setDecal(Decal.CROSS);
+                break;
+            case "skull":
+                tile.setDecal(Decal.SKULL);
+                break;
+        }
+
+        switch (item) {
+            case "interactive":
+//                tile.setItem(newInteractiveItem());
+                break;
+            case "obstacle":
+                tile.setItem(new ObstacleItem());
+                break;
+        }
     }
 }
