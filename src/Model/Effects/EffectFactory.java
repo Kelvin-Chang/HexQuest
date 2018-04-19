@@ -18,6 +18,10 @@ public class EffectFactory {
         return new ManaModifierEffect(manaChange);
     }
 
+    public static Effect produceInstantDeathEffect(){return new InstantDeathEffect();}
+    
+    public static Effect produceLevelUpEffect(){return new LevelUpEffect();}
+
     public static Effect produceMaxManaModifierEffect(int manaChange) {
         return new MaxManaModifierEffect(manaChange);
     }

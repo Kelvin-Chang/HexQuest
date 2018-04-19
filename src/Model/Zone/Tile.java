@@ -1,9 +1,9 @@
 package Model.Zone;
 
+import Model.AreaEffects.AreaEffect;
 import Model.Entity.Entity;
 //import Model.Zone.Terrain.Terrain;
 import Model.Items.Item;
-import Model.Zone.AreaEffect.AreaEffect;
 import View.Zone.TileView;
 
 public class Tile {
