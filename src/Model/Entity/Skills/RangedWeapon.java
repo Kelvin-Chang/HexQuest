@@ -1,11 +1,15 @@
 package Model.Entity.Skills;
 
-public class RangedWeapon extends Skill {
+import Model.Entity.Character.CharacterEntity;
+
+import static Model.Enums.ItemSlot.RANGED;
+
+public class RangedWeapon extends VariableEffectSkill {
 
     public RangedWeapon() {}
 
     @Override
-    public void effect() {
-
+    public void activateSkill(CharacterEntity player) {
+        player.useItemSlot(RANGED);
     }
 }

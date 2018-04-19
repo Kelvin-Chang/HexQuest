@@ -1,11 +1,23 @@
 package Model.Entity.Character;
 
+import Model.Effects.Effect;
 import Model.Entity.Pet;
 import Model.Entity.Skills.Skill;
+import Model.Enums.ItemSlot;
 import Model.Enums.Orientation;
+<<<<<<< HEAD
 import Model.Item.Item;
+=======
+import Model.Enums.SkillType;
+import Model.Items.Item;
+import Model.Items.TakeableItems.TakeableItem;
+import Model.Map.Map;
+import Model.Map.World;
+>>>>>>> develop
 
+import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public abstract class CharacterEntity {
 
@@ -20,13 +32,37 @@ public abstract class CharacterEntity {
     private int speed;
     private Inventory inventory;
     private Orientation orientation;
-    private ArrayList<Skill> skills;
+    private HashMap<SkillType, Skill> skills;
     private ArrayList<Item> useableItems;
     private Pet pet;
+<<<<<<< HEAD
 
     public CharacterEntity() {}
+=======
+    private World world;
 
-    public CharacterEntity(ArrayList<Skill> skillList) {
+    public CharacterEntity() {
+        this.level = 0;
+        this.maxHealth = 100;
+        this.currentHealth = 100;
+        this.maxMana = 100;
+        this.currentMana = 100;
+        this.attack = 1;
+        this.defense = 1;
+        this.speed = 1;
+        this.inventory = new Inventory();
+        this.orientation = Orientation.UP;
+        this.skills = new HashMap<>();
+        this.useableItems = new ArrayList<Item>();
+        this.world = new World();
+    }
+    public CharacterEntity(World world){
+        this();
+        this.world = world;
+    }
+>>>>>>> develop
+
+    public CharacterEntity(HashMap<SkillType, Skill> skillList) {
         this.skills = skillList;
     }
 
@@ -66,11 +102,18 @@ public abstract class CharacterEntity {
     public void setPet(Pet pet) {
         this.pet = pet;
     }
+<<<<<<< HEAD
     public void setSkills(ArrayList<Skill> skills) {
+=======
+    public void setSkills(HashMap<SkillType, Skill> skills) {
+>>>>>>> develop
         this.skills = skills;
     }
     public void setUseableItems(ArrayList<Item> useableItems) {
         this.useableItems = useableItems;
+    }
+    public void setWorld(World world) {
+        this.world = world;
     }
 
     public int getLevel() {
@@ -109,13 +152,27 @@ public abstract class CharacterEntity {
     public Pet getPet() {
         return pet;
     }
+<<<<<<< HEAD
     public ArrayList<Skill> getSkills() {
+=======
+    public HashMap<SkillType, Skill> getSkills() {
+>>>>>>> develop
         return skills;
     }
     public ArrayList<Item> getUseableItems() {
         return useableItems;
     }
+    public World getWorld() {
+        return world;
+    }
 
+    public Point getLocation() {
+        return world.getCharacterLocation(this);
+    }
+
+    public Skill getSpecificSkill(SkillType skillType) {
+        return skills.get(skillType);
+    }
 
     public void modifyHealth(int healthChange) {
         if (currentHealth + healthChange <= 0) {
@@ -136,6 +193,42 @@ public abstract class CharacterEntity {
             currentMana = currentMana + manaChange;
         }
     }
+<<<<<<< HEAD
+=======
+
+    public void modifyMaxMana(int manaChange) {
+        if (maxMana + manaChange <= 0) {
+            maxMana = 0;
+        } else {
+            maxMana = maxMana + manaChange;
+        }
+    }
+
+    public boolean hasEnoughManaToCastSpell(int manaCost) {
+        if (currentMana >= manaCost) {
+            return true;
+        }
+        return false;
+    }
+
+    public void modifyAttack(int attackChange) {
+        if (attack + attackChange <= 0) {
+            attack = 0;
+        } else {
+            attack = attack + attackChange;
+        }
+    }
+
+    public void modifyDefense(int defenseChange) {
+        if (defense + defenseChange <= 0) {
+            defense = 0;
+        } else {
+            defense = defense + defenseChange;
+        }
+    }
+>>>>>>> develop
+
+    public void move(){}
 
     public void levelUp() {
         level = level + 1;
@@ -152,9 +245,26 @@ public abstract class CharacterEntity {
     public void move(){}
 
     // refer to PlayerFactory to determine the order that the skills are in in the ArrayList
-    public void useSkill(int skillIndex) {
-        if ( !(skillIndex >= skills.size()) && !(skillIndex < 0) ) {
-            skills.get(skillIndex).effect();
+    public void useSkill(SkillType skillType) {
+        if (skills.get(skillType) != null) {
+            if (skills.get(skillType).skillSuccessful()) {
+                skills.get(skillType).activateSkill(this);
+            }
+        }
+    }
+
+    public void useItemSlot(ItemSlot slot) {
+        inventory.useItemSlot(slot, this);
+    }
+
+    public void equipItem(TakeableItem item) {
+        inventory.equipItem(item, this);
+    }
+
+    public void effectEntities(ArrayList<Point> area, Effect effect) {
+        ArrayList<CharacterEntity> entities = world.getEntitiesOnArea(area);
+        for (CharacterEntity entity: entities) {
+            effect.trigger(entity);
         }
     }
 
