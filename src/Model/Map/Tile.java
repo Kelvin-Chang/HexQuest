@@ -1,7 +1,7 @@
 package Model.Map;
 
 import Model.Entity.Entity;
-//import Model.Map.Terrain.Terrain;
+//import Model.Zone.Terrain.Terrain;
 import Model.Items.Item;
 import Model.Map.AreaEffect.AreaEffect;
 import Model.Map.AreaEffect.Damage;

@@ -1,13 +1,6 @@
 package Controller.LoadSave;
 
 import Model.Entity.Character.Player;
-import Model.Entity.Entity;
-import Model.Items.InteractiveItem;
-import Model.Items.Item;
-import Model.Items.ObstacleItem;
-import Model.Map.AreaEffect.*;
-import Model.Map.Decal;
-import Model.Map.Map;
 import Model.Map.Terrain;
 import Model.Map.Tile;
 import View.Map.MapView;
@@ -46,7 +39,7 @@ public class GameBuilder {
     }
 
     public void initMap(String id, String xSize, String ySize) {
-//        Map map = new Map(id, xSize, ySize);
+//        Zone map = new Zone(id, xSize, ySize);
     }
 
     public void initTile(String terrain, String areaEffect, String decal, String item, int x, int y) {
