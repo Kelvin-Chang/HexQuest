@@ -32,6 +32,7 @@ public abstract class CharacterEntity {
     private ArrayList<Item> useableItems;
     private Pet pet;
     private Zone zone;
+    private boolean Dead = false;
 
     public CharacterEntity() {
         this.level = 0;
@@ -157,6 +158,17 @@ public abstract class CharacterEntity {
     public Skill getSpecificSkill(SkillType skillType) {
         return skills.get(skillType);
     }
+    public boolean isDead(){
+        if(currentHealth <=0 )
+        {
+            Dead = true;
+        }
+        else {
+            Dead = false;
+        }
+        return Dead;
+    }
+
 
     public void modifyHealth(int healthChange) {
         if (currentHealth + healthChange <= 0) {

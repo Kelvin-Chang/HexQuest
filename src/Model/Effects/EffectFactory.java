@@ -29,6 +29,9 @@ public class EffectFactory {
     public static Effect produceHealthModifierEffect(int healthChange) {
         return new HealthModifierEffect(healthChange);
     }
+    public static Effect produceExpModifierEffect(int expChange) {
+        return new HealthModifierEffect(expChange);
+    }
     public static Effect producelvlupEffect() {
         return new lvlupEffect();
     }
