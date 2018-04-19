@@ -31,7 +31,7 @@ public class GameBuilder {
 
 
     public GameBuilder(){
-        mainMenuView = new MainMenuView();
+//        mainMenuView = new MainMenuView();
     }
 
     public void setViewPort(Viewport viewPort) {

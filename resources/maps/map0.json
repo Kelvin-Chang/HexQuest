@@ -1,6 +1,6 @@
 {
   "World": {
-    "CurrentMap": "00",
+    "currentMap": "00",
     "Map": [
       {
         "id": "00",

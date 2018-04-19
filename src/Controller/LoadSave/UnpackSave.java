@@ -24,7 +24,7 @@ public class UnpackSave {
 
         gameBuilder.initWorld(world.getString("currentMap"));
 
-        JSONArray mapArray = world.getJSONArray("Maps");
+        JSONArray mapArray = world.getJSONArray("Map");
 
         for(int i = 0; i < mapArray.length(); i++) {
             unpackMap(mapArray.getJSONObject(i));
