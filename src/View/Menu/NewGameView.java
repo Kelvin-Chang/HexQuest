@@ -21,7 +21,29 @@ public class NewGameView extends AbstractView{
 
     public NewGameView() {
 
-        viewController = new ViewController();
+        ViewController viewController = new ViewController();
+
+
+//        GridPane grid = new GridPane();
+//
+//        grid.setVgap(10);
+//        grid.setHgap(10);
+//        grid.setPadding(new Insets(10,10,10,10));
+//
+//        ArrayList<Selectable> options = new ArrayList<Selectable>() {{
+//            add(new StartNewGameSelectable("Start", viewController));
+//            add(new MainMenuSelectable("Main Menu", viewController));
+//        }};
+//
+//        for(Selectable clickable: options) {
+//            Button selectable = new Button(clickable.getName());
+//
+//            // sets selectable style
+//            selectable.getStyleClass().add("button1");
+//
+//            selectable.setOnAction(clickable);
+//            grid.add(selectable, 5, options.indexOf(clickable));
+//        }
 
         this.getChildren().add(borderPane());
     }
@@ -46,14 +68,14 @@ public class NewGameView extends AbstractView{
     }
 
 
-    private Text topPaneText() {
-        Text t = new Text();
-        t.setText("Game Title");
-        t.setFont(Font.font("Elephant", 50));
-        t.setFill(Paint.valueOf("#ff00ff"));
-
-        return t;
-    }
+//    private Text topPaneText() {
+//        Text t = new Text();
+//        t.setText("Game Title");
+//        t.setFont(Font.font("Elephant", 50));
+//        t.setFill(Paint.valueOf("#ff00ff"));
+//
+//        return t;
+//    }
 
 
     private StackPane topPane() {

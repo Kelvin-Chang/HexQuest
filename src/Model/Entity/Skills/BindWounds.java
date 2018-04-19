@@ -1,13 +1,11 @@
 package Model.Entity.Skills;
 
-import Model.Entity.Character.CharacterEntity;
-
-public class BindWounds extends VariableEffectSkill {
+public class BindWounds extends Skill{
 
     public BindWounds() {}
 
     @Override
-    public void activateSkill(CharacterEntity player) {
-
+    public void effect() {
+        System.out.println("Bind Wounds skill activated");
     }
 }
