@@ -10,6 +10,6 @@ public class Bane extends VariableEffectSkill {
 
     @Override
     public void activateSkill(CharacterEntity player) {
-        player.useItemSlot(BANE);
+        player.useItemSlotRequiringSkill(BANE, this);
     }
 }

@@ -10,6 +10,6 @@ public class RangedWeapon extends VariableEffectSkill {
 
     @Override
     public void activateSkill(CharacterEntity player) {
-        player.useItemSlot(RANGED);
+        player.useItemSlotRequiringSkill(RANGED, this);
     }
 }

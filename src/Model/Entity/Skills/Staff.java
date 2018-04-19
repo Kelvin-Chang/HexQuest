@@ -10,6 +10,6 @@ public class Staff extends VariableEffectSkill {
 
     @Override
     public void activateSkill(CharacterEntity player) {
-        player.useItemSlot(STAFF);
+        player.useItemSlotNotRequiringSkill(STAFF);
     }
 }

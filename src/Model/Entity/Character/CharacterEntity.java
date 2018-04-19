@@ -8,7 +8,6 @@ import Model.Enums.Orientation;
 import Model.Enums.SkillType;
 import Model.Items.Item;
 import Model.Items.TakeableItems.TakeableItem;
-import Model.Map.Map;
 import Model.Map.World;
 
 import java.awt.*;
@@ -231,8 +230,12 @@ public abstract class CharacterEntity {
         }
     }
 
-    public void useItemSlot(ItemSlot slot) {
-        inventory.useItemSlot(slot, this);
+    public void useItemSlotRequiringSkill(ItemSlot slot, Skill skill) {
+        inventory.useItemSlotRequiringSkill(slot, this, skill);
+    }
+
+    public void useItemSlotNotRequiringSkill(ItemSlot slot) {
+        inventory.useItemSlotNotRequiringSkill(slot, this);
     }
 
     public void equipItem(TakeableItem item) {

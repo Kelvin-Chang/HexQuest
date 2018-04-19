@@ -10,6 +10,6 @@ public class Boon extends VariableEffectSkill {
 
     @Override
     public void activateSkill(CharacterEntity player) {
-        player.useItemSlot(BOON);
+        player.useItemSlotRequiringSkill(BOON, this);
     }
 }
