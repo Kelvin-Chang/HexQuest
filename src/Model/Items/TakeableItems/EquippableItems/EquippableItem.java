@@ -18,6 +18,10 @@ public abstract class EquippableItem extends TakeableItem {
         this.itemSlot = itemSlot;
     }
 
+    public ItemSlot getItemSlot() {
+        return itemSlot;
+    }
+
     @Override
     public void equip(Inventory inventory, CharacterEntity characterEntity) {
         inventory.setEquippedItemSlot(itemSlot, this);

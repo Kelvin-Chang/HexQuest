@@ -20,7 +20,7 @@ public class StaffItem extends UsableItem {
         this.damage = damage;
     }
 
-    @Override
+
     public void triggerItem(CharacterEntity player) {
 
         triggerEffect = getEffectFactory().produceHealthModifierEffect(-damage);

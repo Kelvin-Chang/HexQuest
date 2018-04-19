@@ -2,6 +2,7 @@ package Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BoonIte
 
 import Model.Effects.Effect;
 import Model.Entity.Character.CharacterEntity;
+import Model.Entity.Skills.Skill;
 import Model.Enums.EffectShape;
 
 public class HealthBoon extends BoonItem {
@@ -11,7 +12,7 @@ public class HealthBoon extends BoonItem {
     }
 
     @Override
-    public void triggerItem(CharacterEntity player) {
+    public void triggerItem(CharacterEntity player, Skill skill) {
         if (hasEnoughMana(player)) {
             Effect triggerEffect = getEffectFactory().produceHealthModifierEffect(calculateAppliedStatChange(player));
 

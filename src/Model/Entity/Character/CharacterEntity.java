@@ -231,8 +231,12 @@ public abstract class CharacterEntity {
         }
     }
 
-    public void useItemSlot(ItemSlot slot) {
-        inventory.useItemSlot(slot, this);
+    public void useItemSlotRequiringSkill(ItemSlot slot, Skill skill) {
+        inventory.useItemSlotRequiringSkill(slot, this, skill);
+    }
+
+    public void useItemSlotNotRequiringSkill(ItemSlot slot) {
+        inventory.useItemSlotNotRequiringSkill(slot, this);
     }
 
     public void equipItem(TakeableItem item) {

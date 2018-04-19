@@ -1,5 +1,6 @@
 package Model.Entity.Character;
 
+import Model.Entity.Skills.Skill;
 import Model.Enums.ItemSlot;
 import Model.Items.TakeableItems.EquippableItems.EquippableItem;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.UsableItem;
@@ -26,7 +27,14 @@ public class Inventory {
         item.unequip(this, characterEntity);
     }
 
-    public void useItemSlot(ItemSlot slot, CharacterEntity characterEntity) {
+    public void useItemSlotRequiringSkill(ItemSlot slot, CharacterEntity characterEntity, Skill skill) {
+        if (equippedItems.get(slot) != null) {
+            UsableItem usableItem = (UsableItem) equippedItems.get(slot);
+            usableItem.triggerItem(characterEntity, skill);
+        }
+    }
+
+    public void useItemSlotNotRequiringSkill(ItemSlot slot, CharacterEntity characterEntity) {
         if (equippedItems.get(slot) != null) {
             UsableItem usableItem = (UsableItem) equippedItems.get(slot);
             usableItem.triggerItem(characterEntity);

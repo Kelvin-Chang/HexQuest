@@ -1,19 +1,18 @@
-package tests;
-
 import Model.Entity.Character.Inventory;
 import Model.Entity.Character.Player;
 import Model.Entity.Character.PlayerFactory;
 import Model.Enums.EffectShape;
+import Model.Enums.ItemSlot;
 import Model.Enums.SkillType;
+import Model.Items.ItemFactory;
 import Model.Items.TakeableItems.EquippableItems.Armor;
 import Model.Items.TakeableItems.EquippableItems.Ring;
-import Model.Items.TakeableItems.EquippableItems.UsableItems.BrawlItem;
-import Model.Items.TakeableItems.EquippableItems.UsableItems.OneHandedItem;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.*;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItems.BaneItem;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItems.DefenseBane;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItems.HealthBane;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BoonItems.BoonItem;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BoonItems.HealthBoon;
-import Model.Items.TakeableItems.EquippableItems.UsableItems.StaffItem;
-import Model.Items.TakeableItems.EquippableItems.UsableItems.TwoHandedItem;
 import Model.Items.TakeableItems.Key;
 import Model.Zone.Zone;
 import Model.Zone.World;
@@ -30,6 +29,8 @@ public class CharacterEntityTests {
     Player smasher;
     Player summoner;
     Zone zone;
+    ItemFactory itemFactory = new ItemFactory();
+    World world;
 
     @Before
     public void setUp() {
@@ -135,7 +136,7 @@ public class CharacterEntityTests {
         smasher.getSpecificSkill(SkillType.BRAWLSKILL).setSkillLevel(100);
         summoner.setCurrentHealth(100);
         summoner.setMaxHealth(100);
-        BrawlItem brawlItem = new BrawlItem(5);
+        SmasherWeapon brawlItem = itemFactory.produceBrawlItem(5);
 
         smasher.getInventory().equipItem(brawlItem, smasher);
         smasher.useSkill(SkillType.BRAWLSKILL);
@@ -149,7 +150,7 @@ public class CharacterEntityTests {
         smasher.getSpecificSkill(SkillType.ONEHANDEDWEAPONSKILL).setSkillLevel(100);
         summoner.setCurrentHealth(100);
         summoner.setMaxHealth(100);
-        OneHandedItem oneHandedItem = new OneHandedItem(5);
+        SmasherWeapon oneHandedItem = itemFactory.produceOneHandedItem(5);
 
         smasher.getInventory().equipItem(oneHandedItem, smasher);
         smasher.useSkill(SkillType.ONEHANDEDWEAPONSKILL);
@@ -163,7 +164,7 @@ public class CharacterEntityTests {
         smasher.getSpecificSkill(SkillType.TWOHANDEDWEAPONSKILL).setSkillLevel(100);
         summoner.setCurrentHealth(100);
         summoner.setMaxHealth(100);
-        TwoHandedItem twoHandedItem = new TwoHandedItem(5);
+        SmasherWeapon twoHandedItem = itemFactory.produceTwoHandedItem(5);
 
         smasher.getInventory().equipItem(twoHandedItem, smasher);
         smasher.useSkill(SkillType.TWOHANDEDWEAPONSKILL);
@@ -174,25 +175,25 @@ public class CharacterEntityTests {
     public void testUsingStaffAsSummoner() {
         summoner.setInventory(new Inventory());
         summoner.getSpecificSkill(SkillType.STAFFSKILL).setSkillLevel(100);
-        StaffItem staffItem = new StaffItem(5);
+        StaffItem staffItem = itemFactory.produceStaffItem(5);
 
         summoner.getInventory().equipItem(staffItem, summoner);
-        summoner.useSkill(SkillType.STAFFSKILL);
+        summoner.useItemSlotNotRequiringSkill(ItemSlot.STAFF);
     }
 
     @Test
     public void testUsingStaffAsSmasher() {
         smasher.setInventory(new Inventory());
-        StaffItem staffItem = new StaffItem(5);
+        StaffItem staffItem = itemFactory.produceStaffItem(5);
 
         smasher.getInventory().equipItem(staffItem, smasher);
-        smasher.useSkill(SkillType.STAFFSKILL);
+        smasher.useItemSlotNotRequiringSkill(ItemSlot.STAFF);
     }
 
     @Test
     public void testEquippingNotEquippableItem() {
         smasher.setInventory(new Inventory());
-        Key key = new Key();
+        Key key = itemFactory.produceKeyItem();
 
         smasher.getInventory().equipItem(key, smasher);
     }
@@ -201,7 +202,7 @@ public class CharacterEntityTests {
     public void testEquippingArmor() {
         smasher.setInventory(new Inventory());
         smasher.setDefense(5);
-        Armor armor = new Armor(5);
+        Armor armor = itemFactory.produceArmorItem(5);
 
         smasher.getInventory().equipItem(armor, smasher);
         assertEquals(10, smasher.getDefense());
@@ -222,8 +223,8 @@ public class CharacterEntityTests {
         summoner.setInventory(new Inventory());
         summoner.setMaxMana(10);
         summoner.setDefense(10);
-        Ring ring = new Ring(5);
-        Armor armor = new Armor(5);
+        Ring ring = itemFactory.produceRingItem(5);
+        Armor armor = itemFactory.produceArmorItem(5);
 
         summoner.getInventory().equipItem(ring, summoner);
         summoner.getInventory().equipItem(armor, summoner);
@@ -251,7 +252,7 @@ public class CharacterEntityTests {
         summoner.setMaxMana(100);
         summoner.setCurrentMana(100);
         smasher.setDefense(100);
-        DefenseBane bane = new DefenseBane(50, 5, EffectShape.LINEAR, 2);
+        BaneItem bane = itemFactory.produceDefenseBane(50, 5, EffectShape.LINEAR, 2);
 
         summoner.getInventory().equipItem(bane, summoner);
         summoner.useSkill(SkillType.BANESKILL);
@@ -267,7 +268,7 @@ public class CharacterEntityTests {
         summoner.setCurrentMana(100);
         smasher.setMaxHealth(100);
         smasher.setCurrentHealth(100);
-        HealthBane bane = new HealthBane(50, 5, EffectShape.LINEAR, 2);
+        BaneItem bane = itemFactory.produceHealthBane(50, 5, EffectShape.LINEAR, 2);
 
         summoner.getInventory().equipItem(bane, summoner);
         summoner.useSkill(SkillType.BANESKILL);
@@ -283,7 +284,7 @@ public class CharacterEntityTests {
         summoner.setCurrentMana(100);
         summoner.setMaxHealth(100);
         summoner.setCurrentHealth(50);
-        HealthBoon boon = new HealthBoon(50, 25);
+        BoonItem boon = itemFactory.produceHealthBoon(50, 25);
 
         summoner.getInventory().equipItem(boon, summoner);
         summoner.useSkill(SkillType.BOONSKILL);
