@@ -3,7 +3,7 @@ package Model.Items.TakeableItems.EquippableItems.UsableItems;
 import Model.Effects.Effect;
 import Model.Entity.Character.CharacterEntity;
 import Model.Enums.EffectShape;
-import Model.Map.EffectedAreaCoordinatesCalculator;
+import Model.Zone.EffectedAreaCoordinatesCalculator;
 
 import java.awt.*;
 import java.util.ArrayList;

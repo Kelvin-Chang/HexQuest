@@ -6,7 +6,7 @@ import Model.Entity.Skills.Skill;
 import Model.Entity.Skills.VariableEffectSkill;
 import Model.Enums.EffectShape;
 import Model.Enums.ItemSlot;
-import Model.Map.EffectedAreaCoordinatesCalculator;
+import Model.Zone.EffectedAreaCoordinatesCalculator;
 
 import java.awt.*;
 import java.util.ArrayList;

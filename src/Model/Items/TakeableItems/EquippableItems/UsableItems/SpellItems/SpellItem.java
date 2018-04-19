@@ -6,7 +6,7 @@ import Model.Entity.Character.CharacterEntity;
 import Model.Enums.EffectShape;
 import Model.Enums.ItemSlot;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.UsableItem;
-import Model.Map.EffectedAreaCoordinatesCalculator;
+import Model.Zone.EffectedAreaCoordinatesCalculator;
 
 import java.awt.*;
 import java.util.ArrayList;

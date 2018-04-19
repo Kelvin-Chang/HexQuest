@@ -1,13 +1,13 @@
 {
   "World": {
     "CurrentMap": "00",
-    "Maps": [
+    "Map": [
       {
-        "id": 00,
+        "id": "00",
         "rows": 4,
         "columns": 4,
-        "Entities": [],
-        "Tiles": [
+        "Entity": [],
+        "Tile": [
           {
             "terrain": "grass",
             "areaEffect": "none",
