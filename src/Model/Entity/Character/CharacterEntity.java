@@ -208,6 +208,10 @@ public abstract class CharacterEntity {
         }
     }
 
+    public void modifySkillLevel(int skillChange, SkillType skillType) {
+        skills.get(skillType).updateSkillLevel(skillChange);
+    }
+
     public void move(){}
 
     public void levelUp() {

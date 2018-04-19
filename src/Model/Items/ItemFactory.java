@@ -10,6 +10,7 @@ import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItem
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItems.HealthBane;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BoonItems.BoonItem;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BoonItems.HealthBoon;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.EnchantmentItems.DecreaseBargainingEnchantment;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.SpellItem;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.StaffItem;
 import Model.Items.TakeableItems.Key;
@@ -56,5 +57,9 @@ public class ItemFactory {
 
     public static SpellItem produceHealthBoon(int manaCost, int healthChange) {
         return new HealthBoon(manaCost, healthChange);
+    }
+
+    public static SpellItem produceDecreaseBargainingEnchantment(int manaCost, int skillDecrease, EffectShape effectShape, int range) {
+        return new DecreaseBargainingEnchantment(manaCost, skillDecrease, effectShape, range);
     }
 }

@@ -1,5 +1,7 @@
 package Model.Effects;
 
+import Model.Enums.SkillType;
+
 public class EffectFactory {
 
     public EffectFactory() {}
@@ -22,6 +24,10 @@ public class EffectFactory {
 
     public Effect produceHealthModifierEffect(int healthChange) {
         return new HealthModifierEffect(healthChange);
+    }
+
+    public Effect produceSkillModifierEffect(int skillChange, SkillType skillType) {
+        return new SkillModifierEffect(skillChange, skillType);
     }
 
 }

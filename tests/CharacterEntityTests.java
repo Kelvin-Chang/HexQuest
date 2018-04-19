@@ -293,4 +293,18 @@ public class CharacterEntityTests {
         assertEquals(50, summoner.getCurrentMana());
     }
 
+    @Test
+    public void testUsingDecreaseBargainingEnchantment() {
+        summoner.setInventory(new Inventory());
+        summoner.getSpecificSkill(SkillType.ENCHANTMENTSKILL).setSkillLevel(100);
+        summoner.setMaxMana(100);
+        summoner.setCurrentMana(100);
+        smasher.getSpecificSkill(SkillType.BARGAINSKILL).setSkillLevel(50);
+        SpellItem enchantment = itemFactory.produceDecreaseBargainingEnchantment(50, 5, EffectShape.LINEAR, 1);
+
+        summoner.getInventory().equipItem(enchantment, summoner);
+        summoner.useSkill(SkillType.ENCHANTMENTSKILL);
+        assertEquals(45, smasher.getSpecificSkill(SkillType.BARGAINSKILL).getSkillLevel());
+    }
+
 }

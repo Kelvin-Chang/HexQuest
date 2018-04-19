@@ -4,7 +4,7 @@ import Model.Entity.Character.CharacterEntity;
 
 import static Model.Enums.ItemSlot.ENCHANTMENT;
 
-public class Enchantment extends Skill {
+public class Enchantment extends VariableEffectSkill {
 
     public Enchantment() {}
 
