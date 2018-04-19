@@ -46,7 +46,7 @@ public abstract class CharacterEntity {
         this.orientation = Orientation.UP;
         this.skills = new HashMap<>();
         this.useableItems = new ArrayList<Item>();
-        this.zone = new Zone();
+        this.zone = new Zone("00", 4,4);
     }
     public CharacterEntity(Zone zone){
         this();

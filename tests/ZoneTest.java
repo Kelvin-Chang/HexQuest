@@ -12,7 +12,7 @@ public class ZoneTest {
 
     @Test
     public void TerrainPlacing(){
-        Zone zone = new Zone();
+        Zone zone = new Zone("00", 4, 4);
 
         zone.add(new Point(0,0), Terrain.GRASS);
         zone.add(new Point(0,1), Terrain.GRASS);
@@ -36,7 +36,7 @@ public class ZoneTest {
 
     @Test
     public void ItemPlacing(){
-        Zone zone = new Zone();
+        Zone zone = new Zone("00", 4, 4);
 
         zone.add(new Point(0,0), Terrain.GRASS);
         zone.add(new Point(0,1), Terrain.GRASS);
@@ -71,7 +71,7 @@ public class ZoneTest {
 
     @Test
     public void CharacterPlacing(){
-        Zone zone = new Zone();
+        Zone zone = new Zone("00", 4, 4);
         CharacterEntity characterSmash = PlayerFactory.produceSmasher();
         CharacterEntity characterSummon = PlayerFactory.produceSummoner();
         CharacterEntity characterSneak = PlayerFactory.produceSneak();
