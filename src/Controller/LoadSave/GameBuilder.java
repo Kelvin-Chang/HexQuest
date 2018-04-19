@@ -26,7 +26,7 @@ public class GameBuilder {
 
     public GameBuilder(){
         mainMenuView = new MainMenuView();
-        mapView = new MapView();
+//        mapView = new MapView();
     }
 
     public void setViewPort(Viewport viewPort) {
