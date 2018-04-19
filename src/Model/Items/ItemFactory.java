@@ -17,43 +17,43 @@ public class ItemFactory {
 
     public ItemFactory() {}
 
-    public Key produceKeyItem() {
+    public static Key produceKeyItem() {
         return new Key();
     }
 
-    public Ring produceRingItem(int manaChange) {
+    public static Ring produceRingItem(int manaChange) {
         return new Ring(manaChange);
     }
 
-    public Armor produceArmorItem(int defense) {
+    public static Armor produceArmorItem(int defense) {
         return new Armor(defense);
     }
 
-    public SmasherWeapon produceBrawlItem(int damage) {
+    public static SmasherWeapon produceBrawlItem(int damage) {
         return new SmasherWeapon(damage, ItemSlot.BRAWL);
     }
 
-    public SmasherWeapon produceOneHandedItem(int damage) {
+    public static SmasherWeapon produceOneHandedItem(int damage) {
         return new SmasherWeapon(damage, ItemSlot.ONEHANDED);
     }
 
-    public SmasherWeapon produceTwoHandedItem(int damage) {
+    public static SmasherWeapon produceTwoHandedItem(int damage) {
         return new SmasherWeapon(damage, ItemSlot.TWOHANDED);
     }
 
-    public StaffItem produceStaffItem(int damage) {
+    public static StaffItem produceStaffItem(int damage) {
         return new StaffItem(damage);
     }
 
-    public BaneItem produceDefenseBane(int manaCost, int defenseChange, EffectShape effectShape, int range) {
+    public static BaneItem produceDefenseBane(int manaCost, int defenseChange, EffectShape effectShape, int range) {
         return new DefenseBane(manaCost, defenseChange, effectShape, range);
     }
 
-    public BaneItem produceHealthBane(int manaCost, int healthChange, EffectShape effectShape, int range) {
+    public static BaneItem produceHealthBane(int manaCost, int healthChange, EffectShape effectShape, int range) {
         return new HealthBane(manaCost, healthChange, effectShape, range);
     }
 
-    public BoonItem produceHealthBoon(int manaCost, int healthChange) {
+    public static BoonItem produceHealthBoon(int manaCost, int healthChange) {
         return new HealthBoon(manaCost, healthChange);
     }
 }
