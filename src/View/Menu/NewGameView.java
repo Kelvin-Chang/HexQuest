@@ -77,9 +77,9 @@ public class NewGameView extends AbstractView {
 //        tb1.setPrefSize();
 
         ArrayList<ToggleButton> options = new ArrayList<ToggleButton>() {{
-            add(new ToggleButton("Summoner"));
-            add(new ToggleButton("Sneak"));
-            add(new ToggleButton("Smasher"));
+            add(tb1);
+            add(tb2);
+            add(tb3);
         }};
 
         return options;
