@@ -1,10 +1,10 @@
 package Model.Zone;
 
+import Model.AreaEffects.AreaEffect;
 import Model.Entity.Character.CharacterEntity;
 import Model.Enums.Orientation;
 import Model.Items.Item;
 import Model.Items.ObstacleItem;
-import Model.Zone.AreaEffect.*;
 import View.Zone.MapView;
 import javafx.util.Pair;
 
