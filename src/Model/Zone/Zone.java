@@ -47,7 +47,7 @@ public class Zone {
     public void removeAreaEffect(Point point) { effectMap.remove(point); }
     public void removeItem(Point point) { itemMap.remove(point); }
     public void removeItem(Item item) {
-        for(Point point : getAllCharacterPoints())
+        for(Point point : getAllItemPoints())
         {
             if(getItem(point) == item)
             {
@@ -127,6 +127,7 @@ public class Zone {
                 boolean entityIsPlayer = character.equals(player);
                 //TODO: change when introducing npcs
                 item.trigger(character);
+                removeItem(item);
             }
         }
     }

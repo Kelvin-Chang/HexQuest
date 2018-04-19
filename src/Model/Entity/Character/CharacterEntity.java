@@ -45,7 +45,7 @@ public abstract class CharacterEntity {
         this.inventory = new Inventory();
         this.orientation = Orientation.UP;
         this.skills = new HashMap<>();
-        this.useableItems = new ArrayList<Item>();
+        this.useableItems = new ArrayList<>();
         this.zone = new Zone();
     }
     public CharacterEntity(Zone zone){
@@ -54,6 +54,7 @@ public abstract class CharacterEntity {
     }
 
     public CharacterEntity(HashMap<SkillType, Skill> skillList) {
+        this();
         this.skills = skillList;
     }
 
@@ -229,6 +230,10 @@ public abstract class CharacterEntity {
                 skills.get(skillType).activateSkill(this);
             }
         }
+    }
+
+    public void addToInventory(TakeableItem item){
+        this.inventory.addToInventory(item);
     }
 
     public void useItemSlotRequiringSkill(ItemSlot slot, Skill skill) {

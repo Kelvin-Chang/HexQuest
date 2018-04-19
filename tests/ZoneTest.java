@@ -1,4 +1,5 @@
 import Model.Entity.Character.CharacterEntity;
+import Model.Entity.Character.Player;
 import Model.Entity.Character.PlayerFactory;
 import Model.Items.ItemFactory;
 import Model.Zone.Terrain;
@@ -94,6 +95,27 @@ public class ZoneTest {
         zone.moveCharacter(new Point(0,0), new Point(1,1));
         Assert.assertTrue(zone.getCharacter(new Point(0,0)) == null);
         Assert.assertTrue(zone.getCharacter(new Point(1,1)) != null);
+
+    }
+
+    @Test
+    public void CharacterOnItem(){
+        Zone zone = new Zone();
+        Player characterSmash = PlayerFactory.produceSmasher();
+        zone.add(new Point(0,0), Terrain.GRASS);
+        zone.add(new Point(0,1), Terrain.GRASS);
+        zone.add(new Point(1,0), Terrain.GRASS);
+        zone.add(new Point(1,1), Terrain.GRASS);
+
+        zone.add(new Point(0,0), ItemFactory.produceKeyItem());
+        zone.addPlayer(new Point(0,0), characterSmash);
+        Assert.assertTrue(  zone.getItem(new Point(0,0) ) != null);
+        Assert.assertTrue(zone.getCharacter(new Point(0,0)) != null);
+
+        zone.doInteractions(characterSmash);
+        Assert.assertTrue(  zone.getItem(new Point(0,0) ) == null);
+        Assert.assertTrue(characterSmash.getInventory().getItemAtSlot(0) != null);
+
 
     }
 }

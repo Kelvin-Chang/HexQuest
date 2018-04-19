@@ -6,6 +6,8 @@ import Model.Items.Item;
 
 public abstract class TakeableItem extends Item {
 
-    public void equip(Inventory inventory, CharacterEntity characterEntity) {};
+    public void equip(Inventory inventory, CharacterEntity characterEntity) {
+
+    };
 
 }
