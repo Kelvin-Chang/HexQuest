@@ -13,6 +13,7 @@ import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItem
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItems.HealthBane;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BoonItems.BoonItem;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BoonItems.HealthBoon;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.SpellItem;
 import Model.Items.TakeableItems.Key;
 import Model.Zone.Zone;
 import Model.Zone.World;
@@ -252,7 +253,7 @@ public class CharacterEntityTests {
         summoner.setMaxMana(100);
         summoner.setCurrentMana(100);
         smasher.setDefense(100);
-        BaneItem bane = itemFactory.produceDefenseBane(50, 5, EffectShape.LINEAR, 2);
+        SpellItem bane = itemFactory.produceDefenseBane(50, 5, EffectShape.LINEAR, 2);
 
         summoner.getInventory().equipItem(bane, summoner);
         summoner.useSkill(SkillType.BANESKILL);
@@ -268,7 +269,7 @@ public class CharacterEntityTests {
         summoner.setCurrentMana(100);
         smasher.setMaxHealth(100);
         smasher.setCurrentHealth(100);
-        BaneItem bane = itemFactory.produceHealthBane(50, 5, EffectShape.LINEAR, 2);
+        SpellItem bane = itemFactory.produceHealthBane(50, 5, EffectShape.LINEAR, 2);
 
         summoner.getInventory().equipItem(bane, summoner);
         summoner.useSkill(SkillType.BANESKILL);
@@ -284,7 +285,7 @@ public class CharacterEntityTests {
         summoner.setCurrentMana(100);
         summoner.setMaxHealth(100);
         summoner.setCurrentHealth(50);
-        BoonItem boon = itemFactory.produceHealthBoon(50, 25);
+        SpellItem boon = itemFactory.produceHealthBoon(50, 25);
 
         summoner.getInventory().equipItem(boon, summoner);
         summoner.useSkill(SkillType.BOONSKILL);

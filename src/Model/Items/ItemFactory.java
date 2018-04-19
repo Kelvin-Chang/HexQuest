@@ -10,6 +10,7 @@ import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItem
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItems.HealthBane;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BoonItems.BoonItem;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BoonItems.HealthBoon;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.SpellItem;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.StaffItem;
 import Model.Items.TakeableItems.Key;
 
@@ -45,15 +46,15 @@ public class ItemFactory {
         return new StaffItem(damage);
     }
 
-    public BaneItem produceDefenseBane(int manaCost, int defenseChange, EffectShape effectShape, int range) {
+    public SpellItem produceDefenseBane(int manaCost, int defenseChange, EffectShape effectShape, int range) {
         return new DefenseBane(manaCost, defenseChange, effectShape, range);
     }
 
-    public BaneItem produceHealthBane(int manaCost, int healthChange, EffectShape effectShape, int range) {
+    public SpellItem produceHealthBane(int manaCost, int healthChange, EffectShape effectShape, int range) {
         return new HealthBane(manaCost, healthChange, effectShape, range);
     }
 
-    public BoonItem produceHealthBoon(int manaCost, int healthChange) {
+    public SpellItem produceHealthBoon(int manaCost, int healthChange) {
         return new HealthBoon(manaCost, healthChange);
     }
 }
