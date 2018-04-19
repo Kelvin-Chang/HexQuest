@@ -13,7 +13,6 @@ import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BoonItem
 import Model.Items.TakeableItems.EquippableItems.UsableItems.StaffItem;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.TwoHandedItem;
 import Model.Items.TakeableItems.Key;
-import Model.Map.Map;
 import Model.Map.World;
 import org.junit.Before;
 import org.junit.Test;

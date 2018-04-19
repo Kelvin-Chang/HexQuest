@@ -8,7 +8,6 @@ import Model.Enums.Orientation;
 import Model.Enums.SkillType;
 import Model.Items.Item;
 import Model.Items.TakeableItems.TakeableItem;
-import Model.Map.Map;
 import Model.Map.World;
 
 import java.awt.*;

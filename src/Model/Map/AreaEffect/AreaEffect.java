@@ -1,5 +1,7 @@
 package Model.Map.AreaEffect;
 
-public abstract class AreaEffect {
+import Model.Entity.Character.CharacterEntity;
 
+public abstract class AreaEffect {
+    public abstract void trigger(CharacterEntity character);
 }
