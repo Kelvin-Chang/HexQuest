@@ -46,7 +46,7 @@ public class GameBuilder {
     }
 
     public void initMap(String id, String xSize, String ySize) {
-        Map map = new Map(id, xSize, ySize);
+//        Map map = new Map(id, xSize, ySize);
     }
 
     public void initTile(String terrain, String areaEffect, String decal, String item, int x, int y) {
@@ -54,53 +54,55 @@ public class GameBuilder {
 
         switch (terrain) {
             case "grass":
-                tile = new Tile(x, y, Terrain.GRASS);
+                tile = new Tile(Terrain.GRASS);
                 break;
             case "mountain":
-                tile = new Tile(x, y, Terrain.MOUNTAIN);
+                tile = new Tile(Terrain.MOUNTAIN);
                 break;
             case "water":
-                tile = new Tile(x, y, Terrain.WATER);
+                tile = new Tile(Terrain.WATER);
+            default:
+                tile = new Tile(Terrain.GRASS);
         }
 
-        switch (areaEffect) {
-            case "none":
-                break;
-            case "damage":
-                tile.setAreaEffect(new Damage());
-                break;
-            case "death":
-                tile.setAreaEffect(new Death());
-                break;
-            case "heal":
-                tile.setAreaEffect(new Heal());
-                break;
-            case "level":
-                tile.setAreaEffect(new River());
-                break;
-            case "teleport":
-                tile.setAreaEffect(new Teleport());
-                break;
-        }
-
-        switch (decal) {
-            case "none":
-                break;
-            case "cross":
-                tile.setDecal(Decal.CROSS);
-                break;
-            case "skull":
-                tile.setDecal(Decal.SKULL);
-                break;
-        }
-
-        switch (item) {
-            case "interactive":
-                tile.setItem(new InteractiveItem());
-                break;
-            case "obstacle":
-                tile.setItem(new ObstacleItem());
-                break;
-        }
+//        switch (areaEffect) {
+//            case "none":
+//                break;
+//            case "damage":
+//                tile.setAreaEffect(new Damage());
+//                break;
+//            case "death":
+//                tile.setAreaEffect(new Death());
+//                break;
+//            case "heal":
+//                tile.setAreaEffect(new Heal());
+//                break;
+//            case "level":
+//                tile.setAreaEffect(new River());
+//                break;
+//            case "teleport":
+//                tile.setAreaEffect(new Teleport());
+//                break;
+//        }
+//
+//        switch (decal) {
+//            case "none":
+//                break;
+//            case "cross":
+//                tile.setDecal(Decal.CROSS);
+//                break;
+//            case "skull":
+//                tile.setDecal(Decal.SKULL);
+//                break;
+//        }
+//
+//        switch (item) {
+//            case "interactive":
+////                tile.setItem(new InteractiveItem());
+//                break;
+//            case "obstacle":
+//                tile.setItem(new ObstacleItem());
+//                break;
+//        }
     }
 }

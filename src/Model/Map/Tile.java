@@ -1,41 +1,31 @@
 package Model.Map;
 
 import Model.Entity.Entity;
+//import Model.Map.Terrain.Terrain;
 import Model.Items.Item;
 import Model.Map.AreaEffect.AreaEffect;
+import Model.Map.AreaEffect.Damage;
 import View.Map.TileView;
 
 public class Tile {
-    private boolean isPassable = false;
+    private boolean isPassable;
     private Terrain terrain;
     private Item item;
-    private AreaEffect areaEffect;
     private boolean visited;
     private boolean inView;
     private Decal decal;
+    private AreaEffect areaEffect;
 
-    private int xCoord;
-    private int yCoord;
-
-    public Tile(int x, int y, Terrain t) {
-        this.xCoord = x;
-        this.yCoord = y;
-        this.terrain = t;
-
-        if(terrain == Terrain.GRASS) {
-            isPassable = true;
-        }
+    public Tile() {
+        isPassable = true;
+        //terrain = new Terrain();
+        visited = false;
+        inView = false;
     }
 
-//    public Tile(Terrain t, Decal d, Item i) {
-//        item = i;
-//        terrain = t;
-//        decal = d;
-//        inView = false;
-//        if(terrain == Terrain.GRASS) {
-//            isPassable = true;
-//        }
-//    }
+    public Tile(Terrain t) {
+        terrain = t;
+    }
 
     public void enter(Entity e) {
 
@@ -46,25 +36,11 @@ public class Tile {
     public boolean canEnter(Entity e) {
         return isPassable;
     }
-
-    public void setDecal(Decal d) {
-        this.decal = d;
-    }
-
-    public void setAreaEffect(AreaEffect a) {
-        this.areaEffect = a;
-    }
-
-    public void setItem(Item i) {
-        this.item = i;
-    }
-
-    public void
-
     public void detach(TileView v) {
 
     }
     public void attach(TileView v) {
 
     }
+
 }

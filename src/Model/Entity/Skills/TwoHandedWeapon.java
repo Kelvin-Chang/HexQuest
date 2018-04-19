@@ -1,11 +1,15 @@
 package Model.Entity.Skills;
 
-public class TwoHandedWeapon extends Skill {
+import Model.Entity.Character.CharacterEntity;
+
+import static Model.Enums.ItemSlot.TWOHANDED;
+
+public class TwoHandedWeapon extends VariableEffectSkill {
 
     public TwoHandedWeapon() {}
 
     @Override
-    public void effect() {
-
+    public void activateSkill(CharacterEntity player) {
+        player.useItemSlot(TWOHANDED);
     }
 }

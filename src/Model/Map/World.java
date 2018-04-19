@@ -5,6 +5,7 @@ import Model.Entity.Entity;
 import Model.Enums.Orientation;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,6 +21,9 @@ public class World {
         this.characterMap = new HashMap<>();
     }
 
+    public Map<Point, CharacterEntity> getCharacterMap() {
+        return characterMap;
+    }
 
     //get destination point
     Point oddq_offset_neighbor(Point hex, Orientation directionYouAreMoving){
@@ -71,6 +75,16 @@ public class World {
             }
         }
         return null;
+    }
+
+    public ArrayList<CharacterEntity> getEntitiesOnArea(ArrayList<Point> area) {
+        ArrayList<CharacterEntity> entities = new ArrayList<>();
+        for (Point point : area) {
+            if (characterMap.get(point) != null) {
+                entities.add(characterMap.get(point));
+            }
+        }
+        return entities;
     }
 
     public Collection<Point> getAllCharacterPoints() { return characterMap.keySet(); }

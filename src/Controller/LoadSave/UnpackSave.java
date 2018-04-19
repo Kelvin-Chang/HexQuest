@@ -22,7 +22,7 @@ public class UnpackSave {
     public void unpackWorld(JSONObject world) {
         System.out.println("Unpacking World: " + world);
 
-        JSONArray mapArray = world.getJSONArray("Map");
+        JSONArray mapArray = world.getJSONArray("Maps");
 
         for(int i = 0; i < mapArray.length(); i++) {
             unpackMap(mapArray.getJSONObject(i));
@@ -37,7 +37,7 @@ public class UnpackSave {
         for (int i = 0; i < tileArray.length(); i++) {
             unpackTile(tileArray.getJSONObject(i));
         }
-        gameBuilder.initMap(map.getString("id"), map.getString("rows"), map.getString("columns"));
+        //gameBuilder.initMap(map.id, map.xSize, map.ySize);
     }
 
     public void unpackTile(JSONObject tile) {

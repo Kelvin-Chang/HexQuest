@@ -8,10 +8,10 @@ public class Map {
     private Tile[][] grid;
     private Point size;
 
-    public Map(){
-        grid = new Tile[5][5];
-        size = new Point(5,5);
-    }
+//    public Map(){
+//        grid = new Tile[5][5];
+//        size = new Point(5,5);
+//    }
 
     public Map(Tile[][] g) {
         grid = g;
