@@ -1,6 +1,8 @@
 package Model.Effects;
 
+import Model.Entity.Character.CharacterEntity;
 import Model.Enums.SkillType;
+import Model.Zone.World;
 
 public class EffectFactory {
 
@@ -29,12 +31,10 @@ public class EffectFactory {
     public static Effect produceHealthModifierEffect(int healthChange) {
         return new HealthModifierEffect(healthChange);
     }
-//    public static Effect produceExpModifierEffect(int expChange) {
-//        return new HealthModifierEffect(expChange);
-//    }
-//    public static Effect producelvlupEffect() {
-//        return new lvlupEffect();
-//    }
+
+    public static Effect produceTeleportEffect(int dest, CharacterEntity character, World gameWorld){
+        return new TeleportEffect(dest, character, gameWorld);
+    }
 
     public static Effect produceSkillModifierEffect(int skillChange, SkillType skillType) {
         return new SkillModifierEffect(skillChange, skillType);

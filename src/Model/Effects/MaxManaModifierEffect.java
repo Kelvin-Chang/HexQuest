@@ -2,7 +2,7 @@ package Model.Effects;
 
 import Model.Entity.Character.CharacterEntity;
 
-public class MaxManaModifierEffect extends Effect {
+public class MaxManaModifierEffect implements Effect {
 
     private int manaChange;
 

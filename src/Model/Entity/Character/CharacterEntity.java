@@ -32,6 +32,7 @@ public abstract class CharacterEntity {
     private ArrayList<Item> useableItems;
     private Pet pet;
     private Zone zone;
+    private int zoneId;
 
     public CharacterEntity() {
         this.level = 0;
@@ -46,7 +47,8 @@ public abstract class CharacterEntity {
         this.orientation = Orientation.UP;
         this.skills = new HashMap<>();
         this.useableItems = new ArrayList<Item>();
-        this.zone = new Zone("00", 4,4);
+        this.zone = new Zone(0, 4,4);
+        this.zoneId = 0;
     }
     public CharacterEntity(Zone zone){
         this();
@@ -146,9 +148,9 @@ public abstract class CharacterEntity {
     public ArrayList<Item> getUseableItems() {
         return useableItems;
     }
-    public Zone getZone() {
-        return zone;
-    }
+    public Zone getZone() { return zone;    }
+    public int getZoneId() { return zoneId; }
+    public void setZoneId(int zoneId) { this.zoneId = zoneId; }
 
     public Point getLocation() {
         return zone.getCharacterLocation(this);

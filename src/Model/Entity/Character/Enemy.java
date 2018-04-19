@@ -1,4 +1,4 @@
-package Model.Entity.Character;
-
-public class Enemy extends NPC {
-}
+//package Model.Entity.Character;
+//
+//public class Enemy extends NPC {
+//}

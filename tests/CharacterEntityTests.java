@@ -39,7 +39,7 @@ public class CharacterEntityTests {
         summoner = playerFactory.produceSummoner();
         sneak = playerFactory.produceSneak();
 
-        zone = new Zone("00", 4, 4);
+        zone = new Zone(0, 4, 4);
         zone.getCharacterMap().put(new Point(1,1), summoner);
         smasher.setZone(zone);
         zone.getCharacterMap().put(new Point(1,2), smasher);

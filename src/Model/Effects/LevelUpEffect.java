@@ -2,7 +2,7 @@ package Model.Effects;
 
 import Model.Entity.Character.CharacterEntity;
 
-public class LevelUpEffect extends Effect {
+public class LevelUpEffect implements Effect {
 
 
     public LevelUpEffect() {}

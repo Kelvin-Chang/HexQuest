@@ -2,7 +2,7 @@ package Model.Effects;
 
 import Model.Entity.Character.CharacterEntity;
 
-public class HealthModifierEffect extends Effect {
+public class HealthModifierEffect implements Effect {
 
     private int healthChange;
 

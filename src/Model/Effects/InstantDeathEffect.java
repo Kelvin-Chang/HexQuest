@@ -2,7 +2,7 @@ package Model.Effects;
 
 import Model.Entity.Character.CharacterEntity;
 
-public class InstantDeathEffect extends Effect {
+public class InstantDeathEffect implements Effect {
 
 
     public InstantDeathEffect() {}

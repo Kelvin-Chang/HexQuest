@@ -2,7 +2,7 @@ package Model.Effects;
 
 import Model.Entity.Character.CharacterEntity;
 
-public class AttackModifierEffect extends Effect {
+public class AttackModifierEffect implements Effect {
 
     private int attackChange;
 

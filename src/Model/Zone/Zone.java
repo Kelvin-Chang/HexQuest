@@ -26,11 +26,12 @@ public class Zone {
     private java.util.Map<Point, ObstacleItem> obstacleItemMap;
     private java.util.Map<Point, Decal> decalMap;
 
-    private String id;
+    private int id;
     private int rows;
     private int columns;
+    private Point spawnPoint;
 
-    public Zone(String id, int rows, int columns) {
+    public Zone(int id, int rows, int columns) {
         this.terrainMap = new HashMap<>();
         this.characterMap = new HashMap<>();
         this.effectMap = new HashMap<>();
@@ -38,6 +39,7 @@ public class Zone {
         this.obstacleItemMap = new HashMap<>();
         this.decalMap = new HashMap<>();
         this.size = new Pair(0,0);
+        this.spawnPoint = new Point(0,0);
         this.id = id;
         this.rows = rows;
         this.columns = columns;
@@ -51,6 +53,7 @@ public class Zone {
         this.obstacleItemMap = new HashMap<>();
         this.decalMap = new HashMap<>();
         this.size = new Pair(0,0);
+        this.spawnPoint = new Point(0,0);
     }
 
     public void add(Point point, Terrain terrain) { terrainMap.put(point, terrain); }
@@ -74,7 +77,7 @@ public class Zone {
             }
         }
     }
-    public String getID(){ return this.id; }
+    public int getID(){ return this.id; }
     public Terrain getTerrain(Point point) { return terrainMap.getOrDefault(point, Terrain.EMPTY); }
     public CharacterEntity getCharacterEntity(Point point) { return characterMap.get(point); }
     public AreaEffect getAreaEffect(Point point) { return effectMap.get(point); }
@@ -84,6 +87,7 @@ public class Zone {
     public Map<Point, CharacterEntity> getCharacterMap() {
         return characterMap;
     }
+    public Point getSpawnPoint() { return spawnPoint; }
     public Point getCharacterLocation(CharacterEntity character) {
         for(Point point : getAllCharacterPoints())
         {

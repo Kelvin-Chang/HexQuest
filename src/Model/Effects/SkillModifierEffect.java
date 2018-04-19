@@ -3,7 +3,7 @@ package Model.Effects;
 import Model.Entity.Character.CharacterEntity;
 import Model.Enums.SkillType;
 
-public class SkillModifierEffect extends Effect {
+public class SkillModifierEffect implements Effect {
 
     private int skillChange;
     private SkillType skillType;

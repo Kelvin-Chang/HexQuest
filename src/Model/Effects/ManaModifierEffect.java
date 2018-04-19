@@ -2,7 +2,7 @@ package Model.Effects;
 
 import Model.Entity.Character.CharacterEntity;
 
-public class ManaModifierEffect extends Effect {
+public class ManaModifierEffect implements Effect {
 
     private int manaChange;
 

@@ -1,29 +1,34 @@
 package Model.Zone;
 
+import Model.Entity.Character.Player;
+
 import java.util.HashMap;
-import java.util.List;
+import java.util.Map;
 
 public class World {
-    public String currentWorld;
-    private HashMap<String, Zone> zoneHashMap = new HashMap<>();
+    public Integer currentZone;
+    Player player;
 
-    public World(String currentWorld){
-        this.currentWorld = currentWorld;
+    private Map<Integer, Zone> zoneHashMap = new HashMap<>();
+
+    public World(Integer currentWorld, Player player){
+        this.currentZone = currentWorld;
+        this.player = player;
     }
 
     public void addZone(Zone zone) {
         zoneHashMap.put(zone.getID(), zone);
     }
 
-    public void setCurrenZone(String currentWorld) {
-        this.currentWorld = currentWorld;
+    public void setCurrentZone(int currentWorld) {
+        this.currentZone = currentWorld;
     }
 
-    public String getCurrentZone() {
-        return this.currentWorld;
+    public int getCurrentZone() {
+        return this.currentZone;
     }
 
-    public Zone getZoneByID(String id) {
+    public Zone getZoneByID(int id) {
         return zoneHashMap.get(id);
     }
 }
