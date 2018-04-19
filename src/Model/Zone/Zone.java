@@ -42,6 +42,8 @@ public class Zone {
         this.columns = columns;
     }
 
+    public Zone() {}
+
     public void add(Point point, Terrain terrain) { terrainMap.put(point, terrain); }
     public void addPlayer(Point point, CharacterEntity entity) { characterMap.put(point, entity); }
     public void add(Point point, AreaEffect effect) { effectMap.put(point, effect); }
