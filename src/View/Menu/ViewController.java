@@ -2,6 +2,7 @@ package View.Menu;
 
 import javafx.application.Platform;
 import javafx.scene.Scene;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 public class ViewController {
@@ -15,9 +16,9 @@ public class ViewController {
 
     // creates the scene in the window, to be called each time you switch scenes
     private void createScene(AbstractView view) {
-        scene = new Scene(view, 500, 500);
+        scene = new Scene(view, 1000, 800);
         scene.getStylesheets().add("assets/stylesheet");
-//        scene.setFill(Paint.valueOf("#1d1d1d"));
+        scene.setFill(Paint.valueOf("#1d1d1d"));
         stage.setScene(scene);
     }
 
@@ -30,6 +31,9 @@ public class ViewController {
     // initializes a blank window
     public void displayStage(Stage primaryStage) {
         stage = primaryStage;
+        stage.setWidth(1000);
+        stage.setHeight(800);
+        stage.centerOnScreen();
         stage.show();
     }
 
@@ -39,15 +43,21 @@ public class ViewController {
     }
 
     public void switchToNewGameView() {
-
+        NewGameView view = new NewGameView();
+        createScene(view);
     }
 
     public void switchToLoadGameView() {
-
+        LoadGameView view = new LoadGameView();
+        createScene(view);
     }
 
     public void switchToSettingsView() {
 
+    }
+
+
+    public void switchToStartNewGameView() {
     }
 
     public void switchToGlobalGamePlayView() {

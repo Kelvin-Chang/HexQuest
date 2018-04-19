@@ -3,12 +3,12 @@ package View.buttons;
 import View.Menu.ViewController;
 import javafx.event.ActionEvent;
 
-public class LoadGameButton extends Button {
+public class LoadGameSelectable extends Selectable {
 
     private ViewController viewController;
 
 
-    public LoadGameButton(String name, ViewController viewController) {
+    public LoadGameSelectable(String name, ViewController viewController) {
         super(name);
         this.viewController = viewController;
     }
