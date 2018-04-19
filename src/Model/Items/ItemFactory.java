@@ -4,6 +4,7 @@ import Model.Enums.EffectShape;
 import Model.Enums.ItemSlot;
 import Model.Items.TakeableItems.EquippableItems.Armor;
 import Model.Items.TakeableItems.EquippableItems.Ring;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.RangedWeapon;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SmasherWeapon;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItems.BaneItem;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItems.DefenseBane;
@@ -61,5 +62,9 @@ public class ItemFactory {
 
     public static SpellItem produceDecreaseBargainingEnchantment(int manaCost, int skillDecrease, EffectShape effectShape, int range) {
         return new DecreaseBargainingEnchantment(manaCost, skillDecrease, effectShape, range);
+    }
+
+    public static RangedWeapon produceRangedWeapon(int damage, EffectShape effectShape, int range) {
+        return new RangedWeapon(damage, effectShape, range);
     }
 }

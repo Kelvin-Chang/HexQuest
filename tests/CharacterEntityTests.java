@@ -29,20 +29,23 @@ public class CharacterEntityTests {
     PlayerFactory playerFactory = new PlayerFactory();
     Player smasher;
     Player summoner;
+    Player sneak;
     Zone zone;
     ItemFactory itemFactory = new ItemFactory();
-    World world;
 
     @Before
     public void setUp() {
         smasher = playerFactory.produceSmasher();
         summoner = playerFactory.produceSummoner();
+        sneak = playerFactory.produceSneak();
 
         zone = new Zone("00", 4, 4);
         zone.getCharacterMap().put(new Point(1,1), summoner);
         smasher.setZone(zone);
         zone.getCharacterMap().put(new Point(1,2), smasher);
         summoner.setZone(zone);
+        zone.getCharacterMap().put(new Point(1,3), sneak);
+        sneak.setZone(zone);
     }
 
     @Test
@@ -305,6 +308,20 @@ public class CharacterEntityTests {
         summoner.getInventory().equipItem(enchantment, summoner);
         summoner.useSkill(SkillType.ENCHANTMENTSKILL);
         assertEquals(45, smasher.getSpecificSkill(SkillType.BARGAINSKILL).getSkillLevel());
+    }
+
+    @Test
+    public void testUsingRangedWeapon() {
+        sneak.setInventory(new Inventory());
+        sneak.getSpecificSkill(SkillType.RANGEDWEAPONSKILL).setSkillLevel(100);
+        sneak.setAttack(25);
+        smasher.setCurrentHealth(100);
+        smasher.setMaxHealth(100);
+        RangedWeapon rangedWeapon = itemFactory.produceRangedWeapon(50, EffectShape.RADIAL, 2);
+
+        sneak.getInventory().equipItem(rangedWeapon, sneak);
+        sneak.useSkill(SkillType.RANGEDWEAPONSKILL);
+        assertEquals(25, smasher.getCurrentHealth());
     }
 
 }
