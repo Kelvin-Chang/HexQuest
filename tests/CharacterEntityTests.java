@@ -1,5 +1,3 @@
-package tests;
-
 import Model.Entity.Character.Inventory;
 import Model.Entity.Character.Player;
 import Model.Entity.Character.PlayerFactory;
