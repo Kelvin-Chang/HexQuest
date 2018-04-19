@@ -10,6 +10,6 @@ public class Brawl extends VariableEffectSkill {
 
     @Override
     public void activateSkill(CharacterEntity player) {
-        player.useItemSlot(BRAWL);
+        player.useItemSlotRequiringSkill(BRAWL, this);
     }
 }

@@ -10,6 +10,6 @@ public class Enchantment extends Skill {
 
     @Override
     public void activateSkill(CharacterEntity player) {
-        player.useItemSlot(ENCHANTMENT);
+        player.useItemSlotRequiringSkill(ENCHANTMENT, this);
     }
 }

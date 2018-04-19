@@ -10,6 +10,6 @@ public class OneHandedWeapon extends VariableEffectSkill {
 
     @Override
     public void activateSkill(CharacterEntity player) {
-        player.useItemSlot(ONEHANDED);
+        player.useItemSlotRequiringSkill(ONEHANDED, this);
     }
 }

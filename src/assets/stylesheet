@@ -132,6 +132,20 @@
     -fx-padding: 5;
 }
 
+.button2{
+    -fx-pref-width: 200;
+    -fx-text-fill: #006464;
+    -fx-background-color: #DFB951;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-padding: 5;
+}
+
+.button2:focused{
+    outline: 10;
+    -fx-background-color: #3a3a3a;
+
+}
 
 .button:hover {
     -fx-background-color: #3a3a3a;
