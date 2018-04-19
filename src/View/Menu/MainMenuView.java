@@ -1,6 +1,7 @@
 package View.Menu;
 
 import View.buttons.*;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
@@ -40,7 +41,6 @@ public class MainMenuView extends AbstractView {
     private VBox centerPane() {
         ArrayList<Selectable> options = centerPaneButtons(viewController);
         VBox vbox = new VBox();
-//        vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
         vbox.setPrefSize(1000,500);
         vbox.setAlignment(Pos.TOP_CENTER);
@@ -74,6 +74,7 @@ public class MainMenuView extends AbstractView {
     private StackPane topPane() {
         StackPane stackPane = new StackPane();
         stackPane.setPrefSize(1000,300);
+        stackPane.setPadding(new Insets(10,10,10,10));
         stackPane.setAlignment(Pos.BOTTOM_CENTER);
         stackPane.getChildren().add(topPaneText());
 
