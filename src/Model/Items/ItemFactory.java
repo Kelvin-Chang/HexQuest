@@ -4,12 +4,15 @@ import Model.Enums.EffectShape;
 import Model.Enums.ItemSlot;
 import Model.Items.TakeableItems.EquippableItems.Armor;
 import Model.Items.TakeableItems.EquippableItems.Ring;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.RangedWeapon;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SmasherWeapon;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItems.BaneItem;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItems.DefenseBane;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItems.HealthBane;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BoonItems.BoonItem;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BoonItems.HealthBoon;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.EnchantmentItems.DecreaseBargainingEnchantment;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.SpellItem;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.StaffItem;
 import Model.Items.TakeableItems.Key;
 
@@ -45,15 +48,23 @@ public class ItemFactory {
         return new StaffItem(damage);
     }
 
-    public static BaneItem produceDefenseBane(int manaCost, int defenseChange, EffectShape effectShape, int range) {
+    public static SpellItem produceDefenseBane(int manaCost, int defenseChange, EffectShape effectShape, int range) {
         return new DefenseBane(manaCost, defenseChange, effectShape, range);
     }
 
-    public static BaneItem produceHealthBane(int manaCost, int healthChange, EffectShape effectShape, int range) {
+    public static SpellItem produceHealthBane(int manaCost, int healthChange, EffectShape effectShape, int range) {
         return new HealthBane(manaCost, healthChange, effectShape, range);
     }
 
-    public static BoonItem produceHealthBoon(int manaCost, int healthChange) {
+    public static SpellItem produceHealthBoon(int manaCost, int healthChange) {
         return new HealthBoon(manaCost, healthChange);
+    }
+
+    public static SpellItem produceDecreaseBargainingEnchantment(int manaCost, int skillDecrease, EffectShape effectShape, int range) {
+        return new DecreaseBargainingEnchantment(manaCost, skillDecrease, effectShape, range);
+    }
+
+    public static RangedWeapon produceRangedWeapon(int damage, EffectShape effectShape, int range) {
+        return new RangedWeapon(damage, effectShape, range);
     }
 }

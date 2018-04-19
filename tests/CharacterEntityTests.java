@@ -13,6 +13,7 @@ import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItem
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItems.HealthBane;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BoonItems.BoonItem;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BoonItems.HealthBoon;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.SpellItem;
 import Model.Items.TakeableItems.Key;
 import Model.Zone.Zone;
 import Model.Zone.World;
@@ -28,20 +29,23 @@ public class CharacterEntityTests {
     PlayerFactory playerFactory = new PlayerFactory();
     Player smasher;
     Player summoner;
+    Player sneak;
     Zone zone;
     ItemFactory itemFactory = new ItemFactory();
-    World world;
 
     @Before
     public void setUp() {
         smasher = playerFactory.produceSmasher();
         summoner = playerFactory.produceSummoner();
+        sneak = playerFactory.produceSneak();
 
-        zone = new Zone();
+        zone = new Zone("00", 4, 4);
         zone.getCharacterMap().put(new Point(1,1), summoner);
         smasher.setZone(zone);
         zone.getCharacterMap().put(new Point(1,2), smasher);
         summoner.setZone(zone);
+        zone.getCharacterMap().put(new Point(1,3), sneak);
+        sneak.setZone(zone);
     }
 
     @Test
@@ -252,7 +256,7 @@ public class CharacterEntityTests {
         summoner.setMaxMana(100);
         summoner.setCurrentMana(100);
         smasher.setDefense(100);
-        BaneItem bane = itemFactory.produceDefenseBane(50, 5, EffectShape.LINEAR, 2);
+        SpellItem bane = itemFactory.produceDefenseBane(50, 5, EffectShape.LINEAR, 2);
 
         summoner.getInventory().equipItem(bane, summoner);
         summoner.useSkill(SkillType.BANESKILL);
@@ -268,7 +272,7 @@ public class CharacterEntityTests {
         summoner.setCurrentMana(100);
         smasher.setMaxHealth(100);
         smasher.setCurrentHealth(100);
-        BaneItem bane = itemFactory.produceHealthBane(50, 5, EffectShape.LINEAR, 2);
+        SpellItem bane = itemFactory.produceHealthBane(50, 5, EffectShape.LINEAR, 2);
 
         summoner.getInventory().equipItem(bane, summoner);
         summoner.useSkill(SkillType.BANESKILL);
@@ -284,12 +288,40 @@ public class CharacterEntityTests {
         summoner.setCurrentMana(100);
         summoner.setMaxHealth(100);
         summoner.setCurrentHealth(50);
-        BoonItem boon = itemFactory.produceHealthBoon(50, 25);
+        SpellItem boon = itemFactory.produceHealthBoon(50, 25);
 
         summoner.getInventory().equipItem(boon, summoner);
         summoner.useSkill(SkillType.BOONSKILL);
         assertEquals(75, summoner.getCurrentHealth());
         assertEquals(50, summoner.getCurrentMana());
+    }
+
+    @Test
+    public void testUsingDecreaseBargainingEnchantment() {
+        summoner.setInventory(new Inventory());
+        summoner.getSpecificSkill(SkillType.ENCHANTMENTSKILL).setSkillLevel(100);
+        summoner.setMaxMana(100);
+        summoner.setCurrentMana(100);
+        smasher.getSpecificSkill(SkillType.BARGAINSKILL).setSkillLevel(50);
+        SpellItem enchantment = itemFactory.produceDecreaseBargainingEnchantment(50, 5, EffectShape.LINEAR, 1);
+
+        summoner.getInventory().equipItem(enchantment, summoner);
+        summoner.useSkill(SkillType.ENCHANTMENTSKILL);
+        assertEquals(45, smasher.getSpecificSkill(SkillType.BARGAINSKILL).getSkillLevel());
+    }
+
+    @Test
+    public void testUsingRangedWeapon() {
+        sneak.setInventory(new Inventory());
+        sneak.getSpecificSkill(SkillType.RANGEDWEAPONSKILL).setSkillLevel(100);
+        sneak.setAttack(25);
+        smasher.setCurrentHealth(100);
+        smasher.setMaxHealth(100);
+        RangedWeapon rangedWeapon = itemFactory.produceRangedWeapon(50, EffectShape.RADIAL, 2);
+
+        sneak.getInventory().equipItem(rangedWeapon, sneak);
+        sneak.useSkill(SkillType.RANGEDWEAPONSKILL);
+        assertEquals(25, smasher.getCurrentHealth());
     }
 
 }

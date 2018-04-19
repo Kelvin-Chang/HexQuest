@@ -1,4 +1,4 @@
 package Model.Items;
 
-public class ObstacleItem {
+public class ObstacleItem extends Item {
 }

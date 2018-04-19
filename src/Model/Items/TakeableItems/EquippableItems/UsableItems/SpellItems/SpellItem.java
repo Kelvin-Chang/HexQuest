@@ -3,6 +3,7 @@ package Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems;
 import Model.Effects.Effect;
 import Model.Effects.EffectFactory;
 import Model.Entity.Character.CharacterEntity;
+import Model.Entity.Skills.Skill;
 import Model.Enums.EffectShape;
 import Model.Enums.ItemSlot;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.UsableItem;
@@ -30,6 +31,8 @@ public abstract class SpellItem extends UsableItem {
     public int getManaCost() {
         return manaCost;
     }
+
+    public void triggerItem(CharacterEntity player, Skill skill) {}
 
     public ArrayList<Point> getEffectedCoordinates(CharacterEntity player) {
         EffectedAreaCoordinatesCalculator coordinatesCalculator = new EffectedAreaCoordinatesCalculator();

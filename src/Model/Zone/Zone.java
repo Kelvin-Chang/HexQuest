@@ -25,7 +25,11 @@ public class Zone {
     //private java.util.Zone<Point, Obstacle> obstacleMap;
     private java.util.Map<Point, Decal> decalMap;
 
-    public Zone(){
+    private String id;
+    private int rows;
+    private int columns;
+
+    public Zone(String id, int rows, int columns) {
         this.terrainMap = new HashMap<>();
         this.characterMap = new HashMap<>();
         this.effectMap = new HashMap<>();
@@ -33,7 +37,12 @@ public class Zone {
         //this.obstacleMap = new HashMap<>();
         this.decalMap = new HashMap<>();
         this.size = new Pair(0,0);
+        this.id = id;
+        this.rows = rows;
+        this.columns = columns;
     }
+
+    public Zone() {}
 
     public void add(Point point, Terrain terrain) { terrainMap.put(point, terrain); }
     public void addPlayer(Point point, CharacterEntity entity) { characterMap.put(point, entity); }
@@ -56,6 +65,7 @@ public class Zone {
             }
         }
     }
+    public String getID(){ return this.id; }
     public Terrain getTerrain(Point point) { return terrainMap.getOrDefault(point, Terrain.EMPTY); }
     public CharacterEntity getCharacterEntity(Point point) { return characterMap.get(point); }
     public AreaEffect getAreaEffect(Point point) { return effectMap.get(point); }

@@ -33,4 +33,14 @@ public abstract class Skill {
     private int RANDOM_NUMBER() {
         return random.nextInt(101);
     }
+
+    public void updateSkillLevel(int skillChange) {
+        if (skillLevel + skillChange <= 1) {
+            skillLevel = 1;
+        } else if (skillLevel + skillChange >= 99) {
+            skillLevel = 99;
+        } else {
+            skillLevel = skillLevel + skillChange;
+        }
+    }
 }

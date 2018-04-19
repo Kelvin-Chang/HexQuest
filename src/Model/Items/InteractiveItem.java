@@ -3,7 +3,7 @@ package Model.Items;
 import Model.Effects.Effect;
 import Model.Entity.Character.CharacterEntity;
 
-public class InteractiveItem {
+public class InteractiveItem extends Item {
 
     Effect interactEffect;
 
