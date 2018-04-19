@@ -8,7 +8,8 @@ import Model.Enums.Orientation;
 import Model.Enums.SkillType;
 import Model.Items.Item;
 import Model.Items.TakeableItems.TakeableItem;
-import Model.Map.World;
+import Model.Zone.World;
+import Model.Zone.Zone;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public abstract class CharacterEntity {
     private HashMap<SkillType, Skill> skills;
     private ArrayList<Item> useableItems;
     private Pet pet;
-    private World world;
+    private Zone zone;
 
     public CharacterEntity() {
         this.level = 0;
@@ -45,11 +46,11 @@ public abstract class CharacterEntity {
         this.orientation = Orientation.UP;
         this.skills = new HashMap<>();
         this.useableItems = new ArrayList<Item>();
-        this.world = new World();
+        this.zone = new Zone();
     }
-    public CharacterEntity(World world){
+    public CharacterEntity(Zone zone){
         this();
-        this.world = world;
+        this.zone = zone;
     }
 
     public CharacterEntity(HashMap<SkillType, Skill> skillList) {
@@ -98,8 +99,8 @@ public abstract class CharacterEntity {
     public void setUseableItems(ArrayList<Item> useableItems) {
         this.useableItems = useableItems;
     }
-    public void setWorld(World world) {
-        this.world = world;
+    public void setZone(Zone zone) {
+        this.zone = zone;
     }
 
     public int getLevel() {
@@ -144,12 +145,12 @@ public abstract class CharacterEntity {
     public ArrayList<Item> getUseableItems() {
         return useableItems;
     }
-    public World getWorld() {
-        return world;
+    public Zone getZone() {
+        return zone;
     }
 
     public Point getLocation() {
-        return world.getCharacterLocation(this);
+        return zone.getCharacterLocation(this);
     }
 
     public Skill getSpecificSkill(SkillType skillType) {
@@ -239,7 +240,7 @@ public abstract class CharacterEntity {
     }
 
     public void effectEntities(ArrayList<Point> area, Effect effect) {
-        ArrayList<CharacterEntity> entities = world.getEntitiesOnArea(area);
+        ArrayList<CharacterEntity> entities = zone.getEntitiesOnArea(area);
         for (CharacterEntity entity: entities) {
             effect.trigger(entity);
         }

@@ -22,6 +22,8 @@ public class UnpackSave {
     public void unpackWorld(JSONObject world) {
         System.out.println("Unpacking World: " + world);
 
+        gameBuilder.initWorld(world.getString("currentMap"));
+
         JSONArray mapArray = world.getJSONArray("Maps");
 
         for(int i = 0; i < mapArray.length(); i++) {
@@ -34,16 +36,16 @@ public class UnpackSave {
 
         JSONArray tileArray = map.getJSONArray("Tile");
 
-        for (int i = 0; i < tileArray.length(); i++) {
-            unpackTile(tileArray.getJSONObject(i));
-        }
+        gameBuilder.initZone(map.getString("id"), map.getInt("rows"), map.getInt("columns"));
 
-        gameBuilder.initZone(map.getString("id"), map.getString("rows"), map.getString("columns"));
+        for (int i = 0; i < tileArray.length(); i++) {
+            unpackTile(tileArray.getJSONObject(i), map.getString("id"));
+        }
     }
 
-    public void unpackTile(JSONObject tile) {
+    public void unpackTile(JSONObject tile, String id) {
         System.out.println("Unpacking tile: " + tile);
-        gameBuilder.initTile(tile.getString("terrain"), tile.getString("areaEffect"), tile.getString("decal"), tile.getString("item"), tile.getInt("x"), tile.getInt("y"));
+        gameBuilder.initTile(tile.getString("terrain"), tile.getString("areaEffect"), tile.getString("decal"), tile.getString("item"), tile.getInt("x"), tile.getInt("y"), id);
     }
 
 }

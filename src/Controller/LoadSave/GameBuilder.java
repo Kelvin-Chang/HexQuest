@@ -1,18 +1,31 @@
 package Controller.LoadSave;
 
+import Model.Entity.Character.CharacterEntity;
 import Model.Entity.Character.Player;
-import Model.Map.Terrain;
+import Model.Items.InteractiveItem;
+import Model.Items.ObstacleItem;
+import Model.Items.TakeableItems.EquippableItems.Armor;
+import Model.Items.TakeableItems.EquippableItems.EquippableItem;
+import Model.Items.TakeableItems.EquippableItems.Ring;
+import Model.Items.TakeableItems.TakeableItem;
 import Model.Map.Tile;
-import Model.Map.Zone;
-import View.Map.MapView;
+import Model.Zone.AreaEffect.AreaEffect;
+import Model.Zone.Decal;
+import Model.Zone.Terrain;
+import Model.Zone.World;
+import Model.Zone.Zone;
 import View.Menu.MainMenuView;
 import View.Status.StatusView;
 import View.Viewport;
 
+import javax.swing.text.ZoneView;
+import java.awt.*;
+
 public class GameBuilder {
 
+    private World world;
     private Viewport viewPort;
-    private MapView mapView;
+    private ZoneView mapView;
     private MainMenuView mainMenuView;
     private StatusView statusView;
     private Player player;
@@ -20,14 +33,13 @@ public class GameBuilder {
 
     public GameBuilder(){
         mainMenuView = new MainMenuView();
-        mapView = new MapView();
     }
 
     public void setViewPort(Viewport viewPort) {
         this.viewPort = viewPort;
     }
 
-    public void setMapView(MapView mapView) {
+    public void setMapView(ZoneView mapView) {
         this.mapView = mapView;
     }
 
@@ -39,44 +51,44 @@ public class GameBuilder {
         this.player = player;
     }
 
-    public void initZone(String id, String xSize, String ySize) {
-        Zone zone = new Zone(id, xSize, ySize);
-
-
+    public void initWorld(String currentMap) {
+        world = new World(currentMap);
     }
 
-    public void initTile(String terrain, String areaEffect, String decal, String item, int x, int y) {
+    public void initZone(String id, int xSize, int ySize) {
+        Zone zone = new Zone(id, xSize, ySize);
+        world.addZone(zone);
+    }
+
+    public void initTile(String terrain, String areaEffect, String decal, String item, int x, int y, String mapID) {
+        Zone zone = world.getZoneByID(mapID);
+        Point point = new Point(x, y);
 
         switch (terrain) {
             case "grass":
-                tile = new Tile(Terrain.GRASS);
+                zone.add(point, Terrain.GRASS);
                 break;
             case "mountain":
-                tile = new Tile(Terrain.MOUNTAIN);
+                zone.add(point, Terrain.MOUNTAIN);
                 break;
             case "water":
-                tile = new Tile(Terrain.WATER);
+                zone.add(point, Terrain.WATER);
             default:
-                tile = new Tile(Terrain.GRASS);
+                zone.add(point, Terrain.GRASS);
         }
 
         switch (areaEffect) {
             case "none":
                 break;
             case "damage":
-                tile.setAreaEffect(new Damage());
                 break;
             case "death":
-                tile.setAreaEffect(new Death());
                 break;
             case "heal":
-                tile.setAreaEffect(new Heal());
                 break;
             case "level":
-                tile.setAreaEffect(new River());
                 break;
             case "teleport":
-                tile.setAreaEffect(new Teleport());
                 break;
         }
 
@@ -84,19 +96,25 @@ public class GameBuilder {
             case "none":
                 break;
             case "cross":
-                tile.setDecal(Decal.CROSS);
+                zone.add(point, Decal.CROSS);
                 break;
             case "skull":
-                tile.setDecal(Decal.SKULL);
+                zone.add(point, Decal.SKULL);
                 break;
         }
 
         switch (item) {
             case "interactive":
-//                tile.setItem(newInteractiveItem());
+                zone.add(point, new InteractiveItem());
                 break;
             case "obstacle":
-                tile.setItem(new ObstacleItem());
+                zone.add(point, new ObstacleItem());
+                break;
+            case "armor":
+                zone.add(point, new Armor(10));
+                break;
+            case "ring":
+                zone.add(point, new Ring(10));
                 break;
         }
     }
