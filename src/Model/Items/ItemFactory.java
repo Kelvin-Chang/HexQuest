@@ -1,5 +1,6 @@
 package Model.Items;
 
+import Model.Effects.EffectFactory;
 import Model.Enums.EffectShape;
 import Model.Enums.ItemSlot;
 import Model.Items.TakeableItems.EquippableItems.Armor;
@@ -28,6 +29,12 @@ public class ItemFactory {
         return new Ring(manaChange);
     }
 
+    public static OneShotItem produceDamageOneShot() {
+        return new OneShotItem(EffectFactory.produceHealthModifierEffect(-10));
+    }
+    public static ObstacleItem produceObstableItem() {
+        return new ObstacleItem("Blocker");
+    }
     public static Armor produceArmorItem(int defense) {
         return new Armor(defense);
     }

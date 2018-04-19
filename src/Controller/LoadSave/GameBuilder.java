@@ -107,7 +107,7 @@ public class GameBuilder {
                 zone.add(point, new InteractiveItem());
                 break;
             case "obstacle":
-                zone.add(point, new ObstacleItem());
+                zone.add(point, new ObstacleItem("obstacle"));
                 break;
             case "armor":
                 zone.add(point, new Armor(10));

@@ -3,6 +3,7 @@ package Model.Zone;
 import Model.Entity.Character.CharacterEntity;
 import Model.Enums.Orientation;
 import Model.Items.Item;
+import Model.Items.ObstacleItem;
 import Model.Zone.AreaEffect.*;
 import View.Zone.MapView;
 import javafx.util.Pair;
@@ -22,7 +23,7 @@ public class Zone {
     private java.util.Map<Point, CharacterEntity> characterMap;
     private java.util.Map<Point, AreaEffect> effectMap;
     private java.util.Map<Point, Item> itemMap;
-    //private java.util.Zone<Point, Obstacle> obstacleMap;
+    private java.util.Map<Point, ObstacleItem> obstacleItemMap;
     private java.util.Map<Point, Decal> decalMap;
 
     private String id;
@@ -34,7 +35,7 @@ public class Zone {
         this.characterMap = new HashMap<>();
         this.effectMap = new HashMap<>();
         this.itemMap = new HashMap<>();
-        //this.obstacleMap = new HashMap<>();
+        this.obstacleItemMap = new HashMap<>();
         this.decalMap = new HashMap<>();
         this.size = new Pair(0,0);
         this.id = id;
@@ -42,13 +43,21 @@ public class Zone {
         this.columns = columns;
     }
 
-    public Zone() {}
+    public Zone() {
+        this.terrainMap = new HashMap<>();
+        this.characterMap = new HashMap<>();
+        this.effectMap = new HashMap<>();
+        this.itemMap = new HashMap<>();
+        this.obstacleItemMap = new HashMap<>();
+        this.decalMap = new HashMap<>();
+        this.size = new Pair(0,0);
+    }
 
     public void add(Point point, Terrain terrain) { terrainMap.put(point, terrain); }
     public void addPlayer(Point point, CharacterEntity entity) { characterMap.put(point, entity); }
     public void add(Point point, AreaEffect effect) { effectMap.put(point, effect); }
     public void add(Point point, Item item) { itemMap.put(point, item); }
-    //public void add(Point point, Obstacle obstacle) { obstacleMap.put(point, obstacle); }
+    public void add(Point point, ObstacleItem obstacle) { obstacleItemMap.put(point, obstacle); }
     public void add(Point point, Decal decal) { decalMap.put(point, decal); }
 
     public void removeTerrain(Point point) { terrainMap.remove(point); }
@@ -70,7 +79,7 @@ public class Zone {
     public CharacterEntity getCharacterEntity(Point point) { return characterMap.get(point); }
     public AreaEffect getAreaEffect(Point point) { return effectMap.get(point); }
     public Item getItem(Point point) { return itemMap.get(point); }
-    //public Obstacle getObstacle(Point point) { return obstacleMap.get(point); }
+    public ObstacleItem getObstacleItem(Point point) { return obstacleItemMap.get(point); }
     public Decal getDecal(Point point) { return decalMap.get(point); }
     public Map<Point, CharacterEntity> getCharacterMap() {
         return characterMap;
@@ -91,7 +100,7 @@ public class Zone {
     public Collection<Point> getAllTerrainPoints() { return terrainMap.keySet(); }
     public Collection<Point> getAllAreaEffectPoints() { return effectMap.keySet(); }
     public Collection<Point> getAllItemPoints() { return itemMap.keySet(); }
-    //public Collection<Point> getAllObstaclePoints() { return obstacleMap.keySet(); }
+    public Collection<Point> getAllObstacleItemPoints() { return obstacleItemMap.keySet(); }
     public Collection<Point> getAllDecalPoints() { return decalMap.keySet(); }
 
     public ArrayList<CharacterEntity> getEntitiesOnArea(ArrayList<Point> area) {
@@ -176,6 +185,9 @@ public class Zone {
         characterMap.put(destination, character);
     }
     public boolean isValidMove(Point destination) {
+        if(getObstacleItem(destination) != null) {
+            return false;
+        }
         if(getTerrain(destination) != Terrain.GRASS) {
             return false;
         }

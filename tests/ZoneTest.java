@@ -116,6 +116,16 @@ public class ZoneTest {
         Assert.assertTrue(  zone.getItem(new Point(0,0) ) == null);
         Assert.assertTrue(characterSmash.getInventory().getItemAtSlot(0) != null);
 
+        zone.add(new Point(0,0), ItemFactory.produceDamageOneShot());
+        zone.doInteractions(characterSmash);
+        Assert.assertTrue(characterSmash.getCurrentHealth() == 90);
+        Assert.assertTrue(  zone.getItem(new Point(0,0) ) == null);
+
+        zone.add(new Point(0,1), ItemFactory.produceObstableItem());
+        Assert.assertTrue(zone.getCharacter(new Point(0,0)) != null);
+        Assert.assertTrue(!zone.isValidMove(new Point(0,1)));
+
+
 
     }
 }
