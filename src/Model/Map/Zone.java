@@ -18,6 +18,9 @@ import static Model.Enums.Orientation.correspondingNumber;
 public class Zone {
     private Tile[][] grid;
     private Point size;
+    private String id;
+    private int rows;
+    private int columns;
 
     private java.util.Map<Point, Terrain> terrainMap;
     private java.util.Map<Point, CharacterEntity> characterMap;
@@ -26,10 +29,12 @@ public class Zone {
     //private java.util.Zone<Point, Obstacle> obstacleMap;
     private java.util.Map<Point, Decal> decalMap;
 
-//    public Zone(){
-//        grid = new Tile[5][5];
-//        size = new Point(5,5);
-//    }
+    public Zone(String id, int rows, int columns){
+        this.id = id;
+        this.rows = rows;
+        this.columns = columns;
+    }
+
     public void add(Point point, Terrain terrain) { terrainMap.put(point, terrain); }
     public void addPlayer(Point point, CharacterEntity entity) { characterMap.put(point, entity); }
     public void add(Point point, AreaEffect effect) { effectMap.put(point, effect); }
@@ -170,10 +175,6 @@ public class Zone {
     }
 
 
-    public Zone(Tile[][] g) {
-        grid = g;
-        size = new Point(grid.length, grid[0].length);
-    }
     public Tile getTile(int x, int y) {
         try {
             return grid[x][y];

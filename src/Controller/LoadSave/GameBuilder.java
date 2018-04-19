@@ -3,6 +3,7 @@ package Controller.LoadSave;
 import Model.Entity.Character.Player;
 import Model.Map.Terrain;
 import Model.Map.Tile;
+import Model.Map.Zone;
 import View.Map.MapView;
 import View.Menu.MainMenuView;
 import View.Status.StatusView;
@@ -38,12 +39,13 @@ public class GameBuilder {
         this.player = player;
     }
 
-    public void initMap(String id, String xSize, String ySize) {
-//        Zone map = new Zone(id, xSize, ySize);
+    public void initZone(String id, String xSize, String ySize) {
+        Zone zone = new Zone(id, xSize, ySize);
+
+
     }
 
     public void initTile(String terrain, String areaEffect, String decal, String item, int x, int y) {
-        Tile tile;
 
         switch (terrain) {
             case "grass":
