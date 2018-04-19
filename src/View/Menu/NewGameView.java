@@ -21,29 +21,7 @@ public class NewGameView extends AbstractView{
 
     public NewGameView() {
 
-        ViewController viewController = new ViewController();
-
-
-//        GridPane grid = new GridPane();
-//
-//        grid.setVgap(10);
-//        grid.setHgap(10);
-//        grid.setPadding(new Insets(10,10,10,10));
-//
-//        ArrayList<Selectable> options = new ArrayList<Selectable>() {{
-//            add(new StartNewGameSelectable("Start", viewController));
-//            add(new MainMenuSelectable("Main Menu", viewController));
-//        }};
-//
-//        for(Selectable clickable: options) {
-//            Button selectable = new Button(clickable.getName());
-//
-//            // sets selectable style
-//            selectable.getStyleClass().add("button1");
-//
-//            selectable.setOnAction(clickable);
-//            grid.add(selectable, 5, options.indexOf(clickable));
-//        }
+        viewController = new ViewController();
 
         this.getChildren().add(borderPane());
     }
@@ -93,7 +71,7 @@ public class NewGameView extends AbstractView{
         VBox vbox = new VBox();
 //        vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
-        vbox.setPrefHeight(500);
+        vbox.setPrefSize(400,500);
         vbox.setAlignment(Pos.TOP_CENTER);
 
         for(Selectable clickable: options) {
