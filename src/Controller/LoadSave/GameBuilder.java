@@ -1,9 +1,9 @@
 package Controller.LoadSave;
 
 import Model.Entity.Character.Player;
-import Model.Map.Terrain;
-import Model.Map.Tile;
-import View.Map.MapView;
+import Model.Zone.Terrain;
+import Model.Zone.Tile;
+import View.Zone.MapView;
 import View.Menu.MainMenuView;
 import View.Status.StatusView;
 import View.Viewport;
