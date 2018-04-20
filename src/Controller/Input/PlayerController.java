@@ -13,33 +13,27 @@ public class PlayerController {
     }
 
     public void pressUp() {
-        this.character.setOrientation(Orientation.UP);
-        this.character.move();
+        this.character.addUpToMovementQueue();
     }
 
     public void pressUpRight() {
-        this.character.setOrientation(Orientation.UPRIGHT);
-        this.character.move();
+        this.character.addUpRightToMovementQueue();
     }
 
     public void pressUpLeft() {
-        this.character.setOrientation(Orientation.UPLEFT);
-        this.character.move();
+        this.character.addUpLeftToMovementQueue();
     }
 
     public void pressDown() {
-        this.character.setOrientation(Orientation.DOWN);
-        this.character.move();
+        this.character.addDownToMovementQueue();
     }
 
     public void pressDownRight() {
-        this.character.setOrientation(Orientation.DOWNRIGHT);
-        this.character.move();
+        this.character.addDownRightToMovementQueue();
     }
 
     public void pressDownLeft() {
-        this.character.setOrientation(Orientation.DOWNLEFT);
-        this.character.move();
+        this.character.addDownLeftToMovementQueue();
     }
     /*
     public void setActiveSkill(int index)

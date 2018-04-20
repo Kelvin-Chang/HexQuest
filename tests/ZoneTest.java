@@ -95,7 +95,7 @@ public class ZoneTest {
         Assert.assertTrue(zone.getCharacter(new Point(1,0)) != null);
         Assert.assertTrue(zone.getCharacter(new Point(0,1)) != null);
 
-        zone.getCharacter(new Point(0,0)).move();
+        zone.getCharacter(new Point(0,0));
         Assert.assertTrue(zone.getCharacter(new Point(0,0)) != null);
         zone.moveCharacter(new Point(0,0), new Point(1,1));
         Assert.assertTrue(zone.getCharacter(new Point(0,0)) == null);

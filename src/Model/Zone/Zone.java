@@ -164,7 +164,8 @@ public class Zone {
     }
     //MOVEMENT STUFF
     public void attemptMove(CharacterEntity character){
-        Orientation orientation = character.getOrientation();
+        Orientation orientation = character.getNextMove();
+        character.setOrientation(orientation);
         Point sourcePoint = getCharacterLocation(character);
         //System.out.println("dx: " + dx + " | dy: " + dy);
         Point destination = getNeighborPointFromOrientation(sourcePoint, orientation);

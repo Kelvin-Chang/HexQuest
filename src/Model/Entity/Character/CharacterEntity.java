@@ -14,6 +14,7 @@ import Model.Zone.Zone;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Queue;
 
 public abstract class CharacterEntity {
 
@@ -28,6 +29,7 @@ public abstract class CharacterEntity {
     private int speed;
     private Inventory inventory;
     private Orientation orientation;
+    private Queue<Orientation> movementQueue;
     private HashMap<SkillType, Skill> skills;
     private ArrayList<Item> useableItems;
     private Pet pet;
@@ -222,8 +224,6 @@ public abstract class CharacterEntity {
         skills.get(skillType).updateSkillLevel(skillChange);
     }
 
-    public void move(){}
-
     public void levelUp() {
         level = level + 1;
     }
@@ -266,6 +266,34 @@ public abstract class CharacterEntity {
         for (CharacterEntity entity: entities) {
             effect.trigger(entity);
         }
+    }
+
+    public void addUpToMovementQueue() {
+        movementQueue.add(Orientation.UP);
+    }
+
+    public void addUpRightToMovementQueue() {
+        movementQueue.add(Orientation.UPRIGHT);
+    }
+
+    public void addDownRightToMovementQueue() {
+        movementQueue.add(Orientation.DOWNRIGHT);
+    }
+
+    public void addDownToMovementQueue() {
+        movementQueue.add(Orientation.DOWN);
+    }
+
+    public void addDownLeftToMovementQueue() {
+        movementQueue.add(Orientation.DOWNLEFT);
+    }
+
+    public void addUpLeftToMovementQueue() {
+        movementQueue.add(Orientation.UPLEFT);
+    }
+
+    public Orientation getNextMove() {
+        return movementQueue.remove();
     }
 
 }
