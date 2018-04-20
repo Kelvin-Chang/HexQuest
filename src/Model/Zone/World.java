@@ -1,11 +1,12 @@
 package Model.Zone;
 
 import Model.Entity.Character.Player;
+import Model.Updateable;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class World {
+public class World implements Updateable {
     public Integer currentZone;
     Player player;
 
@@ -30,5 +31,10 @@ public class World {
 
     public Zone getZoneByID(Integer id) {
         return zoneHashMap.get(id);
+    }
+
+    @Override
+    public void update() {
+        zoneHashMap.get(currentZone).update();
     }
 }
