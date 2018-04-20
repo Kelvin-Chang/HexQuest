@@ -125,6 +125,7 @@ public class Zone {
     public void doInteractions(CharacterEntity player) {
         triggerAreaEffects();
         triggerItems(player);
+        //
     }
 
     private void triggerAreaEffects() {
