@@ -6,7 +6,7 @@ import Model.Entity.Character.CharacterEntity;
 
 public class TakeDamage extends AreaEffect {
 
-    TakeDamage(Effect effect){
+    TakeDamage(){
         this.effect = EffectFactory.produceHealthModifierEffect(-10);
     }
 

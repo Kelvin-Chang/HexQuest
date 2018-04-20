@@ -5,8 +5,10 @@ import Model.Effects.EffectFactory;
 import Model.Entity.Character.CharacterEntity;
 
 public class LevelUp extends AreaEffect {
+
     boolean hasBeenTriggered;
-    LevelUp(Effect effect){
+
+    LevelUp(){
         this.effect = EffectFactory.produceLevelUpEffect();
         hasBeenTriggered = false;
     }
