@@ -21,13 +21,13 @@ import static Model.Zone.HexFormulas.getNeighborPointFromOrientation;
 public class Zone {
     private Pair size;
 
-    private java.util.Map<Point, Terrain> terrainMap;
-    private java.util.Map<Point, CharacterEntity> characterMap;
-    private java.util.Map<Point, AreaEffect> effectMap;
-    private java.util.Map<Point, Effect> effectsMap;
-    private java.util.Map<Point, Item> itemMap;
-    private java.util.Map<Point, ObstacleItem> obstacleItemMap;
-    private java.util.Map<Point, Decal> decalMap;
+    private Map<Point, Terrain> terrainMap;
+    private Map<Point, CharacterEntity> characterMap;
+    private Map<Point, AreaEffect> effectMap;
+    private Map<Point, Effect> effectsMap;
+    private Map<Point, Item> itemMap;
+    private Map<Point, ObstacleItem> obstacleItemMap;
+    private Map<Point, Decal> decalMap;
 
     private int id;
     private int rows;
@@ -131,6 +131,7 @@ public class Zone {
     public void doInteractions(CharacterEntity player) {
         triggerAreaEffects();
         triggerItems(player);
+        //
     }
 
     private void triggerAreaEffects() {

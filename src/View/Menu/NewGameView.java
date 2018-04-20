@@ -31,7 +31,7 @@ public class NewGameView extends AbstractView {
 
         viewController = new ViewController();
 
-        this.getChildren().add(borderPane());
+        this.getChildren().add(borderPane(this));
     }
 
 
@@ -84,11 +84,6 @@ public class NewGameView extends AbstractView {
         tb2.setToggleGroup(toggleGroup);
         tb3.setToggleGroup(toggleGroup);
 
-        // character selected from the moment view is loaded
-        tb1.setSelected(true);
-
-//        tb1.setPrefSize();
-
         ArrayList<RadioButton> options = new ArrayList<RadioButton>() {{
             add(tb1);
             add(tb2);
@@ -100,12 +95,16 @@ public class NewGameView extends AbstractView {
             public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
                 if(newValue != null){
                     characterChoice = (toggleGroup.getSelectedToggle()).getUserData().toString();
-                    System.out.println("Selected:" + characterChoice);
+                    System.out.println(characterChoice);
                 }
             }
         });
 
-        System.out.println(characterChoice);
+        // this is placed after the "changed" method to initialize the characterChoice to a non-null value
+        // initializes an initial choice once the view is loaded
+        tb1.setSelected(true);
+
+        System.out.println("NewGameView: " + characterChoice);
 
         return options;
     }
@@ -136,18 +135,18 @@ public class NewGameView extends AbstractView {
         return stackPane;
     }
 
-    private ArrayList<Selectable> bottomPaneButtons(ViewController viewController) {
+    private ArrayList<Selectable> bottomPaneButtons(ViewController viewController, NewGameView newGameView) {
         ArrayList<Selectable> options = new ArrayList<Selectable>() {{
             add(new MainMenuSelectable("Main Menu", viewController));
-            add(new StartNewGameSelectable("Start Game", viewController, characterChoice));
+            add(new StartNewGameSelectable("Start Game", viewController, newGameView));
         }};
 
         return options;
     }
 
-    private HBox bottomPane() {
+    private HBox bottomPane(NewGameView newGameView) {
 
-        ArrayList<Selectable> options = bottomPaneButtons(viewController);
+        ArrayList<Selectable> options = bottomPaneButtons(viewController, newGameView);
 
         HBox hbox = new HBox();
         hbox.setMaxHeight(300);
@@ -172,7 +171,7 @@ public class NewGameView extends AbstractView {
         return hbox;
     }
 
-    private BorderPane borderPane() {
+    private BorderPane borderPane(NewGameView newGameView) {
 
         // create new borderpane for formatting
         BorderPane bp = new BorderPane();
@@ -180,11 +179,16 @@ public class NewGameView extends AbstractView {
         bp.setTop(topPane());
         bp.setCenter(centerPane());
 
-        bp.setBottom(bottomPane());
+        bp.setBottom(bottomPane(newGameView));
         bp.setLeft(leftPane());
         bp.setRight(rightPane());
 
         return bp;
+    }
+
+    // TODO: ANTI OOP
+    public String getCharacterChoice() {
+        return characterChoice;
     }
 }
 

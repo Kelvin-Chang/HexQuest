@@ -4,6 +4,7 @@ import Model.Enums.Orientation;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Map;
 
 import static Model.Enums.Orientation.correspondingNumber;
 
@@ -14,13 +15,13 @@ import static Model.Enums.Orientation.correspondingNumber;
 public class HexFormulas {
 
     //get neighbor point point
-    static Point getNeighborPointFromOrientation(Point hex, Orientation directionYouAreMoving){
+    public static Point getNeighborPointFromOrientation(Point hex, Orientation directionYouAreMoving){
         int parity = hex.x & 1;
         Point dir = Orientation.oddq_directions[parity][correspondingNumber(directionYouAreMoving)];
         return new Point((int)(hex.getY() + dir.getY()), (int)(hex.getX() + dir.getX()));
     }
 
-    static ArrayList<Point> getAllNeighborPoints(Point hex){
+    public static ArrayList<Point> getAllNeighborPoints(Point hex){
         ArrayList<Point> list = new ArrayList<>();
         int parity = hex.x & 1;
 
@@ -31,45 +32,94 @@ public class HexFormulas {
         return list;
     }
 
-    static ArrayList<Point> getAllLinearPoints(Point hex){
+    public static ArrayList<Point> getAllLinearPoints(Point hex, Orientation directionYouAreMoving){
         ArrayList<Point> list = new ArrayList<>();
         int parity = hex.x & 1;
 
+        for(Point p = new Point(hex); p != null; ) {
+            Point coordsToAdd = Orientation.oddq_directions[parity][correspondingNumber(directionYouAreMoving)];
+            p = new Point((int) (hex.getY() + coordsToAdd.getY()), (int) (hex.getX() + coordsToAdd.getX()));
+            //TODO:
+
+            list.add(p); //UNTIL YOU REACH THE END OF THE MAP OR HIT SOMETHING
+            parity = p.x & 1;
+        }
 
         return list;
     }
 
-    static int distanceToPoint(Point src, Point dest){
-        int x;
+    public static ArrayList<Point> getAngularPoints(Point hex, int radius, Map<Point, Terrain> terrainMap, Orientation directionYouAreFacing) {
+        ArrayList<Point> list = new ArrayList<>();
 
-        return 0;
+        rGetAngularPoints(hex, radius, terrainMap, directionYouAreFacing, list, radius);
+
+        return list;
     }
 
+    public static void rGetAngularPoints(Point hex, int radius, Map<Point, Terrain> terrainMap, Orientation directionYouAreFacing, ArrayList<Point> list, int decreasingRadius) {
+        //BASE CASE:
+        if (decreasingRadius == 0 /*|| terrainMap.keySet().contains()*/){
 
+        }
 
+    }
+    public static ArrayList<Point> getRadialOfPointsFromRadius(Point hex, int radius, Map<Point, Terrain> terrainMap) {
+        ArrayList<Point> list = new ArrayList<>();
 
+        for(Point p: terrainMap.keySet()){
+            if(distanceToPoint(hex, p) <= radius && terrainMap.getOrDefault(p, Terrain.EMPTY) != Terrain.EMPTY)
+                list.add(p);
+        }
 
+        return list;
+    }
 
+    public static ArrayList<Point> getCircleOfPointsFromRadius(Point hex, int radius, Map<Point, Terrain> terrainMap){
+        ArrayList<Point> list = new ArrayList<>();
+
+        for(Point p: terrainMap.keySet()){
+            if(distanceToPoint(hex, p) == radius && terrainMap.getOrDefault(p, Terrain.EMPTY) != Terrain.EMPTY)
+                list.add(p);
+        }
+
+        return list;
+    }
+    public static double distanceToPoint(Point src, Point dest){
+        Triple ac = hexToCube(src);
+        Triple bc = hexToCube(dest);
+        return cube_distance(ac,bc);
+
+    }
+    static int checkOdd(double val){
+        if(val % 2 == 0)
+            return 0;
+        else return 1;
+    }
+
+    public static double cube_distance(Triple a, Triple b){
+            return Math.max(  Math.max(Math.abs(a.first - b.first), Math.abs(a.second - b.second)),   Math.abs(a.third - b.third));
+
+    }
      public static Point cubeToHex(Triple t){
-        int col = t.first;
-        int row = t.third + (t.first - (t.first&1)) / 2;
-        return new Point(col, row);
+        double col = t.first;
+        double row = t.third + (t.first - (checkOdd(t.first))) / 2;
+        return new Point((int)col, (int)row);
      }
 
     public static Triple hexToCube(Point pt){
-        int x = pt.x;
-        int z = pt.y - (pt.x - (pt.x&1)) / 2;
-        int y = -x-z;
+        double x = pt.x;
+        double z = pt.y - ((pt.x - (pt.x & 1 )) / 2);
+        double y = (-x)-z;
         return new Triple(x, y, z);
     }
 
     static class Triple{
 
-        final int first;
-        final int second;
-        final int third;
+        final double first;
+        final double second;
+        final double third;
 
-        Triple(int first, int second, int third) {
+        Triple(double first, double second, double third) {
             this.first = first;
             this.second = second;
             this.third = third;
