@@ -46,7 +46,7 @@ public class GameBuilder {
         this.player = player;
     }
 
-    public void initWorld(int currentMap) {
+    public void initWorld(Integer currentMap) {
         world = new World(currentMap, player);
     }
 
@@ -55,7 +55,7 @@ public class GameBuilder {
         world.addZone(zone);
     }
 
-    public void initTile(String terrain, String areaEffect, String decal, String item, int x, int y, int mapID) {
+    public void initTile(String terrain, String areaEffect, String decal, String item, int x, int y, Integer mapID) {
         Zone zone = world.getZoneByID(mapID);
         Point point = new Point(x, y);
 

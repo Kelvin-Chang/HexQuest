@@ -1,5 +1,9 @@
-package View.Menu;
+package Controller.Input;
 
+import View.Menu.AbstractView;
+import View.Menu.LoadGameView;
+import View.Menu.MainMenuView;
+import View.Menu.NewGameView;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.paint.Paint;

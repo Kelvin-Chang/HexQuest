@@ -1,14 +1,16 @@
 package View.Menu;
 
 
-import View.buttons.MainMenuSelectable;
-import View.buttons.Selectable;
-import View.buttons.StartNewGameSelectable;
+import Controller.Input.ViewController;
+import Controller.buttons.MainMenuSelectable;
+import Controller.buttons.Selectable;
+import Controller.buttons.StartNewGameSelectable;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -23,6 +25,7 @@ import java.util.ArrayList;
 public class NewGameView extends AbstractView {
 
     private ViewController viewController;
+    private String characterChoice;
 
     public NewGameView() {
 
@@ -62,37 +65,59 @@ public class NewGameView extends AbstractView {
     }
 
 
-    private ArrayList<ToggleButton> leftPaneToggleButtons() {
-        ToggleGroup toggleGroup = new ToggleGroup();
-        ToggleButton tb1 = new ToggleButton("Summoner");
-        ToggleButton tb2 = new ToggleButton("Sneak");
-        ToggleButton tb3 = new ToggleButton("Smasher");
+    private ArrayList<RadioButton> leftPaneRadioButtons() {
 
-        tb1.setSelected(true);
+        // togglegroup for character selection
+        ToggleGroup toggleGroup = new ToggleGroup();
+
+        // radio buttons
+        RadioButton tb1 = new RadioButton("Summoner");
+        RadioButton tb2 = new RadioButton("Sneak");
+        RadioButton tb3 = new RadioButton("Smasher");
+
+        // data that each radio button holds
+        tb1.setUserData("Summmoner");
+        tb2.setUserData("Sneak");
+        tb3.setUserData("Smassher");
 
         tb1.setToggleGroup(toggleGroup);
         tb2.setToggleGroup(toggleGroup);
         tb3.setToggleGroup(toggleGroup);
 
+        // character selected from the moment view is loaded
+        tb1.setSelected(true);
+
 //        tb1.setPrefSize();
 
-        ArrayList<ToggleButton> options = new ArrayList<ToggleButton>() {{
+        ArrayList<RadioButton> options = new ArrayList<RadioButton>() {{
             add(tb1);
             add(tb2);
             add(tb3);
         }};
 
+        toggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+            @Override
+            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
+                if(newValue != null){
+                    characterChoice = (toggleGroup.getSelectedToggle()).getUserData().toString();
+                    System.out.println(characterChoice);
+                }
+            }
+        });
+
+        System.out.println(characterChoice);
+
         return options;
     }
 
     private VBox leftPane() {
-        ArrayList<ToggleButton> options = leftPaneToggleButtons();
+        ArrayList<RadioButton> options = leftPaneRadioButtons();
         VBox vbox = new VBox();
         vbox.setSpacing(30);
         vbox.setPrefSize(400,300);
         vbox.setAlignment(Pos.TOP_CENTER);
 
-        for(ToggleButton clickable: options) {
+        for(RadioButton clickable: options) {
 
             // sets selectable style
             clickable.getStyleClass().add("button2");
@@ -113,8 +138,8 @@ public class NewGameView extends AbstractView {
 
     private ArrayList<Selectable> bottomPaneButtons(ViewController viewController) {
         ArrayList<Selectable> options = new ArrayList<Selectable>() {{
-            add(new MainMenuSelectable("Main Menu", NewGameView.this.viewController));
-            add(new StartNewGameSelectable("Start Game", NewGameView.this.viewController));
+            add(new MainMenuSelectable("Main Menu", viewController));
+            add(new StartNewGameSelectable("Start Game", viewController, characterChoice));
         }};
 
         return options;
@@ -143,7 +168,7 @@ public class NewGameView extends AbstractView {
             // add to vbox
             hbox.getChildren().add(selectable);
         }
-        
+
         return hbox;
     }
 
@@ -162,3 +187,4 @@ public class NewGameView extends AbstractView {
         return bp;
     }
 }
+

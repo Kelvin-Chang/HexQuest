@@ -1,6 +1,7 @@
 package View.Menu;
 
-import View.buttons.*;
+import Controller.Input.ViewController;
+import Controller.buttons.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;

@@ -28,7 +28,7 @@ public class World {
         return this.currentZone;
     }
 
-    public Zone getZoneByID(int id) {
+    public Zone getZoneByID(Integer id) {
         return zoneHashMap.get(id);
     }
 }

@@ -1,9 +1,9 @@
 {
   "World": {
-    "currentMap": "00",
+    "currentMap": 0,
     "Map": [
       {
-        "id": "00",
+        "id": 0,
         "rows": 4,
         "columns": 4,
         "Entity": [],

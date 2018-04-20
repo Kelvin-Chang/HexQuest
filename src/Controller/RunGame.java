@@ -1,6 +1,6 @@
 package Controller;
 
-import View.Menu.ViewController;
+import Controller.Input.ViewController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

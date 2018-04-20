@@ -1,6 +1,7 @@
 package Model.Zone;
 
 import Model.AreaEffects.AreaEffect;
+import Model.Effects.Effect;
 import Model.Entity.Character.CharacterEntity;
 import Model.Enums.Orientation;
 import Model.Items.Item;
@@ -23,6 +24,7 @@ public class Zone {
     private java.util.Map<Point, Terrain> terrainMap;
     private java.util.Map<Point, CharacterEntity> characterMap;
     private java.util.Map<Point, AreaEffect> effectMap;
+    private java.util.Map<Point, Effect> effectsMap;
     private java.util.Map<Point, Item> itemMap;
     private java.util.Map<Point, ObstacleItem> obstacleItemMap;
     private java.util.Map<Point, Decal> decalMap;
@@ -36,6 +38,7 @@ public class Zone {
         this.terrainMap = new HashMap<>();
         this.characterMap = new HashMap<>();
         this.effectMap = new HashMap<>();
+        this.effectsMap = new HashMap<>();
         this.itemMap = new HashMap<>();
         this.obstacleItemMap = new HashMap<>();
         this.decalMap = new HashMap<>();
@@ -50,6 +53,7 @@ public class Zone {
         this.terrainMap = new HashMap<>();
         this.characterMap = new HashMap<>();
         this.effectMap = new HashMap<>();
+        this.effectsMap = new HashMap<>();
         this.itemMap = new HashMap<>();
         this.obstacleItemMap = new HashMap<>();
         this.decalMap = new HashMap<>();
@@ -63,6 +67,8 @@ public class Zone {
     public void add(Point point, Item item) { itemMap.put(point, item); }
     public void add(Point point, ObstacleItem obstacle) { obstacleItemMap.put(point, obstacle); }
     public void add(Point point, Decal decal) { decalMap.put(point, decal); }
+    public void add(Point point, Effect effects) { effectsMap.put(point, effects); }
+
 
     public void removeTerrain(Point point) { terrainMap.remove(point); }
     public void removeEntity(Point point) { characterMap.remove(point); }

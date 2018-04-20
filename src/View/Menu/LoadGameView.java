@@ -1,8 +1,9 @@
 package View.Menu;
 
-import View.buttons.MainMenuSelectable;
-import View.buttons.Selectable;
-import View.buttons.StartNewGameSelectable;
+import Controller.Input.ViewController;
+import Controller.buttons.MainMenuSelectable;
+import Controller.buttons.Selectable;
+import Controller.buttons.StartNewGameSelectable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -101,7 +102,7 @@ public class LoadGameView extends AbstractView {
     private ArrayList<Selectable> bottomPaneButtons(ViewController viewController) {
         ArrayList<Selectable> options = new ArrayList<Selectable>() {{
             add(new MainMenuSelectable("Main Menu", viewController));
-            add(new StartNewGameSelectable("Start Game", viewController));
+//            add(new StartNewGameSelectable("Start Game", viewController));
         }};
 
         return options;
