@@ -1,13 +1,18 @@
+import Model.AreaEffects.AreaEffect;
+import Model.AreaEffects.Teleport;
 import Model.Entity.Character.CharacterEntity;
 import Model.Entity.Character.Player;
 import Model.Entity.Character.PlayerFactory;
+import Model.Effects.*;
 import Model.Items.ItemFactory;
 import Model.Zone.Terrain;
 import Model.Zone.Zone;
+import Model.Zone.World;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.awt.*;
+import java.awt.geom.Area;
 
 public class ZoneTest {
 
@@ -125,7 +130,36 @@ public class ZoneTest {
         Assert.assertTrue(zone.getCharacter(new Point(0,0)) != null);
         Assert.assertTrue(!zone.isValidMove(new Point(0,1)));
 
+    }
 
+    @Test
+    public void zonete(){
+        Zone zone = new Zone(0, 1, 1);
+        Zone zoneone = new Zone(1, 1, 1);
+        Point p = new Point(0,0);
+        Player characterSmash = PlayerFactory.produceSmasher();
+        World world = new World(0, characterSmash);
+        world.addZone(zone);
+        world.addZone(zoneone);
+        Effect effect = null;
+        zone.add(p, Terrain.GRASS);
+        int x = characterSmash.getLevel();
+//        Teleport teleport = new Teleport(effect,1, characterSmash, world);
+//        zone.add((new Point(0,0)), EffectFactory.produceLevelUpEffect());
+        zone.add((new Point(0,0)), EffectFactory.produceTeleportEffect(1, characterSmash, world) );
+//        zone.addPlayer(new Point(0,0), characterSmash);
+
+
+//world 2 zones tiles on of the tiles put, add teleport effect with character
+//  zoneone
+
+
+
+        zoneone.add(new Point(0,0), Terrain.GRASS);
+//        Assert.assertTrue(characterSmash.getZoneId()== 1);
+        Assert.assertTrue(characterSmash.getZoneId() == 0);
+//world 2 zones tiles on of the tiles put, add teleport effect with character
+//  zoneone
 
     }
 }
