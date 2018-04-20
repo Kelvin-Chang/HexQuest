@@ -64,11 +64,8 @@ public class ViewController {
     public void switchToStartNewGameView() {
     }
 
-    public void switchToGlobalGamePlayView() {
 
-    }
-
-    public void switchToLocalGamePlayView() {
+    public void switchToGamePlayView() {
 
     }
 
