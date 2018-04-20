@@ -1,6 +1,7 @@
 package View.Menu;
 
 
+import Controller.Input.ViewController;
 import View.buttons.MainMenuSelectable;
 import View.buttons.Selectable;
 import View.buttons.StartNewGameSelectable;
