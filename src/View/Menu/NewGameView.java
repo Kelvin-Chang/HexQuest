@@ -84,11 +84,6 @@ public class NewGameView extends AbstractView {
         tb2.setToggleGroup(toggleGroup);
         tb3.setToggleGroup(toggleGroup);
 
-        // character selected from the moment view is loaded
-        tb1.setSelected(true);
-
-//        tb1.setPrefSize();
-
         ArrayList<RadioButton> options = new ArrayList<RadioButton>() {{
             add(tb1);
             add(tb2);
@@ -105,7 +100,11 @@ public class NewGameView extends AbstractView {
             }
         });
 
-        System.out.println(characterChoice);
+        // this is placed after the "changed" method to initialize the characterChoice to a non-null value
+        // initializes an initial choice once the view is loaded
+        tb1.setSelected(true);
+
+        System.out.println("NewGameView: " + characterChoice);
 
         return options;
     }

@@ -25,7 +25,7 @@ public class StartNewGameSelectable extends Selectable {
     @Override
     public void handle(ActionEvent event) {
 
-        System.out.println(newGameView.getCharacterChoice());
+        System.out.println("StartNewGameButton: " + newGameView.getCharacterChoice());
 
         // load
 
