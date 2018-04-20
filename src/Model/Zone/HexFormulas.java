@@ -4,6 +4,7 @@ import Model.Enums.Orientation;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Map;
 
 import static Model.Enums.Orientation.correspondingNumber;
 
@@ -31,14 +32,58 @@ public class HexFormulas {
         return list;
     }
 
-    public static ArrayList<Point> getAllLinearPoints(Point hex){
+    public static ArrayList<Point> getAllLinearPoints(Point hex, Orientation directionYouAreMoving){
         ArrayList<Point> list = new ArrayList<>();
         int parity = hex.x & 1;
 
+        for(Point p = new Point(hex); p != null; ) {
+            Point coordsToAdd = Orientation.oddq_directions[parity][correspondingNumber(directionYouAreMoving)];
+            p = new Point((int) (hex.getY() + coordsToAdd.getY()), (int) (hex.getX() + coordsToAdd.getX()));
+            //TODO:
+
+            list.add(p); //UNTIL YOU REACH THE END OF THE MAP OR HIT SOMETHING
+            parity = p.x & 1;
+        }
 
         return list;
     }
 
+    public static ArrayList<Point> getAngularPoints(Point hex, int radius, Map<Point, Terrain> terrainMap, Orientation directionYouAreFacing) {
+        ArrayList<Point> list = new ArrayList<>();
+
+        rGetAngularPoints(hex, radius, terrainMap, directionYouAreFacing, list, radius);
+
+        return list;
+    }
+
+    public static void rGetAngularPoints(Point hex, int radius, Map<Point, Terrain> terrainMap, Orientation directionYouAreFacing, ArrayList<Point> list, int decreasingRadius) {
+        //BASE CASE:
+        if (decreasingRadius == 0 /*|| terrainMap.keySet().contains()*/){
+
+        }
+
+    }
+    public static ArrayList<Point> getRadialOfPointsFromRadius(Point hex, int radius, Map<Point, Terrain> terrainMap) {
+        ArrayList<Point> list = new ArrayList<>();
+
+        for(Point p: terrainMap.keySet()){
+            if(distanceToPoint(hex, p) <= radius && terrainMap.getOrDefault(p, Terrain.EMPTY) != Terrain.EMPTY)
+                list.add(p);
+        }
+
+        return list;
+    }
+
+    public static ArrayList<Point> getCircleOfPointsFromRadius(Point hex, int radius, Map<Point, Terrain> terrainMap){
+        ArrayList<Point> list = new ArrayList<>();
+
+        for(Point p: terrainMap.keySet()){
+            if(distanceToPoint(hex, p) == radius && terrainMap.getOrDefault(p, Terrain.EMPTY) != Terrain.EMPTY)
+                list.add(p);
+        }
+
+        return list;
+    }
     public static double distanceToPoint(Point src, Point dest){
         Triple ac = hexToCube(src);
         Triple bc = hexToCube(dest);
