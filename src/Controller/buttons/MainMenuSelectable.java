@@ -4,6 +4,7 @@ import Controller.Input.ViewController;
 import javafx.event.ActionEvent;
 
 public class MainMenuSelectable extends Selectable {
+
     private ViewController viewController;
 
     public MainMenuSelectable() {

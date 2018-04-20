@@ -25,6 +25,7 @@ import java.util.ArrayList;
 public class NewGameView extends AbstractView {
 
     private ViewController viewController;
+    private String characterChoice;
 
     public NewGameView() {
 
@@ -65,16 +66,26 @@ public class NewGameView extends AbstractView {
 
 
     private ArrayList<RadioButton> leftPaneRadioButtons() {
+
+        // togglegroup for character selection
         ToggleGroup toggleGroup = new ToggleGroup();
+
+        // radio buttons
         RadioButton tb1 = new RadioButton("Summoner");
         RadioButton tb2 = new RadioButton("Sneak");
         RadioButton tb3 = new RadioButton("Smasher");
 
-        tb1.setSelected(true);
+        // data that each radio button holds
+        tb1.setUserData("Summmoner");
+        tb2.setUserData("Sneak");
+        tb3.setUserData("Smassher");
 
         tb1.setToggleGroup(toggleGroup);
         tb2.setToggleGroup(toggleGroup);
         tb3.setToggleGroup(toggleGroup);
+
+        // character selected from the moment view is loaded
+        tb1.setSelected(true);
 
 //        tb1.setPrefSize();
 
@@ -88,10 +99,12 @@ public class NewGameView extends AbstractView {
             @Override
             public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
                 if(newValue != null){
-//                    selectedCharacterFilePath = ((RadioButton) toggleGroup.getSelectedToggle()).getUserData().toString();
+                    characterChoice = (toggleGroup.getSelectedToggle()).getUserData().toString();
                 }
             }
         });
+
+        System.out.println(characterChoice);
 
         return options;
     }
@@ -124,8 +137,8 @@ public class NewGameView extends AbstractView {
 
     private ArrayList<Selectable> bottomPaneButtons(ViewController viewController) {
         ArrayList<Selectable> options = new ArrayList<Selectable>() {{
-            add(new MainMenuSelectable("Main Menu", NewGameView.this.viewController));
-            add(new StartNewGameSelectable("Start Game", NewGameView.this.viewController));
+            add(new MainMenuSelectable("Main Menu", viewController));
+            add(new StartNewGameSelectable("Start Game", viewController, characterChoice));
         }};
 
         return options;

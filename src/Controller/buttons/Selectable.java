@@ -19,7 +19,7 @@ public abstract class Selectable implements EventHandler<ActionEvent> {
         return name;
     }
 
-    // template handle function for mouseclicks
+    // template handle function for mouse clicks
     @Override
     public void handle(ActionEvent event) {
 

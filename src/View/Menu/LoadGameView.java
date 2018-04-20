@@ -102,7 +102,7 @@ public class LoadGameView extends AbstractView {
     private ArrayList<Selectable> bottomPaneButtons(ViewController viewController) {
         ArrayList<Selectable> options = new ArrayList<Selectable>() {{
             add(new MainMenuSelectable("Main Menu", viewController));
-            add(new StartNewGameSelectable("Start Game", viewController));
+//            add(new StartNewGameSelectable("Start Game", viewController));
         }};
 
         return options;
