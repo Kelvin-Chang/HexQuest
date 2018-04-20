@@ -1,9 +1,9 @@
 package View.Menu;
 
 import Controller.Input.ViewController;
-import View.buttons.MainMenuSelectable;
-import View.buttons.Selectable;
-import View.buttons.StartNewGameSelectable;
+import Controller.buttons.MainMenuSelectable;
+import Controller.buttons.Selectable;
+import Controller.buttons.StartNewGameSelectable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
