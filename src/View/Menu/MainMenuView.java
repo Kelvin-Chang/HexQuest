@@ -64,7 +64,7 @@ public class MainMenuView extends AbstractView {
 
     private Text topPaneText() {
         Text t = new Text();
-        t.setText("Game Title");
+        t.setText("Meme Teme");
         t.setFont(Font.font("Elephant", 50));
         t.setFill(Paint.valueOf("#ff00ff"));
 

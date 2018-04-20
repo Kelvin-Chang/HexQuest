@@ -100,6 +100,7 @@ public class NewGameView extends AbstractView {
             public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
                 if(newValue != null){
                     characterChoice = (toggleGroup.getSelectedToggle()).getUserData().toString();
+                    System.out.println("Selected:" + characterChoice);
                 }
             }
         });
