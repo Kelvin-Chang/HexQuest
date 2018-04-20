@@ -1,7 +1,7 @@
 package View.buttons;
 
 
-import View.Menu.ViewController;
+import Controller.Input.ViewController;
 import javafx.event.ActionEvent;
 
 

@@ -1,14 +1,16 @@
 package View.Menu;
 
 
+import Controller.Input.ViewController;
 import View.buttons.MainMenuSelectable;
 import View.buttons.Selectable;
 import View.buttons.StartNewGameSelectable;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -62,11 +64,11 @@ public class NewGameView extends AbstractView {
     }
 
 
-    private ArrayList<ToggleButton> leftPaneToggleButtons() {
+    private ArrayList<RadioButton> leftPaneRadioButtons() {
         ToggleGroup toggleGroup = new ToggleGroup();
-        ToggleButton tb1 = new ToggleButton("Summoner");
-        ToggleButton tb2 = new ToggleButton("Sneak");
-        ToggleButton tb3 = new ToggleButton("Smasher");
+        RadioButton tb1 = new RadioButton("Summoner");
+        RadioButton tb2 = new RadioButton("Sneak");
+        RadioButton tb3 = new RadioButton("Smasher");
 
         tb1.setSelected(true);
 
@@ -76,23 +78,32 @@ public class NewGameView extends AbstractView {
 
 //        tb1.setPrefSize();
 
-        ArrayList<ToggleButton> options = new ArrayList<ToggleButton>() {{
+        ArrayList<RadioButton> options = new ArrayList<RadioButton>() {{
             add(tb1);
             add(tb2);
             add(tb3);
         }};
 
+        toggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+            @Override
+            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
+                if(newValue != null){
+//                    selectedCharacterFilePath = ((RadioButton) toggleGroup.getSelectedToggle()).getUserData().toString();
+                }
+            }
+        });
+
         return options;
     }
 
     private VBox leftPane() {
-        ArrayList<ToggleButton> options = leftPaneToggleButtons();
+        ArrayList<RadioButton> options = leftPaneRadioButtons();
         VBox vbox = new VBox();
         vbox.setSpacing(30);
         vbox.setPrefSize(400,300);
         vbox.setAlignment(Pos.TOP_CENTER);
 
-        for(ToggleButton clickable: options) {
+        for(RadioButton clickable: options) {
 
             // sets selectable style
             clickable.getStyleClass().add("button2");
@@ -143,7 +154,7 @@ public class NewGameView extends AbstractView {
             // add to vbox
             hbox.getChildren().add(selectable);
         }
-        
+
         return hbox;
     }
 
@@ -162,3 +173,4 @@ public class NewGameView extends AbstractView {
         return bp;
     }
 }
+

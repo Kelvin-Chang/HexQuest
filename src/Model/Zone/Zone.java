@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static Model.Enums.Orientation.correspondingNumber;
+import static Model.Zone.HexFormulas.getNeighborPointFromOrientation;
 
 public class Zone {
     private Pair size;
@@ -161,21 +162,11 @@ public class Zone {
         }
     }
     //MOVEMENT STUFF
-    //
-
-    //get destination point
-    Point getNextPoint(Point hex, Orientation directionYouAreMoving){
-        int parity = hex.x & 1;
-        Point dir = Orientation.oddq_directions[parity][correspondingNumber(directionYouAreMoving)];
-        return new Point((int)(hex.getY() + dir.getY()), (int)(hex.getX() + dir.getX()));
-    }
-
-
     public void attemptMove(CharacterEntity character){
         Orientation orientation = character.getOrientation();
         Point sourcePoint = getCharacterLocation(character);
         //System.out.println("dx: " + dx + " | dy: " + dy);
-        Point destination = getNextPoint(sourcePoint, orientation);
+        Point destination = getNeighborPointFromOrientation(sourcePoint, orientation);
         System.out.println("Entity at [" + (int) sourcePoint.getX() + "," + (int) sourcePoint.getY() + "] attempting move to ["
                 + (int) destination.getX() + "," + (int) destination.getY() + "]");
 
