@@ -1,5 +1,6 @@
 import Model.AreaEffects.AreaEffect;
 //import Model.AreaEffects.Teleport;
+import Model.AreaEffects.HealDamage;
 import Model.Entity.Character.CharacterEntity;
 import Model.Entity.Character.Player;
 import Model.Entity.Character.PlayerFactory;
@@ -13,6 +14,8 @@ import org.junit.Test;
 
 import java.awt.*;
 import java.awt.geom.Area;
+
+import static org.junit.Assert.assertEquals;
 
 public class ZoneTest {
 
@@ -131,6 +134,23 @@ public class ZoneTest {
         Assert.assertTrue(!zone.isValidMove(new Point(0,1)));
 
     }
+
+    @Test
+    public void testCharacterOnAreaEffect() {
+        Zone zone = new Zone(0, 4, 4);
+        CharacterEntity characterSmash = PlayerFactory.produceSmasher();
+        characterSmash.setCurrentHealth(80);
+        characterSmash.setMaxHealth(100);
+        zone.addPlayer(new Point(0,0), characterSmash);
+
+        zone.add(new Point(0,0), new HealDamage());
+        zone.update();
+        zone.update();
+        zone.update();
+
+        assertEquals(100, characterSmash.getCurrentHealth());
+    }
+
 
     @Test
     public void zonete(){

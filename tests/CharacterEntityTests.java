@@ -1,32 +1,25 @@
 import Controller.GameMediator;
-import Controller.LoadSave.GameBuilder;
-import Controller.LoadSave.GameLoader;
 import Model.Entity.Character.Inventory;
 import Model.Entity.Character.Player;
 import Model.Entity.Character.PlayerFactory;
 import Model.Enums.EffectShape;
 import Model.Enums.ItemSlot;
-import Model.Enums.Orientation;
 import Model.Enums.SkillType;
 import Model.Items.ItemFactory;
 import Model.Items.TakeableItems.EquippableItems.Armor;
 import Model.Items.TakeableItems.EquippableItems.Ring;
-import Model.Items.TakeableItems.EquippableItems.UsableItems.*;
-import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItems.BaneItem;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.RangedWeapon;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.SmasherWeapon;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItems.DefenseBane;
-import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItems.HealthBane;
-import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BoonItems.BoonItem;
-import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BoonItems.HealthBoon;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.SpellItem;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.StaffItem;
 import Model.Items.TakeableItems.Key;
-import Model.Zone.Zone;
 import Model.Zone.World;
+import Model.Zone.Zone;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.*;
-import java.util.LinkedList;
-import java.util.Queue;
 
 import static org.junit.Assert.assertEquals;
 

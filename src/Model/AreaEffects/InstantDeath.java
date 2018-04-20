@@ -6,7 +6,7 @@ import Model.Entity.Character.CharacterEntity;
 
 public class InstantDeath extends AreaEffect {
 
-    InstantDeath(){
+    public InstantDeath(){
         this.effect = EffectFactory.produceInstantDeathEffect();
     }
 

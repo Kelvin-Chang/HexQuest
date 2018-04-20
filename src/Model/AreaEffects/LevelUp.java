@@ -8,7 +8,7 @@ public class LevelUp extends AreaEffect {
 
     boolean hasBeenTriggered;
 
-    LevelUp(){
+    public LevelUp(){
         this.effect = EffectFactory.produceLevelUpEffect();
         hasBeenTriggered = false;
     }
