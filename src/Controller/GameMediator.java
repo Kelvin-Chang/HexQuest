@@ -4,6 +4,8 @@ import Controller.Input.ViewController;
 import Controller.LoadSave.GameBuilder;
 import Controller.Input.ViewController;
 
+import Controller.LoadSave.GameLoader;
+import Model.Zone.World;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import java.util.List;
@@ -13,14 +15,23 @@ import java.util.TimerTask;
 
 public class GameMediator extends Application {
 
+    private GameLoader gameLoader;
     private GameBuilder gameBuilder;
     private Timer timer;
+    private World world;
 
     boolean loaded = false;
 
     public GameMediator() {
         gameBuilder = new GameBuilder();
+        loadGame("resources/maps/map0.json");
+    }
 
+    public void loadGame(String saveFileLocation) {
+        gameLoader = new GameLoader(gameBuilder);
+        gameLoader.loadGame(saveFileLocation);
+        world = gameBuilder.getWorld();
+        System.out.println("Got world: " + world);
         startTimer();
     }
 
@@ -43,7 +54,6 @@ public class GameMediator extends Application {
 
 
     private class GameLoop extends TimerTask {
-
         @Override
         public void run() {
             if(loaded) {

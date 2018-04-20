@@ -34,6 +34,10 @@ public class GameBuilder {
         this.viewPort = viewPort;
     }
 
+    public World getWorld() {
+        return world;
+    }
+
     public void setMapView(ZoneView mapView) {
         this.mapView = mapView;
     }
