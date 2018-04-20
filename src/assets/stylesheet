@@ -199,3 +199,32 @@
 .button:default:hover {
     -fx-background-color: derive(-fx-focus-color,30%);
 }
+
+.radio-button .radio {
+    -fx-border-width: 1px;
+    -fx-border-color: black;
+    -fx-background-color: #ff00ff;
+    -fx-background-image: null;
+    -fx-border-radius: 15px;
+    -fx-padding: 2px;
+}
+.radio-button .radio:selected {
+    -fx-background-color: #ff00ff;
+    -fx-background-image: null;
+}
+.radio-button -radio:armed {
+    -fx-background-color: black;
+    -fx-background-image: null;
+}
+.radio-button -radio:determinate {
+    -fx-background-color: black;
+    -fx-background-image: null;
+}
+.radio-button -radio:indeterminate {
+    -fx-background-color: black;
+    -fx-background-image: null;
+}
+.radio-button .dot {
+    -fx-background-radius: 15px;
+    -fx-padding: 8px;
+}
