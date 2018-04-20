@@ -6,19 +6,17 @@ import Model.Entity.Character.CharacterEntity;
 import Model.Enums.Orientation;
 import Model.Items.Item;
 import Model.Items.ObstacleItem;
+import Model.Updateable;
 import View.Zone.MapView;
 import javafx.util.Pair;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static Model.Enums.Orientation.correspondingNumber;
 import static Model.Zone.HexFormulas.getNeighborPointFromOrientation;
 
-public class Zone {
+public class Zone implements Updateable {
     private Pair size;
 
     private Map<Point, Terrain> terrainMap;
@@ -108,6 +106,7 @@ public class Zone {
 
 
     public Collection<Point> getAllCharacterEntityPoints() { return characterMap.keySet(); }
+    public Collection<CharacterEntity> getAllCharacterEntitys() {return characterMap.values(); };
     public Collection<Point> getAllTerrainPoints() { return terrainMap.keySet(); }
     public Collection<Point> getAllAreaEffectPoints() { return effectMap.keySet(); }
     public Collection<Point> getAllItemPoints() { return itemMap.keySet(); }
@@ -163,8 +162,14 @@ public class Zone {
         }
     }
     //MOVEMENT STUFF
-    public void attemptMove(CharacterEntity character){
-        Orientation orientation = character.getNextMove();
+    public void attemptMove(CharacterEntity character) {
+        Orientation orientation;
+        try {
+            orientation = character.getNextMove();
+        } catch (NoSuchElementException e) {
+            System.out.println("Character does not have any queued movements");
+            return;
+        }
         character.setOrientation(orientation);
         Point sourcePoint = getCharacterLocation(character);
         //System.out.println("dx: " + dx + " | dy: " + dy);
@@ -200,6 +205,16 @@ public class Zone {
         return true;
     }
 
+    public void update() {
+        updateCharacterLocations();
+    }
+
+    public void updateCharacterLocations() {
+        Collection<CharacterEntity> characterEntities = getAllCharacterEntitys();
+        for (CharacterEntity characterEntity : characterEntities) {
+            attemptMove(characterEntity);
+        }
+    }
 
     public void attach(MapView v) {
 

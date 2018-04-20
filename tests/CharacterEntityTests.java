@@ -324,4 +324,10 @@ public class CharacterEntityTests {
         assertEquals(25, smasher.getCurrentHealth());
     }
 
+    @Test
+    public void testMovingUp() {
+        summoner.addUpToMovementQueue();
+
+    }
+
 }

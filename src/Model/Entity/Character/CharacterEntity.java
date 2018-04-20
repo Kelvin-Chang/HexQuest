@@ -14,6 +14,7 @@ import Model.Zone.Zone;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.NoSuchElementException;
 import java.util.Queue;
 
 public abstract class CharacterEntity {
@@ -292,7 +293,7 @@ public abstract class CharacterEntity {
         movementQueue.add(Orientation.UPLEFT);
     }
 
-    public Orientation getNextMove() {
+    public Orientation getNextMove() throws NoSuchElementException {
         return movementQueue.remove();
     }
 
