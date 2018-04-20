@@ -27,7 +27,7 @@ public class RangedWeapon extends UsableItem{
         this.range = range;
     }
 
-    public void triggerItem(CharacterEntity player, Skill skill) {
+    public void useItem(CharacterEntity player, Skill skill) {
 
         int healthChange = ((VariableEffectSkill)skill).calculateChange(damage + player.getAttack());
 

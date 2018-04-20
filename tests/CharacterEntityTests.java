@@ -1,8 +1,12 @@
+import Controller.GameMediator;
+import Controller.LoadSave.GameBuilder;
+import Controller.LoadSave.GameLoader;
 import Model.Entity.Character.Inventory;
 import Model.Entity.Character.Player;
 import Model.Entity.Character.PlayerFactory;
 import Model.Enums.EffectShape;
 import Model.Enums.ItemSlot;
+import Model.Enums.Orientation;
 import Model.Enums.SkillType;
 import Model.Items.ItemFactory;
 import Model.Items.TakeableItems.EquippableItems.Armor;
@@ -21,31 +25,43 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.*;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import static org.junit.Assert.assertEquals;
 
 public class CharacterEntityTests {
 
+    GameMediator gameMediator;
+
     PlayerFactory playerFactory = new PlayerFactory();
     Player smasher;
     Player summoner;
     Player sneak;
+    World world;
     Zone zone;
     ItemFactory itemFactory = new ItemFactory();
 
     @Before
     public void setUp() {
+        gameMediator = new GameMediator();
+        world = gameMediator.getGameBuilder().getWorld();
+
         smasher = playerFactory.produceSmasher();
         summoner = playerFactory.produceSummoner();
         sneak = playerFactory.produceSneak();
 
         zone = new Zone(0, 4, 4);
+        zone.setId(1);
         zone.getCharacterMap().put(new Point(1,1), summoner);
         smasher.setZone(zone);
         zone.getCharacterMap().put(new Point(1,2), smasher);
         summoner.setZone(zone);
-        zone.getCharacterMap().put(new Point(1,3), sneak);
+        zone.getCharacterMap().put(new Point(2,2), sneak);
         sneak.setZone(zone);
+
+        world.addZone(zone);
+        world.setCurrentZone(1);
     }
 
     @Test
@@ -326,8 +342,10 @@ public class CharacterEntityTests {
 
     @Test
     public void testMovingUp() {
-        summoner.addUpToMovementQueue();
-
+        System.out.println(sneak.getLocation());
+        sneak.addUpToMovementQueue();
+        world.update();
+        System.out.println(sneak.getLocation());
     }
 
 }

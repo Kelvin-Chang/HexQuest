@@ -117,12 +117,12 @@ public class ZoneTest {
         Assert.assertTrue(  zone.getItem(new Point(0,0) ) != null);
         Assert.assertTrue(zone.getCharacter(new Point(0,0)) != null);
 
-        zone.doInteractions(characterSmash);
+        zone.doInteractions();
         Assert.assertTrue(  zone.getItem(new Point(0,0) ) == null);
         Assert.assertTrue(characterSmash.getInventory().getItemAtSlot(0) != null);
 
         zone.add(new Point(0,0), ItemFactory.produceDamageOneShot());
-        zone.doInteractions(characterSmash);
+        zone.doInteractions();
         Assert.assertTrue(characterSmash.getCurrentHealth() == 90);
         Assert.assertTrue(  zone.getItem(new Point(0,0) ) == null);
 

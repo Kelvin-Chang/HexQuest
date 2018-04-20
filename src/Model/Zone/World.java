@@ -17,6 +17,8 @@ public class World implements Updateable {
         this.player = player;
     }
 
+    public World() {}
+
     public void addZone(Zone zone) {
         zoneHashMap.put(zone.getID(), zone);
     }

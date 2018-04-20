@@ -8,6 +8,10 @@ import Controller.LoadSave.GameLoader;
 import Model.Zone.World;
 import javafx.application.Application;
 import javafx.stage.Stage;
+
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -33,6 +37,10 @@ public class GameMediator extends Application {
         world = gameBuilder.getWorld();
         System.out.println("Got world: " + world);
         startTimer();
+    }
+
+    public GameBuilder getGameBuilder() {
+        return gameBuilder;
     }
 
     @Override

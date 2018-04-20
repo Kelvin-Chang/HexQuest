@@ -2,12 +2,10 @@ package Model.Entity.Character;
 
 import Model.Entity.Skills.Skill;
 import Model.Enums.ItemSlot;
-import Model.Items.Item;
 import Model.Items.TakeableItems.EquippableItems.EquippableItem;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.UsableItem;
 import Model.Items.TakeableItems.TakeableItem;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Inventory {
@@ -79,14 +77,14 @@ public class Inventory {
     public void useItemSlotRequiringSkill(ItemSlot slot, CharacterEntity characterEntity, Skill skill) {
         if (equippedItems.get(slot) != null) {
             UsableItem usableItem = (UsableItem) equippedItems.get(slot);
-            usableItem.triggerItem(characterEntity, skill);
+            usableItem.useItem(characterEntity, skill);
         }
     }
 
     public void useItemSlotNotRequiringSkill(ItemSlot slot, CharacterEntity characterEntity) {
         if (equippedItems.get(slot) != null) {
             UsableItem usableItem = (UsableItem) equippedItems.get(slot);
-            usableItem.triggerItem(characterEntity);
+            usableItem.useItem(characterEntity);
         }
     }
 

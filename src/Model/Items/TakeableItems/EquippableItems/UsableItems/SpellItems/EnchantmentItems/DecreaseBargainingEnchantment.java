@@ -13,7 +13,7 @@ public class DecreaseBargainingEnchantment extends EnchantmentItem {
     }
 
     @Override
-    public void triggerItem(CharacterEntity player, Skill skill) {
+    public void useItem(CharacterEntity player, Skill skill) {
         if (hasEnoughMana(player)) {
             Effect triggerEffect = getEffectFactory().produceSkillModifierEffect(-calculateAppliedStatChange(player), SkillType.BARGAINSKILL);
 

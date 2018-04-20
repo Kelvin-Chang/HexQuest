@@ -59,6 +59,10 @@ public class Zone implements Updateable {
         this.spawnPoint = new Point(0,0);
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void add(Point point, Terrain terrain) { terrainMap.put(point, terrain); }
     public void addPlayer(Point point, CharacterEntity entity) { characterMap.put(point, entity); }
     public void add(Point point, AreaEffect effect) { effectMap.put(point, effect); }
@@ -127,9 +131,9 @@ public class Zone implements Updateable {
     public CharacterEntity getCharacter(Point point) { return characterMap.get(point); }
 
 
-    public void doInteractions(CharacterEntity player) {
+    public void doInteractions() {
         triggerAreaEffects();
-        triggerItems(player);
+        triggerItems();
         //
     }
 
@@ -146,7 +150,7 @@ public class Zone implements Updateable {
         }
     }
 
-    private void triggerItems(CharacterEntity player) {
+    private void triggerItems() {
         ArrayList<Point> entities = new ArrayList<>(characterMap.keySet());
         for(Point point : entities) {
             CharacterEntity character = getCharacter(point);
@@ -154,7 +158,7 @@ public class Zone implements Updateable {
             Item item = itemMap.get(point);
 
             if (item != null) {
-                boolean entityIsPlayer = character.equals(player);
+                //boolean entityIsPlayer = character.equals(player);
                 //TODO: change when introducing npcs
                 item.trigger(character);
                 removeItem(item);
@@ -163,13 +167,10 @@ public class Zone implements Updateable {
     }
     //MOVEMENT STUFF
     public void attemptMove(CharacterEntity character) {
-        Orientation orientation;
-        try {
-            orientation = character.getNextMove();
-        } catch (NoSuchElementException e) {
-            System.out.println("Character does not have any queued movements");
+        if (!character.hasNextMove()) {
             return;
         }
+        Orientation orientation = character.getNextMove();
         character.setOrientation(orientation);
         Point sourcePoint = getCharacterLocation(character);
         //System.out.println("dx: " + dx + " | dy: " + dy);
@@ -207,6 +208,7 @@ public class Zone implements Updateable {
 
     public void update() {
         updateCharacterLocations();
+        doInteractions();
     }
 
     public void updateCharacterLocations() {
@@ -214,6 +216,10 @@ public class Zone implements Updateable {
         for (CharacterEntity characterEntity : characterEntities) {
             attemptMove(characterEntity);
         }
+    }
+
+    public void updateAreaEffects() {
+
     }
 
     public void attach(MapView v) {

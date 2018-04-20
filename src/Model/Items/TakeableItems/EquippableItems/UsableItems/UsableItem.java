@@ -11,8 +11,8 @@ public abstract class UsableItem extends EquippableItem {
         super(itemSlot);
     }
 
-    public void triggerItem(CharacterEntity characterEntity) {}
+    public void useItem(CharacterEntity characterEntity) {}
 
-    public void triggerItem(CharacterEntity characterEntity, Skill skill) {}
+    public void useItem(CharacterEntity characterEntity, Skill skill) {}
 
 }
