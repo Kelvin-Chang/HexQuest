@@ -31,7 +31,7 @@ public class NewGameView extends AbstractView {
 
         viewController = new ViewController();
 
-        this.getChildren().add(borderPane());
+        this.getChildren().add(borderPane(this));
     }
 
 
@@ -136,18 +136,18 @@ public class NewGameView extends AbstractView {
         return stackPane;
     }
 
-    private ArrayList<Selectable> bottomPaneButtons(ViewController viewController) {
+    private ArrayList<Selectable> bottomPaneButtons(ViewController viewController, NewGameView newGameView) {
         ArrayList<Selectable> options = new ArrayList<Selectable>() {{
             add(new MainMenuSelectable("Main Menu", viewController));
-            add(new StartNewGameSelectable("Start Game", viewController, characterChoice));
+            add(new StartNewGameSelectable("Start Game", viewController, newGameView));
         }};
 
         return options;
     }
 
-    private HBox bottomPane() {
+    private HBox bottomPane(NewGameView newGameView) {
 
-        ArrayList<Selectable> options = bottomPaneButtons(viewController);
+        ArrayList<Selectable> options = bottomPaneButtons(viewController, newGameView);
 
         HBox hbox = new HBox();
         hbox.setMaxHeight(300);
@@ -172,7 +172,7 @@ public class NewGameView extends AbstractView {
         return hbox;
     }
 
-    private BorderPane borderPane() {
+    private BorderPane borderPane(NewGameView newGameView) {
 
         // create new borderpane for formatting
         BorderPane bp = new BorderPane();
@@ -180,11 +180,16 @@ public class NewGameView extends AbstractView {
         bp.setTop(topPane());
         bp.setCenter(centerPane());
 
-        bp.setBottom(bottomPane());
+        bp.setBottom(bottomPane(newGameView));
         bp.setLeft(leftPane());
         bp.setRight(rightPane());
 
         return bp;
+    }
+
+    // TODO: ANTI OOP
+    public String getCharacterChoice() {
+        return characterChoice;
     }
 }
 
