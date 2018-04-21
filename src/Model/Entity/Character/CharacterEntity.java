@@ -3,16 +3,20 @@ package Model.Entity.Character;
 import Model.Effects.Effect;
 import Model.Entity.Pet;
 import Model.Entity.Skills.Skill;
+import Model.Enums.EffectShape;
 import Model.Enums.ItemSlot;
 import Model.Enums.Orientation;
 import Model.Enums.SkillType;
 import Model.Items.Item;
 import Model.Items.TakeableItems.TakeableItem;
-import Model.Zone.World;
+import Model.Zone.EffectedAreaCoordinatesCalculator;
 import Model.Zone.Zone;
 
 import java.awt.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public abstract class CharacterEntity {
 
@@ -172,6 +176,7 @@ public abstract class CharacterEntity {
         actions.add(SkillType.MOVEDOWN);
         actions.add(SkillType.MOVEDOWNLEFT);
         actions.add(SkillType.MOVEUPLEFT);
+        actions.add(SkillType.TALK);
         return actions;
     }
     
@@ -249,7 +254,6 @@ public abstract class CharacterEntity {
         }
     }
 
-    // refer to PlayerFactory to determine the order that the skills are in in the ArrayList
     public void useSkill(SkillType skillType) {
         if (skills.get(skillType) != null) {
             if (skills.get(skillType).skillSuccessful()) {
@@ -272,6 +276,18 @@ public abstract class CharacterEntity {
 
     public void equipItem(TakeableItem item) {
         inventory.equipItem(item, this);
+    }
+
+    public CharacterEntity getInteractionPartner() {
+        EffectedAreaCoordinatesCalculator coordinatesCalculator = new EffectedAreaCoordinatesCalculator();
+        ArrayList<Point> bargainSpot =
+                coordinatesCalculator.calculateCoordinates(getLocation(), orientation, EffectShape.LINEAR, 1);
+
+        ArrayList<CharacterEntity> bargainPartner = zone.getEntitiesOnArea(bargainSpot);
+        if (!bargainPartner.isEmpty()) {
+            return bargainPartner.remove(0);
+        }
+        return null;
     }
 
     public void effectEntities(ArrayList<Point> area, Effect effect) {

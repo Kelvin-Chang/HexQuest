@@ -1,5 +1,7 @@
 package Controller.Input;
 
+import Controller.GameMediator;
+import Model.Entity.Character.CharacterEntity;
 import Model.Enums.SkillType;
 import javafx.scene.input.KeyCode;
 
@@ -11,10 +13,12 @@ public class KeyInputController {
     private HashMap<KeyCode, SkillType> commandMap;
     private ArrayList<SkillType> availableActions;
     private PlayerController playerController;
+    private GameMediator gameMediator;
 
-    public KeyInputController(String pathToControllerConfig, ArrayList<SkillType> availableActions, PlayerController playerController) {
+    public KeyInputController(String pathToControllerConfig, ArrayList<SkillType> availableActions, PlayerController playerController, GameMediator gameMediator) {
         this.availableActions = availableActions;
         this.playerController = playerController;
+        this.gameMediator = gameMediator;
 
         // testing stuff
         commandMap = new HashMap<>();
@@ -68,7 +72,10 @@ public class KeyInputController {
                         playerController.pressCreep();
                         break;
                     case PICKPOCKETSKILL:
-                        playerController.pressPickPocket();
+                        CharacterEntity pickPocketTarget = playerController.pressPickPocket();
+                        if (pickPocketTarget != null) {
+                            gameMediator.pickPocketToTakePlace(pickPocketTarget);
+                        }
                         break;
                     case REMOVETRAPSKILL:
                         playerController.pressRemoveTrap();
@@ -77,13 +84,22 @@ public class KeyInputController {
                         playerController.pressRangedWeapon();
                         break;
                     case BARGAINSKILL:
-                        playerController.pressBargain();
+                        CharacterEntity bargainPartner = playerController.pressBargain();
+                        if (bargainPartner != null) {
+                            gameMediator.bargainingToTakePlace(bargainPartner);
+                        }
                         break;
                     case BINDWOUNDSSKILL:
                         playerController.pressBindWounds();
                         break;
                     case OBSERVATIONSKILL:
                         playerController.pressObservation();
+                        break;
+                    case TALK:
+                        CharacterEntity talkingPartner = playerController.pressBargain();
+                        if (talkingPartner != null) {
+                            gameMediator.talkingTakingPlace(talkingPartner);
+                        }
                         break;
                 }
             }

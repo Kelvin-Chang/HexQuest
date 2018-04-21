@@ -7,6 +7,7 @@ import Controller.LoadSave.GameBuilder;
 import Controller.Input.ViewController;
 
 import Controller.LoadSave.GameLoader;
+import Model.Entity.Character.CharacterEntity;
 import Model.Entity.Character.PlayerFactory;
 import Model.Zone.World;
 import javafx.application.Application;
@@ -37,7 +38,7 @@ public class GameMediator /*extends Application*/ {
     public GameMediator(Scene scene) {
         gameBuilder = new GameBuilder();
         loadGame("resources/maps/map0.json");
-        keyInputController = new KeyInputController("", world.playerActions(), new PlayerController(world.getPlayer()));
+        keyInputController = new KeyInputController("", world.playerActions(), new PlayerController(world.getPlayer()), this);
         this.scene = scene;
         scene.addEventFilter(KeyEvent.KEY_RELEASED, keyEvent -> keyInputController.issueCommand(keyEvent.getCode()));
     }
@@ -79,6 +80,18 @@ public class GameMediator /*extends Application*/ {
                 System.out.println("Loop");
             }
         }
+    }
+
+    public void bargainingToTakePlace(CharacterEntity bargainingPartner) {
+        // TODO
+    }
+
+    public void pickPocketToTakePlace(CharacterEntity pickPocketTarget) {
+        // TODO
+    }
+
+    public void talkingTakingPlace(CharacterEntity talkingPartner) {
+        // TODO
     }
 
 }
