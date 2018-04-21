@@ -12,7 +12,7 @@ public class HealthBane extends BaneItem {
     }
 
     @Override
-    public void triggerItem(CharacterEntity player, Skill skill) {
+    public void useItem(CharacterEntity player, Skill skill) {
         if (hasEnoughMana(player)) {
             Effect triggerEffect = getEffectFactory().produceHealthModifierEffect(-calculateAppliedStatChange(player));
 

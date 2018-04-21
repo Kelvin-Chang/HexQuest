@@ -32,7 +32,7 @@ public abstract class SpellItem extends UsableItem {
         return manaCost;
     }
 
-    public void triggerItem(CharacterEntity player, Skill skill) {}
+    public void useItem(CharacterEntity player, Skill skill) {}
 
     public ArrayList<Point> getEffectedCoordinates(CharacterEntity player) {
         EffectedAreaCoordinatesCalculator coordinatesCalculator = new EffectedAreaCoordinatesCalculator();

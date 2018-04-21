@@ -1,3 +1,4 @@
+import Controller.GameMediator;
 import Model.Entity.Character.Inventory;
 import Model.Entity.Character.Player;
 import Model.Entity.Character.PlayerFactory;
@@ -7,16 +8,14 @@ import Model.Enums.SkillType;
 import Model.Items.ItemFactory;
 import Model.Items.TakeableItems.EquippableItems.Armor;
 import Model.Items.TakeableItems.EquippableItems.Ring;
-import Model.Items.TakeableItems.EquippableItems.UsableItems.*;
-import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItems.BaneItem;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.RangedWeapon;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.SmasherWeapon;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItems.DefenseBane;
-import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItems.HealthBane;
-import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BoonItems.BoonItem;
-import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BoonItems.HealthBoon;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.SpellItem;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.StaffItem;
 import Model.Items.TakeableItems.Key;
-import Model.Zone.Zone;
 import Model.Zone.World;
+import Model.Zone.Zone;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -26,26 +25,36 @@ import static org.junit.Assert.assertEquals;
 
 public class CharacterEntityTests {
 
+    GameMediator gameMediator;
+
     PlayerFactory playerFactory = new PlayerFactory();
     Player smasher;
     Player summoner;
     Player sneak;
+    World world;
     Zone zone;
     ItemFactory itemFactory = new ItemFactory();
 
     @Before
     public void setUp() {
+        gameMediator = new GameMediator();
+        world = gameMediator.getGameBuilder().getWorld();
+
         smasher = playerFactory.produceSmasher();
         summoner = playerFactory.produceSummoner();
         sneak = playerFactory.produceSneak();
 
         zone = new Zone(0, 4, 4);
+        zone.setId(1);
         zone.getCharacterMap().put(new Point(1,1), summoner);
         smasher.setZone(zone);
         zone.getCharacterMap().put(new Point(1,2), smasher);
         summoner.setZone(zone);
-        zone.getCharacterMap().put(new Point(1,3), sneak);
+        zone.getCharacterMap().put(new Point(2,2), sneak);
         sneak.setZone(zone);
+
+        world.addZone(zone);
+        world.setCurrentZone(1);
     }
 
     @Test
@@ -326,8 +335,10 @@ public class CharacterEntityTests {
 
     @Test
     public void testMovingUp() {
-        summoner.addUpToMovementQueue();
-
+        System.out.println(sneak.getLocation());
+        sneak.addUpToMovementQueue();
+        world.update();
+        System.out.println(sneak.getLocation());
     }
 
 }

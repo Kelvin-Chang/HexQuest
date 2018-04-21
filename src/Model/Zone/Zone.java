@@ -13,7 +13,6 @@ import javafx.util.Pair;
 import java.awt.*;
 import java.util.*;
 
-import static Model.Enums.Orientation.correspondingNumber;
 import static Model.Zone.HexFormulas.getNeighborPointFromOrientation;
 
 public class Zone implements Updateable {
@@ -21,7 +20,7 @@ public class Zone implements Updateable {
 
     private Map<Point, Terrain> terrainMap;
     private Map<Point, CharacterEntity> characterMap;
-    private Map<Point, AreaEffect> effectMap;
+    private Map<Point, AreaEffect> areaEffectMap;
     private Map<Point, Effect> effectsMap;
     private Map<Point, Item> itemMap;
     private Map<Point, ObstacleItem> obstacleItemMap;
@@ -35,7 +34,7 @@ public class Zone implements Updateable {
     public Zone(int id, int rows, int columns) {
         this.terrainMap = new HashMap<>();
         this.characterMap = new HashMap<>();
-        this.effectMap = new HashMap<>();
+        this.areaEffectMap = new HashMap<>();
         this.effectsMap = new HashMap<>();
         this.itemMap = new HashMap<>();
         this.obstacleItemMap = new HashMap<>();
@@ -50,7 +49,7 @@ public class Zone implements Updateable {
     public Zone() {
         this.terrainMap = new HashMap<>();
         this.characterMap = new HashMap<>();
-        this.effectMap = new HashMap<>();
+        this.areaEffectMap = new HashMap<>();
         this.effectsMap = new HashMap<>();
         this.itemMap = new HashMap<>();
         this.obstacleItemMap = new HashMap<>();
@@ -59,13 +58,17 @@ public class Zone implements Updateable {
         this.spawnPoint = new Point(0,0);
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void add(Point point, Terrain terrain) { terrainMap.put(point, terrain); }
     public void addPlayer(Point point, CharacterEntity entity) {
         characterMap.put(point, entity);
         entity.setZone(this);
         entity.setZoneId(this.id);
     }
-    public void add(Point point, AreaEffect effect) { effectMap.put(point, effect); }
+    public void add(Point point, AreaEffect effect) { areaEffectMap.put(point, effect); }
     public void add(Point point, Item item) { itemMap.put(point, item); }
     public void add(Point point, ObstacleItem obstacle) { obstacleItemMap.put(point, obstacle); }
     public void add(Point point, Decal decal) { decalMap.put(point, decal); }
@@ -74,7 +77,7 @@ public class Zone implements Updateable {
 
     public void removeTerrain(Point point) { terrainMap.remove(point); }
     public void removeEntity(Point point) { characterMap.remove(point); }
-    public void removeAreaEffect(Point point) { effectMap.remove(point); }
+    public void removeAreaEffect(Point point) { areaEffectMap.remove(point); }
     public void removeItem(Point point) { itemMap.remove(point); }
     public void removeItem(Item item) {
         for(Point point : getAllItemPoints())
@@ -89,7 +92,7 @@ public class Zone implements Updateable {
     public int getID(){ return this.id; }
     public Terrain getTerrain(Point point) { return terrainMap.getOrDefault(point, Terrain.EMPTY); }
     public CharacterEntity getCharacterEntity(Point point) { return characterMap.get(point); }
-    public AreaEffect getAreaEffect(Point point) { return effectMap.get(point); }
+    public AreaEffect getAreaEffect(Point point) { return areaEffectMap.get(point); }
     public Item getItem(Point point) { return itemMap.get(point); }
     public ObstacleItem getObstacleItem(Point point) { return obstacleItemMap.get(point); }
     public Decal getDecal(Point point) { return decalMap.get(point); }
@@ -112,7 +115,7 @@ public class Zone implements Updateable {
     public Collection<Point> getAllCharacterEntityPoints() { return characterMap.keySet(); }
     public Collection<CharacterEntity> getAllCharacterEntitys() {return characterMap.values(); };
     public Collection<Point> getAllTerrainPoints() { return terrainMap.keySet(); }
-    public Collection<Point> getAllAreaEffectPoints() { return effectMap.keySet(); }
+    public Collection<Point> getAllAreaEffectPoints() { return areaEffectMap.keySet(); }
     public Collection<Point> getAllItemPoints() { return itemMap.keySet(); }
     public Collection<Point> getAllObstacleItemPoints() { return obstacleItemMap.keySet(); }
     public Collection<Point> getAllDecalPoints() { return decalMap.keySet(); }
@@ -131,9 +134,9 @@ public class Zone implements Updateable {
     public CharacterEntity getCharacter(Point point) { return characterMap.get(point); }
 
 
-    public void doInteractions(CharacterEntity player) {
+    public void doInteractions() {
         triggerAreaEffects();
-        triggerItems(player);
+        triggerItems();
         //
     }
 
@@ -142,7 +145,7 @@ public class Zone implements Updateable {
         for(Point point : points) {
             CharacterEntity character = getCharacterEntity(point);
 
-            AreaEffect effect = effectMap.get(point);
+            AreaEffect effect = areaEffectMap.get(point);
 
             if (effect != null) {
                 effect.trigger(character);
@@ -150,7 +153,7 @@ public class Zone implements Updateable {
         }
     }
 
-    private void triggerItems(CharacterEntity player) {
+    private void triggerItems() {
         ArrayList<Point> entities = new ArrayList<>(characterMap.keySet());
         for(Point point : entities) {
             CharacterEntity character = getCharacter(point);
@@ -158,7 +161,7 @@ public class Zone implements Updateable {
             Item item = itemMap.get(point);
 
             if (item != null) {
-                boolean entityIsPlayer = character.equals(player);
+                //boolean entityIsPlayer = character.equals(player);
                 //TODO: change when introducing npcs
                 item.trigger(character);
                 removeItem(item);
@@ -167,13 +170,10 @@ public class Zone implements Updateable {
     }
     //MOVEMENT STUFF
     public void attemptMove(CharacterEntity character) {
-        Orientation orientation;
-        try {
-            orientation = character.getNextMove();
-        } catch (NoSuchElementException e) {
-            System.out.println("Character does not have any queued movements");
+        if (!character.hasNextMove()) {
             return;
         }
+        Orientation orientation = character.getNextMove();
         character.setOrientation(orientation);
         Point sourcePoint = getCharacterLocation(character);
         //System.out.println("dx: " + dx + " | dy: " + dy);
@@ -211,6 +211,7 @@ public class Zone implements Updateable {
 
     public void update() {
         updateCharacterLocations();
+        doInteractions();
     }
 
     public void updateCharacterLocations() {
@@ -218,6 +219,10 @@ public class Zone implements Updateable {
         for (CharacterEntity characterEntity : characterEntities) {
             attemptMove(characterEntity);
         }
+    }
+
+    public void updateAreaEffects() {
+
     }
 
     public void attach(MapView v) {

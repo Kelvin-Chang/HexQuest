@@ -21,7 +21,7 @@ public class StaffItem extends UsableItem {
     }
 
 
-    public void triggerItem(CharacterEntity player) {
+    public void useItem(CharacterEntity player) {
 
         triggerEffect = getEffectFactory().produceHealthModifierEffect(-damage);
 

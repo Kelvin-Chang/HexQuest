@@ -12,10 +12,7 @@ import Model.Zone.World;
 import Model.Zone.Zone;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.NoSuchElementException;
-import java.util.Queue;
+import java.util.*;
 
 public abstract class CharacterEntity {
 
@@ -61,6 +58,7 @@ public abstract class CharacterEntity {
     public CharacterEntity(HashMap<SkillType, Skill> skillList) {
         this();
         this.skills = skillList;
+        this.movementQueue = new LinkedList<>();
     }
 
     public void setLevel(int level) {
@@ -107,6 +105,9 @@ public abstract class CharacterEntity {
     }
     public void setZone(Zone zone) {
         this.zone = zone;
+    }
+    public void setMovementQueue(LinkedList<Orientation> movementQueue) {
+        this.movementQueue = movementQueue;
     }
 
     public int getLevel() {
@@ -293,8 +294,16 @@ public abstract class CharacterEntity {
         movementQueue.add(Orientation.UPLEFT);
     }
 
-    public Orientation getNextMove() throws NoSuchElementException {
-        return movementQueue.remove();
+    public boolean hasNextMove() {
+        Queue<Orientation>  q = movementQueue;
+        if (movementQueue.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
+    public Orientation getNextMove() {
+        return movementQueue.poll();
     }
 
 }

@@ -21,7 +21,7 @@ public class SmasherWeapon extends UsableItem {
         this.damage = damage;
     }
 
-    public void triggerItem(CharacterEntity player, Skill skill) {
+    public void useItem(CharacterEntity player, Skill skill) {
 
         int healthChange = ((VariableEffectSkill)skill).calculateChange(damage + player.getAttack());
 
