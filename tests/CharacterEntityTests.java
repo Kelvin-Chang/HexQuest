@@ -7,6 +7,7 @@ import Model.Enums.ItemSlot;
 import Model.Enums.SkillType;
 import Model.Items.ItemFactory;
 import Model.Items.TakeableItems.EquippableItems.Armor;
+import Model.Items.TakeableItems.EquippableItems.InteractiveArmor;
 import Model.Items.TakeableItems.EquippableItems.Ring;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.RangedWeapon;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SmasherWeapon;
@@ -14,6 +15,8 @@ import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItem
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.SpellItem;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.StaffItem;
 import Model.Items.TakeableItems.Key;
+import Model.Requirements.Requirement;
+import Model.Requirements.RequirementFactory;
 import Model.Zone.World;
 import Model.Zone.Zone;
 import View.Menu.AbstractView;
@@ -36,6 +39,7 @@ public class CharacterEntityTests {
     World world;
     Zone zone;
     ItemFactory itemFactory = new ItemFactory();
+    RequirementFactory requirementFactory = new RequirementFactory();
 
     @Before
     public void setUp() {
@@ -341,6 +345,38 @@ public class CharacterEntityTests {
         sneak.addUpToMovementQueue();
         world.update();
         System.out.println(sneak.getLocation());
+    }
+
+    @Test
+    public void testInteractiveArmor() {
+        sneak.setInventory(new Inventory());
+        sneak.setDefense(5);
+        sneak.setLevel(5);
+        InteractiveArmor interactiveArmor = itemFactory.produceInteractiveArmor(5, requirementFactory.produceLevelRequirement(5));
+
+        interactiveArmor.trigger(sneak);
+        sneak.getInventory().equipItem(interactiveArmor, sneak);
+        assertEquals(10, sneak.getDefense());
+    }
+
+    @Test
+    public void testInteractiveArmorRequirementsNotMet() {
+        sneak.setInventory(new Inventory());
+        sneak.setDefense(5);
+        sneak.setLevel(5);
+        InteractiveArmor interactiveArmor = itemFactory.produceInteractiveArmor(5, requirementFactory.produceLevelRequirement(5));
+
+        interactiveArmor.trigger(sneak);
+    }
+
+    @Test
+    public void testUsingBindWoundsSkill() {
+        sneak.getSpecificSkill(SkillType.BINDWOUNDSSKILL).setSkillLevel(100);
+        sneak.setCurrentHealth(10);
+        sneak.setMaxHealth(100);
+        sneak.useSkill(SkillType.BINDWOUNDSSKILL);
+
+        assertEquals(20, sneak.getCurrentHealth());
     }
 
 }

@@ -19,8 +19,8 @@ public class MainMenuView extends AbstractView {
 
     private ViewController viewController;
 
-    public MainMenuView() {
-        viewController = new ViewController();
+    public MainMenuView(ViewController viewController) {
+        this.viewController = viewController;
         
         this.getChildren().add(borderPane());
     }

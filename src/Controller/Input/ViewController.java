@@ -1,6 +1,7 @@
 package Controller.Input;
 
 import Controller.GameMediator;
+
 import View.Menu.*;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -16,7 +17,7 @@ public class ViewController {
     private GameMediator gameMediator;
 
     public ViewController() {
-
+        viewController = this;
     }
 
     // creates the scene in the window, to be called each time you switch scenes
@@ -43,31 +44,27 @@ public class ViewController {
     }
 
     public void switchToMainMenuView() {
-        MainMenuView view = new MainMenuView();
+        MainMenuView view = new MainMenuView(viewController);
         createScene(view);
     }
 
     public void switchToNewGameView() {
-        NewGameView view = new NewGameView();
+        NewGameView view = new NewGameView(viewController);
         createScene(view);
     }
 
     public void switchToLoadGameView() {
-        LoadGameView view = new LoadGameView();
+        LoadGameView view = new LoadGameView(viewController);
         createScene(view);
     }
 
     public void switchToSettingsView() {
-
+        SettingsView view = new SettingsView(viewController);
+        createScene(view);
     }
-
-
-    public void switchToStartNewGameView() {
-    }
-
 
     public void switchToGamePlayView() {
-        GameplayView view = new GameplayView();
+        GameplayView view = new GameplayView(viewController);
         createScene(view);
         gameMediator = new GameMediator(scene);
     }
