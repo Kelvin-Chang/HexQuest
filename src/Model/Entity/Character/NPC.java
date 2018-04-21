@@ -14,6 +14,15 @@ public class NPC extends CharacterEntity {
     private ArrayList<ArrayList<String>> Dialogue;
     private int curSent;
     private boolean takedamage;
+    private boolean ableToBeAggroed;
+
+    public boolean isAbleToBeAggroed() {
+        return ableToBeAggroed;
+    }
+
+    public void setAbleToBeAggroed(boolean ableToBeAggroed) {
+        this.ableToBeAggroed = ableToBeAggroed;
+    }
 
     @Override
     public boolean isDead() {

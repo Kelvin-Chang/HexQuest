@@ -1,6 +1,7 @@
 package Model.Entity.Character;
 
 import Model.Effects.Effect;
+import Model.Effects.NPCEffect;
 import Model.Entity.Pet;
 import Model.Entity.Skills.Skill;
 import Model.Enums.EffectShape;
@@ -294,6 +295,14 @@ public abstract class CharacterEntity {
         ArrayList<CharacterEntity> entities = zone.getEntitiesOnArea(area);
         for (CharacterEntity entity: entities) {
             effect.trigger(entity);
+        }
+    }
+
+    public void effectAllEntities(NPCEffect effect) {
+        ArrayList<CharacterEntity> entities = new ArrayList<CharacterEntity>(zone.getAllCharacterEntitys());
+        entities.remove(getLocation());
+        for (CharacterEntity entity : entities) {
+            effect.trigger((NPC) entity);
         }
     }
 
