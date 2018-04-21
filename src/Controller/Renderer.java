@@ -23,7 +23,7 @@ public class Renderer {
     // TODO: CHANGE TO ADD PROPER IMPLEMENTATION
     public Renderer(World world, GameplayView gameplayView) {
         this.gameplayView = gameplayView;
-        this.canvas = gameplayView.getCanvas();o
+        this.canvas = gameplayView.getCanvas();
         this.graphicsContext = canvas.getGraphicsContext2D();
         this.world = world;
     }
@@ -50,7 +50,7 @@ public class Renderer {
                 b = (2 * radius * y) + radius;
             }
 
-            if (x % 2 == 1) {
+            if (x % 2 == 0) {
                 a = radius * 2 * x;
                 b = radius * 2 * y;
             }

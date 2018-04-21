@@ -65,7 +65,7 @@ public class ViewController {
     }
 
     public void switchToGamePlayView() {
-        gameplayView = new GameplayView(viewController);
+        gameplayView = new GameplayView(viewController, stage);
         gameMediator.loadGame("resources/maps/map0.json");
         createScene(gameplayView);
     }
