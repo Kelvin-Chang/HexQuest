@@ -22,8 +22,8 @@ public class LoadGameView extends AbstractView {
     private ViewController viewController;
     private String saveFileLocation;
 
-    public LoadGameView() {
-        viewController = new ViewController();
+    public LoadGameView(ViewController viewController) {
+        this.viewController = viewController;
 
         this.getChildren().add(borderPane(this));
     }
