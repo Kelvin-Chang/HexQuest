@@ -23,19 +23,17 @@ public class Renderer {
     // TODO: CHANGE TO ADD PROPER IMPLEMENTATION
     public Renderer(World world, GameplayView gameplayView) {
         this.gameplayView = gameplayView;
-        this.graphicsContext = gameplayView.getGraphicsContext();
-        this.canvas = gameplayView.getCanvas();
+        this.canvas = gameplayView.getCanvas();o
+        this.graphicsContext = canvas.getGraphicsContext2D();
         this.world = world;
     }
 
     public void render() {
-
-
         Zone zone = world.getCurrentZone();
 
         Collection<Point> zoneCollection = zone.getAllTerrainPoints();
 
-        Point[] zoneArr = (Point[]) zoneCollection.toArray();
+        Point[] zoneArr = zoneCollection.toArray(new Point[zoneCollection.size()]);
 
         // initial radius and stuff
         int radius = 16;

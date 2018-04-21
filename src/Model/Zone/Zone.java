@@ -115,6 +115,7 @@ public class Zone implements Updateable {
     public Collection<Point> getAllCharacterEntityPoints() { return characterMap.keySet(); }
     public Collection<CharacterEntity> getAllCharacterEntitys() {return characterMap.values(); };
     public Collection<Point> getAllTerrainPoints() { return terrainMap.keySet(); }
+    public Collection<Terrain> getAllTerrains() {return terrainMap.values(); }
     public Collection<Point> getAllAreaEffectPoints() { return areaEffectMap.keySet(); }
     public Collection<Point> getAllItemPoints() { return itemMap.keySet(); }
     public Collection<Point> getAllObstacleItemPoints() { return obstacleItemMap.keySet(); }

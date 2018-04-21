@@ -1,7 +1,6 @@
 package View.Menu;
 
 import Controller.Input.ViewController;
-import Controller.GameMediator;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 

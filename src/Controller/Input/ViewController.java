@@ -4,9 +4,7 @@ import Controller.GameMediator;
 
 import View.Menu.*;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
@@ -14,9 +12,12 @@ public class ViewController {
     private Scene scene;
     private static Stage stage;
     private static ViewController viewController;
-    private GameMediator gameMediator;
+    GameMediator gameMediator;
 
-    public ViewController() {
+    private GameplayView gameplayView;
+
+    public ViewController(GameMediator gameMediator) {
+        this.gameMediator = gameMediator;
         viewController = this;
     }
 
@@ -64,9 +65,9 @@ public class ViewController {
     }
 
     public void switchToGamePlayView() {
-        GameplayView view = new GameplayView(viewController);
-        createScene(view);
-        gameMediator = new GameMediator(scene);
+        gameplayView = new GameplayView(viewController);
+        gameMediator.loadGame("resources/maps/map0.json");
+        createScene(gameplayView);
     }
 
     // swap to "exit view"
@@ -74,5 +75,9 @@ public class ViewController {
         System.out.println("exiting");
         Platform.exit();
         System.exit(0);
+    }
+
+    public GameplayView getGameplayView() {
+        return gameplayView;
     }
 }

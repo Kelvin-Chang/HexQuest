@@ -15,7 +15,6 @@ import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItem
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.SpellItem;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.StaffItem;
 import Model.Items.TakeableItems.Key;
-import Model.Requirements.Requirement;
 import Model.Requirements.RequirementFactory;
 import Model.Zone.World;
 import Model.Zone.Zone;
@@ -43,7 +42,7 @@ public class CharacterEntityTests {
 
     @Before
     public void setUp() {
-        gameMediator = new GameMediator(new Scene(new AbstractView()));
+        gameMediator = new GameMediator();
         world = gameMediator.getGameBuilder().getWorld();
 
         smasher = playerFactory.produceSmasher();

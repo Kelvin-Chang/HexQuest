@@ -77,7 +77,7 @@ public class NewGameView extends AbstractView {
         // data that each radio button holds
         tb1.setUserData("Summmoner");
         tb2.setUserData("Sneak");
-        tb3.setUserData("Smassher");
+        tb3.setUserData("Smasher");
 
         tb1.setToggleGroup(toggleGroup);
         tb2.setToggleGroup(toggleGroup);
