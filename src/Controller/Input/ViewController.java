@@ -29,6 +29,10 @@ public class ViewController {
         stage.setScene(scene);
     }
 
+    public Scene getScene() {
+        return scene;
+    }
+
     //TODO: make it so that the keyboard doesn't change which button is selected? the current bandage fix is .button:focused {outline:0;} which hides the selector
     /* Resources:
     https://stackoverflow.com/questions/15238928/javafx-how-to-change-the-focus-traversal-policy

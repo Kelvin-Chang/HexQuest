@@ -17,16 +17,14 @@ public class GameplayView extends AbstractView {
     private GraphicsContext graphicsContext;
 
     public GameplayView(ViewController viewController, Stage primaryStage) {
-        creatNewCavas(primaryStage);
-        this.graphicsContext = canvas.getGraphicsContext2D();
         this.viewController = viewController;
+        createNewCanvas(primaryStage);
+        this.graphicsContext = canvas.getGraphicsContext2D();
     }
 
     // TODO: format this view to hold buttons to access inventory and stuff
 
-    private void creatNewCavas(Stage primaryStage) {
-        Scene scene = new Scene(this, 1000, 800);
-
+    private void createNewCanvas(Stage primaryStage) {
         canvas = new Canvas(1000, 800);
 
         borderPane = new BorderPane();
@@ -41,7 +39,7 @@ public class GameplayView extends AbstractView {
 
 
         this.getChildren().add(borderPane);
-        primaryStage.setScene(scene);
+        primaryStage.setScene(viewController.getScene());
         graphicsContext = canvas.getGraphicsContext2D();
     }
 
