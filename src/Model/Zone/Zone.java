@@ -196,6 +196,7 @@ public class Zone implements Updateable {
         CharacterEntity character = characterMap.get(origin);
         characterMap.remove(origin);
         characterMap.put(destination, character);
+        character.clearMovementQueue();
     }
     public boolean isValidMove(Point destination) {
         if(getObstacleItem(destination) != null) {
