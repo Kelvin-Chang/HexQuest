@@ -19,6 +19,11 @@ public class Renderer {
     private GameplayView gameplayView;
     private Canvas canvas;
     private GraphicsContext graphicsContext;
+    Zone zone;
+    Collection<Point> zoneCollection;
+    Point[] zoneArr;
+    Image grassTile;
+    Image playerSprite;
 
     // TODO: CHANGE TO ADD PROPER IMPLEMENTATION
     public Renderer(World world, GameplayView gameplayView) {
@@ -26,15 +31,17 @@ public class Renderer {
         this.canvas = gameplayView.getCanvas();
         this.graphicsContext = canvas.getGraphicsContext2D();
         this.world = world;
+        zone = world.getCurrentZone();
+        zoneCollection = zone.getAllTerrainPoints();
+        zoneArr = zoneCollection.toArray(new Point[zoneCollection.size()]);
+        File grass = new File(System.getProperty("user.dir") + "/src/assets/grass.png");
+        grassTile = new Image(grass.toURI().toString());
+        File playa = new File(System.getProperty("user.dir") + "/src/assets/character.png");
+        grassTile = new Image(playa.toURI().toString());
     }
 
+
     public void render() {
-        Zone zone = world.getCurrentZone();
-
-        Collection<Point> zoneCollection = zone.getAllTerrainPoints();
-
-        Point[] zoneArr = zoneCollection.toArray(new Point[zoneCollection.size()]);
-
         // initial radius and stuff
         int radius = 16;
         double a = 0;
@@ -50,20 +57,20 @@ public class Renderer {
                 b = (2 * radius * y) + radius;
             }
 
-            if (x % 2 == 0) {
+            else if (x % 2 == 0) {
                 a = radius * 2 * x;
                 b = radius * 2 * y;
             }
 
             switch(zoneTerrain) {
                 case GRASS:
-                    graphicsContext.drawImage(getImage(System.getProperty("user.dir") + "/src/assets/grass.png"), a, b, 2 * radius, 2 * radius);
+                    graphicsContext.drawImage(grassTile, a, b, 2 * radius, 2 * radius);
                     break;
                 case MOUNTAIN:
-                    graphicsContext.drawImage(getImage(System.getProperty("user.dir") + "/src/assets/mountain.png"), a, b, 2 * radius, 2 * radius);
+                    graphicsContext.drawImage(grassTile, a, b, 2 * radius, 2 * radius);
                     break;
                 case WATER:
-                    graphicsContext.drawImage(getImage(System.getProperty("user.dir") + "/src/assets/water.png"), a, b, 2 * radius, 2 * radius);
+                    graphicsContext.drawImage(grassTile, a, b, 2 * radius, 2 * radius);
                     break;
                 default:
                     break;
@@ -82,13 +89,8 @@ public class Renderer {
             a = radius * 2 * x;
             b = radius * 2 * y;
         }
-        graphicsContext.drawImage(getImage(System.getProperty("user.dir")+"/src/assets/character.png"), a, b, 2*radius, 2*radius);
-    }
-
-    private Image getImage(String fp) {
-        File file = new File(fp);
-        Image image = new Image(file.toURI().toString());
-        return image;
+        
+        graphicsContext.drawImage(playerSprite, a, b, 2*radius, 2*radius);
     }
 
 }

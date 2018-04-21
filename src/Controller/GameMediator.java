@@ -66,11 +66,9 @@ public class GameMediator extends Application {
         gameLoader.loadGame(saveFileLocation);
         world = gameBuilder.getWorld();
         System.out.println(world.getCurrentZone().getAllTerrains());
-        Collection<Point> allPts = world.getCurrentZone().getAllTerrainPoints();
-        System.out.println("Got world: " + world);
         renderer = new Renderer(world, viewController.getGameplayView());
-        renderer.render();
         startTimer();
+        loaded = true;
     }
 
     public GameBuilder getGameBuilder() {
@@ -88,6 +86,7 @@ public class GameMediator extends Application {
         public void run() {
             if(loaded) {
                 System.out.println("Loop");
+                renderer.render();
             }
         }
     }
