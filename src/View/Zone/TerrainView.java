@@ -29,7 +29,11 @@ public void terrian(String terrainMap){
         }
     }
 
-//    public void classify(ArrayList<ArrayList<String>> terrainMap){
+    public BufferedImage getTerrainImage() {
+        return terrainImage;
+    }
+
+    //    public void classify(ArrayList<ArrayList<String>> terrainMap){
 //        for(int h = 0; h < terrainMap.size(); h++) {
 //            for(int i = 0; i < terrainMap.get(h).size(); i++) {
 //                String ter = terrainMap.get(h).get(i);
