@@ -8,37 +8,10 @@ import java.util.ArrayList;
 
 public class NPC extends CharacterEntity {
     public NPC(){
+        super();
     }
-    private boolean dead;
-    private Effect effect;
+
     private ArrayList<ArrayList<String>> Dialogue;
-    private int curSent;
-    private boolean takedamage;
-    private boolean ableToBeAggroed;
-
-    public boolean isAbleToBeAggroed() {
-        return ableToBeAggroed;
-    }
-
-    public void setAbleToBeAggroed(boolean ableToBeAggroed) {
-        this.ableToBeAggroed = ableToBeAggroed;
-    }
-
-    @Override
-    public boolean isDead() {
-        return dead;
-    }
-
-    public void experience(Effect effect){
-        this.effect = EffectFactory.produceLevelUpEffect();
-    }
-
-    public void trigger(Player characterEntity) {
-        if(!dead) {
-            effect.trigger(characterEntity);
-            this.dead = true;
-        }
-    }
 
     public void setDialogue(ArrayList<ArrayList<String>> dialogue) {
         Dialogue = dialogue;
@@ -54,15 +27,5 @@ public class NPC extends CharacterEntity {
         return message;
     }
 
-    public boolean takedamage(){
-        if(getCurrentHealth() != getMaxHealth())
-        {
-            takedamage = true;
-        }
-        else{
-            takedamage = false;
-        }
-        return takedamage;
-    }
 }
 
