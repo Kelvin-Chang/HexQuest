@@ -23,7 +23,7 @@ public class Renderer {
     private SpriteBase sprites;
 
     // sets the radius/size of tiles and stuff
-    private final int radius = 16;
+    private final int radius = 32;
 
     // TODO: CHANGE TO ADD PROPER IMPLEMENTATION
     public Renderer(World world, GameplayView gameplayView) {
@@ -36,7 +36,7 @@ public class Renderer {
 
     public void render() {
         // clear canvas for each render
-        graphicsContext.clearRect(0,0,1000,800);
+//        graphicsContext.clearRect(0,0,1000,800);
         graphicsContext.setFill(Color.BLACK);
         graphicsContext.fillRect(0, 0, canvas.getWidth(),canvas.getHeight());
         renderTiles();
@@ -60,22 +60,22 @@ public class Renderer {
             Point2D imageCoordinates = calculateImageCoordinates((int) zoneArr[i].getX(), (int) zoneArr[i].getY());
             switch (zoneTerrain) {
                 case GRASS:
-                    System.out.println("drew Grass" + zoneArr[i].getX() + ", " + zoneArr[i].getY());
+//                    System.out.println("drew Grass" + zoneArr[i].getX() + ", " + zoneArr[i].getY());
                     graphicsContext.drawImage(sprites.getTileSprite(0), imageCoordinates.getX(), imageCoordinates.getY(), 2 * radius, 2 * radius);
                     break;
                 case MOUNTAIN:
-                    System.out.println("drew Mountain" + zoneArr[i].getX() + ", " + zoneArr[i].getY());
+//                    System.out.println("drew Mountain" + zoneArr[i].getX() + ", " + zoneArr[i].getY());
                     graphicsContext.drawImage(sprites.getTileSprite(1), imageCoordinates.getX(), imageCoordinates.getY(), 2 * radius, 2 * radius);
                     break;
                 case WATER:
-                    System.out.println("drew Water" + zoneArr[i].getX() + ", " + zoneArr[i].getY());
+//                    System.out.println("drew Water" + zoneArr[i].getX() + ", " + zoneArr[i].getY());
                     graphicsContext.drawImage(sprites.getTileSprite(2), imageCoordinates.getX(), imageCoordinates.getY(), 2 * radius, 2 * radius);
                     break;
                 default:
                     break;
             }
         }
-        System.out.println("end");
+//        System.out.println("end");
     }
 
     private Point2D calculateImageCoordinates(int x, int y) {
