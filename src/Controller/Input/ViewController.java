@@ -70,8 +70,8 @@ public class ViewController {
 
     public void switchToGamePlayView() {
         gameplayView = new GameplayView(viewController, stage);
-        gameMediator.loadGame("resources/maps/map0.json");
         createScene(gameplayView);
+        gameMediator.loadGame("resources/maps/map0.json");
     }
 
     // swap to "exit view"

@@ -22,7 +22,13 @@ public class KeyInputController {
 
         // testing stuff
         commandMap = new HashMap<>();
-        commandMap.put(KeyCode.A, SkillType.MOVEUP);
+        commandMap.put(KeyCode.Q, SkillType.MOVEUPLEFT);
+        commandMap.put(KeyCode.W, SkillType.MOVEUP);
+        commandMap.put(KeyCode.E, SkillType.MOVEUPRIGHT);
+        commandMap.put(KeyCode.A, SkillType.MOVEDOWNLEFT);
+        commandMap.put(KeyCode.S, SkillType.MOVEDOWN);
+        commandMap.put(KeyCode.D, SkillType.MOVEDOWNRIGHT);
+
     }
 
     public void issueCommand(KeyCode keyCode) {
