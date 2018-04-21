@@ -18,7 +18,8 @@ import java.util.ArrayList;
 
 public class LoadGameView extends AbstractView {
 
-    ViewController viewController;
+    private ViewController viewController;
+    private String saveFileLocation;
 
     public LoadGameView() {
         viewController = new ViewController();
