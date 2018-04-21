@@ -46,8 +46,6 @@ public class GameMediator /*extends Application*/ {
         gameLoader = new GameLoader(gameBuilder);
         gameLoader.loadGame(saveFileLocation);
         world = gameBuilder.getWorld();
-        PlayerFactory playerFactory = new PlayerFactory();
-        world.setPlayer(playerFactory.produceSummoner());
         System.out.println("Got world: " + world);
         startTimer();
     }

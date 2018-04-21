@@ -1,6 +1,5 @@
 package Controller.Input;
 
-import Model.Entity.Character.Player;
 import Model.Enums.SkillType;
 import javafx.scene.input.KeyCode;
 
@@ -45,32 +44,46 @@ public class KeyInputController {
                         playerController.pressUpLeft();
                         break;
                     case BRAWLSKILL:
+                        playerController.pressBrawl();
                         break;
                     case ONEHANDEDWEAPONSKILL:
+                        playerController.pressOneHanded();
                         break;
                     case TWOHANDEDWEAPONSKILL:
+                        playerController.pressTwoHanded();
                         break;
                     case BANESKILL:
+                        playerController.pressBane();
                         break;
                     case BOONSKILL:
+                        playerController.pressBoon();
                         break;
                     case ENCHANTMENTSKILL:
+                        playerController.pressEnchantment();
                         break;
                     case STAFFSKILL:
+                        playerController.pressStaff();
                         break;
                     case CREEPSKILL:
+                        playerController.pressCreep();
                         break;
                     case PICKPOCKETSKILL:
+                        playerController.pressPickPocket();
                         break;
                     case REMOVETRAPSKILL:
+                        playerController.pressRemoveTrap();
                         break;
                     case RANGEDWEAPONSKILL:
+                        playerController.pressRangedWeapon();
                         break;
                     case BARGAINSKILL:
+                        playerController.pressBargain();
                         break;
                     case BINDWOUNDSSKILL:
+                        playerController.pressBindWounds();
                         break;
                     case OBSERVATIONSKILL:
+                        playerController.pressObservation();
                         break;
                 }
             }
