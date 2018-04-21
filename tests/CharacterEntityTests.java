@@ -369,4 +369,14 @@ public class CharacterEntityTests {
         interactiveArmor.trigger(sneak);
     }
 
+    @Test
+    public void testUsingBindWoundsSkill() {
+        sneak.getSpecificSkill(SkillType.BINDWOUNDSSKILL).setSkillLevel(100);
+        sneak.setCurrentHealth(10);
+        sneak.setMaxHealth(100);
+        sneak.useSkill(SkillType.BINDWOUNDSSKILL);
+
+        assertEquals(20, sneak.getCurrentHealth());
+    }
+
 }
