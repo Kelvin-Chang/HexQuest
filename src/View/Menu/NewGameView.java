@@ -1,6 +1,5 @@
 package View.Menu;
 
-
 import Controller.Input.ViewController;
 import Controller.buttons.MainMenuSelectable;
 import Controller.buttons.Selectable;

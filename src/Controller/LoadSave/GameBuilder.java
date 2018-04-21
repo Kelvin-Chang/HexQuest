@@ -1,6 +1,9 @@
 package Controller.LoadSave;
 
-import Model.Entity.Character.Player;
+import Model.Entity.Character.*;
+import Model.Entity.Entity;
+import Model.Entity.Pet;
+import Model.Enums.Orientation;
 import Model.Items.InteractiveItem;
 import Model.Items.ObstacleItem;
 import Model.Items.TakeableItems.EquippableItems.Armor;
@@ -12,6 +15,7 @@ import Model.Zone.Zone;
 import View.Menu.MainMenuView;
 import View.Status.StatusView;
 import View.Viewport;
+import org.json.JSONArray;
 
 import javax.swing.text.ZoneView;
 import java.awt.*;
@@ -38,6 +42,10 @@ public class GameBuilder {
         return world;
     }
 
+    public Player getPlayer() {
+        return player;
+    }
+
     public void setMapView(ZoneView mapView) {
         this.mapView = mapView;
     }
@@ -51,7 +59,7 @@ public class GameBuilder {
     }
 
     public void initWorld(Integer currentMap) {
-        world = new World(currentMap, player);
+        world = new World(currentMap);
     }
 
     public void initZone(int id, int xSize, int ySize) {
@@ -116,5 +124,82 @@ public class GameBuilder {
                 zone.add(point, new Ring(10));
                 break;
         }
+    }
+
+    private void setCharAttributes(CharacterEntity charEnt, String name, int level, int maxHealth, int currentHealth, int maxMana, int currentMana, int attack, int defense, int speed, String orientation, String pet, JSONArray inventory) {
+        charEnt.setName(name);
+        charEnt.setLevel(level);
+        charEnt.setMaxHealth(maxHealth);
+        charEnt.setCurrentHealth(currentHealth);
+        charEnt.setMaxMana(maxMana);
+        charEnt.setCurrentMana(currentMana);
+        charEnt.setAttack(attack);
+        charEnt.setDefense(defense);
+        charEnt.setSpeed(speed);
+
+        switch (orientation) {
+            case "up":
+                charEnt.setOrientation(Orientation.UP);
+                break;
+            case "down":
+                charEnt.setOrientation(Orientation.DOWN);
+                break;
+            case "upleft":
+                charEnt.setOrientation(Orientation.UPLEFT);
+                break;
+            case "upright":
+                charEnt.setOrientation(Orientation.UPRIGHT);
+                break;
+            case "downleft":
+                charEnt.setOrientation(Orientation.DOWNLEFT);
+                break;
+            case "downright":
+                charEnt.setOrientation(Orientation.DOWNRIGHT);
+                break;
+        }
+
+        switch (pet) {
+            case "none":
+                break;
+            case "cat":
+                charEnt.setPet(new Pet());
+        }
+
+        System.out.println("Character initialized: " + charEnt);
+    }
+
+    public void initNPC(String name, int level, int maxHealth, int currentHealth, int maxMana, int currentMana, int attack, int defense, int speed, String orientation, String pet, JSONArray inventory, Point point) {
+        NPC npc = new NPC();
+        world.getCurrentZone().addPlayer(point, npc);
+        setCharAttributes(npc, name, level, maxHealth, currentHealth, maxMana, currentMana, attack, defense, speed, orientation, pet, inventory);
+    }
+
+    public void initShopKeep(String name, int level, int maxHealth, int currentHealth, int maxMana, int currentMana, int attack, int defense, int speed, String orientation, String pet, JSONArray inventory, Point point) {
+        ShopKeep sk = new ShopKeep();
+        world.getCurrentZone().addPlayer(point, sk);
+        setCharAttributes(sk, name, level, maxHealth, currentHealth, maxMana, currentMana, attack, defense, speed, orientation, pet, inventory);
+    }
+
+    public void initPet(String name) {
+
+    }
+
+    public void initMount(String name) {
+
+    }
+
+    public void initPlayer(String name, String charClass, int level, int maxHealth, int currentHealth, int maxMana, int currentMana, int attack, int defense, int speed, String orientation, String pet, JSONArray inventory, Point point) {
+        switch (charClass) {
+            case "smasher":
+                player = PlayerFactory.produceSmasher();
+            case "summoner":
+                player = PlayerFactory.produceSummoner();
+            case "sneak":
+                player = PlayerFactory.produceSneak();
+        }
+        world.setPlayer(player);
+        world.getCurrentZone().addPlayer(point, player);
+
+        setCharAttributes(player, name, level, maxHealth, currentHealth, maxMana, currentMana, attack, defense, speed, orientation, pet, inventory);
     }
 }
