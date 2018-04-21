@@ -69,6 +69,20 @@ public class Renderer {
                     break;
             }
         }
+
+        Point playerLocation = world.getPlayer().getLocation();
+        int x = (int)playerLocation.getX();
+        int y = (int)playerLocation.getY();
+        if (x % 2 == 1) {
+            a = radius * 2 * x;
+            b = (2 * radius * y) + radius;
+        }
+
+        else {
+            a = radius * 2 * x;
+            b = radius * 2 * y;
+        }
+        graphicsContext.drawImage(getImage(System.getProperty("user.dir")+"/src/assets/character.png"), a, b, 2*radius, 2*radius);
     }
 
     private Image getImage(String fp) {
