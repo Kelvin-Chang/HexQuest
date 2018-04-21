@@ -9,7 +9,9 @@ public class MapView {
     private int col;
     private int rows;
 
-    public MapView(){
+    public MapView(DecalView[][] DecalMap, TerrainView[][] terrainMap){
+        this.DecalMap = DecalMap;
+        this.terrainMap = terrainMap;
     }
     public void display()
     {
