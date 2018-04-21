@@ -1,9 +1,7 @@
 package Controller.Input;
 
-<<<<<<< HEAD
-=======
 import Controller.GameMediator;
->>>>>>> dc6b46314f0d49f6dd1073ec12241eff63c51910
+
 import View.Menu.*;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
