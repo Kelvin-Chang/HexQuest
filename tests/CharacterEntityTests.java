@@ -367,7 +367,6 @@ public class CharacterEntityTests {
         InteractiveArmor interactiveArmor = itemFactory.produceInteractiveArmor(5, requirementFactory.produceLevelRequirement(5));
 
         interactiveArmor.trigger(sneak);
-        assertEquals(0, sneak.getInventory().);
     }
 
 }
