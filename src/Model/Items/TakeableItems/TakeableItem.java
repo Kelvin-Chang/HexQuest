@@ -6,6 +6,10 @@ import Model.Items.Item;
 
 public abstract class TakeableItem extends Item {
 
+    public void trigger(CharacterEntity characterEntity) {
+        characterEntity.addToInventory(this);
+    };
+
     public void equip(Inventory inventory, CharacterEntity characterEntity) {
 
     };

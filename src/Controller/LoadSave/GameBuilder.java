@@ -1,10 +1,8 @@
 package Controller.LoadSave;
 
 import Model.Entity.Character.*;
-import Model.Entity.Entity;
 import Model.Entity.Pet;
 import Model.Enums.Orientation;
-import Model.Items.InteractiveItem;
 import Model.Items.ObstacleItem;
 import Model.Items.TakeableItems.EquippableItems.Armor;
 import Model.Items.TakeableItems.EquippableItems.Ring;
@@ -111,9 +109,6 @@ public class GameBuilder {
         }
 
         switch (item) {
-            case "interactive":
-                zone.add(point, new InteractiveItem());
-                break;
             case "obstacle":
                 zone.add(point, new ObstacleItem("obstacle"));
                 break;

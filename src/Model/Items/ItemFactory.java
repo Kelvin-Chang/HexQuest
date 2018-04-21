@@ -4,20 +4,23 @@ import Model.Effects.EffectFactory;
 import Model.Enums.EffectShape;
 import Model.Enums.ItemSlot;
 import Model.Items.TakeableItems.EquippableItems.Armor;
+import Model.Items.TakeableItems.EquippableItems.InteractiveArmor;
 import Model.Items.TakeableItems.EquippableItems.Ring;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.RangedWeapon;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SmasherWeapon;
-import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItems.BaneItem;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItems.DefenseBane;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItems.HealthBane;
-import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BoonItems.BoonItem;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BoonItems.HealthBoon;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.EnchantmentItems.DecreaseBargainingEnchantment;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.SpellItem;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.StaffItem;
 import Model.Items.TakeableItems.Key;
+import Model.Requirements.Requirement;
+import Model.Requirements.RequirementFactory;
 
 public class ItemFactory {
+
+    private RequirementFactory requirementFactory = new RequirementFactory();
 
     public ItemFactory() {}
 
@@ -32,9 +35,11 @@ public class ItemFactory {
     public static OneShotItem produceDamageOneShot() {
         return new OneShotItem(EffectFactory.produceHealthModifierEffect(-10));
     }
+
     public static ObstacleItem produceObstableItem() {
         return new ObstacleItem("Blocker");
     }
+
     public static Armor produceArmorItem(int defense) {
         return new Armor(defense);
     }
@@ -73,5 +78,9 @@ public class ItemFactory {
 
     public static RangedWeapon produceRangedWeapon(int damage, EffectShape effectShape, int range) {
         return new RangedWeapon(damage, effectShape, range);
+    }
+
+    public InteractiveArmor produceInteractiveArmor(int defense, Requirement requirement) {
+        return new InteractiveArmor(defense, requirement);
     }
 }
