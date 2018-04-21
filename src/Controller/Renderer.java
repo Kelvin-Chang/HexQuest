@@ -7,6 +7,7 @@ import View.Menu.GameplayView;
 import View.SpriteBase;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 import java.awt.Point;
 import java.awt.geom.*;
@@ -22,7 +23,7 @@ public class Renderer {
     private SpriteBase sprites;
 
     // sets the radius/size of tiles and stuff
-    private int radius = 16;
+    private final int radius = 16;
 
     // TODO: CHANGE TO ADD PROPER IMPLEMENTATION
     public Renderer(World world, GameplayView gameplayView) {
@@ -36,7 +37,8 @@ public class Renderer {
     public void render() {
         // clear canvas for each render
         graphicsContext.clearRect(0,0,1000,800);
-
+        graphicsContext.setFill(Color.BLACK);
+        graphicsContext.fillRect(0, 0, canvas.getWidth(),canvas.getHeight());
         renderTiles();
         renderPlayer();
 
@@ -44,7 +46,6 @@ public class Renderer {
 
 
     private void renderPlayer() {
-        System.out.println("d");
         Point playerLocation = world.getPlayer().getLocation();
         Point2D imageCoordinates = calculateImageCoordinates((int) playerLocation.getX(),(int) playerLocation.getY());
         graphicsContext.drawImage(sprites.getCharacterSprite(0), imageCoordinates.getX(), imageCoordinates.getY(), 2*radius, 2*radius);
@@ -52,67 +53,29 @@ public class Renderer {
 
     private void renderTiles() {
         Zone zone = world.getCurrentZone();
-        System.out.println("a");
         Collection<Point> zoneCollection = zone.getAllTerrainPoints();
-        System.out.println("b");
         Point[] zoneArr = zoneCollection.toArray(new Point[zoneCollection.size()]);
-        System.out.println("c");
-//        // initial radius and stuff
-//        double a = 0;
-//        double b = 0;
-//        double aP = 0;
-//        double bP = 0;
-//        Point playerLocation = world.getPlayer().getLocation();
-//        int xp = (int)playerLocation.getX();
-//        int yp = (int)playerLocation.getY();
-//        if (xp % 2 == 1) {
-//            aP = radius * 2 * xp;
-//            bP = (2 * radius * yp) + radius;
-//        } else {
-//            aP = radius * 2 * xp;
-//            bP = radius * 2 * yp;
-//        }
-//        graphicsContext.drawImage(sprites.getCharacterSprite(0), aP, bP, 2*radius, 2*radius);
         for (int i = 0; i < zoneArr.length; i++) {
-            System.out.println("1");
             Terrain zoneTerrain = zone.getTerrain(zoneArr[i]);
-            System.out.println("2");
             Point2D imageCoordinates = calculateImageCoordinates((int) zoneArr[i].getX(), (int) zoneArr[i].getY());
-            System.out.println("4");
-//<<<<<<< HEAD
             switch (zoneTerrain) {
                 case GRASS:
+                    System.out.println("drew Grass" + zoneArr[i].getX() + ", " + zoneArr[i].getY());
                     graphicsContext.drawImage(sprites.getTileSprite(0), imageCoordinates.getX(), imageCoordinates.getY(), 2 * radius, 2 * radius);
                     break;
                 case MOUNTAIN:
+                    System.out.println("drew Mountain" + zoneArr[i].getX() + ", " + zoneArr[i].getY());
                     graphicsContext.drawImage(sprites.getTileSprite(1), imageCoordinates.getX(), imageCoordinates.getY(), 2 * radius, 2 * radius);
                     break;
                 case WATER:
+                    System.out.println("drew Water" + zoneArr[i].getX() + ", " + zoneArr[i].getY());
                     graphicsContext.drawImage(sprites.getTileSprite(2), imageCoordinates.getX(), imageCoordinates.getY(), 2 * radius, 2 * radius);
                     break;
                 default:
                     break;
-////=======
-//            if((aP != a) || (bP != b)) {
-//                switch (zoneTerrain) {
-//                    case GRASS:
-//                        graphicsContext.drawImage(sprites.getTileSprite(0), a, b, 2 * radius, 2 * radius);
-//                        break;
-//                    case MOUNTAIN:
-//                        graphicsContext.drawImage(sprites.getTileSprite(1), a, b, 2 * radius, 2 * radius);
-//                        break;
-//                    case WATER:
-//                        graphicsContext.drawImage(sprites.getTileSprite(2), a, b, 2 * radius, 2 * radius);
-//                        break;
-//                    default:
-//                        break;
-//                }
-//                System.out.println("5");
-//
-//            }
             }
         }
-
+        System.out.println("end");
     }
 
     private Point2D calculateImageCoordinates(int x, int y) {
@@ -122,7 +85,6 @@ public class Renderer {
             a = radius * 1.5 * x;
             b = (2 * radius * y) + radius;
         }
-        System.out.println("3");
         if (x % 2 == 0) {
             a = radius * 1.5 * x;
             b = radius * 2 * y;
