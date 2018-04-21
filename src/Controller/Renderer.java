@@ -42,7 +42,19 @@ public class Renderer {
         int radius = 16;
         double a = 0;
         double b = 0;
-
+        double aP = 0;
+        double bP = 0;
+        Point playerLocation = world.getPlayer().getLocation();
+        int xp = (int)playerLocation.getX();
+        int yp = (int)playerLocation.getY();
+        if (xp % 2 == 1) {
+            aP = radius * 2 * xp;
+            bP = (2 * radius * yp) + radius;
+        } else {
+            aP = radius * 2 * xp;
+            bP = radius * 2 * yp;
+        }
+        graphicsContext.drawImage(sprites.getCharacterSprite(0), aP, bP, 2*radius, 2*radius);
         for (int i = 0; i < zoneArr.length; i++) {
             System.out.println("1");
             Terrain zoneTerrain = zone.getTerrain(zoneArr[i]);
@@ -59,35 +71,37 @@ public class Renderer {
                 b = radius * 2 * y;
             }
             System.out.println("4");
-            switch(zoneTerrain) {
-                case GRASS:
-                    graphicsContext.drawImage(sprites.getTileSprite(0), a, b, 2*radius, 2*radius);
-                    break;
-                case MOUNTAIN:
-                    graphicsContext.drawImage(sprites.getTileSprite(1), a, b, 2*radius, 2*radius);
-                    break;
-                case WATER:
-                    graphicsContext.drawImage(sprites.getTileSprite(2), a, b, 2*radius, 2*radius);
-                    break;
-                default:
-                    break;
+            if((aP != a) || (bP != b)) {
+                switch (zoneTerrain) {
+                    case GRASS:
+                        graphicsContext.drawImage(sprites.getTileSprite(0), a, b, 2 * radius, 2 * radius);
+                        break;
+                    case MOUNTAIN:
+                        graphicsContext.drawImage(sprites.getTileSprite(1), a, b, 2 * radius, 2 * radius);
+                        break;
+                    case WATER:
+                        graphicsContext.drawImage(sprites.getTileSprite(2), a, b, 2 * radius, 2 * radius);
+                        break;
+                    default:
+                        break;
+                }
+                System.out.println("5");
             }
-            System.out.println("5");
         }
         System.out.println("d");
-        Point playerLocation = world.getPlayer().getLocation();
-        int x = (int)playerLocation.getX();
-        int y = (int)playerLocation.getY();
-        if (x % 2 == 1) {
-            a = radius * 2 * x;
-            b = (2 * radius * y) + radius;
-        }
-
-        else {
-            a = radius * 2 * x;
-            b = radius * 2 * y;
-        }
-        graphicsContext.drawImage(sprites.getCharacterSprite(0), a, b, 2*radius, 2*radius);
+//        Point playerLocation = world.getPlayer().getLocation();
+//        int x = (int)playerLocation.getX();
+//        int y = (int)playerLocation.getY();
+//        if (x % 2 == 1) {
+//            a = radius * 2 * x;
+//            b = (2 * radius * y) + radius;
+//        }
+//
+//        else {
+//            a = radius * 2 * x;
+//            b = radius * 2 * y;
+//        }
+//        graphicsContext.drawImage(sprites.getCharacterSprite(0), a, b, 2*radius, 2*radius);
     }
 
     private Image getImage(String fp) {
