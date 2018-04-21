@@ -8,6 +8,7 @@ import javafx.scene.canvas.GraphicsContext;
 public class GameplayView extends AbstractView {
 
     private ViewController viewController;
+
     private Canvas canvas;
     private GraphicsContext graphicsContext;
 
@@ -18,5 +19,15 @@ public class GameplayView extends AbstractView {
     }
 
     // TODO: format this view to hold buttons to access inventory and stuff
+
+
+
+    public GraphicsContext getGraphicsContext() {
+        return graphicsContext;
+    }
+
+    public Canvas getCanvas() {
+        return canvas;
+    }
 
 }
