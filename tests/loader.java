@@ -16,7 +16,7 @@ public class loader {
         Point y1 = new Point(5,0);
         GameBuilder builder = new GameBuilder();
         GameLoader load = new GameLoader(builder);
-        load.loadGame("/Users/lorenzo/Documents/GitHub/OOP-Iteration-3/resources/maps/map0.json");
+        load.loadGame("resources/maps/map0.json");
         Assert.assertTrue(builder.getPlayer()!=null);
         Assert.assertTrue(builder.getWorld()!=null);
 //        Assert.assertTrue(builder.()!=null);

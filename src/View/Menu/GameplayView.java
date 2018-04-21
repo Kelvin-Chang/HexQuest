@@ -1,6 +1,7 @@
 package View.Menu;
 
 import Controller.Input.ViewController;
+import Controller.GameMediator;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -17,4 +18,5 @@ public class GameplayView extends AbstractView {
     }
 
     // TODO: format this view to hold buttons to access inventory and stuff
+
 }

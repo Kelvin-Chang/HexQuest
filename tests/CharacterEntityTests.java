@@ -16,6 +16,8 @@ import Model.Items.TakeableItems.EquippableItems.UsableItems.StaffItem;
 import Model.Items.TakeableItems.Key;
 import Model.Zone.World;
 import Model.Zone.Zone;
+import View.Menu.AbstractView;
+import javafx.scene.Scene;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -37,7 +39,7 @@ public class CharacterEntityTests {
 
     @Before
     public void setUp() {
-        gameMediator = new GameMediator();
+        gameMediator = new GameMediator(new Scene(new AbstractView()));
         world = gameMediator.getGameBuilder().getWorld();
 
         smasher = playerFactory.produceSmasher();

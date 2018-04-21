@@ -1,15 +1,22 @@
 package Controller.Input;
 
+<<<<<<< HEAD
+=======
+import Controller.GameMediator;
+>>>>>>> dc6b46314f0d49f6dd1073ec12241eff63c51910
 import View.Menu.*;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 public class ViewController {
-    private static Scene scene;
+    private Scene scene;
     private static Stage stage;
     private static ViewController viewController;
+    private GameMediator gameMediator;
 
     public ViewController() {
         viewController = this;
@@ -61,7 +68,7 @@ public class ViewController {
     public void switchToGamePlayView() {
         GameplayView view = new GameplayView(viewController);
         createScene(view);
-
+        gameMediator = new GameMediator(scene);
     }
 
     // swap to "exit view"

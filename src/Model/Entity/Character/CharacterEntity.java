@@ -163,6 +163,17 @@ public abstract class CharacterEntity {
     public Skill getSpecificSkill(SkillType skillType) {
         return skills.get(skillType);
     }
+
+    public ArrayList<SkillType> getPlayerActions() {
+        ArrayList<SkillType> actions = new ArrayList<>(skills.keySet());
+        actions.add(SkillType.MOVEUP);
+        actions.add(SkillType.MOVEUPRIGHT);
+        actions.add(SkillType.MOVEDOWNRIGHT);
+        actions.add(SkillType.MOVEDOWN);
+        actions.add(SkillType.MOVEDOWNLEFT);
+        actions.add(SkillType.MOVEUPLEFT);
+        return actions;
+    }
     
     public boolean isDead(){
         if(currentHealth == 0 )
