@@ -60,7 +60,11 @@ public class Zone implements Updateable {
     }
 
     public void add(Point point, Terrain terrain) { terrainMap.put(point, terrain); }
-    public void addPlayer(Point point, CharacterEntity entity) { characterMap.put(point, entity); }
+    public void addPlayer(Point point, CharacterEntity entity) {
+        characterMap.put(point, entity);
+        entity.setZone(this);
+        entity.setZoneId(this.id);
+    }
     public void add(Point point, AreaEffect effect) { effectMap.put(point, effect); }
     public void add(Point point, Item item) { itemMap.put(point, item); }
     public void add(Point point, ObstacleItem obstacle) { obstacleItemMap.put(point, obstacle); }

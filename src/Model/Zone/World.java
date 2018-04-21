@@ -12,9 +12,8 @@ public class World implements Updateable {
 
     private Map<Integer, Zone> zoneHashMap = new HashMap<>();
 
-    public World(Integer currentWorld, Player player){
+    public World(Integer currentWorld){
         this.currentZone = currentWorld;
-        this.player = player;
     }
 
     public void addZone(Zone zone) {
@@ -25,8 +24,8 @@ public class World implements Updateable {
         this.currentZone = currentWorld;
     }
 
-    public int getCurrentZone() {
-        return this.currentZone;
+    public Zone getCurrentZone() {
+        return this.getZoneByID(currentZone);
     }
 
     public Zone getZoneByID(Integer id) {
@@ -36,5 +35,9 @@ public class World implements Updateable {
     @Override
     public void update() {
         zoneHashMap.get(currentZone).update();
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 }

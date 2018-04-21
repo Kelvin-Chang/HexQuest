@@ -8,6 +8,6 @@ import javafx.scene.input.InputEvent;
 public class KeyInputController extends GameMediator {
 
     public KeyInputController() {
-
+        
     }
 }

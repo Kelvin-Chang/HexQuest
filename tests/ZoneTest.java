@@ -138,7 +138,7 @@ public class ZoneTest {
         Zone zoneone = new Zone(1, 1, 1);
         Point p = new Point(0,0);
         Player characterSmash = PlayerFactory.produceSmasher();
-        World world = new World(0, characterSmash);
+        World world = new World(0);
         world.addZone(zone);
         world.addZone(zoneone);
         Effect effect = null;

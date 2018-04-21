@@ -6,13 +6,28 @@
         "id": 0,
         "rows": 4,
         "columns": 4,
-        "Entity": [],
         "Tile": [
           {
             "terrain": "grass",
             "areaEffect": "none",
             "item": "none",
             "decal": "none",
+            "Entity" : {
+              "type": "player",
+              "name": "dave",
+              "class": "smasher",
+              "level": 1,
+              "maxHealth": 100,
+              "currentHealth": 100,
+              "maxMana": 100,
+              "currentMana": 100,
+              "attack": 10,
+              "defense": 10,
+              "speed": 1,
+              "orientation": "up",
+              "pet": "none",
+              "Inventory": []
+            },
             "x": 0,
             "y": 0
           },
@@ -21,6 +36,9 @@
             "areaEffect": "none",
             "item": "none",
             "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
             "x": 0,
             "y": 1
           },
@@ -29,6 +47,9 @@
             "areaEffect": "none",
             "item": "none",
             "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
             "x": 0,
             "y": 2
           },
@@ -37,6 +58,9 @@
             "areaEffect": "none",
             "item": "none",
             "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
             "x": 0,
             "y": 3
           },
@@ -45,6 +69,9 @@
             "areaEffect": "none",
             "item": "none",
             "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
             "x": 1,
             "y": 0
           },
@@ -53,6 +80,9 @@
             "areaEffect": "none",
             "item": "none",
             "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
             "x": 1,
             "y": 1
           },
@@ -61,6 +91,9 @@
             "areaEffect": "none",
             "item": "none",
             "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
             "x": 1,
             "y": 2
           },
@@ -69,6 +102,9 @@
             "areaEffect": "none",
             "item": "none",
             "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
             "x": 1,
             "y": 3
           },
@@ -77,6 +113,9 @@
             "areaEffect": "none",
             "item": "none",
             "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
             "x": 2,
             "y": 0
           },
@@ -85,6 +124,9 @@
             "areaEffect": "none",
             "item": "none",
             "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
             "x": 2,
             "y": 1
           },
@@ -93,6 +135,9 @@
             "areaEffect": "none",
             "item": "none",
             "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
             "x": 2,
             "y": 2
           },
@@ -101,6 +146,9 @@
             "areaEffect": "none",
             "item": "none",
             "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
             "x": 2,
             "y": 3
           },
@@ -109,6 +157,9 @@
             "areaEffect": "none",
             "item": "none",
             "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
             "x": 3,
             "y": 0
           },
@@ -117,6 +168,9 @@
             "areaEffect": "none",
             "item": "none",
             "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
             "x": 3,
             "y": 1
           },
@@ -125,6 +179,9 @@
             "areaEffect": "none",
             "item": "none",
             "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
             "x": 3,
             "y": 2
           },
@@ -133,6 +190,9 @@
             "areaEffect": "none",
             "item": "none",
             "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
             "x": 3,
             "y": 3
           }

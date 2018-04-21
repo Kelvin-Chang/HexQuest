@@ -5,6 +5,8 @@ import View.Viewport;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.awt.*;
+
 public class UnpackSave {
 
     private GameBuilder gameBuilder;
@@ -46,6 +48,27 @@ public class UnpackSave {
     public void unpackTile(JSONObject tile, Integer id) {
         System.out.println("Unpacking tile: " + tile);
         gameBuilder.initTile(tile.getString("terrain"), tile.getString("areaEffect"), tile.getString("decal"), tile.getString("item"), tile.getInt("x"), tile.getInt("y"), id);
+        JSONObject entity = tile.getJSONObject("Entity");
+
+        if(!entity.getString("type").equals("none")) {
+            switch (entity.getString("type")) {
+                case "player":
+                    gameBuilder.initPlayer(entity.getString("name"), entity.getString("class"), entity.getInt("level"), entity.getInt("maxHealth"), entity.getInt("currentHealth"), entity.getInt("maxMana"), entity.getInt("maxMana"), entity.getInt("attack"), entity.getInt("defense"), entity.getInt("speed"), entity.getString("orientation"), entity.getString("pet"), entity.getJSONArray("Inventory"), new Point(tile.getInt("x"), tile.getInt("y")));
+                    break;
+                case "NPC":
+                    gameBuilder.initNPC(entity.getString("name"), entity.getInt("level"), entity.getInt("maxHealth"), entity.getInt("currentHealth"), entity.getInt("maxMana"), entity.getInt("maxMana"), entity.getInt("attack"), entity.getInt("defense"), entity.getInt("speed"), entity.getString("orientation"), entity.getString("pet"), entity.getJSONArray("Inventory"), new Point(tile.getInt("x"), tile.getInt("y")));
+                    break;
+                case "shopKeep":
+                    gameBuilder.initShopKeep(entity.getString("name"), entity.getInt("level"), entity.getInt("maxHealth"), entity.getInt("currentHealth"), entity.getInt("maxMana"), entity.getInt("maxMana"), entity.getInt("attack"), entity.getInt("defense"), entity.getInt("speed"), entity.getString("orientation"), entity.getString("pet"), entity.getJSONArray("Inventory"), new Point(tile.getInt("x"), tile.getInt("y")));
+                    break;
+                case "mount":
+                    gameBuilder.initMount(entity.getString("name"));
+                    break;
+                case "pet":
+                    gameBuilder.initMount(entity.getString("name"));
+                    break;
+            }
+        }
     }
 
 }
