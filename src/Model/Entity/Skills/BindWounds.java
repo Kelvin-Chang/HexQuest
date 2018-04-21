@@ -12,9 +12,7 @@ public class BindWounds extends VariableEffectSkill {
 
     @Override
     public void activateSkill(CharacterEntity player) {
-        if (skillSuccessful()) {
-            Effect healthEffect = effectFactory.produceHealthModifierEffect(calculateChange(10));
-            healthEffect.trigger(player);
-        }
+        Effect healthEffect = effectFactory.produceHealthModifierEffect(calculateChange(10));
+        healthEffect.trigger(player);
     }
 }

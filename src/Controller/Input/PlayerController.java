@@ -2,7 +2,6 @@ package Controller.Input;
 
 import Model.Entity.Character.CharacterEntity;
 import Model.Entity.Character.Player;
-import Model.Enums.Orientation;
 import Model.Enums.SkillType;
 
 public class PlayerController {
@@ -44,9 +43,14 @@ public class PlayerController {
         System.out.println("DownLeft pressed");
     }
 
-    public void pressBargain() {
-        this.character.useSkill(SkillType.BARGAINSKILL);
+    public CharacterEntity pressBargain() {
         System.out.println("Bargain pressed");
+        CharacterEntity bargainPartner = this.character.getInteractionPartner();
+        if (bargainPartner != null) {
+            return bargainPartner;
+        } else {
+            return null;
+        }
     }
 
     public void pressBindWounds() {
@@ -94,9 +98,14 @@ public class PlayerController {
         System.out.println("Staff pressed");
     }
 
-    public void pressPickPocket() {
-        this.character.useSkill(SkillType.PICKPOCKETSKILL);
+    public CharacterEntity pressPickPocket() {
         System.out.println("PickPocket pressed");
+        CharacterEntity pickPocketTarget = this.character.getInteractionPartner();
+        if (pickPocketTarget != null) {
+            return pickPocketTarget;
+        } else {
+            return null;
+        }
     }
 
     public void pressRemoveTrap() {
@@ -112,6 +121,16 @@ public class PlayerController {
     public void pressRangedWeapon() {
         this.character.useSkill(SkillType.RANGEDWEAPONSKILL);
         System.out.println("RangedWeapon pressed");
+    }
+
+    public CharacterEntity pressTalk() {
+        System.out.println("Talk pressed");
+        CharacterEntity pickPocketTarget = this.character.getInteractionPartner();
+        if (pickPocketTarget != null) {
+            return pickPocketTarget;
+        } else {
+            return null;
+        }
     }
 
 }

@@ -7,7 +7,5 @@ public class PickPocket extends Skill {
     public PickPocket() {}
 
     @Override
-    public void activateSkill(CharacterEntity player) {
-
-    }
+    public void activateSkill(CharacterEntity player) {}
 }
