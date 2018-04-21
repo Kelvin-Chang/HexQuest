@@ -307,28 +307,42 @@ public abstract class CharacterEntity {
     }
 
     public void addUpToMovementQueue() {
+        movementQueue.clear();
+        orientation = Orientation.UP;
         movementQueue.add(Orientation.UP);
     }
 
     public void addUpRightToMovementQueue() {
+        movementQueue.clear();
+        orientation = Orientation.UPRIGHT;
         movementQueue.add(Orientation.UPRIGHT);
     }
 
     public void addDownRightToMovementQueue() {
+        movementQueue.clear();
+        orientation = Orientation.DOWNRIGHT;
         movementQueue.add(Orientation.DOWNRIGHT);
     }
 
     public void addDownToMovementQueue() {
+        movementQueue.clear();
+        orientation = Orientation.DOWN;
         movementQueue.add(Orientation.DOWN);
     }
 
     public void addDownLeftToMovementQueue() {
+        movementQueue.clear();
+        orientation = Orientation.DOWNLEFT;
         movementQueue.add(Orientation.DOWNLEFT);
     }
 
     public void addUpLeftToMovementQueue() {
+        movementQueue.clear();
+        orientation = Orientation.UPLEFT;
         movementQueue.add(Orientation.UPLEFT);
     }
+
+    public void clearMovementQueue(){ movementQueue.clear();}
 
     public boolean hasNextMove() {
         Queue<Orientation>  q = movementQueue;
