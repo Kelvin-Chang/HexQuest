@@ -83,7 +83,7 @@ public class GameMediator extends Application {
 
     private void startTimer() {
         timer = new Timer();
-        timer.scheduleAtFixedRate(new GameLoop(), 1000, 10);
+        timer.scheduleAtFixedRate(new GameLoop(), 0, 60);
     }
 
 
