@@ -13,6 +13,7 @@ public class PlayerController {
     }
 
     public void pressUp() {
+        System.out.println("please work");
         this.character.addUpToMovementQueue();
     }
 

@@ -1,8 +1,11 @@
 package Model.Zone;
 
 import Model.Entity.Character.Player;
+import Model.Entity.Skills.Skill;
+import Model.Enums.SkillType;
 import Model.Updateable;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,8 +38,20 @@ public class World implements Updateable {
         return zoneHashMap.get(id);
     }
 
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
     @Override
     public void update() {
         zoneHashMap.get(currentZone).update();
+    }
+
+    public ArrayList<SkillType> playerActions() {
+        return player.getPlayerActions();
     }
 }

@@ -1,18 +1,19 @@
 package Controller.Input;
 
-import View.Menu.AbstractView;
-import View.Menu.LoadGameView;
-import View.Menu.MainMenuView;
-import View.Menu.NewGameView;
+import Controller.GameMediator;
+import View.Menu.*;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 public class ViewController {
-    private static Scene scene;
+    private Scene scene;
     private static Stage stage;
     private static ViewController viewController;
+    private GameMediator gameMediator;
 
     public ViewController() {
 
@@ -66,7 +67,9 @@ public class ViewController {
 
 
     public void switchToGamePlayView() {
-
+        GameplayView view = new GameplayView();
+        createScene(view);
+        gameMediator = new GameMediator(scene);
     }
 
     // swap to "exit view"

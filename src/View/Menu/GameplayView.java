@@ -1,4 +1,13 @@
 package View.Menu;
 
-public class GameplayView {
+import Controller.GameMediator;
+import Controller.Input.ViewController;
+
+public class GameplayView extends AbstractView {
+
+    ViewController viewController;
+
+    public GameplayView() {
+        viewController = new ViewController();
+    }
 }
