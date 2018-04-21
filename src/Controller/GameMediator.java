@@ -56,6 +56,7 @@ public class GameMediator extends Application {
 
         // pass existing initial stage into viewController to load it
         viewController.displayStage(primaryStage);
+        scene = viewController.getScene();
 
         // set the view in the stage to the main menu
         viewController.switchToMainMenuView();
@@ -65,11 +66,14 @@ public class GameMediator extends Application {
         gameLoader = new GameLoader(gameBuilder);
         gameLoader.loadGame(saveFileLocation);
         world = gameBuilder.getWorld();
+        keyInputController = new KeyInputController("", world.playerActions(), new PlayerController(world.getPlayer()), this);
         System.out.println(world.getCurrentZone().getAllTerrains());
         Collection<Point> allPts = world.getCurrentZone().getAllTerrainPoints();
         System.out.println("Got world: " + world);
         renderer = new Renderer(world, viewController.getGameplayView());
+        viewController.getScene().addEventFilter(KeyEvent.KEY_RELEASED, keyEvent -> keyInputController.issueCommand(keyEvent.getCode()));
         renderer.render();
+        loaded = true;
         startTimer();
     }
 
@@ -87,7 +91,8 @@ public class GameMediator extends Application {
         @Override
         public void run() {
             if(loaded) {
-                System.out.println("Loop");
+                renderer.render();
+                world.update();
             }
         }
     }
