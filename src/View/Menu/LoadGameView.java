@@ -3,12 +3,13 @@ package View.Menu;
 import Controller.Input.ViewController;
 import Controller.buttons.MainMenuSelectable;
 import Controller.buttons.Selectable;
+import Controller.buttons.StartLoadGameSelectable;
 import Controller.buttons.StartNewGameSelectable;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
@@ -18,47 +19,72 @@ import java.util.ArrayList;
 
 public class LoadGameView extends AbstractView {
 
-    ViewController viewController;
+    private ViewController viewController;
+    private String saveFileLocation;
 
     public LoadGameView() {
         viewController = new ViewController();
 
-        this.getChildren().add(borderPane());
+        this.getChildren().add(borderPane(this));
     }
 
-        private ArrayList<ToggleButton> centerPaneToggleButtons() {
-        ToggleGroup toggleGroup = new ToggleGroup();
-        ToggleButton tb1 = new ToggleButton("Save Slot 1");
-        ToggleButton tb2 = new ToggleButton("Save Slot 2");
-        ToggleButton tb3 = new ToggleButton("Save Slot 3");
 
-        tb1.setSelected(true);
+    private ArrayList<RadioButton> centerPaneRadioButtons() {
+
+        // togglegroup for character selection
+        ToggleGroup toggleGroup = new ToggleGroup();
+
+        // radio buttons
+        RadioButton tb1 = new RadioButton("Save Slot 1");
+        RadioButton tb2 = new RadioButton("Save Slot 2");
+        RadioButton tb3 = new RadioButton("Save Slot 3");
+
+        // TODO: replace "Save Slot #" with json file path
+        // data that each radio button holds
+        tb1.setUserData("Save Slot 1");
+        tb2.setUserData("Save Slot 2");
+        tb3.setUserData("Save Slot 3");
 
         tb1.setToggleGroup(toggleGroup);
         tb2.setToggleGroup(toggleGroup);
         tb3.setToggleGroup(toggleGroup);
 
-        ArrayList<ToggleButton> options = new ArrayList<ToggleButton>() {{
+        ArrayList<RadioButton> options = new ArrayList<RadioButton>() {{
             add(tb1);
             add(tb2);
             add(tb3);
         }};
+        toggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+            @Override
+            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
+                if (newValue != null) {
+                    saveFileLocation = (toggleGroup.getSelectedToggle()).getUserData().toString();
+                    System.out.println(saveFileLocation);
+                }
+            }
+        });
+
+        // this is placed after the "changed" method to initialize the characterChoice to a non-null value
+        // initializes an initial choice once the view is loaded
+        tb1.setSelected(true);
+
+        System.out.println("LoadGameView: " + saveFileLocation);
 
         return options;
     }
 
     // creates vbox to hold buttons
     private VBox centerPane() {
-        ArrayList<ToggleButton> options = centerPaneToggleButtons();
+        ArrayList<RadioButton> options = centerPaneRadioButtons();
         VBox vbox = new VBox();
         vbox.setSpacing(30);
         vbox.setPrefSize(400,300);
         vbox.setAlignment(Pos.TOP_CENTER);
 
-        for(ToggleButton clickable: options) {
+        for(RadioButton clickable: options) {
 
             // sets selectable style
-            clickable.getStyleClass().add("button3");
+            clickable.getStyleClass().add("button2");
 
             // add to vbox
             vbox.getChildren().add(clickable);
@@ -99,18 +125,18 @@ public class LoadGameView extends AbstractView {
         return stackPane;
     }
 
-    private ArrayList<Selectable> bottomPaneButtons(ViewController viewController) {
+    private ArrayList<Selectable> bottomPaneButtons(ViewController viewController, LoadGameView loadGameView) {
         ArrayList<Selectable> options = new ArrayList<Selectable>() {{
             add(new MainMenuSelectable("Main Menu", viewController));
-//            add(new StartNewGameSelectable("Start Game", viewController));
+            add(new StartLoadGameSelectable("Start Game", viewController, loadGameView));
         }};
 
         return options;
     }
 
-    private HBox bottomPane() {
+    private HBox bottomPane(LoadGameView loadGameView) {
 
-        ArrayList<Selectable> options = bottomPaneButtons(viewController);
+        ArrayList<Selectable> options = bottomPaneButtons(viewController, loadGameView);
 
         HBox hbox = new HBox();
         hbox.setMaxHeight(300);
@@ -121,21 +147,16 @@ public class LoadGameView extends AbstractView {
 
         for(Selectable clickable: options) {
             Button selectable = new Button(clickable.getName());
-
-            // sets selectable style
             selectable.getStyleClass().add("button1");
-
-            // set action
             selectable.setOnAction(clickable);
 
-            // add to vbox
             hbox.getChildren().add(selectable);
         }
 
         return hbox;
     }
 
-    private BorderPane borderPane() {
+    private BorderPane borderPane(LoadGameView loadGameView) {
 
         // create new borderpane for formatting
         BorderPane bp = new BorderPane();
@@ -143,13 +164,17 @@ public class LoadGameView extends AbstractView {
         bp.setTop(topPane());
         bp.setCenter(centerPane());
 
-        bp.setBottom(bottomPane());
+        bp.setBottom(bottomPane(loadGameView));
         bp.setLeft(leftPane());
         bp.setRight(rightPane());
 
         return bp;
     }
 
+    // TODO: ANTI OOP
+    public String getSaveFileChoice() {
+        return saveFileLocation;
+    }
 
 
 }
