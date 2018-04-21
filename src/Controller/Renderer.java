@@ -7,11 +7,10 @@ import View.Menu.GameplayView;
 import View.SpriteBase;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 
 import java.awt.Point;
-import java.io.File;
-import java.lang.reflect.Array;
+import java.awt.geom.*;
+
 import java.util.Collection;
 
 public class Renderer {
@@ -21,6 +20,9 @@ public class Renderer {
     private Canvas canvas;
     private GraphicsContext graphicsContext;
     private SpriteBase sprites;
+
+    // sets the radius/size of tiles and stuff
+    private int radius = 16;
 
     // TODO: CHANGE TO ADD PROPER IMPLEMENTATION
     public Renderer(World world, GameplayView gameplayView) {
@@ -32,66 +34,101 @@ public class Renderer {
     }
 
     public void render() {
+        // clear canvas for each render
+        graphicsContext.clearRect(0,0,1000,800);
+
+        renderTiles();
+        renderPlayer();
+
+    }
+
+
+    private void renderPlayer() {
+        System.out.println("d");
+        Point playerLocation = world.getPlayer().getLocation();
+        Point2D imageCoordinates = calculateImageCoordinates((int) playerLocation.getX(),(int) playerLocation.getY());
+        graphicsContext.drawImage(sprites.getCharacterSprite(0), imageCoordinates.getX(), imageCoordinates.getY(), 2*radius, 2*radius);
+    }
+
+    private void renderTiles() {
         Zone zone = world.getCurrentZone();
-
+        System.out.println("a");
         Collection<Point> zoneCollection = zone.getAllTerrainPoints();
-
+        System.out.println("b");
         Point[] zoneArr = zoneCollection.toArray(new Point[zoneCollection.size()]);
-
-        // initial radius and stuff
-        int radius = 16;
-        double a = 0;
-        double b = 0;
-
+        System.out.println("c");
+//        // initial radius and stuff
+//        double a = 0;
+//        double b = 0;
+//        double aP = 0;
+//        double bP = 0;
+//        Point playerLocation = world.getPlayer().getLocation();
+//        int xp = (int)playerLocation.getX();
+//        int yp = (int)playerLocation.getY();
+//        if (xp % 2 == 1) {
+//            aP = radius * 2 * xp;
+//            bP = (2 * radius * yp) + radius;
+//        } else {
+//            aP = radius * 2 * xp;
+//            bP = radius * 2 * yp;
+//        }
+//        graphicsContext.drawImage(sprites.getCharacterSprite(0), aP, bP, 2*radius, 2*radius);
         for (int i = 0; i < zoneArr.length; i++) {
+            System.out.println("1");
             Terrain zoneTerrain = zone.getTerrain(zoneArr[i]);
-            int x = (int) zoneArr[i].getX();
-            int y = (int) zoneArr[i].getY();
-
-            if (x % 2 == 1) {
-                a = radius * 1.5 * x;
-                b = (2 * radius * y) + radius;
-            }
-
-            else if (x % 2 == 0) {
-                a = radius * 1.5 * x;
-                b = radius * 2 * y;
-            }
-
-            switch(zoneTerrain) {
+            System.out.println("2");
+            Point2D imageCoordinates = calculateImageCoordinates((int) zoneArr[i].getX(), (int) zoneArr[i].getY());
+            System.out.println("4");
+//<<<<<<< HEAD
+            switch (zoneTerrain) {
                 case GRASS:
-                    graphicsContext.drawImage(sprites.getTileSprite(0), a, b, 2*radius, 2*radius);
+                    graphicsContext.drawImage(sprites.getTileSprite(0), imageCoordinates.getX(), imageCoordinates.getY(), 2 * radius, 2 * radius);
                     break;
                 case MOUNTAIN:
-                    graphicsContext.drawImage(sprites.getTileSprite(1), a, b, 2*radius, 2*radius);
+                    graphicsContext.drawImage(sprites.getTileSprite(1), imageCoordinates.getX(), imageCoordinates.getY(), 2 * radius, 2 * radius);
                     break;
                 case WATER:
-                    graphicsContext.drawImage(sprites.getTileSprite(2), a, b, 2*radius, 2*radius);
+                    graphicsContext.drawImage(sprites.getTileSprite(2), imageCoordinates.getX(), imageCoordinates.getY(), 2 * radius, 2 * radius);
                     break;
                 default:
                     break;
+////=======
+//            if((aP != a) || (bP != b)) {
+//                switch (zoneTerrain) {
+//                    case GRASS:
+//                        graphicsContext.drawImage(sprites.getTileSprite(0), a, b, 2 * radius, 2 * radius);
+//                        break;
+//                    case MOUNTAIN:
+//                        graphicsContext.drawImage(sprites.getTileSprite(1), a, b, 2 * radius, 2 * radius);
+//                        break;
+//                    case WATER:
+//                        graphicsContext.drawImage(sprites.getTileSprite(2), a, b, 2 * radius, 2 * radius);
+//                        break;
+//                    default:
+//                        break;
+//                }
+//                System.out.println("5");
+//
+//            }
             }
         }
 
-        Point playerLocation = world.getPlayer().getLocation();
-        int x = (int)playerLocation.getX();
-        int y = (int)playerLocation.getY();
+    }
+
+    private Point2D calculateImageCoordinates(int x, int y) {
+        double a = 0, b = 0;
+
         if (x % 2 == 1) {
-            a = radius * 2 * x;
+            a = radius * 1.5 * x;
             b = (2 * radius * y) + radius;
         }
-
-        else {
-            a = radius * 2 * x;
+        System.out.println("3");
+        if (x % 2 == 0) {
+            a = radius * 1.5 * x;
             b = radius * 2 * y;
         }
-        graphicsContext.drawImage(sprites.getCharacterSprite(0), a, b, 2*radius, 2*radius);
-    }
 
-    private Image getImage(String fp) {
-        File file = new File(fp);
-        Image image = new Image(file.toURI().toString());
-        return image;
-    }
 
+        return new Point2D.Double(a, b);
+    }
 }
