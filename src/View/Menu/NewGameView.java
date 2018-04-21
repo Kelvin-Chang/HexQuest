@@ -26,9 +26,9 @@ public class NewGameView extends AbstractView {
     private ViewController viewController;
     private String characterChoice;
 
-    public NewGameView() {
+    public NewGameView(ViewController viewController) {
 
-        viewController = new ViewController();
+        this.viewController = viewController;
 
         this.getChildren().add(borderPane(this));
     }
