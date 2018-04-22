@@ -84,4 +84,9 @@ public class ViewController {
     public GameplayView getGameplayView() {
         return gameplayView;
     }
+
+    public void switchToInventoryView() {
+        InventoryView view = new InventoryView(viewController);
+        createScene(view);
+    }
 }
