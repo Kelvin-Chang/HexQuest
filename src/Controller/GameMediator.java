@@ -114,4 +114,11 @@ public class GameMediator extends Application {
         // TODO
     }
 
+
+
+    // TODO: pretend that some semblance of OOP still exists
+    public World getWorld() {
+        return world;
+    }
+
 }

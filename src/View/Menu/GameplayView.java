@@ -2,6 +2,7 @@ package View.Menu;
 
 import Controller.Input.ViewController;
 import Controller.buttons.*;
+import Model.Entity.Character.Inventory;
 import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -48,6 +49,7 @@ public class GameplayView extends AbstractView {
         hbox.setAlignment(Pos.TOP_CENTER);
 
         ArrayList<Selectable> options = new ArrayList<Selectable>() {{
+            add(new InventorySelectable("Inventory", viewController));
             add(new ExitProgramSelectable("Exit", viewController));
         }};
 

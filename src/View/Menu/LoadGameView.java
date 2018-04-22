@@ -18,8 +18,10 @@ import java.util.ArrayList;
 
 public class LoadGameView extends AbstractView {
 
+    // TODO: fix OOP violations by making separate controllers for each view
     private ViewController viewController;
     private String saveFileLocation;
+
 
     public LoadGameView(ViewController viewController) {
         this.viewController = viewController;

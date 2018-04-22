@@ -85,8 +85,10 @@ public class ViewController {
         return gameplayView;
     }
 
+    // TODO: pause game loop either here or when the button is clicked (or somewhere else)
+    // TODO: pretend there arent any OOP violations/fix the OOP violations
     public void switchToInventoryView() {
-        InventoryView view = new InventoryView(viewController);
+        InventoryView view = new InventoryView(viewController, gameMediator.getWorld().getPlayer());
         createScene(view);
     }
 }

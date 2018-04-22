@@ -12,7 +12,6 @@ public class Inventory {
 
     private TakeableItem[] unequippedItems;
     private HashMap<ItemSlot, EquippableItem> equippedItems;
-
     private int unequippedItemBagSize;
     private int equippedItemBagSize;
 
@@ -99,5 +98,21 @@ public class Inventory {
 
     public void clearEquippedItemSlot(ItemSlot slot) {
         equippedItems.remove(slot);
+    }
+
+    public int getUnequippedItemBagSize() {
+        return unequippedItemBagSize;
+    }
+
+    public int getEquippedItemBagSize() {
+        return equippedItemBagSize;
+    }
+
+    public TakeableItem[] getUnequippedItems() {
+        return unequippedItems;
+    }
+
+    public HashMap<ItemSlot, EquippableItem> getEquippedItems() {
+        return equippedItems;
     }
 }
