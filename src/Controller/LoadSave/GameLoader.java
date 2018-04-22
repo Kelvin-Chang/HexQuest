@@ -18,6 +18,8 @@ public class GameLoader {
     public void loadGame(String savePath) {
         File file = new File(savePath);
 
+        System.out.println("Save path: " + savePath);
+
         String saveData = null;
 
         try {

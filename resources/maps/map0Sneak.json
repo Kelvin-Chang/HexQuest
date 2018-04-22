@@ -1,0 +1,1149 @@
+{
+  "World": {
+    "currentMap": 0,
+    "Map": [
+      {
+        "id": 0,
+        "rows": 10,
+        "columns": 10,
+        "Tile": [
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity" : {
+              "type": "player",
+              "name": "dave",
+              "class": "sneak",
+              "level": 1,
+              "maxHealth": 100,
+              "currentHealth": 100,
+              "maxMana": 100,
+              "currentMana": 100,
+              "attack": 10,
+              "defense": 10,
+              "speed": 1,
+              "orientation": "up",
+              "pet": "none",
+              "Inventory": [],
+              "Skills": [
+                {
+                  "bindWounds" : 100,
+                  "bargain" : 100,
+                  "observation" : 100
+                }
+              ]
+            },
+            "x": 0,
+            "y": 0
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 0,
+            "y": 1
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "shopKeep",
+              "name": "dave",
+              "class": "smasher",
+              "level": 1,
+              "maxHealth": 100,
+              "currentHealth": 100,
+              "maxMana": 100,
+              "currentMana": 100,
+              "attack": 10,
+              "defense": 10,
+              "speed": 1,
+              "orientation": "up",
+              "pet": "none",
+              "Inventory": [],
+              "Skills": []
+            },
+            "x": 0,
+            "y": 2
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "damage",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 0,
+            "y": 3
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 0,
+            "y": 4
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 0,
+            "y": 5
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 0,
+            "y": 6
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "obstacle",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 0,
+            "y": 7
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 0,
+            "y": 8
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 0,
+            "y": 9
+          },
+
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 1,
+            "y": 0
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 1,
+            "y": 1
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 1,
+            "y": 2
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 1,
+            "y": 3
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 1,
+            "y": 4
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 1,
+            "y": 5
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 1,
+            "y": 6
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 1,
+            "y": 7
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 1,
+            "y": 8
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 1,
+            "y": 9
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 2,
+            "y": 0
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 2,
+            "y": 1
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 2,
+            "y": 2
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 2,
+            "y": 3
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 2,
+            "y": 4
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 2,
+            "y": 5
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 2,
+            "y": 6
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 2,
+            "y": 7
+          },
+          {
+            "terrain": "water",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 2,
+            "y": 8
+          },
+          {
+            "terrain": "mountain",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 2,
+            "y": 9
+          },
+          {
+            "terrain": "water",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 3,
+            "y": 0
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 3,
+            "y": 1
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 3,
+            "y": 2
+          },
+          {
+            "terrain": "water",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 3,
+            "y": 3
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 3,
+            "y": 4
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 3,
+            "y": 5
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 3,
+            "y": 6
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 3,
+            "y": 7
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 3,
+            "y": 8
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 3,
+            "y": 9
+          },
+          {
+            "terrain": "water",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 4,
+            "y": 0
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 4,
+            "y": 1
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 4,
+            "y": 2
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 4,
+            "y": 3
+          },
+          {
+            "terrain": "mountain",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 4,
+            "y": 4
+          },
+          {
+            "terrain": "mountain",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 4,
+            "y": 5
+          },
+          {
+            "terrain": "mountain",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 4,
+            "y": 6
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 4,
+            "y": 7
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 4,
+            "y": 8
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 4,
+            "y": 9
+          },
+          {
+            "terrain": "water",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 5,
+            "y": 0
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 5,
+            "y": 1
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 5,
+            "y": 2
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 5,
+            "y": 3
+          },
+          {
+            "terrain": "mountain",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 5,
+            "y": 4
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "heal",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 5,
+            "y": 5
+          },
+          {
+            "terrain": "mountain",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 5,
+            "y": 6
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 5,
+            "y": 7
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 5,
+            "y": 8
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 5,
+            "y": 9
+          },
+          {
+            "terrain": "water",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 6,
+            "y": 0
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 6,
+            "y": 1
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 6,
+            "y": 2
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 6,
+            "y": 3
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 6,
+            "y": 4
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 6,
+            "y": 5
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 6,
+            "y": 6
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 6,
+            "y": 7
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 6,
+            "y": 8
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 6,
+            "y": 9
+          },
+          {
+            "terrain": "water",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 7,
+            "y": 0
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 7,
+            "y": 1
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 7,
+            "y": 2
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 7,
+            "y": 3
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 7,
+            "y": 4
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 7,
+            "y": 5
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 7,
+            "y": 6
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 7,
+            "y": 7
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 7,
+            "y": 8
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 7,
+            "y": 9
+          },
+          {
+            "terrain": "water",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 8,
+            "y": 0
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 8,
+            "y": 1
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 8,
+            "y": 2
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 8,
+            "y": 3
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 8,
+            "y": 4
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 8,
+            "y": 5
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 8,
+            "y": 6
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 8,
+            "y": 7
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 8,
+            "y": 8
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 8,
+            "y": 9
+          },
+          {
+            "terrain": "water",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 9,
+            "y": 0
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 9,
+            "y": 1
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 9,
+            "y": 2
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 9,
+            "y": 3
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 9,
+            "y": 4
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 9,
+            "y": 5
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 9,
+            "y": 6
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 9,
+            "y": 7
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 9,
+            "y": 8
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 9,
+            "y": 9
+          }
+        ]
+      }
+    ]
+  }
+}

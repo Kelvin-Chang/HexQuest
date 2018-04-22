@@ -74,6 +74,12 @@ public class ViewController {
         gameMediator.loadGame("resources/maps/map0.json");
     }
 
+    public void switchToGamePlayView(boolean fromStartGame, String filepath) {
+        gameplayView = new GameplayView(viewController, stage);
+        createScene(gameplayView);
+        gameMediator.loadGame(filepath);
+    }
+
     // swap to "exit view"
     public void exitProgram() {
         System.out.println("exiting");

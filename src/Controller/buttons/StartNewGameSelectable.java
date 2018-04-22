@@ -22,6 +22,8 @@ public class StartNewGameSelectable extends Selectable {
         this.newGameView = newGameView;
     }
 
+
+
     @Override
     public void handle(ActionEvent event) {
 
@@ -29,7 +31,7 @@ public class StartNewGameSelectable extends Selectable {
 
         // load
 
-        viewController.switchToGamePlayView(true);
+        viewController.switchToGamePlayView(true, newGameView.getCharacterChoice());
     }
 
 
