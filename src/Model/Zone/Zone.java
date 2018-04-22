@@ -62,6 +62,7 @@ public class Zone implements Updateable {
         this.id = id;
     }
 
+
     public void add(Point point, Terrain terrain) { terrainMap.put(point, terrain); }
     public void addPlayer(Point point, CharacterEntity entity) {
         characterMap.put(point, entity);
@@ -90,6 +91,33 @@ public class Zone implements Updateable {
         }
     }
     public int getID(){ return this.id; }
+    public int getRows() { return rows; }
+    public int getColumns() { return columns; }
+
+    public Map<Point, AreaEffect> getAreaEffectMap() {
+        return areaEffectMap;
+    }
+
+    public Map<Point, Effect> getEffectsMap() {
+        return effectsMap;
+    }
+
+    public Map<Point, Decal> getDecalMap() {
+        return decalMap;
+    }
+
+    public Map<Point, Item> getItemMap() {
+        return itemMap;
+    }
+
+    public Map<Point, Terrain> getTerrainMap() {
+        return terrainMap;
+    }
+
+    public Map<Point, ObstacleItem> getObstacleItemMap() {
+        return obstacleItemMap;
+    }
+
     public Terrain getTerrain(Point point) { return terrainMap.getOrDefault(point, Terrain.EMPTY); }
     public CharacterEntity getCharacterEntity(Point point) { return characterMap.get(point); }
     public AreaEffect getAreaEffect(Point point) { return areaEffectMap.get(point); }
