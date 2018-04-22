@@ -319,7 +319,7 @@
           },
           {
             "terrain": "grass",
-            "areaEffect": "none",
+            "areaEffect": "level",
             "item": "none",
             "decal": "none",
             "Entity": {

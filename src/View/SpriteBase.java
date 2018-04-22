@@ -32,6 +32,7 @@ public class SpriteBase {
         effectSprites.add(getImage(filePath + "/src/assets/AEdecals/heal.png"));
         effectSprites.add(getImage(filePath + "/src/assets/AEdecals/damage.png"));
         effectSprites.add(getImage(filePath + "/src/assets/AEdecals/death.png"));
+        effectSprites.add(getImage(filePath + "/src/assets/AEdecals/levelUp.png"));
 
         obstacleSprites.add(getImage(filePath + "/src/assets/obstacle.png"));
     }
