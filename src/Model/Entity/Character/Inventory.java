@@ -18,8 +18,8 @@ public class Inventory {
     private int equippedItemBagSize;
 
     public Inventory() {
-        this.equippedItemBagSize = 10;
-        this.unequippedItemBagSize = 10;
+        this.equippedItemBagSize = 15;
+        this.unequippedItemBagSize = 15;
         this.unequippedItems = new TakeableItem[unequippedItemBagSize];
         this.equippedItems = new HashMap<>();
 

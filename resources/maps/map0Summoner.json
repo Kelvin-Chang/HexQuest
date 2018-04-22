@@ -159,7 +159,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "healthBoon",
+            "item": "none",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -170,7 +170,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "healthBane",
+            "item": "none",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -269,7 +269,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "defenseBane",
+            "item": "none",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -940,7 +940,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "none",
+            "item": "staff",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -1050,7 +1050,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "none",
+            "item": "healthBane",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -1061,7 +1061,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "none",
+            "item": "defenseBane",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -1072,7 +1072,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "none",
+            "item": "manaBane",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -1083,7 +1083,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "none",
+            "item": "healthBoon",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -1094,7 +1094,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "none",
+            "item": "defenseBoon",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -1105,7 +1105,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "none",
+            "item": "manaBoon",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -1116,7 +1116,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "none",
+            "item": "bargainingEnchantment",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -1127,7 +1127,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "none",
+            "item": "bindWoundsEnchantment",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -1138,7 +1138,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "none",
+            "item": "observationEnchantment",
             "decal": "none",
             "Entity": {
               "type": "none"
