@@ -34,6 +34,8 @@ public class InventoryView extends AbstractView{
     private Inventory inventory;
     private int unequippedItem;
     private int equippedItem;
+    private Button equipButton;
+    private Button unequipButton;
 
     // TODO: find a way to pass playerEntity to this view
     public InventoryView(ViewController viewController, CharacterEntity character) {
@@ -111,6 +113,7 @@ public class InventoryView extends AbstractView{
                 if(newValue != null){
                     // TODO: see if it is possible to avoid casting
                     unequippedItem = (int) unequippedToggleGroup.getSelectedToggle().getUserData();
+                    equipButton.setDisable(false);
                 }
             }
         });
@@ -149,7 +152,7 @@ public class InventoryView extends AbstractView{
         HashMap<ItemSlot, EquippableItem> equippedItems = inventory.getEquippedItems();
 
         // Arraylist of buttons for inventory
-        ArrayList<RadioButton> unequippedItemsButtons = new ArrayList<RadioButton>();
+        ArrayList<RadioButton> equippedItemsButtons = new ArrayList<RadioButton>();
 
         for (int i = 0; i < inventory.getEquippedItemBagSize(); i++) {
             // TODO: pass in image and/or item name to display
@@ -166,7 +169,7 @@ public class InventoryView extends AbstractView{
             rb.setToggleGroup(equippedToggleGroup);
 
             // add the button to the arraylist to display them later
-            unequippedItemsButtons.add(rb);
+            equippedItemsButtons.add(rb);
         }
 
 
@@ -176,13 +179,14 @@ public class InventoryView extends AbstractView{
                 if(newValue != null){
                     // TODO: see if it is possible to avoid casting
                     equippedItem = (int) equippedToggleGroup.getSelectedToggle().getUserData();
+                    unequipButton.setDisable(false);
                 }
             }
         });
 
         // No initially selected item
 
-        return unequippedItemsButtons;
+        return equippedItemsButtons;
     }
 
 
@@ -231,18 +235,26 @@ public class InventoryView extends AbstractView{
         hbox.setPrefSize(1000,72);
         hbox.setAlignment(Pos.TOP_CENTER);
 
-        for(Selectable clickable: options) {
-            Button selectable = new Button(clickable.getName());
 
-            // sets selectable style
-            selectable.getStyleClass().add("button1");
+        // doing all this manually instead of looping through the arraylist to temporarily disable the buttons until something is clicked
+        equipButton = new Button(options.get(0).getName());
+        equipButton.getStyleClass().add("button1");
+        equipButton.setOnAction(options.get(0));
+        equipButton.setDisable(true);
 
-            // set action
-            selectable.setOnAction(clickable);
+        unequipButton = new Button(options.get(1).getName());
+        unequipButton.getStyleClass().add("button1");
+        unequipButton.setOnAction(options.get(1));
+        unequipButton.setDisable(true);
 
-            // add to vbox
-            hbox.getChildren().add(selectable);
-        }
+        Button exitButton = new Button(options.get(2).getName());
+        exitButton.getStyleClass().add("button1");
+        exitButton.setOnAction(options.get(2));
+
+
+        hbox.getChildren().add(equipButton);
+        hbox.getChildren().add(unequipButton);
+        hbox.getChildren().add(exitButton);
 
         return hbox;
     }
