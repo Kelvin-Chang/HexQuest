@@ -303,6 +303,7 @@ public abstract class CharacterEntity {
         ArrayList<CharacterEntity> entities = zone.getEntitiesOnArea(area);
         for (CharacterEntity entity: entities) {
             effect.trigger(entity);
+            System.out.println(entity.getCurrentHealth());
         }
     }
 

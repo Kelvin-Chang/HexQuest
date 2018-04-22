@@ -390,7 +390,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "healthBane",
+            "item": "none",
             "decal": "none",
             "Entity": {
               "type": "none"

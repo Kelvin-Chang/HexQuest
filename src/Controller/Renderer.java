@@ -2,6 +2,7 @@ package Controller;
 
 import Model.AreaEffects.AreaEffect;
 import Model.Entity.Character.CharacterEntity;
+import Model.Items.Item;
 import Model.Items.ObstacleItem;
 import Model.Zone.FogOfWarHandler;
 import Model.Zone.Terrain;
@@ -11,6 +12,7 @@ import View.Menu.GameplayView;
 import View.SpriteBase;
 import View.Status.StatusView;
 import View.Zone.AreaEffectView;
+import View.Zone.Items.ItemView;
 import View.Zone.Items.ObstacleView;
 import View.Zone.MapView;
 import javafx.scene.canvas.Canvas;
@@ -22,6 +24,7 @@ import java.awt.Point;
 import java.awt.geom.*;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Renderer {
@@ -33,6 +36,7 @@ public class Renderer {
     private GraphicsContext graphicsContext;
     private SpriteBase sprites;
     private ObstacleView obstacleView;
+    private ItemView itemView;
     private MapView mapView;
     private AreaEffectView areaEffectView;
     private FogOfWarHandler fow;
@@ -50,6 +54,7 @@ public class Renderer {
         statusView = new StatusView(canvas);
         mapView = new MapView(graphicsContext, sprites);
         obstacleView = new ObstacleView(graphicsContext, sprites);
+        itemView = new ItemView(graphicsContext, sprites);
         areaEffectView = new AreaEffectView(graphicsContext, sprites);
         fow = new FogOfWarHandler(world.getPlayer());
         fow.updateZone(world.getCurrentZone());
@@ -69,6 +74,7 @@ public class Renderer {
         renderPlayer();
         renderOtherEntities();
         renderObstacles();
+        renderItems();
         statusView.render(world.getPlayer());
 
     }
@@ -200,9 +206,14 @@ public class Renderer {
     }
 
     private void renderItems() {
-        Collection<Point> collectionPoints = world.getCurrentZone().getAllObstacleItemPoints();
-//        Point2D imageCoordinates = calculateImageCoordinates((int) playerLocation.getX(),(int) playerLocation.getY());
-//        graphicsContext.drawImage(sprites.getItemSprite(0), imageCoordinates.getX(), imageCoordinates.getY(), 2*radius, 2*radius);
+        Zone zone = world.getCurrentZone();
+        Collection<Point> obstacleCollection = zone.getAllItemPoints();
+        Point[] itemArray = obstacleCollection.toArray(new Point[obstacleCollection.size()]);
+        for (int i = 0; i < itemArray.length; i++) {
+            Item item = zone.getItem(itemArray[i]);
+            Point2D imageCoordinates = calculateImageCoordinates((int) itemArray[i].getX(), (int) itemArray[i].getY(), radius);
+            itemView.render(item.getName(), imageCoordinates, radius);
+        }
     }
 
     private Point2D calculateImageCoordinates(int x, int y, int radius) {
