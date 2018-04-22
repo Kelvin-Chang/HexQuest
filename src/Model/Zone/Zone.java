@@ -128,7 +128,7 @@ public class Zone implements Updateable {
         return characterMap;
     }
     public Point getSpawnPoint() { return spawnPoint; }
-    public Map<Point, Terrain> getTerrainMap() { return terrainMap;}
+//    public Map<Point, Terrain> getTerrainMap() { return terrainMap;}
     public Point getCharacterLocation(CharacterEntity character) {
         for(Point point : getAllCharacterPoints())
         {
