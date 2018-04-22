@@ -143,9 +143,6 @@ public class InventoryView extends AbstractView{
 
         // togglegroup for equipped items
         ToggleGroup equippedToggleGroup = new ToggleGroup();
-        // TODO: make inventory not global if possible
-
-        HashMap<ItemSlot, EquippableItem> equippedItems = inventory.getEquippedItems();
 
         // Arraylist of buttons for inventory
         ArrayList<RadioButton> equippedItemsButtons = new ArrayList<RadioButton>();
@@ -192,8 +189,6 @@ public class InventoryView extends AbstractView{
         vbox.setSpacing(30);
         vbox.setPrefSize(400,628);
         vbox.setAlignment(Pos.TOP_CENTER);
-
-        HashMap<ItemSlot, EquippableItem> equippedItems = inventory.getEquippedItems();
 
         for(RadioButton clickable: options) {
 
