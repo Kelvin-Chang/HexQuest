@@ -148,25 +148,7 @@ public class GameBuilder {
         charEnt.setAttack(attack);
         charEnt.setDefense(defense);
         charEnt.setSpeed(speed);
-
-        Iterator<Object> iterator = skills.iterator();
-        while(iterator.hasNext()){
-            JSONObject skill = (JSONObject) iterator.next();
-            for(String skillName : skill.keySet()){
-                System.out.println(skillName + ":" + skill.get(skillName));
-                switch (skillName) {
-                    case "bindWounds":
-                        charEnt.setSkillLevel(SkillType.BINDWOUNDSSKILL, skill.getInt(skillName));
-                        break;
-                    case "bargain":
-                        charEnt.setSkillLevel(SkillType.BARGAINSKILL, skill.getInt(skillName));
-                        break;
-                    case "observation":
-                        charEnt.setSkillLevel(SkillType.OBSERVATIONSKILL, skill.getInt(skillName));
-                        break;
-                }
-            }
-        }
+        setSkills(charEnt, skills);
 
         switch (orientation) {
             case "up":
@@ -197,6 +179,60 @@ public class GameBuilder {
         }
 
         System.out.println("Character initialized: " + charEnt);
+    }
+
+    private void setSkills(CharacterEntity charEnt, JSONArray skills) {
+        Iterator<Object> iterator = skills.iterator();
+        while(iterator.hasNext()){
+            JSONObject skill = (JSONObject) iterator.next();
+            for(String skillName : skill.keySet()){
+                System.out.println(skillName + ":" + skill.get(skillName));
+                switch (skillName) {
+                    case "bindWounds":
+                        charEnt.setSkillLevel(SkillType.BINDWOUNDSSKILL, skill.getInt(skillName));
+                        break;
+                    case "bargain":
+                        charEnt.setSkillLevel(SkillType.BARGAINSKILL, skill.getInt(skillName));
+                        break;
+                    case "observation":
+                        charEnt.setSkillLevel(SkillType.OBSERVATIONSKILL, skill.getInt(skillName));
+                        break;
+                    case "brawl":
+                        charEnt.setSkillLevel(SkillType.BRAWLSKILL, skill.getInt(skillName));
+                        break;
+                    case "oneHanded":
+                        charEnt.setSkillLevel(SkillType.ONEHANDEDWEAPONSKILL, skill.getInt(skillName));
+                        break;
+                    case "twoHanded":
+                        charEnt.setSkillLevel(SkillType.TWOHANDEDWEAPONSKILL, skill.getInt(skillName));
+                        break;
+                    case "bane":
+                        charEnt.setSkillLevel(SkillType.BANESKILL, skill.getInt(skillName));
+                        break;
+                    case "boon":
+                        charEnt.setSkillLevel(SkillType.BOONSKILL, skill.getInt(skillName));
+                        break;
+                    case "enchantment":
+                        charEnt.setSkillLevel(SkillType.ENCHANTMENTSKILL, skill.getInt(skillName));
+                        break;
+                    case "staff":
+                        charEnt.setSkillLevel(SkillType.STAFFSKILL, skill.getInt(skillName));
+                        break;
+                    case "pickPocket":
+                        charEnt.setSkillLevel(SkillType.PICKPOCKETSKILL, skill.getInt(skillName));
+                        break;
+                    case "removeTrap":
+                        charEnt.setSkillLevel(SkillType.REMOVETRAPSKILL, skill.getInt(skillName));
+                        break;
+                    case "creep":
+                        charEnt.setSkillLevel(SkillType.CREEPSKILL, skill.getInt(skillName));
+                        break;
+                    case "ranged":
+                        charEnt.setSkillLevel(SkillType.RANGEDWEAPONSKILL, skill.getInt(skillName));
+                        break;
+                }
+            }
+        }
     }
 
     public void initFriendlyNPC(String name, int level, int maxHealth, int currentHealth, int maxMana, int currentMana, int attack, int defense, int speed, String orientation, String pet, JSONArray inventory, JSONArray skills, Point point) {
