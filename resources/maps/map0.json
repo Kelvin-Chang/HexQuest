@@ -100,7 +100,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "none",
+            "item": "obstacle",
             "decal": "none",
             "Entity": {
               "type": "none"

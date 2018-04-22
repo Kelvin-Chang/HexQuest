@@ -32,9 +32,7 @@ public class SpriteBase {
         effectSprites.add(getImage(filePath + "/src/assets/AEdecals/damage.png"));
         effectSprites.add(getImage(filePath + "/src/assets/AEdecals/death.png"));
 
-
-
-        obstacleSprites.add(getImage(filePath + "src/assets/obstacle.png"));
+        obstacleSprites.add(getImage(filePath + "/src/assets/obstacle.png"));
     }
 
     public Image getTileSprite(int ID) {
