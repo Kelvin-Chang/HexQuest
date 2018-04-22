@@ -243,24 +243,24 @@ public class InventoryView extends AbstractView{
         HBox hbox = new HBox();
         hbox.setMaxHeight(300);
 
-        hbox.setSpacing(10);
+        hbox.setSpacing(20);
         hbox.setPrefSize(1000,72);
         hbox.setAlignment(Pos.TOP_CENTER);
 
 
         // doing all this manually instead of looping through the arraylist to temporarily disable the buttons until something is clicked
         equipButton = new Button(options.get(0).getName());
-        equipButton.getStyleClass().add("button1");
+        equipButton.getStyleClass().add("button4");
         equipButton.setOnAction(options.get(0));
         equipButton.setDisable(true);
 
         unequipButton = new Button(options.get(1).getName());
-        unequipButton.getStyleClass().add("button1");
+        unequipButton.getStyleClass().add("button4");
         unequipButton.setOnAction(options.get(1));
         unequipButton.setDisable(true);
 
         Button exitButton = new Button(options.get(2).getName());
-        exitButton.getStyleClass().add("button1");
+        exitButton.getStyleClass().add("button4");
         exitButton.setOnAction(options.get(2));
 
 
