@@ -9,6 +9,7 @@ import Model.Entity.Character.CharacterEntity;
 import Model.Entity.Character.Inventory;
 import Model.Enums.ItemSlot;
 import Model.Items.TakeableItems.EquippableItems.EquippableItem;
+import Model.Items.TakeableItems.TakeableItem;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
@@ -75,21 +76,27 @@ public class InventoryView extends AbstractView{
         return stackPane;
     }
 
-
     private ArrayList<RadioButton> leftPaneRadioButtons(CharacterEntity character) {
 
-        // togglegroup for unequipped items
+        // togglegroup for equipped items
         ToggleGroup unequippedToggleGroup = new ToggleGroup();
 
         // Arraylist of buttons for inventory
         ArrayList<RadioButton> unequippedItemsButtons = new ArrayList<RadioButton>();
 
+        TakeableItem[] unequippedItemsArray = inventory.getUnequippedItems();
+        int numberOfUnequippedItems = 0;
 
-        HashMap<ItemSlot, EquippableItem> equippedItemsHashMap = inventory.getEquippedItems();
-        Set<ItemSlot> equippedItemsKeys = inventory.getEquippedItems().keySet();
+        for (int i = 0; i < inventory.getUnequippedItemBagSize(); i++) {
+            if (unequippedItemsArray[i] != null) {
+                numberOfUnequippedItems++;
+            }
+        }
 
 
-        for (ItemSlot key : equippedItemsKeys) {
+        int unequippedItemsArrayPosition = 0;
+
+        for (int i = 0; i < numberOfUnequippedItems; i++) {
             // TODO: pass in image and/or item name to display
 
             // create radio button
@@ -97,8 +104,12 @@ public class InventoryView extends AbstractView{
             // TODO: give the radio button the name of the item and stuff to identify which one it is
             RadioButton rb = new RadioButton();
 
+            if (unequippedItemsArray[i] == null) {
+                unequippedItemsArrayPosition++;
+            }
+
             // give the radio button the item that is selected
-            rb.setUserData(equippedItemsHashMap.get(key));
+            rb.setUserData(inventory.getItemAtSlot(unequippedItemsArrayPosition));
 
             // set the button to the togglegroup to ensure that only one thing can be selected at a time
             rb.setToggleGroup(unequippedToggleGroup);
@@ -113,7 +124,7 @@ public class InventoryView extends AbstractView{
             public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
                 if(newValue != null){
                     // TODO: see if it is possible to avoid casting
-                    unequippedItem = (EquippableItem) unequippedToggleGroup.getSelectedToggle().getUserData();
+                    equippedItem = (EquippableItem) unequippedToggleGroup.getSelectedToggle().getUserData();
                     equipButton.setDisable(false);
                 }
             }
@@ -146,13 +157,18 @@ public class InventoryView extends AbstractView{
 
     private ArrayList<RadioButton> rightPaneRadioButtons(CharacterEntity character) {
 
-        // togglegroup for equipped items
+        // togglegroup for unequipped items
         ToggleGroup equippedToggleGroup = new ToggleGroup();
 
         // Arraylist of buttons for inventory
         ArrayList<RadioButton> equippedItemsButtons = new ArrayList<RadioButton>();
 
-        for (int i = 0; i < inventory.getEquippedItemBagSize(); i++) {
+
+        HashMap<ItemSlot, EquippableItem> equippedItemsHashMap = inventory.getEquippedItems();
+        Set<ItemSlot> equippedItemsKeys = inventory.getEquippedItems().keySet();
+
+
+        for (ItemSlot key : equippedItemsKeys) {
             // TODO: pass in image and/or item name to display
 
             // create radio button
@@ -161,7 +177,7 @@ public class InventoryView extends AbstractView{
             RadioButton rb = new RadioButton();
 
             // give the radio button the item that is selected
-            rb.setUserData(inventory.getItemAtSlot(i));
+            rb.setUserData(equippedItemsHashMap.get(key));
 
             // set the button to the togglegroup to ensure that only one thing can be selected at a time
             rb.setToggleGroup(equippedToggleGroup);
@@ -176,7 +192,7 @@ public class InventoryView extends AbstractView{
             public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
                 if(newValue != null){
                     // TODO: see if it is possible to avoid casting
-                    equippedItem = (EquippableItem) equippedToggleGroup.getSelectedToggle().getUserData();
+                    unequippedItem = (EquippableItem) equippedToggleGroup.getSelectedToggle().getUserData();
                     unequipButton.setDisable(false);
                 }
             }
