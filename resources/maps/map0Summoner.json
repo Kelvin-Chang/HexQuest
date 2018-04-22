@@ -31,7 +31,11 @@
                 {
                   "bindWounds" : 100,
                   "bargain" : 100,
-                  "observation" : 100
+                  "observation" : 100,
+                  "boon" : 100,
+                  "bane" : 100,
+                  "enchantment" : 100,
+                  "staff" : 100
                 }
               ]
             },
@@ -41,7 +45,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "none",
+            "item": "armor",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -155,7 +159,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "none",
+            "item": "healthBoon",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -166,7 +170,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "none",
+            "item": "healthBane",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -265,7 +269,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "none",
+            "item": "defenseBane",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -330,7 +334,7 @@
           },
           {
             "terrain": "grass",
-            "areaEffect": "none",
+            "areaEffect": "death",
             "item": "none",
             "decal": "none",
             "Entity": {
@@ -386,7 +390,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "none",
+            "item": "healthBane",
             "decal": "none",
             "Entity": {
               "type": "none"

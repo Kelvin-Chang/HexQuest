@@ -18,6 +18,7 @@ public class StaffItem extends UsableItem {
     public StaffItem(int damage) {
         super(STAFF);
         this.damage = damage;
+        setName("Staff");
     }
 
 

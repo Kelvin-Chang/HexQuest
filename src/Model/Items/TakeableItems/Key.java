@@ -4,6 +4,8 @@ import Model.Entity.Character.CharacterEntity;
 
 public class Key extends TakeableItem{
 
-    public Key() {}
+    public Key() {
+        setName("Key");
+    }
 
 }

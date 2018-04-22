@@ -11,6 +11,7 @@ public class Armor extends EquippableItem implements HasEquipUnequipEffects {
         this.armor = armor;
         makeEquipEffect();
         makeUnequipEffect();
+        setName("Armor");
     }
 
     public void makeEquipEffect() {

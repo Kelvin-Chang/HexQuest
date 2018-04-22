@@ -25,6 +25,7 @@ public class RangedWeapon extends UsableItem{
         this.damage = damage;
         this.effectShape = effectShape;
         this.range = range;
+        setName("Ranged Weapon");
     }
 
     public void useItem(CharacterEntity player, Skill skill) {

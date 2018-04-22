@@ -11,11 +11,14 @@ import Model.Effects.TeleportEffect;
 import Model.Entity.Character.*;
 import Model.Entity.Pet;
 import Model.Entity.Skills.Skill;
+import Model.Enums.EffectShape;
 import Model.Enums.Orientation;
 import Model.Enums.SkillType;
+import Model.Items.ItemFactory;
 import Model.Items.ObstacleItem;
 import Model.Items.TakeableItems.EquippableItems.Armor;
 import Model.Items.TakeableItems.EquippableItems.Ring;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItems.HealthBane;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BoonItems.HealthBoon;
 import Model.Zone.Decal;
 import Model.Zone.Terrain;
@@ -39,6 +42,7 @@ public class GameBuilder {
     private MainMenuView mainMenuView;
     private StatusView statusView;
     private Player player;
+    private ItemFactory itemFactory = new ItemFactory();
 
 
     public GameBuilder(World world){
@@ -142,7 +146,14 @@ public class GameBuilder {
                 zone.add(point, new Ring(10));
                 break;
             case "healthBoon":
-                zone.add(point, new HealthBoon(10, 5));
+                zone.add(point, itemFactory.produceHealthBoon(10, 5));
+                break;
+            case "healthBane":
+                zone.add(point, itemFactory.produceHealthBane(10, 5, EffectShape.LINEAR, 1));
+                break;
+            case "defenseBane":
+                zone.add(point, itemFactory.produceDefenseBane(10, 5, EffectShape.LINEAR, 1));
+                break;
         }
     }
 
