@@ -88,6 +88,7 @@ public class Renderer {
         statusView = new StatusView(canvas);
         mapView = new MapView(graphicsContext, sprites);
         obstacleView = new ObstacleView(graphicsContext, sprites);
+        itemView = new ItemView(graphicsContext, sprites);
         areaEffectView = new AreaEffectView(graphicsContext, sprites);
         graphicsContext.setFill(Color.BLACK);
         graphicsContext.fillRect(0, 0, canvas.getWidth(),canvas.getHeight());
