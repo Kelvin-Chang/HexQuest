@@ -2,6 +2,7 @@ package Controller;
 
 import Model.AreaEffects.AreaEffect;
 import Model.Items.ObstacleItem;
+import Model.Zone.FogOfWarHandler;
 import Model.Zone.Terrain;
 import Model.Zone.World;
 import Model.Zone.Zone;
@@ -20,6 +21,7 @@ import javafx.scene.paint.Color;
 import java.awt.Point;
 import java.awt.geom.*;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class Renderer {
@@ -33,6 +35,7 @@ public class Renderer {
     private ObstacleView obstacleView;
     private MapView mapView;
     private AreaEffectView areaEffectView;
+    private FogOfWarHandler fow;
 
     // sets the radius/size of tiles and stuff
     private final int radius = 32;
@@ -48,6 +51,10 @@ public class Renderer {
         mapView = new MapView(graphicsContext, sprites);
         obstacleView = new ObstacleView(graphicsContext, sprites);
         areaEffectView = new AreaEffectView(graphicsContext, sprites);
+        fow = new FogOfWarHandler(world.getPlayer());
+        fow.updateZone(world.getCurrentZone());
+        graphicsContext.setFill(Color.BLACK);
+        graphicsContext.fillRect(0, 0, canvas.getWidth(),canvas.getHeight());
     }
 
     public void render() {
@@ -55,7 +62,9 @@ public class Renderer {
 //        graphicsContext.clearRect(0,0,1000,800);
         graphicsContext.setFill(Color.BLACK);
         graphicsContext.fillRect(0, 0, canvas.getWidth(),canvas.getHeight());
-        renderTiles();
+
+        renderVisibleTiles();
+        renderSeenTiles();
         renderPlayer();
         renderObstacles();
         statusView.render(world.getPlayer());
@@ -65,21 +74,62 @@ public class Renderer {
         return canvas;
     }
 
-    public void renderTiles() {
+    public void renderVisibleTiles() {
+        int size = fow.returnVisibleTiles().size();
+        Point[] visible = fow.returnVisibleTiles().toArray(new Point[size]);
         Zone zone = world.getCurrentZone();
         Collection<Point> zoneCollection = zone.getAllTerrainPoints();
         Point[] zoneArr = zoneCollection.toArray(new Point[zoneCollection.size()]);
         for (int i = 0; i < zoneArr.length; i++) {
-            Terrain zoneTerrain = zone.getTerrain(zoneArr[i]);
-            Point2D imageCoordinates = calculateImageCoordinates((int) zoneArr[i].getX(), (int) zoneArr[i].getY(), radius);
-            mapView.render(zoneTerrain, imageCoordinates, radius);
-            if (zone.getAreaEffect(zoneArr[i]) != null) {
-                AreaEffect currAE = zone.getAreaEffect(zoneArr[i]);
-                areaEffectView.render(currAE, imageCoordinates, radius);
+            for (int j = 0; j < visible.length; j++) {
+                if (zoneArr[i] == visible[j]) {
+                    Terrain zoneTerrain = zone.getTerrain(zoneArr[i]);
+                    Point2D imageCoordinates = calculateImageCoordinates((int) zoneArr[i].getX(), (int) zoneArr[i].getY(), radius);
+                    mapView.render(zoneTerrain, imageCoordinates, radius);
+                    if (zone.getAreaEffect(zoneArr[i]) != null) {
+                        AreaEffect currAE = zone.getAreaEffect(zoneArr[i]);
+                        areaEffectView.render(currAE, imageCoordinates, radius);
+                    }
+                }
             }
         }
-
     }
+
+    public void renderSeenTiles() {
+        int size = fow.returnSeenTiles().size();
+        Point[] seen = fow.returnSeenTiles().toArray(new Point[size]);
+        Zone zone = world.getCurrentZone();
+        Collection<Point> zoneCollection = zone.getAllTerrainPoints();
+        Point[] zoneArr = zoneCollection.toArray(new Point[zoneCollection.size()]);
+        for (int i = 0; i < zoneArr.length; i++) {
+            for (int j = 0; j < seen.length; j++) {
+                if (zoneArr[i] == seen[j]) {
+                    Terrain zoneTerrain = zone.getTerrain(zoneArr[i]);
+                    Point2D imageCoordinates = calculateImageCoordinates((int) zoneArr[i].getX(), (int) zoneArr[i].getY(), radius);
+                    mapView.render(zoneTerrain, imageCoordinates, radius);
+                    if (zone.getAreaEffect(zoneArr[i]) != null) {
+                        AreaEffect currAE = zone.getAreaEffect(zoneArr[i]);
+                        areaEffectView.render(currAE, imageCoordinates, radius);
+                    }
+                }
+            }
+        }
+    }
+//    public void renderTiles() {
+//        Zone zone = world.getCurrentZone();
+//        Collection<Point> zoneCollection = zone.getAllTerrainPoints();
+//        Point[] zoneArr = zoneCollection.toArray(new Point[zoneCollection.size()]);
+//        for (int i = 0; i < zoneArr.length; i++) {
+//            Terrain zoneTerrain = zone.getTerrain(zoneArr[i]);
+//            Point2D imageCoordinates = calculateImageCoordinates((int) zoneArr[i].getX(), (int) zoneArr[i].getY(), radius);
+//            mapView.render(zoneTerrain, imageCoordinates, radius);
+//            if (zone.getAreaEffect(zoneArr[i]) != null) {
+//                AreaEffect currAE = zone.getAreaEffect(zoneArr[i]);
+//                areaEffectView.render(currAE, imageCoordinates, radius);
+//            }
+//        }
+//
+//    }
 
     public void renderObstacles() {
         Zone zone = world.getCurrentZone();
