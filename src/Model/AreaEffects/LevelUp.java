@@ -6,21 +6,20 @@ import Model.Entity.Character.CharacterEntity;
 
 public class LevelUp extends AreaEffect {
 
-    boolean hasBeenTriggered;
+    boolean hasNotBeenTriggered;
 
     public LevelUp(){
         this.effect = EffectFactory.produceLevelUpEffect();
-        hasBeenTriggered = false;
+        hasNotBeenTriggered = true;
     }
 
     public String toString() { return "Level"; }
 
-
     @Override
     public void trigger(CharacterEntity characterEntity) {
-        if(!hasBeenTriggered) {
+        if(hasNotBeenTriggered) {
             effect.trigger(characterEntity);
-            this.hasBeenTriggered = true;
+            this.hasNotBeenTriggered = false;
         }
     }
 }

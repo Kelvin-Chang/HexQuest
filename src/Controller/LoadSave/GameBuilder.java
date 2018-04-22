@@ -7,14 +7,18 @@ import Model.AreaEffects.TakeDamage;
 import Model.Effects.Effect;
 import Model.Effects.EffectFactory;
 import Model.Effects.LevelUpEffect;
+import Model.Effects.TeleportEffect;
 import Model.Entity.Character.*;
 import Model.Entity.Pet;
 import Model.Entity.Skills.Skill;
+import Model.Enums.EffectShape;
 import Model.Enums.Orientation;
 import Model.Enums.SkillType;
+import Model.Items.ItemFactory;
 import Model.Items.ObstacleItem;
 import Model.Items.TakeableItems.EquippableItems.Armor;
 import Model.Items.TakeableItems.EquippableItems.Ring;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItems.HealthBane;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BoonItems.HealthBoon;
 import Model.Zone.Decal;
 import Model.Zone.Terrain;
@@ -38,10 +42,12 @@ public class GameBuilder {
     private MainMenuView mainMenuView;
     private StatusView statusView;
     private Player player;
+    private ItemFactory itemFactory = new ItemFactory();
 
 
-    public GameBuilder(){
+    public GameBuilder(World world){
 //        mainMenuView = new MainMenuView();
+        this.world = world;
     }
 
     public void setViewPort(Viewport viewPort) {
@@ -69,11 +75,13 @@ public class GameBuilder {
     }
 
     public void initWorld(Integer currentMap) {
-        world = new World(currentMap);
+
+        world.setCurrentZone(currentMap);
     }
 
     public void initZone(int id, int xSize, int ySize) {
         Zone zone = new Zone(id, xSize, ySize);
+        System.out.println("Init zone with ID: " + id);
         world.addZone(zone);
     }
 
@@ -112,7 +120,7 @@ public class GameBuilder {
                 break;
             case "teleport":
                 //TODO:
-                //zone.add(point,EffectFactory.produceTeleportEffect())
+                zone.add(point, new TeleportEffect(1, player, world));
                 break;
         }
 
@@ -138,7 +146,35 @@ public class GameBuilder {
                 zone.add(point, new Ring(10));
                 break;
             case "healthBoon":
-                zone.add(point, new HealthBoon(10, 5));
+                zone.add(point, itemFactory.produceHealthBoon(10, 5));
+                break;
+            case "defenseBoon":
+                zone.add(point, itemFactory.produceDefenseBoon(10, 5));
+                break;
+            case "manaBoon":
+                zone.add(point, itemFactory.produceManaBoon(10, 11));
+                break;
+            case "healthBane":
+                zone.add(point, itemFactory.produceHealthBane(10, 5, EffectShape.LINEAR, 1));
+                break;
+            case "defenseBane":
+                zone.add(point, itemFactory.produceDefenseBane(10, 5, EffectShape.LINEAR, 1));
+                break;
+            case "manaBane":
+                zone.add(point, itemFactory.produceManaBane(10, 5, EffectShape.LINEAR, 1));
+                break;
+            case "bargainingEnchantment":
+                zone.add(point, itemFactory.produceDecreaseBargainingEnchantment(10, 5, EffectShape.LINEAR, 1));
+                break;
+            case "bindWoundsEnchantment":
+                zone.add(point, itemFactory.produceDecreaseBindWoundsEnchantment(10, 5, EffectShape.LINEAR, 1));
+                break;
+            case "observationEnchantment":
+                zone.add(point, itemFactory.produceDecreaseObservationEnchantment(10, 5, EffectShape.LINEAR, 1));
+                break;
+            case "staff":
+                zone.add(point, itemFactory.produceStaffItem(5));
+                break;
         }
     }
 
@@ -181,8 +217,6 @@ public class GameBuilder {
             case "cat":
                 charEnt.setPet(new Pet());
         }
-
-        System.out.println("Character initialized: " + charEnt);
     }
 
     private void setSkills(CharacterEntity charEnt, JSONArray skills) {

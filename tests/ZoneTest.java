@@ -158,7 +158,7 @@ public class ZoneTest {
         Zone zoneone = new Zone(1, 1, 1);
         Point p = new Point(0,0);
         Player characterSmash = PlayerFactory.produceSmasher();
-        World world = new World(0);
+        World world = new World();
         world.addZone(zone);
         world.addZone(zoneone);
         Effect effect = null;
@@ -166,7 +166,7 @@ public class ZoneTest {
         int x = characterSmash.getLevel();
 //        Teleport teleport = new Teleport(effect,1, characterSmash, world);
 //        zone.add((new Point(0,0)), EffectFactory.produceLevelUpEffect());
-        zone.add((new Point(0,0)), EffectFactory.produceTeleportEffect(1, characterSmash, world) );
+//        zone.add((new Point(0,0)), EffectFactory.produceTeleportEffect(1, characterSmash, world) );
 //        zone.addPlayer(new Point(0,0), characterSmash);
 
 

@@ -5,17 +5,17 @@ import Model.Entity.Character.CharacterEntity;
 import Model.Entity.Skills.Skill;
 import Model.Enums.EffectShape;
 
-public class HealthBoon extends BoonItem {
+public class DefenseBoon extends BoonItem {
 
-    public HealthBoon(int manaCost, int healthChange) {
+    public DefenseBoon(int manaCost, int healthChange) {
         super(manaCost, healthChange, EffectShape.LINEAR, 1);
-        setName("Health Boon");
+        setName("Defense Boon");
     }
 
     @Override
     public void useItem(CharacterEntity player, Skill skill) {
         if (hasEnoughMana(player)) {
-            Effect triggerEffect = getEffectFactory().produceHealthModifierEffect(calculateAppliedStatChange(player));
+            Effect triggerEffect = getEffectFactory().produceDefenseModifierEffect(calculateAppliedStatChange(player));
 
             player.effectEntities(getOwnLocation(player), triggerEffect);
             System.out.println("BoonItem used with enough mana");

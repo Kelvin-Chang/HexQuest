@@ -5,17 +5,17 @@ import Model.Entity.Character.CharacterEntity;
 import Model.Entity.Skills.Skill;
 import Model.Enums.EffectShape;
 
-public class HealthBane extends BaneItem {
+public class ManaBane extends BaneItem {
 
-    public HealthBane(int manaCost, int defenseChange, EffectShape effectShape, int range) {
+    public ManaBane(int manaCost, int defenseChange, EffectShape effectShape, int range) {
         super(manaCost, defenseChange, effectShape, range);
-        setName("Health Bane");
+        setName("Mana Bane");
     }
 
     @Override
     public void useItem(CharacterEntity player, Skill skill) {
         if (hasEnoughMana(player)) {
-            Effect triggerEffect = getEffectFactory().produceHealthModifierEffect(-calculateAppliedStatChange(player));
+            Effect triggerEffect = getEffectFactory().produceManaModifierEffect(-calculateAppliedStatChange(player));
 
             player.effectEntities(getEffectedCoordinates(player), triggerEffect);
             System.out.println("BaneItem used with enough mana");

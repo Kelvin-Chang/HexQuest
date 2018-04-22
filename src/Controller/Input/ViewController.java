@@ -8,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class ViewController {
     private Scene scene;
     private static Stage stage;
@@ -71,7 +73,16 @@ public class ViewController {
     public void switchToGamePlayView(boolean fromStartGame) {
         gameplayView = new GameplayView(viewController, stage);
         createScene(gameplayView);
-        gameMediator.loadGame("resources/maps/map0.json");
+        ArrayList<String> saveFileLocations = new ArrayList<>();
+        saveFileLocations.add("resources/maps/map0.json");
+        saveFileLocations.add("resources/maps/map1.json");
+        gameMediator.loadGame(saveFileLocations);
+    }
+
+    public void switchToGamePlayView(boolean fromStartGame, ArrayList<String> filepath) {
+        gameplayView = new GameplayView(viewController, stage);
+        createScene(gameplayView);
+        gameMediator.loadGame(filepath);
     }
 
     // swap to "exit view"
@@ -89,6 +100,11 @@ public class ViewController {
     // TODO: pretend there arent any OOP violations/fix the OOP violations
     public void switchToInventoryView() {
         InventoryView view = new InventoryView(viewController, gameMediator.getWorld().getPlayer());
+        createScene(view);
+    }
+
+    public void switchToInGameMenuView() {
+        InGameMenuView view = new InGameMenuView(viewController);
         createScene(view);
     }
 }

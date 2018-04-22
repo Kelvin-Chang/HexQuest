@@ -5,7 +5,7 @@ import View.SpriteBase;
 
 import java.awt.geom.Point2D;
 
-public class ObstacleView extends ItemView {
+public class ObstacleView {
 
     private GraphicsContext graphicsContext;
     private SpriteBase sprites;

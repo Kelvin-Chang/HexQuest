@@ -15,7 +15,7 @@
             "Entity" : {
               "type": "player",
               "name": "dave",
-              "class": "summoner",
+              "class": "smasher",
               "level": 1,
               "maxHealth": 100,
               "currentHealth": 100,
@@ -31,8 +31,7 @@
                 {
                   "bindWounds" : 100,
                   "bargain" : 100,
-                  "observation" : 100,
-                  "boon" : 100
+                  "observation" : 100
                 }
               ]
             },
@@ -42,7 +41,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "armor",
+            "item": "none",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -99,7 +98,7 @@
           },
           {
             "terrain": "grass",
-            "areaEffect": "teleport",
+            "areaEffect": "none",
             "item": "none",
             "decal": "none",
             "Entity": {
@@ -110,7 +109,7 @@
           },
           {
             "terrain": "grass",
-            "areaEffect": "none",
+            "areaEffect": "teleport",
             "item": "none",
             "decal": "none",
             "Entity": {
@@ -156,7 +155,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "ring",
+            "item": "none",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -167,7 +166,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "healthBoon",
+            "item": "none",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -320,7 +319,7 @@
           },
           {
             "terrain": "grass",
-            "areaEffect": "level",
+            "areaEffect": "none",
             "item": "none",
             "decal": "none",
             "Entity": {
