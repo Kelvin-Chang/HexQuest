@@ -173,6 +173,7 @@ public abstract class CharacterEntity {
     }
 
     public void setSkillLevel(SkillType skillType, int level) {
+        CharacterEntity test = this;
         skills.get(skillType).setSkillLevel(level);
     }
 

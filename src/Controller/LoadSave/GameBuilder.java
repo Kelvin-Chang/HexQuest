@@ -9,11 +9,13 @@ import Model.Effects.EffectFactory;
 import Model.Effects.LevelUpEffect;
 import Model.Entity.Character.*;
 import Model.Entity.Pet;
+import Model.Entity.Skills.Skill;
 import Model.Enums.Orientation;
 import Model.Enums.SkillType;
 import Model.Items.ObstacleItem;
 import Model.Items.TakeableItems.EquippableItems.Armor;
 import Model.Items.TakeableItems.EquippableItems.Ring;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BoonItems.HealthBoon;
 import Model.Zone.Decal;
 import Model.Zone.Terrain;
 import Model.Zone.World;
@@ -135,6 +137,8 @@ public class GameBuilder {
             case "ring":
                 zone.add(point, new Ring(10));
                 break;
+            case "healthBoon":
+                zone.add(point, new HealthBoon(10, 5));
         }
     }
 
@@ -264,10 +268,13 @@ public class GameBuilder {
         switch (charClass) {
             case "smasher":
                 player = PlayerFactory.produceSmasher();
+                break;
             case "summoner":
                 player = PlayerFactory.produceSummoner();
+                break;
             case "sneak":
                 player = PlayerFactory.produceSneak();
+                break;
         }
         world.setPlayer(player);
         world.getCurrentZone().addPlayer(point, player);

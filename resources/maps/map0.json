@@ -15,7 +15,7 @@
             "Entity" : {
               "type": "player",
               "name": "dave",
-              "class": "smasher",
+              "class": "summoner",
               "level": 1,
               "maxHealth": 100,
               "currentHealth": 100,
@@ -31,7 +31,8 @@
                 {
                   "bindWounds" : 100,
                   "bargain" : 100,
-                  "observation" : 100
+                  "observation" : 100,
+                  "boon" : 100
                 }
               ]
             },
@@ -166,7 +167,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "none",
+            "item": "healthBoon",
             "decal": "none",
             "Entity": {
               "type": "none"
