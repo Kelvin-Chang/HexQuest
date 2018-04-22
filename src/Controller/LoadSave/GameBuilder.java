@@ -314,12 +314,15 @@ public class GameBuilder {
         switch (charClass) {
             case "smasher":
                 player = PlayerFactory.produceSmasher();
+                player.setSkillClass(charClass);
                 break;
             case "summoner":
                 player = PlayerFactory.produceSummoner();
+                player.setSkillClass(charClass);
                 break;
             case "sneak":
                 player = PlayerFactory.produceSneak();
+                player.setSkillClass(charClass);
                 break;
         }
         world.setPlayer(player);
