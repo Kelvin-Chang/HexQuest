@@ -69,7 +69,10 @@ public class Zone implements Updateable {
         entity.setZone(this);
         entity.setZoneId(this.id);
     }
-    public void add(Point point, AreaEffect effect) { areaEffectMap.put(point, effect); }
+    public void add(Point point, AreaEffect effect) {
+        System.out.println("Adding area effect at point: " + point);
+        areaEffectMap.put(point, effect);
+    }
     public void add(Point point, Item item) { itemMap.put(point, item); }
     public void add(Point point, ObstacleItem obstacle) { obstacleItemMap.put(point, obstacle); }
     public void add(Point point, Decal decal) { decalMap.put(point, decal); }

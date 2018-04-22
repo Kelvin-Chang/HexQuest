@@ -7,6 +7,7 @@ import Model.AreaEffects.TakeDamage;
 import Model.Effects.Effect;
 import Model.Effects.EffectFactory;
 import Model.Effects.LevelUpEffect;
+import Model.Effects.TeleportEffect;
 import Model.Entity.Character.*;
 import Model.Entity.Pet;
 import Model.Entity.Skills.Skill;
@@ -40,8 +41,9 @@ public class GameBuilder {
     private Player player;
 
 
-    public GameBuilder(){
+    public GameBuilder(World world){
 //        mainMenuView = new MainMenuView();
+        this.world = world;
     }
 
     public void setViewPort(Viewport viewPort) {
@@ -69,11 +71,13 @@ public class GameBuilder {
     }
 
     public void initWorld(Integer currentMap) {
-        world = new World(currentMap);
+
+        world.setCurrentZone(currentMap);
     }
 
     public void initZone(int id, int xSize, int ySize) {
         Zone zone = new Zone(id, xSize, ySize);
+        System.out.println("Init zone with ID: " + id);
         world.addZone(zone);
     }
 
@@ -112,7 +116,7 @@ public class GameBuilder {
                 break;
             case "teleport":
                 //TODO:
-                //zone.add(point,EffectFactory.produceTeleportEffect())
+                zone.add(point, new TeleportEffect(1, player, world));
                 break;
         }
 
@@ -181,8 +185,6 @@ public class GameBuilder {
             case "cat":
                 charEnt.setPet(new Pet());
         }
-
-        System.out.println("Character initialized: " + charEnt);
     }
 
     private void setSkills(CharacterEntity charEnt, JSONArray skills) {

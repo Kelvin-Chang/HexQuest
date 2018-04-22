@@ -31,6 +31,8 @@ public class AreaEffectView {
             case "Level":
                 graphicsContext.drawImage(sprites.getEffectSprite(3), imageCoordinates.getX(), imageCoordinates.getY(), 2 * radius, 2 * radius);
                 break;
+            case "Teleport":
+                graphicsContext.drawImage(sprites.getEffectSprite(3), imageCoordinates.getX(), imageCoordinates.getY(), 2 * radius, 2 * radius);
             default:
                 break;
         }

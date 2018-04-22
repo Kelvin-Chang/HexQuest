@@ -1,5 +1,6 @@
 package Controller.LoadSave;
 
+import Model.Zone.World;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

@@ -1,6 +1,7 @@
 import Controller.LoadSave.GameBuilder;
 import Controller.LoadSave.GameLoader;
 import Controller.LoadSave.UnpackSave;
+import Model.Zone.World;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -14,7 +15,7 @@ public class loader {
     public void loaderWorld(){
         Point x1 = new Point(0,0);
         Point y1 = new Point(5,0);
-        GameBuilder builder = new GameBuilder();
+        GameBuilder builder = new GameBuilder(new World());
         GameLoader load = new GameLoader(builder);
         load.loadGame("resources/maps/map0.json");
         Assert.assertTrue(builder.getPlayer()!=null);

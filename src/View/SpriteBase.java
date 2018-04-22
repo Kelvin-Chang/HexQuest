@@ -16,7 +16,6 @@ public class SpriteBase {
         tileSprites = new ArrayList<Image>();
         characterSprites = new ArrayList<Image>();
         effectSprites = new ArrayList<Image>();
-
         obstacleSprites = new ArrayList<Image>();
         startUp();
     }
@@ -33,6 +32,7 @@ public class SpriteBase {
         effectSprites.add(getImage(filePath + "/src/assets/AEdecals/damage.png"));
         effectSprites.add(getImage(filePath + "/src/assets/AEdecals/death.png"));
         effectSprites.add(getImage(filePath + "/src/assets/AEdecals/levelUp.png"));
+        effectSprites.add(getImage(filePath + "/src/assets/amulet.png"));
 
         obstacleSprites.add(getImage(filePath + "/src/assets/obstacle.png"));
     }

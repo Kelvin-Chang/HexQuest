@@ -11,10 +11,8 @@ import View.Menu.GameplayView;
 import View.SpriteBase;
 import View.Status.StatusView;
 import View.Zone.AreaEffectView;
-import View.Zone.Items.ItemView;
 import View.Zone.Items.ObstacleView;
 import View.Zone.MapView;
-import javafx.beans.value.ObservableStringValue;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -22,9 +20,7 @@ import javafx.scene.paint.Color;
 import java.awt.Point;
 import java.awt.geom.*;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
 
 public class Renderer {
@@ -160,7 +156,6 @@ public class Renderer {
             obstacleView.render(imageCoordinates, radius);
         }
     }
-
 
     private void renderPlayer() {
         Point playerLocation = world.getPlayer().getLocation();

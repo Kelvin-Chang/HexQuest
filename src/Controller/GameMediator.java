@@ -19,6 +19,13 @@ import java.awt.*;
 import java.util.Collection;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.awt.geom.Point2D;
+import java.beans.EventHandler;
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
+import java.util.List;
 
 
 public class GameMediator extends Application {
@@ -37,7 +44,8 @@ public class GameMediator extends Application {
     boolean loaded = false;
 
     public GameMediator() {
-        gameBuilder = new GameBuilder();
+        World world = new World();
+        gameBuilder = new GameBuilder(world);
 //        keyInputController = new KeyInputController("", world.playerActions(), new PlayerController(world.getPlayer()), this);
         this.scene = scene;
 //        scene.addEventFilter(KeyEvent.KEY_RELEASED, keyEvent -> keyInputController.issueCommand(keyEvent.getCode()));
@@ -57,10 +65,11 @@ public class GameMediator extends Application {
         viewController.switchToMainMenuView();
     }
 
-    public void loadGame(String saveFileLocation) {
+    public void loadGame(ArrayList<String> saveFileLocation) {
         if (!loaded) {
             gameLoader = new GameLoader(gameBuilder);
-            gameLoader.loadGame(saveFileLocation);
+            for(String save : saveFileLocation)
+                gameLoader.loadGame(save);
             world = gameBuilder.getWorld();
             keyInputController = new KeyInputController("", world.playerActions(), new PlayerController(world.getPlayer()), this);
             Collection<Point> allPts = world.getCurrentZone().getAllTerrainPoints();

@@ -99,7 +99,7 @@
           },
           {
             "terrain": "grass",
-            "areaEffect": "none",
+            "areaEffect": "teleport",
             "item": "none",
             "decal": "none",
             "Entity": {

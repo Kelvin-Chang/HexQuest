@@ -15,17 +15,19 @@ public class World implements Updateable {
 
     private Map<Integer, Zone> zoneHashMap = new HashMap<>();
 
-    public World(Integer currentWorld){
-        this.currentZone = currentWorld;
-    }
+//    public World(Integer currentWorld){
+//        this.currentZone = currentWorld;
+//    }
 
     public World() {}
 
     public void addZone(Zone zone) {
+        System.out.println("Adding zone to world: " + zone.getID());
         zoneHashMap.put(zone.getID(), zone);
     }
 
     public void setCurrentZone(int currentWorld) {
+        System.out.println("New current world is " + currentWorld);
         this.currentZone = currentWorld;
     }
 
