@@ -29,7 +29,7 @@ public class StartNewGameSelectable extends Selectable {
 
         // load
 
-        viewController.switchToGamePlayView();
+        viewController.switchToGamePlayView(true);
     }
 
 

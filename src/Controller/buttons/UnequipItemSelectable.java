@@ -26,6 +26,8 @@ public class UnequipItemSelectable extends Selectable {
 
         // TODO: add proper functionality
         inventory.unequipItem(equippedItem, character);
+        System.out.println("Defense: " + character.getDefense());
+        System.out.println("Mana: " + character.getMaxMana());
         viewController.switchToInventoryView();
     }
 

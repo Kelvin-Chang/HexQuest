@@ -74,6 +74,21 @@ public class Renderer {
         statusView.render(world.getPlayer());
 
     }
+
+    public void resetCanvas(GameplayView gameplayView) {
+        this.gameplayView = gameplayView;
+        this.canvas = gameplayView.getCanvas();
+        this.graphicsContext = canvas.getGraphicsContext2D();
+        this.world = world;
+        sprites = new SpriteBase();
+        statusView = new StatusView(canvas);
+        mapView = new MapView(graphicsContext, sprites);
+        obstacleView = new ObstacleView(graphicsContext, sprites);
+        areaEffectView = new AreaEffectView(graphicsContext, sprites);
+        graphicsContext.setFill(Color.BLACK);
+        graphicsContext.fillRect(0, 0, canvas.getWidth(),canvas.getHeight());
+    }
+
     public Canvas getCanvas() {
         return canvas;
     }

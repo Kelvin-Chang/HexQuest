@@ -27,6 +27,8 @@ public class EquipItemSelectable extends Selectable{
 
         // TODO: csating issue?
         inventory.equipItem(unequippedItem, character);
+        System.out.println("Defense: " + character.getDefense());
+        System.out.println("Mana: " + character.getMaxMana());
         viewController.switchToInventoryView();
     }
 
