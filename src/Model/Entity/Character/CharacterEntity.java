@@ -55,6 +55,7 @@ public abstract class CharacterEntity {
         this.useableItems = new ArrayList<Item>();
         this.zone = new Zone(0, 4,4);
         this.zoneId = 0;
+        this.movementQueue = new LinkedList<>();
     }
     public CharacterEntity(Zone zone){
         this();

@@ -23,6 +23,7 @@ public class SpriteBase {
 
     private void startUp() {
         characterSprites.add(getImage(filePath + "/src/assets/character.png"));
+        characterSprites.add(getImage(filePath + "/src/assets/character1.png"));
 
         tileSprites.add(getImage(filePath + "/src/assets/grass.png"));
         tileSprites.add(getImage(filePath + "/src/assets/mountain.png"));

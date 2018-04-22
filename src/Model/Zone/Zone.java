@@ -244,7 +244,7 @@ public class Zone implements Updateable {
     }
 
     public void updateCharacterLocations() {
-        Collection<CharacterEntity> characterEntities = getAllCharacterEntitys();
+        ArrayList<CharacterEntity> characterEntities = new ArrayList<>(getAllCharacterEntitys());
         for (CharacterEntity characterEntity : characterEntities) {
             attemptMove(characterEntity);
         }

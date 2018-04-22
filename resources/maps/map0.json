@@ -55,7 +55,21 @@
             "item": "none",
             "decal": "none",
             "Entity": {
-              "type": "none"
+              "type": "shopKeep",
+              "name": "dave",
+              "class": "smasher",
+              "level": 1,
+              "maxHealth": 100,
+              "currentHealth": 100,
+              "maxMana": 100,
+              "currentMana": 100,
+              "attack": 10,
+              "defense": 10,
+              "speed": 1,
+              "orientation": "up",
+              "pet": "none",
+              "Inventory": [],
+              "Skills": []
             },
             "x": 0,
             "y": 2

@@ -186,7 +186,6 @@ public class GameBuilder {
         while(iterator.hasNext()){
             JSONObject skill = (JSONObject) iterator.next();
             for(String skillName : skill.keySet()){
-                System.out.println(skillName + ":" + skill.get(skillName));
                 switch (skillName) {
                     case "bindWounds":
                         charEnt.setSkillLevel(SkillType.BINDWOUNDSSKILL, skill.getInt(skillName));

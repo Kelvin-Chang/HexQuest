@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.AreaEffects.AreaEffect;
+import Model.Entity.Character.CharacterEntity;
 import Model.Items.ObstacleItem;
 import Model.Zone.FogOfWarHandler;
 import Model.Zone.Terrain;
@@ -23,6 +24,8 @@ import java.awt.geom.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Renderer {
 
@@ -66,6 +69,7 @@ public class Renderer {
         renderVisibleTiles();
         renderSeenTiles();
         renderPlayer();
+        renderOtherEntities();
         renderObstacles();
         statusView.render(world.getPlayer());
 
@@ -147,6 +151,16 @@ public class Renderer {
         Point playerLocation = world.getPlayer().getLocation();
         Point2D imageCoordinates = calculateImageCoordinates((int) playerLocation.getX(),(int) playerLocation.getY(), radius);
         graphicsContext.drawImage(sprites.getCharacterSprite(0), imageCoordinates.getX(), imageCoordinates.getY(), 2*radius, 2*radius);
+    }
+
+    private void renderOtherEntities() {
+        Map<Point, CharacterEntity> characterMap = world.getCurrentZone().getCharacterMap();
+        for (Point characterLocation : characterMap.keySet()) {
+            if (characterLocation != world.getPlayer().getLocation()) {
+                Point2D imageCoordinates = calculateImageCoordinates((int) characterLocation.getX(),(int) characterLocation.getY(), radius);
+                graphicsContext.drawImage(sprites.getCharacterSprite(1), imageCoordinates.getX(), imageCoordinates.getY(), 2*radius, 2*radius);
+            }
+        }
     }
 
     private void renderItems() {
