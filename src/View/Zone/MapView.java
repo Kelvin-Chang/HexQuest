@@ -1,32 +1,41 @@
 package View.Zone;
 
+import Model.Zone.Terrain;
+import Model.Zone.Zone;
+import View.SpriteBase;
+import javafx.scene.canvas.GraphicsContext;
+
+import java.awt.*;
+import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
+import java.util.Collection;
 
 public class MapView {
-    private TerrainView[][] terrainMap;
-    private DecalView[][] DecalMap;
-    private BufferedImage[][] bufferMap;
-    private int col;
-    private int rows;
+    private GraphicsContext graphicsContext;
+    SpriteBase sprites;
 
-    public MapView(DecalView[][] DecalMap, TerrainView[][] terrainMap){
-        this.DecalMap = DecalMap;
-        this.terrainMap = terrainMap;
+    public MapView(GraphicsContext graphicsContext, SpriteBase sprites) {
+        this.graphicsContext  = graphicsContext;
+        this.sprites = sprites;
     }
-    public void display()
-    {
-        for(int i = 0; i < col; i++)
-        {
-            for(int j = 0; j < rows; j++)
-            {
-                if(DecalMap[i][j] != null)
-                {
-                    bufferMap[i][j] = DecalMap[i][j].getDecalImage();
-                }
-                else {
-                    bufferMap[i][j] = terrainMap[i][j].getTerrainImage();
-                }
-            }
+
+    public void render(Terrain zoneTerrain, Point2D imageCoordinates, int radius) {
+        switch (zoneTerrain) {
+            case GRASS:
+//                    System.out.println("drew Grass" + zoneArr[i].getX() + ", " + zoneArr[i].getY());
+                graphicsContext.drawImage(sprites.getTileSprite(0), imageCoordinates.getX(), imageCoordinates.getY(), 2 * radius, 2 * radius);
+                break;
+            case MOUNTAIN:
+//                    System.out.println("drew Mountain" + zoneArr[i].getX() + ", " + zoneArr[i].getY());
+                graphicsContext.drawImage(sprites.getTileSprite(1), imageCoordinates.getX(), imageCoordinates.getY(), 2 * radius, 2 * radius);
+                break;
+            case WATER:
+//                    System.out.println("drew Water" + zoneArr[i].getX() + ", " + zoneArr[i].getY());
+                graphicsContext.drawImage(sprites.getTileSprite(2), imageCoordinates.getX(), imageCoordinates.getY(), 2 * radius, 2 * radius);
+                break;
+            default:
+                break;
         }
     }
 }
+

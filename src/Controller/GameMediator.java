@@ -17,6 +17,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.awt.*;
+import java.awt.geom.Point2D;
 import java.beans.EventHandler;
 import java.io.File;
 import java.nio.file.Path;
@@ -67,9 +68,7 @@ public class GameMediator extends Application {
         gameLoader.loadGame(saveFileLocation);
         world = gameBuilder.getWorld();
         keyInputController = new KeyInputController("", world.playerActions(), new PlayerController(world.getPlayer()), this);
-        System.out.println(world.getCurrentZone().getAllTerrains());
         Collection<Point> allPts = world.getCurrentZone().getAllTerrainPoints();
-        System.out.println("Got world: " + world);
         renderer = new Renderer(world, viewController.getGameplayView());
         viewController.getScene().addEventFilter(KeyEvent.KEY_RELEASED, keyEvent -> keyInputController.issueCommand(keyEvent.getCode()));
         renderer.render();
