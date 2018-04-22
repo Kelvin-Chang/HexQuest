@@ -57,8 +57,12 @@ public class Renderer {
         graphicsContext.fillRect(0, 0, canvas.getWidth(),canvas.getHeight());
         renderTiles();
         renderPlayer();
+        renderObstacles();
         statusView.render(world.getPlayer());
 
+    }
+    public Canvas getCanvas() {
+        return canvas;
     }
 
     public void renderTiles() {
