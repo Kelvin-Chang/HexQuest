@@ -1,5 +1,7 @@
 package Controller.LoadSave;
 
+import Model.Effects.Effect;
+import Model.Effects.EffectFactory;
 import Model.Entity.Character.*;
 import Model.Entity.Pet;
 import Model.Enums.Orientation;
@@ -87,14 +89,20 @@ public class GameBuilder {
             case "none":
                 break;
             case "damage":
+                zone.add(point, EffectFactory.produceHealthModifierEffect(-10));
                 break;
             case "death":
+                zone.add(point, EffectFactory.produceInstantDeathEffect());
                 break;
             case "heal":
+                zone.add(point, EffectFactory.produceHealthModifierEffect(10));
                 break;
             case "level":
+                zone.add(point,EffectFactory.produceLevelUpEffect());
                 break;
             case "teleport":
+                //TODO:
+                //zone.add(point,EffectFactory.produceTeleportEffect())
                 break;
         }
 
@@ -164,8 +172,14 @@ public class GameBuilder {
         System.out.println("Character initialized: " + charEnt);
     }
 
-    public void initNPC(String name, int level, int maxHealth, int currentHealth, int maxMana, int currentMana, int attack, int defense, int speed, String orientation, String pet, JSONArray inventory, Point point) {
-        NPC npc = new NPC();
+    public void initFriendlyNPC(String name, int level, int maxHealth, int currentHealth, int maxMana, int currentMana, int attack, int defense, int speed, String orientation, String pet, JSONArray inventory, Point point) {
+        FriendlyNPC npc = new FriendlyNPC();
+        world.getCurrentZone().addPlayer(point, npc);
+        setCharAttributes(npc, name, level, maxHealth, currentHealth, maxMana, currentMana, attack, defense, speed, orientation, pet, inventory);
+    }
+
+    public void initHostileNPC(String name, int level, int maxHealth, int currentHealth, int maxMana, int currentMana, int attack, int defense, int speed, String orientation, String pet, JSONArray inventory, Point point) {
+        FriendlyNPC npc = new FriendlyNPC();
         world.getCurrentZone().addPlayer(point, npc);
         setCharAttributes(npc, name, level, maxHealth, currentHealth, maxMana, currentMana, attack, defense, speed, orientation, pet, inventory);
     }

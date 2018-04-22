@@ -55,8 +55,11 @@ public class UnpackSave {
                 case "player":
                     gameBuilder.initPlayer(entity.getString("name"), entity.getString("class"), entity.getInt("level"), entity.getInt("maxHealth"), entity.getInt("currentHealth"), entity.getInt("maxMana"), entity.getInt("maxMana"), entity.getInt("attack"), entity.getInt("defense"), entity.getInt("speed"), entity.getString("orientation"), entity.getString("pet"), entity.getJSONArray("Inventory"), new Point(tile.getInt("x"), tile.getInt("y")));
                     break;
-                case "NPC":
-                    gameBuilder.initNPC(entity.getString("name"), entity.getInt("level"), entity.getInt("maxHealth"), entity.getInt("currentHealth"), entity.getInt("maxMana"), entity.getInt("maxMana"), entity.getInt("attack"), entity.getInt("defense"), entity.getInt("speed"), entity.getString("orientation"), entity.getString("pet"), entity.getJSONArray("Inventory"), new Point(tile.getInt("x"), tile.getInt("y")));
+                case "HostileNPC":
+                    gameBuilder.initHostileNPC(entity.getString("name"), entity.getInt("level"), entity.getInt("maxHealth"), entity.getInt("currentHealth"), entity.getInt("maxMana"), entity.getInt("maxMana"), entity.getInt("attack"), entity.getInt("defense"), entity.getInt("speed"), entity.getString("orientation"), entity.getString("pet"), entity.getJSONArray("Inventory"), new Point(tile.getInt("x"), tile.getInt("y")));
+                    break;
+                case "FriendlyNPC":
+                    gameBuilder.initFriendlyNPC(entity.getString("name"), entity.getInt("level"), entity.getInt("maxHealth"), entity.getInt("currentHealth"), entity.getInt("maxMana"), entity.getInt("maxMana"), entity.getInt("attack"), entity.getInt("defense"), entity.getInt("speed"), entity.getString("orientation"), entity.getString("pet"), entity.getJSONArray("Inventory"), new Point(tile.getInt("x"), tile.getInt("y")));
                     break;
                 case "shopKeep":
                     gameBuilder.initShopKeep(entity.getString("name"), entity.getInt("level"), entity.getInt("maxHealth"), entity.getInt("currentHealth"), entity.getInt("maxMana"), entity.getInt("maxMana"), entity.getInt("attack"), entity.getInt("defense"), entity.getInt("speed"), entity.getString("orientation"), entity.getString("pet"), entity.getJSONArray("Inventory"), new Point(tile.getInt("x"), tile.getInt("y")));
