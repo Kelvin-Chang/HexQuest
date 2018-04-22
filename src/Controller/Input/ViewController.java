@@ -97,4 +97,9 @@ public class ViewController {
         InventoryView view = new InventoryView(viewController, gameMediator.getWorld().getPlayer());
         createScene(view);
     }
+
+    public void switchToInGameMenuView() {
+        InGameMenuView view = new InGameMenuView(viewController);
+        createScene(view);
+    }
 }

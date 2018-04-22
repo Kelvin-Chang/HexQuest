@@ -50,7 +50,7 @@ public class GameplayView extends AbstractView {
 
         ArrayList<Selectable> options = new ArrayList<Selectable>() {{
             add(new InventorySelectable("Inventory", viewController));
-            add(new ExitProgramSelectable("Exit", viewController));
+            add(new InGameMenuSelectable("Menu", viewController));
         }};
 
         for(Selectable clickable: options) {
