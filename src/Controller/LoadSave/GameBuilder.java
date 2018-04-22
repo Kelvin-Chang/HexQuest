@@ -175,6 +175,18 @@ public class GameBuilder {
             case "staff":
                 zone.add(point, itemFactory.produceStaffItem(5));
                 break;
+            case "gauntlet":
+                zone.add(point, itemFactory.produceGauntlet(5));
+                break;
+            case "brassKnuckles":
+                zone.add(point, itemFactory.produceBrassKnuckles(5));
+                break;
+            case "boxingGloves":
+                zone.add(point, itemFactory.produceBoxingGloves(5));
+                break;
+            case "dagger":
+                zone.add(point, itemFactory.produceDagger(5));
+                break;
         }
     }
 

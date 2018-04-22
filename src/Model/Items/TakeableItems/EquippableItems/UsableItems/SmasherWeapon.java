@@ -16,10 +16,10 @@ public class SmasherWeapon extends UsableItem {
     private int damage;
     private Effect triggerEffect;
 
-    public SmasherWeapon(int damage, ItemSlot itemSlot) {
+    public SmasherWeapon(int damage, ItemSlot itemSlot, String name) {
         super(itemSlot);
         this.damage = damage;
-        setName("Smasher Weapon");
+        setName(name);
     }
 
     public void useItem(CharacterEntity player, Skill skill) {

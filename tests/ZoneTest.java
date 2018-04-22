@@ -70,7 +70,7 @@ public class ZoneTest {
         Assert.assertTrue(  zone.getItem(new Point(1,1) ) == null);
         Assert.assertTrue(  zone.getItem(new Point(1,0) ) != null);
 
-        zone.add(new Point(1,1), ItemFactory.produceBrawlItem(10));
+        //zone.add(new Point(1,1), ItemFactory.produceBrawlItem(10));
         Assert.assertTrue(  zone.getItem(new Point(0,0) ) != null);
         Assert.assertTrue(  zone.getItem(new Point(0,1) ) != null);
         Assert.assertTrue(  zone.getItem(new Point(1,1) ) != null);

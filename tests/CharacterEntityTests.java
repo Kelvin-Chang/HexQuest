@@ -154,9 +154,9 @@ public class CharacterEntityTests {
         smasher.getSpecificSkill(SkillType.BRAWLSKILL).setSkillLevel(100);
         summoner.setCurrentHealth(100);
         summoner.setMaxHealth(100);
-        SmasherWeapon brawlItem = itemFactory.produceBrawlItem(5);
+        //SmasherWeapon brawlItem = itemFactory.produceBrawlItem(5);
 
-        smasher.getInventory().equipItem(brawlItem, smasher);
+        //smasher.getInventory().equipItem(brawlItem, smasher);
         smasher.useSkill(SkillType.BRAWLSKILL);
         assertEquals(100, summoner.getCurrentHealth());
     }
@@ -168,9 +168,9 @@ public class CharacterEntityTests {
         smasher.getSpecificSkill(SkillType.ONEHANDEDWEAPONSKILL).setSkillLevel(100);
         summoner.setCurrentHealth(100);
         summoner.setMaxHealth(100);
-        SmasherWeapon oneHandedItem = itemFactory.produceOneHandedItem(5);
+        //SmasherWeapon oneHandedItem = itemFactory.produceOneHandedItem(5);
 
-        smasher.getInventory().equipItem(oneHandedItem, smasher);
+        //smasher.getInventory().equipItem(oneHandedItem, smasher);
         smasher.useSkill(SkillType.ONEHANDEDWEAPONSKILL);
         assertEquals(100, summoner.getCurrentHealth());
     }
@@ -182,9 +182,9 @@ public class CharacterEntityTests {
         smasher.getSpecificSkill(SkillType.TWOHANDEDWEAPONSKILL).setSkillLevel(100);
         summoner.setCurrentHealth(100);
         summoner.setMaxHealth(100);
-        SmasherWeapon twoHandedItem = itemFactory.produceTwoHandedItem(5);
+        //SmasherWeapon twoHandedItem = itemFactory.produceTwoHandedItem(5);
 
-        smasher.getInventory().equipItem(twoHandedItem, smasher);
+        //smasher.getInventory().equipItem(twoHandedItem, smasher);
         smasher.useSkill(SkillType.TWOHANDEDWEAPONSKILL);
         assertEquals(100, summoner.getCurrentHealth());
     }

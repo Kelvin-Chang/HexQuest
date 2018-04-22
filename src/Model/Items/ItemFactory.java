@@ -49,16 +49,40 @@ public class ItemFactory {
         return new Armor(defense);
     }
 
-    public static SmasherWeapon produceBrawlItem(int damage) {
-        return new SmasherWeapon(damage, ItemSlot.BRAWL);
+    public static SmasherWeapon produceGauntlet(int damage) {
+        return new SmasherWeapon(damage, ItemSlot.BRAWL, "Gauntlet");
     }
 
-    public static SmasherWeapon produceOneHandedItem(int damage) {
-        return new SmasherWeapon(damage, ItemSlot.ONEHANDED);
+    public static SmasherWeapon produceBrassKnuckles(int damage) {
+        return new SmasherWeapon(damage, ItemSlot.BRAWL, "Brass Knuckles");
     }
 
-    public static SmasherWeapon produceTwoHandedItem(int damage) {
-        return new SmasherWeapon(damage, ItemSlot.TWOHANDED);
+    public static SmasherWeapon produceBoxingGloves(int damage) {
+        return new SmasherWeapon(damage, ItemSlot.BRAWL, "Boxing Gloves");
+    }
+
+    public static SmasherWeapon produceDagger(int damage) {
+        return new SmasherWeapon(damage, ItemSlot.ONEHANDED, "Dagger");
+    }
+
+    public static SmasherWeapon produceCrowbar(int damage) {
+        return new SmasherWeapon(damage, ItemSlot.ONEHANDED, "Crowbar");
+    }
+
+    public static SmasherWeapon produceMace(int damage) {
+        return new SmasherWeapon(damage, ItemSlot.ONEHANDED, "Mace");
+    }
+
+    public static SmasherWeapon produceGreatSword(int damage) {
+        return new SmasherWeapon(damage, ItemSlot.TWOHANDED, "Great Sword");
+    }
+
+    public static SmasherWeapon produceBattleAxe(int damage) {
+        return new SmasherWeapon(damage, ItemSlot.TWOHANDED, "Battle Axe");
+    }
+
+    public static SmasherWeapon produceClub(int damage) {
+        return new SmasherWeapon(damage, ItemSlot.TWOHANDED, "Club");
     }
 
     public static StaffItem produceStaffItem(int damage) {
