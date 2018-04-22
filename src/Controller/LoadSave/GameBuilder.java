@@ -78,6 +78,7 @@ public class GameBuilder {
                 break;
             case "water":
                 zone.add(point, Terrain.WATER);
+                break;
             default:
                 zone.add(point, Terrain.GRASS);
         }

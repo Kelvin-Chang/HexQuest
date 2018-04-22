@@ -1,4 +1,4 @@
 package Model.Entity.Character;
 
-public class ShopKeep extends CharacterEntity {
+public class ShopKeep extends FriendlyNPC{
 }
