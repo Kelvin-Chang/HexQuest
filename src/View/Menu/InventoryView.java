@@ -8,7 +8,6 @@ import Controller.buttons.UnequipItemSelectable;
 import Model.Entity.Character.CharacterEntity;
 import Model.Entity.Character.Inventory;
 import Model.Enums.ItemSlot;
-import Model.Items.Item;
 import Model.Items.TakeableItems.EquippableItems.EquippableItem;
 import Model.Items.TakeableItems.TakeableItem;
 import javafx.beans.value.ChangeListener;
@@ -81,9 +80,6 @@ public class InventoryView extends AbstractView{
 
         // togglegroup for unequipped items
         ToggleGroup unequippedToggleGroup = new ToggleGroup();
-        // TODO: make inventory not global if possible
-
-        TakeableItem[] unequippedItems = inventory.getUnequippedItems();
 
         // Arraylist of buttons for inventory
         ArrayList<RadioButton> unequippedItemsButtons = new ArrayList<RadioButton>();
@@ -191,7 +187,7 @@ public class InventoryView extends AbstractView{
 
 
     private VBox rightPane(CharacterEntity character) {
-        ArrayList<RadioButton> options = leftPaneRadioButtons(character);
+        ArrayList<RadioButton> options = rightPaneRadioButtons(character);
         VBox vbox = new VBox();
         vbox.setSpacing(30);
         vbox.setPrefSize(400,628);
