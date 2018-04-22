@@ -34,15 +34,15 @@ public class GameSaver {
     HashMap<Point, String> AreaEffectString;
     HashMap<Point, String> ItemString;
     HashMap<Point, String> Decalstring;
+    HashMap<Point, CharacterEntity> CharacterMap;
+
 
 
     public GameSaver(World world)
     {
         this.curZone = world.getCurrentZone();
         mapName = "map" + String.valueOf(curZone.getID()) + ".json";
-
         MapGenerator map = new MapGenerator(mapName, curZone.getRows(), curZone.getColumns(), curZone.getID(), TerrainToString(), EntityToString(), AreaEffectToString(), ItemsToString(), DecalsToString());
-
 
     }
     public HashMap<Point, String> TerrainToString()
@@ -70,30 +70,11 @@ public class GameSaver {
         }
         return TerrainString;
     }
-    public HashMap<Point, String> EntityToString()
+    public HashMap<Point, CharacterEntity> EntityToString()
     {
-        for(int i = 0; i < curZone.getRows(); i++)
-        {
-            for(int j = 0; j < curZone.getColumns(); j++)
-            {
-                switch(curZone.getTerrainMap().get(new Point(i,j))){
-                    case GRASS:
-                        TerrainString.put(new Point(i,j) , "GRASS");
-                        break;
-                    case MOUNTAIN:
-                        TerrainString.put(new Point(i,j) , "MOUNTAIN");
-                        break;
-                    case WATER:
-                        TerrainString.put(new Point(i,j) , "WATER");
-                        break;
-                    case EMPTY:
-                        TerrainString.put(new Point(i,j) , "EMPTY");
-                        break;
-                }
+        curZone.getCharacterMap();
 
-            }
-        }
-        return TerrainString;
+        return CharacterMap;
     }
 
     public HashMap<Point, String> AreaEffectToString()
