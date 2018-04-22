@@ -7,7 +7,7 @@ public class OneShotItem extends Item {
 
     Effect effect;
 
-    OneShotItem(Effect effect){
+    public OneShotItem(Effect effect){
         this.effect = effect;
     }
 

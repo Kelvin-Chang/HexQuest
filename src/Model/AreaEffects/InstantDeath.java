@@ -10,6 +10,8 @@ public class InstantDeath extends AreaEffect {
         this.effect = EffectFactory.produceInstantDeathEffect();
     }
 
+    public String toString() { return "Death"; }
+
     @Override
     public void trigger(CharacterEntity characterEntity) {
         effect.trigger(characterEntity);

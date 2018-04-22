@@ -1,4 +1,4 @@
 package View.Zone.Items;
 
-public class ItemView {
+public abstract class ItemView {
 }

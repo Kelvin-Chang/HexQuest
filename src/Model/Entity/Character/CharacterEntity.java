@@ -22,6 +22,7 @@ import java.util.Queue;
 public abstract class CharacterEntity {
 
     private int level;
+    private int exp;
     private String name;
     private int maxHealth;
     private int currentHealth;
@@ -115,6 +116,7 @@ public abstract class CharacterEntity {
         this.movementQueue = movementQueue;
     }
 
+    public int getExp() {return exp;}
     public int getLevel() {
         return level;
     }
@@ -307,28 +309,42 @@ public abstract class CharacterEntity {
     }
 
     public void addUpToMovementQueue() {
+        movementQueue.clear();
+        orientation = Orientation.UP;
         movementQueue.add(Orientation.UP);
     }
 
     public void addUpRightToMovementQueue() {
+        movementQueue.clear();
+        orientation = Orientation.UPRIGHT;
         movementQueue.add(Orientation.UPRIGHT);
     }
 
     public void addDownRightToMovementQueue() {
+        movementQueue.clear();
+        orientation = Orientation.DOWNRIGHT;
         movementQueue.add(Orientation.DOWNRIGHT);
     }
 
     public void addDownToMovementQueue() {
+        movementQueue.clear();
+        orientation = Orientation.DOWN;
         movementQueue.add(Orientation.DOWN);
     }
 
     public void addDownLeftToMovementQueue() {
+        movementQueue.clear();
+        orientation = Orientation.DOWNLEFT;
         movementQueue.add(Orientation.DOWNLEFT);
     }
 
     public void addUpLeftToMovementQueue() {
+        movementQueue.clear();
+        orientation = Orientation.UPLEFT;
         movementQueue.add(Orientation.UPLEFT);
     }
+
+    public void clearMovementQueue(){ movementQueue.clear();}
 
     public boolean hasNextMove() {
         Queue<Orientation>  q = movementQueue;

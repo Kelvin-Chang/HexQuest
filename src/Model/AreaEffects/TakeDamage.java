@@ -7,8 +7,10 @@ import Model.Entity.Character.CharacterEntity;
 public class TakeDamage extends AreaEffect {
 
     public TakeDamage(){
-        this.effect = EffectFactory.produceHealthModifierEffect(-10);
+        this.effect = EffectFactory.produceHealthModifierEffect(-1);
     }
+
+    public String toString() { return "Damage"; }
 
     @Override
     public void trigger(CharacterEntity characterEntity) {

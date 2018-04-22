@@ -18,7 +18,7 @@ public class HexFormulas {
     public static Point getNeighborPointFromOrientation(Point hex, Orientation directionYouAreMoving){
         int parity = hex.x & 1;
         Point dir = Orientation.oddq_directions[parity][correspondingNumber(directionYouAreMoving)];
-        return new Point((int)(hex.getY() + dir.getY()), (int)(hex.getX() + dir.getX()));
+        return new Point((int)(hex.getX() + dir.getX()), (int)(hex.getY() + dir.getY()));
     }
 
     public static ArrayList<Point> getAllNeighborPoints(Point hex){

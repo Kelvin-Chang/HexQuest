@@ -134,7 +134,6 @@ public class Zone implements Updateable {
     public Collection<Point> getAllCharacterPoints() { return characterMap.keySet(); }
     public CharacterEntity getCharacter(Point point) { return characterMap.get(point); }
 
-
     public void doInteractions() {
         triggerAreaEffects();
         triggerItems();
@@ -177,7 +176,6 @@ public class Zone implements Updateable {
         Orientation orientation = character.getNextMove();
         character.setOrientation(orientation);
         Point sourcePoint = getCharacterLocation(character);
-        //System.out.println("dx: " + dx + " | dy: " + dy);
         Point destination = getNeighborPointFromOrientation(sourcePoint, orientation);
         System.out.println("Entity at [" + (int) sourcePoint.getX() + "," + (int) sourcePoint.getY() + "] attempting move to ["
                 + (int) destination.getX() + "," + (int) destination.getY() + "]");
@@ -196,6 +194,7 @@ public class Zone implements Updateable {
         CharacterEntity character = characterMap.get(origin);
         characterMap.remove(origin);
         characterMap.put(destination, character);
+        character.clearMovementQueue();
     }
     public boolean isValidMove(Point destination) {
         if(getObstacleItem(destination) != null) {

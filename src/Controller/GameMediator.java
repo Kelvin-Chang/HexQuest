@@ -7,6 +7,7 @@ import Controller.LoadSave.GameBuilder;
 import Controller.Input.ViewController;
 
 import Controller.LoadSave.GameLoader;
+import Model.DeathHandler;
 import Model.Entity.Character.CharacterEntity;
 import Model.Entity.Character.PlayerFactory;
 import Model.Zone.World;
@@ -17,6 +18,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.awt.*;
+import java.awt.geom.Point2D;
 import java.beans.EventHandler;
 import java.io.File;
 import java.nio.file.Path;
@@ -38,6 +40,7 @@ public class GameMediator extends Application {
     GameplayView gameplayView;
     private Renderer renderer;
     private ViewController viewController;
+    private DeathHandler deathHandler;
 
     boolean loaded = false;
 
@@ -67,14 +70,14 @@ public class GameMediator extends Application {
         gameLoader.loadGame(saveFileLocation);
         world = gameBuilder.getWorld();
         keyInputController = new KeyInputController("", world.playerActions(), new PlayerController(world.getPlayer()), this);
-        System.out.println(world.getCurrentZone().getAllTerrains());
         Collection<Point> allPts = world.getCurrentZone().getAllTerrainPoints();
-        System.out.println("Got world: " + world);
         renderer = new Renderer(world, viewController.getGameplayView());
         viewController.getScene().addEventFilter(KeyEvent.KEY_RELEASED, keyEvent -> keyInputController.issueCommand(keyEvent.getCode()));
         renderer.render();
         loaded = true;
+        deathHandler = new DeathHandler(world.getPlayer(), renderer.getCanvas());
         startTimer();
+        loaded = true;
     }
 
     public GameBuilder getGameBuilder() {
@@ -83,7 +86,7 @@ public class GameMediator extends Application {
 
     private void startTimer() {
         timer = new Timer();
-        timer.scheduleAtFixedRate(new GameLoop(), 1000, 10);
+        timer.scheduleAtFixedRate(new GameLoop(), 0, 60);
     }
 
 
@@ -93,7 +96,9 @@ public class GameMediator extends Application {
             if(loaded) {
                 renderer.render();
                 world.update();
+                deathHandler.checkDeath();
             }
+
         }
     }
 

@@ -9,5 +9,7 @@ public abstract class AreaEffect {
 
     public abstract void trigger(CharacterEntity characterEntity);
 
+    public abstract String toString();
+
     public Effect getEffect() { return effect; }
 }
