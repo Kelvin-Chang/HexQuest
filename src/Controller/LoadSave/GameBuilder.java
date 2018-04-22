@@ -10,6 +10,7 @@ import Model.Effects.LevelUpEffect;
 import Model.Entity.Character.*;
 import Model.Entity.Pet;
 import Model.Enums.Orientation;
+import Model.Enums.SkillType;
 import Model.Items.ObstacleItem;
 import Model.Items.TakeableItems.EquippableItems.Armor;
 import Model.Items.TakeableItems.EquippableItems.Ring;
@@ -21,9 +22,11 @@ import View.Menu.MainMenuView;
 import View.Status.StatusView;
 import View.Viewport;
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import javax.swing.text.ZoneView;
 import java.awt.*;
+import java.util.Iterator;
 
 public class GameBuilder {
 
@@ -135,7 +138,7 @@ public class GameBuilder {
         }
     }
 
-    private void setCharAttributes(CharacterEntity charEnt, String name, int level, int maxHealth, int currentHealth, int maxMana, int currentMana, int attack, int defense, int speed, String orientation, String pet, JSONArray inventory) {
+    private void setCharAttributes(CharacterEntity charEnt, String name, int level, int maxHealth, int currentHealth, int maxMana, int currentMana, int attack, int defense, int speed, String orientation, String pet, JSONArray inventory, JSONArray skills) {
         charEnt.setName(name);
         charEnt.setLevel(level);
         charEnt.setMaxHealth(maxHealth);
@@ -145,6 +148,25 @@ public class GameBuilder {
         charEnt.setAttack(attack);
         charEnt.setDefense(defense);
         charEnt.setSpeed(speed);
+
+        Iterator<Object> iterator = skills.iterator();
+        while(iterator.hasNext()){
+            JSONObject skill = (JSONObject) iterator.next();
+            for(String skillName : skill.keySet()){
+                System.out.println(skillName + ":" + skill.get(skillName));
+                switch (skillName) {
+                    case "bindWounds":
+                        charEnt.setSkillLevel(SkillType.BINDWOUNDSSKILL, skill.getInt(skillName));
+                        break;
+                    case "bargain":
+                        charEnt.setSkillLevel(SkillType.BARGAINSKILL, skill.getInt(skillName));
+                        break;
+                    case "observation":
+                        charEnt.setSkillLevel(SkillType.OBSERVATIONSKILL, skill.getInt(skillName));
+                        break;
+                }
+            }
+        }
 
         switch (orientation) {
             case "up":
@@ -177,22 +199,22 @@ public class GameBuilder {
         System.out.println("Character initialized: " + charEnt);
     }
 
-    public void initFriendlyNPC(String name, int level, int maxHealth, int currentHealth, int maxMana, int currentMana, int attack, int defense, int speed, String orientation, String pet, JSONArray inventory, Point point) {
+    public void initFriendlyNPC(String name, int level, int maxHealth, int currentHealth, int maxMana, int currentMana, int attack, int defense, int speed, String orientation, String pet, JSONArray inventory, JSONArray skills, Point point) {
         FriendlyNPC npc = new FriendlyNPC();
         world.getCurrentZone().addPlayer(point, npc);
-        setCharAttributes(npc, name, level, maxHealth, currentHealth, maxMana, currentMana, attack, defense, speed, orientation, pet, inventory);
+        setCharAttributes(npc, name, level, maxHealth, currentHealth, maxMana, currentMana, attack, defense, speed, orientation, pet, inventory, skills);
     }
 
-    public void initHostileNPC(String name, int level, int maxHealth, int currentHealth, int maxMana, int currentMana, int attack, int defense, int speed, String orientation, String pet, JSONArray inventory, Point point) {
+    public void initHostileNPC(String name, int level, int maxHealth, int currentHealth, int maxMana, int currentMana, int attack, int defense, int speed, String orientation, String pet, JSONArray inventory, JSONArray skills, Point point) {
         FriendlyNPC npc = new FriendlyNPC();
         world.getCurrentZone().addPlayer(point, npc);
-        setCharAttributes(npc, name, level, maxHealth, currentHealth, maxMana, currentMana, attack, defense, speed, orientation, pet, inventory);
+        setCharAttributes(npc, name, level, maxHealth, currentHealth, maxMana, currentMana, attack, defense, speed, orientation, pet, inventory, skills);
     }
 
-    public void initShopKeep(String name, int level, int maxHealth, int currentHealth, int maxMana, int currentMana, int attack, int defense, int speed, String orientation, String pet, JSONArray inventory, Point point) {
+    public void initShopKeep(String name, int level, int maxHealth, int currentHealth, int maxMana, int currentMana, int attack, int defense, int speed, String orientation, String pet, JSONArray inventory, JSONArray skills, Point point) {
         ShopKeep sk = new ShopKeep();
         world.getCurrentZone().addPlayer(point, sk);
-        setCharAttributes(sk, name, level, maxHealth, currentHealth, maxMana, currentMana, attack, defense, speed, orientation, pet, inventory);
+        setCharAttributes(sk, name, level, maxHealth, currentHealth, maxMana, currentMana, attack, defense, speed, orientation, pet, inventory, skills);
     }
 
     public void initPet(String name) {
@@ -203,7 +225,7 @@ public class GameBuilder {
 
     }
 
-    public void initPlayer(String name, String charClass, int level, int maxHealth, int currentHealth, int maxMana, int currentMana, int attack, int defense, int speed, String orientation, String pet, JSONArray inventory, Point point) {
+    public void initPlayer(String name, String charClass, int level, int maxHealth, int currentHealth, int maxMana, int currentMana, int attack, int defense, int speed, String orientation, String pet, JSONArray inventory, JSONArray skills, Point point) {
         switch (charClass) {
             case "smasher":
                 player = PlayerFactory.produceSmasher();
@@ -215,6 +237,6 @@ public class GameBuilder {
         world.setPlayer(player);
         world.getCurrentZone().addPlayer(point, player);
 
-        setCharAttributes(player, name, level, maxHealth, currentHealth, maxMana, currentMana, attack, defense, speed, orientation, pet, inventory);
+        setCharAttributes(player, name, level, maxHealth, currentHealth, maxMana, currentMana, attack, defense, speed, orientation, pet, inventory, skills);
     }
 }

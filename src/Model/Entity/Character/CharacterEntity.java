@@ -171,6 +171,10 @@ public abstract class CharacterEntity {
         return skills.get(skillType);
     }
 
+    public void setSkillLevel(SkillType skillType, int level) {
+        skills.get(skillType).setSkillLevel(level);
+    }
+
     public ArrayList<SkillType> getPlayerActions() {
         ArrayList<SkillType> actions = new ArrayList<>(skills.keySet());
         actions.add(SkillType.MOVEUP);

@@ -28,7 +28,7 @@ public class KeyInputController {
         commandMap.put(KeyCode.A, SkillType.MOVEDOWNLEFT);
         commandMap.put(KeyCode.S, SkillType.MOVEDOWN);
         commandMap.put(KeyCode.D, SkillType.MOVEDOWNRIGHT);
-
+        commandMap.put(KeyCode.DIGIT1, SkillType.BINDWOUNDSSKILL);
     }
 
     public void issueCommand(KeyCode keyCode) {

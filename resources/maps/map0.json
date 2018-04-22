@@ -26,7 +26,14 @@
               "speed": 1,
               "orientation": "up",
               "pet": "none",
-              "Inventory": []
+              "Inventory": [],
+              "Skills": [
+                {
+                  "bindWounds" : 100,
+                  "bargain" : 100,
+                  "observation" : 100
+                }
+              ]
             },
             "x": 0,
             "y": 0
