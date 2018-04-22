@@ -148,11 +148,32 @@ public class GameBuilder {
             case "healthBoon":
                 zone.add(point, itemFactory.produceHealthBoon(10, 5));
                 break;
+            case "defenseBoon":
+                zone.add(point, itemFactory.produceDefenseBoon(10, 5));
+                break;
+            case "manaBoon":
+                zone.add(point, itemFactory.produceManaBoon(10, 11));
+                break;
             case "healthBane":
                 zone.add(point, itemFactory.produceHealthBane(10, 5, EffectShape.LINEAR, 1));
                 break;
             case "defenseBane":
                 zone.add(point, itemFactory.produceDefenseBane(10, 5, EffectShape.LINEAR, 1));
+                break;
+            case "manaBane":
+                zone.add(point, itemFactory.produceManaBane(10, 5, EffectShape.LINEAR, 1));
+                break;
+            case "bargainingEnchantment":
+                zone.add(point, itemFactory.produceDecreaseBargainingEnchantment(10, 5, EffectShape.LINEAR, 1));
+                break;
+            case "bindWoundsEnchantment":
+                zone.add(point, itemFactory.produceDecreaseBindWoundsEnchantment(10, 5, EffectShape.LINEAR, 1));
+                break;
+            case "observationEnchantment":
+                zone.add(point, itemFactory.produceDecreaseObservationEnchantment(10, 5, EffectShape.LINEAR, 1));
+                break;
+            case "staff":
+                zone.add(point, itemFactory.produceStaffItem(5));
                 break;
         }
     }
@@ -281,12 +302,15 @@ public class GameBuilder {
         switch (charClass) {
             case "smasher":
                 player = PlayerFactory.produceSmasher();
+                player.setSkillClass(charClass);
                 break;
             case "summoner":
                 player = PlayerFactory.produceSummoner();
+                player.setSkillClass(charClass);
                 break;
             case "sneak":
                 player = PlayerFactory.produceSneak();
+                player.setSkillClass(charClass);
                 break;
         }
         world.setPlayer(player);

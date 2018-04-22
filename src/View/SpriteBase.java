@@ -41,7 +41,14 @@ public class SpriteBase {
 
         itemSprites.put("Health Bane", getImage(filePath + "/src/assets/Items/healthBane.png"));
         itemSprites.put("Defense Bane", getImage(filePath + "/src/assets/Items/defenseBane.png"));
+        itemSprites.put("Mana Bane", getImage(filePath + "/src/assets/Items/manaBane.png"));
         itemSprites.put("Health Boon", getImage(filePath + "/src/assets/Items/healthBoon.png"));
+        itemSprites.put("Defense Boon", getImage(filePath + "/src/assets/Items/defenseBoon.png"));
+        itemSprites.put("Mana Boon", getImage(filePath + "/src/assets/Items/manaBoon.png"));
+        itemSprites.put("Bargaining Enchantment", getImage(filePath + "/src/assets/Items/bargainingEnchantment.png"));
+        itemSprites.put("Bind Wounds Enchantment", getImage(filePath + "/src/assets/Items/bindWoundsEnchantment.png"));
+        itemSprites.put("Observation Enchantment", getImage(filePath + "/src/assets/Items/observationEnchantment.png"));
+        itemSprites.put("Staff", getImage(filePath + "/src/assets/Items/staff.png"));
         itemSprites.put("Armor", getImage(filePath + "/src/assets/Items/armor.png"));
     }
 

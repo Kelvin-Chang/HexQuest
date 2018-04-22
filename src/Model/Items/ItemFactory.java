@@ -10,8 +10,13 @@ import Model.Items.TakeableItems.EquippableItems.UsableItems.RangedWeapon;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SmasherWeapon;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItems.DefenseBane;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItems.HealthBane;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItems.ManaBane;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BoonItems.DefenseBoon;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BoonItems.HealthBoon;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BoonItems.ManaBoon;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.EnchantmentItems.DecreaseBargainingEnchantment;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.EnchantmentItems.DecreaseBindWoundsEnchantment;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.EnchantmentItems.DecreaseObservationEnchantment;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.SpellItem;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.StaffItem;
 import Model.Items.TakeableItems.Key;
@@ -68,12 +73,32 @@ public class ItemFactory {
         return new HealthBane(manaCost, healthChange, effectShape, range);
     }
 
+    public static SpellItem produceManaBane(int manaCost, int manaChange, EffectShape effectShape, int range) {
+        return new ManaBane(manaCost, manaChange, effectShape, range);
+    }
+
     public static SpellItem produceHealthBoon(int manaCost, int healthChange) {
         return new HealthBoon(manaCost, healthChange);
     }
 
+    public static SpellItem produceDefenseBoon(int manaCost, int defenseChange) {
+        return new DefenseBoon(manaCost, defenseChange);
+    }
+
+    public static SpellItem produceManaBoon(int manaCost, int manaChange) {
+        return new ManaBoon(manaCost, manaChange);
+    }
+
     public static SpellItem produceDecreaseBargainingEnchantment(int manaCost, int skillDecrease, EffectShape effectShape, int range) {
         return new DecreaseBargainingEnchantment(manaCost, skillDecrease, effectShape, range);
+    }
+
+    public static SpellItem produceDecreaseBindWoundsEnchantment(int manaCost, int skillDecrease, EffectShape effectShape, int range) {
+        return new DecreaseBindWoundsEnchantment(manaCost, skillDecrease, effectShape, range);
+    }
+
+    public static SpellItem produceDecreaseObservationEnchantment(int manaCost, int skillDecrease, EffectShape effectShape, int range) {
+        return new DecreaseObservationEnchantment(manaCost, skillDecrease, effectShape, range);
     }
 
     public static RangedWeapon produceRangedWeapon(int damage, EffectShape effectShape, int range) {
