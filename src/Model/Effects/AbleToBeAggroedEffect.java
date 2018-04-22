@@ -12,6 +12,6 @@ public class AbleToBeAggroedEffect implements NPCEffect {
 
     @Override
     public void trigger(NPC character) {
-        character.setAbleToBeAggroed(ableToBeAggroed);
+        //character.setAbleToBeAggroed(ableToBeAggroed);
     }
 }

@@ -29,5 +29,17 @@ public class MovementTests {
         characterSmash.addDownToMovementQueue();
         zone.attemptMove(characterSmash);
         Assert.assertTrue(zone.getCharacterLocation(characterSmash).x == 3 && zone.getCharacterLocation(characterSmash).y==5);
+
+        characterSmash.addUpLeftToMovementQueue();
+        zone.attemptMove(characterSmash);
+        Assert.assertTrue(zone.getCharacterLocation(characterSmash).x == 2 && zone.getCharacterLocation(characterSmash).y==5);
+
+        characterSmash.addUpLeftToMovementQueue();
+        zone.attemptMove(characterSmash);
+        Assert.assertTrue(zone.getCharacterLocation(characterSmash).x == 1 && zone.getCharacterLocation(characterSmash).y==4);
+
+        characterSmash.addUpRightToMovementQueue();
+        zone.attemptMove(characterSmash);
+        Assert.assertTrue(zone.getCharacterLocation(characterSmash).x == 2 && zone.getCharacterLocation(characterSmash).y==4);
     }
 }
