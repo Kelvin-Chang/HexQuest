@@ -16,6 +16,7 @@ public class InteractiveArmor extends EquippableItem implements HasEquipUnequipE
         this.requirement = requirement;
         makeEquipEffect();
         makeUnequipEffect();
+        setName("Interactive Armor");
     }
 
     public void makeEquipEffect() {

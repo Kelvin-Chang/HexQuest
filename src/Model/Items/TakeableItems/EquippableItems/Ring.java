@@ -11,6 +11,7 @@ public class Ring extends EquippableItem implements HasEquipUnequipEffects{
         this.manaChange = manaChange;
         makeEquipEffect();
         makeUnequipEffect();
+        setName("Ring");
     }
 
     public void makeEquipEffect() {

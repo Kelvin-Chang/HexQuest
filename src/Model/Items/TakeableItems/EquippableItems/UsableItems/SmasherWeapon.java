@@ -19,6 +19,7 @@ public class SmasherWeapon extends UsableItem {
     public SmasherWeapon(int damage, ItemSlot itemSlot) {
         super(itemSlot);
         this.damage = damage;
+        setName("Smasher Weapon");
     }
 
     public void useItem(CharacterEntity player, Skill skill) {

@@ -99,20 +99,15 @@ public class InventoryView extends AbstractView{
         int unequippedItemsArrayPosition = 0;
 
         for (int i = 0; i < numberOfUnequippedItems; i++) {
-            // TODO: pass in image and/or item name to display
-
             // create radio button
 
             // TODO: give the radio button the name of the item and stuff to identify which one it is
             RadioButton rb = new RadioButton();
 
-            if (unequippedItemsArray[i] == null) {
-                unequippedItemsArrayPosition++;
-            }
-
             // give the radio button the item that is selected
-            TakeableItem item = inventory.getItemAtSlot(unequippedItemsArrayPosition);
+            TakeableItem item = inventory.getItemAtSlot(i);
             rb.setUserData(item);
+            rb.setText(unequippedItemsArray[i].getName());
 
             // set the button to the togglegroup to ensure that only one thing can be selected at a time
             rb.setToggleGroup(unequippedToggleGroup);
@@ -130,6 +125,7 @@ public class InventoryView extends AbstractView{
                     equippedItem = (EquippableItem) unequippedToggleGroup.getSelectedToggle().getUserData();
                     refresh(character);
                     equipButton.setDisable(false);
+                    System.out.println(equippedItem.getName());
                 }
             }
         });
@@ -182,6 +178,8 @@ public class InventoryView extends AbstractView{
 
             // give the radio button the item that is selected
             rb.setUserData(equippedItemsHashMap.get(key));
+            rb.setText(equippedItemsHashMap.get(key).getName());
+
 
             // set the button to the togglegroup to ensure that only one thing can be selected at a time
             rb.setToggleGroup(equippedToggleGroup);
@@ -199,6 +197,7 @@ public class InventoryView extends AbstractView{
                     unequippedItem = (EquippableItem) equippedToggleGroup.getSelectedToggle().getUserData();
                     refresh(character);
                     unequipButton.setDisable(false);
+                    System.out.println(unequippedItem.getName());
                 }
             }
         });
@@ -291,10 +290,9 @@ public class InventoryView extends AbstractView{
         return bp;
     }
 
-    private void refresh(CharacterEntity characterEntity) {
-        this.getChildren().removeAll();
-        borderPane = borderPane(characterEntity);
-        this.getChildren().add(borderPane);
+    private void refresh(CharacterEntity character) {
+        borderPane.setBottom(null);
+        borderPane.setBottom(bottomPane(character));
     }
 
 }

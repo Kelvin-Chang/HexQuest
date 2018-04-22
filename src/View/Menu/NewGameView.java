@@ -92,7 +92,7 @@ public class NewGameView extends AbstractView {
         toggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
             @Override
             public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
-                if(newValue != null){
+                if(newValue != null) {
                     characterChoice = (toggleGroup.getSelectedToggle()).getUserData().toString();
                     System.out.println(characterChoice);
                 }

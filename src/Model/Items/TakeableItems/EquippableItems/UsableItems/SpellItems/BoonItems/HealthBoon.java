@@ -9,6 +9,7 @@ public class HealthBoon extends BoonItem {
 
     public HealthBoon(int manaCost, int healthChange) {
         super(manaCost, healthChange, EffectShape.LINEAR, 1);
+        setName("Health Boon");
     }
 
     @Override
