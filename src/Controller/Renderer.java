@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.AreaEffects.AreaEffect;
 import Model.Zone.Terrain;
 import Model.Zone.World;
 import Model.Zone.Zone;
@@ -77,6 +78,25 @@ public class Renderer {
                     break;
                 default:
                     break;
+            }
+
+            if (zone.getAreaEffect(zoneArr[i]) != null) {
+                AreaEffect currAE = zone.getAreaEffect(zoneArr[i]);
+                switch (currAE.toString()) {
+                    case "Heal":
+                        graphicsContext.drawImage(sprites.getEffectSprite(0), imageCoordinates.getX(), imageCoordinates.getY(), 2 * radius, 2 * radius);
+                        break;
+                    case "Damage":
+                        graphicsContext.drawImage(sprites.getEffectSprite(1), imageCoordinates.getX(), imageCoordinates.getY(), 2 * radius, 2 * radius);
+                        break;
+                    case "Death":
+                        graphicsContext.drawImage(sprites.getEffectSprite(2), imageCoordinates.getX(), imageCoordinates.getY(), 2 * radius, 2 * radius);
+                        break;
+                    case "Level":
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 //        System.out.println("end");

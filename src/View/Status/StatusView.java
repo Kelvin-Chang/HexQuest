@@ -27,8 +27,8 @@ public class StatusView {
 
         renderStatusBackground();
         renderHealth(p.getCurrentHealth(), p.getMaxHealth());
-//        renderMana(p.getCurrentMana(), p.getMaxMana());
-//        renderExp(p.getExp());
+        renderMana(p.getCurrentMana(), p.getMaxMana());
+        renderExp(p.getExp());
     }
     public void renderStatusBackground() {
         gContext.setFill(Color.WHITE);
@@ -55,5 +55,29 @@ public class StatusView {
         gContext.fillText("Health: " + Integer.toString(hp) + "/" + Integer.toString(max) +
                 " (" + healthbd + "%)", canvas.getWidth()-300, 30);
 
+    }
+    public void renderMana(int mp, int max) {
+        float mana = (float)mp/(float)max * 100;
+        BigDecimal manabd = new BigDecimal(Float.toString(mana));
+        manabd = manabd.setScale(2, BigDecimal.ROUND_HALF_UP);
+        gContext.setFill(Color.LIGHTCYAN);
+        gContext.fillRect(canvas.getWidth()-305, 40, 290, 20);
+        gContext.setFill(Color.BLACK);
+        gContext.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+        gContext.fillText("Mana: " + Integer.toString(mp) + "/" + Integer.toString(max) +
+                " (" + manabd + "%)", canvas.getWidth()-300, 55);
+
+    }
+
+    public void renderExp(int xp) {
+        float exptonext = (float)xp/(float)100 * 100;
+        BigDecimal xpdb = new BigDecimal(Float.toString(exptonext));
+        xpdb = xpdb.setScale(2, BigDecimal.ROUND_HALF_UP);
+        gContext.setFill(Color.LIGHTGOLDENRODYELLOW);
+        gContext.fillRect(canvas.getWidth()-305, 65, 290, 20);
+        gContext.setFill(Color.BLACK);
+        gContext.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+        gContext.fillText("Experience: " + Integer.toString(xp) + "/100" +
+                " (" + xpdb + "%)", canvas.getWidth()-300, 80);
     }
 }
