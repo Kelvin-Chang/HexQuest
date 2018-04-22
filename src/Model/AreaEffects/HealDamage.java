@@ -10,6 +10,8 @@ public class HealDamage extends AreaEffect {
         this.effect = EffectFactory.produceHealthModifierEffect(10);
     }
 
+    public String toString() { return "Heal"; }
+
     @Override
     public void trigger(CharacterEntity characterEntity) {
         effect.trigger(characterEntity);

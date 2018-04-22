@@ -55,7 +55,7 @@
           },
           {
             "terrain": "grass",
-            "areaEffect": "none",
+            "areaEffect": "damage",
             "item": "none",
             "decal": "none",
             "Entity": {
@@ -628,7 +628,7 @@
           },
           {
             "terrain": "grass",
-            "areaEffect": "none",
+            "areaEffect": "heal",
             "item": "none",
             "decal": "none",
             "Entity": {

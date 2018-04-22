@@ -13,6 +13,9 @@ public class LevelUp extends AreaEffect {
         hasBeenTriggered = false;
     }
 
+    public String toString() { return "Level"; }
+
+
     @Override
     public void trigger(CharacterEntity characterEntity) {
         if(!hasBeenTriggered) {

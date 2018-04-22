@@ -1,7 +1,12 @@
 package Controller.LoadSave;
 
+import Model.AreaEffects.HealDamage;
+import Model.AreaEffects.InstantDeath;
+import Model.AreaEffects.LevelUp;
+import Model.AreaEffects.TakeDamage;
 import Model.Effects.Effect;
 import Model.Effects.EffectFactory;
+import Model.Effects.LevelUpEffect;
 import Model.Entity.Character.*;
 import Model.Entity.Pet;
 import Model.Enums.Orientation;
@@ -89,16 +94,16 @@ public class GameBuilder {
             case "none":
                 break;
             case "damage":
-                zone.add(point, EffectFactory.produceHealthModifierEffect(-10));
+                zone.add(point, new TakeDamage());
                 break;
             case "death":
-                zone.add(point, EffectFactory.produceInstantDeathEffect());
+                zone.add(point, new InstantDeath());
                 break;
             case "heal":
-                zone.add(point, EffectFactory.produceHealthModifierEffect(10));
+                zone.add(point, new HealDamage());
                 break;
             case "level":
-                zone.add(point,EffectFactory.produceLevelUpEffect());
+                zone.add(point, new LevelUp());
                 break;
             case "teleport":
                 //TODO:
