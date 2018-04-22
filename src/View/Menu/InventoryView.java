@@ -36,6 +36,7 @@ public class InventoryView extends AbstractView{
     private EquippableItem equippedItem;
     private Button equipButton;
     private Button unequipButton;
+    private BorderPane borderPane;
 
     // TODO: find a way to pass playerEntity to this view
     public InventoryView(ViewController viewController, CharacterEntity character) {
@@ -44,7 +45,8 @@ public class InventoryView extends AbstractView{
         // TODO: make inventory not global if possible
         inventory = character.getInventory();
 
-        this.getChildren().add(borderPane(character));
+        borderPane = borderPane(character);
+        this.getChildren().add(borderPane);
     }
 
 
@@ -109,7 +111,8 @@ public class InventoryView extends AbstractView{
             }
 
             // give the radio button the item that is selected
-            rb.setUserData(inventory.getItemAtSlot(unequippedItemsArrayPosition));
+            TakeableItem item = inventory.getItemAtSlot(unequippedItemsArrayPosition);
+            rb.setUserData(item);
 
             // set the button to the togglegroup to ensure that only one thing can be selected at a time
             rb.setToggleGroup(unequippedToggleGroup);
@@ -125,6 +128,7 @@ public class InventoryView extends AbstractView{
                 if(newValue != null){
                     // TODO: see if it is possible to avoid casting
                     equippedItem = (EquippableItem) unequippedToggleGroup.getSelectedToggle().getUserData();
+                    refresh(character);
                     equipButton.setDisable(false);
                 }
             }
@@ -193,6 +197,7 @@ public class InventoryView extends AbstractView{
                 if(newValue != null){
                     // TODO: see if it is possible to avoid casting
                     unequippedItem = (EquippableItem) equippedToggleGroup.getSelectedToggle().getUserData();
+                    refresh(character);
                     unequipButton.setDisable(false);
                 }
             }
@@ -284,6 +289,12 @@ public class InventoryView extends AbstractView{
         bp.setRight(rightPane(character));
 
         return bp;
+    }
+
+    private void refresh(CharacterEntity characterEntity) {
+        this.getChildren().removeAll();
+        borderPane = borderPane(characterEntity);
+        this.getChildren().add(borderPane);
     }
 
 }

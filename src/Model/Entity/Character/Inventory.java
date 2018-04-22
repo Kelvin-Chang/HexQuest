@@ -6,6 +6,8 @@ import Model.Items.TakeableItems.EquippableItems.EquippableItem;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.UsableItem;
 import Model.Items.TakeableItems.TakeableItem;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class Inventory {
@@ -93,6 +95,15 @@ public class Inventory {
             equippedItems.put(slot, item);
         } else {
             equippedItems.put(slot, item);
+            ArrayList<TakeableItem> arrayList = new ArrayList<TakeableItem>(Arrays.asList(unequippedItems));
+            arrayList.remove(item);
+            TakeableItem[] takeableItems = new TakeableItem[unequippedItemBagSize];
+            for (int i = 0; i < unequippedItems.length; i++) {
+                if (i < arrayList.size()) {
+                    takeableItems[i] = arrayList.get(i);
+                }
+            }
+            unequippedItems = takeableItems;
         }
     }
 

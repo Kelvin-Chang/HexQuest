@@ -31,6 +31,7 @@ public abstract class EquippableItem extends TakeableItem {
     }
 
     public void unequip(Inventory inventory, CharacterEntity characterEntity) {
+        inventory.addToInventory(this);
         inventory.clearEquippedItemSlot(itemSlot);
         if (unequipEffect != null) {
             unequipEffect.trigger(characterEntity);

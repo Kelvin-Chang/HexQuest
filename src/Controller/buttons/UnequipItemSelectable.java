@@ -13,7 +13,7 @@ public class UnequipItemSelectable extends Selectable {
     private EquippableItem equippedItem;
     private CharacterEntity character;
 
-    public UnequipItemSelectable(String name, ViewController viewController, EquippableItem equippwsItem, CharacterEntity character) {
+    public UnequipItemSelectable(String name, ViewController viewController, EquippableItem equippedItem, CharacterEntity character) {
         super(name);
         this.viewController = viewController;
         this.character = character;
@@ -26,8 +26,6 @@ public class UnequipItemSelectable extends Selectable {
 
         // TODO: add proper functionality
         inventory.unequipItem(equippedItem, character);
-
-
         viewController.switchToInventoryView();
     }
 

@@ -27,7 +27,6 @@ public class EquipItemSelectable extends Selectable{
 
         // TODO: csating issue?
         inventory.equipItem(unequippedItem, character);
-
         viewController.switchToInventoryView();
     }
 
