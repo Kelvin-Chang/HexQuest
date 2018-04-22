@@ -22,6 +22,7 @@ import java.util.Queue;
 public abstract class CharacterEntity {
 
     private int level;
+    private int exp;
     private String name;
     private int maxHealth;
     private int currentHealth;
@@ -115,6 +116,7 @@ public abstract class CharacterEntity {
         this.movementQueue = movementQueue;
     }
 
+    public int getExp() {return exp;}
     public int getLevel() {
         return level;
     }

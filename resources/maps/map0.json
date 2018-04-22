@@ -330,7 +330,7 @@
             "y": 7
           },
           {
-            "terrain": "grass",
+            "terrain": "water",
             "areaEffect": "none",
             "item": "none",
             "decal": "none",
@@ -341,7 +341,7 @@
             "y": 8
           },
           {
-            "terrain": "grass",
+            "terrain": "mountain",
             "areaEffect": "none",
             "item": "none",
             "decal": "none",
