@@ -5,6 +5,7 @@ import Model.Zone.World;
 import Model.Zone.Zone;
 import View.Menu.GameplayView;
 import View.SpriteBase;
+import View.Status.StatusView;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -18,6 +19,7 @@ public class Renderer {
 
     private World world;
     private GameplayView gameplayView;
+    private StatusView statusView;
     private Canvas canvas;
     private GraphicsContext graphicsContext;
     private SpriteBase sprites;
@@ -32,6 +34,7 @@ public class Renderer {
         this.graphicsContext = canvas.getGraphicsContext2D();
         this.world = world;
         sprites = new SpriteBase();
+        statusView = new StatusView(canvas);
     }
 
     public void render() {
@@ -41,6 +44,7 @@ public class Renderer {
         graphicsContext.fillRect(0, 0, canvas.getWidth(),canvas.getHeight());
         renderTiles();
         renderPlayer();
+        statusView.render(world.getPlayer());
 
     }
 
