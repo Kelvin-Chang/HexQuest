@@ -52,6 +52,9 @@ public class GameplayView extends AbstractView {
             add(new InventorySelectable("Inventory", viewController));
             add(new SkillSelectable("Skills", viewController));
             add(new InGameMenuSelectable("Menu", viewController));
+
+            // TODO: REMOVE THIS SHOPKEEPER TEST BUTTON!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            add(new ShopkeeperSelectable("Shopkeeper", viewController));
         }};
 
         for(Selectable clickable: options) {
