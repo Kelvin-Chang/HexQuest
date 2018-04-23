@@ -249,6 +249,11 @@ public class Zone implements Updateable {
             attemptMove(characterEntity);
         }
     }
+    //                                         NPC STUFF           /////
+
+
+
+
 
     public void updateAreaEffects() {
 

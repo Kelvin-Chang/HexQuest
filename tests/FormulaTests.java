@@ -1,3 +1,10 @@
+import Model.Entity.Character.CharacterEntity;
+import Model.Entity.Character.HostileNPC;
+import Model.Entity.Character.Player;
+import Model.Entity.Character.PlayerFactory;
+import Model.Zone.Terrain;
+import Model.Zone.World;
+import Model.Zone.Zone;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -29,5 +36,28 @@ public class FormulaTests {
         double z3 = distanceToPoint(x3,y3);
         System.out.println(z3);
         //Assert.assertTrue(z3 == 6);
+    }
+
+    @Test
+    public void testTrails(){
+        World world = new World();
+        Zone zone = new Zone(0, 7, 7);
+        Player characterSmash = PlayerFactory.produceSmasher();
+        CharacterEntity npc = new HostileNPC(zone);
+
+        world.addZone(zone);
+        world.setPlayer(characterSmash);
+        world.addHostileNPC(npc);
+
+        for(int i = 0; i < 7; ++i){
+            for(int j = 0; j < 7; ++j)
+                zone.add(new Point(i,j), Terrain.GRASS);
+        }
+
+        zone.addPlayer(new Point(0,1), characterSmash);
+        zone.addPlayer(new Point(6,6), npc);
+
+        //System.out.println(world.calculateNPCtoPlayerTrail(zone, new Point(6,6)));
+
     }
 }
