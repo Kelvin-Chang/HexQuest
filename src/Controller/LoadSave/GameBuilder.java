@@ -23,6 +23,7 @@ import org.json.JSONObject;
 
 import javax.swing.text.ZoneView;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class GameBuilder {
@@ -113,8 +114,25 @@ public class GameBuilder {
             case "teleport":
                 zone.add(point, new TeleportEffect(1, player, world));
                 break;
-            case "river":
-                zone.add(point, new River());
+            case "river-up":
+                zone.add(point, new River(Orientation.UP));
+                break;
+            case "river-down":
+                zone.add(point, new River(Orientation.DOWN));
+                break;
+            case "river-upleft":
+                zone.add(point, new River(Orientation.UPLEFT));
+                break;
+            case "river-upright":
+                zone.add(point, new River(Orientation.UPRIGHT));
+                break;
+            case "river-downleft":
+                zone.add(point, new River(Orientation.DOWNLEFT));
+                break;
+            case "river-updownright":
+                zone.add(point, new River(Orientation.DOWNRIGHT));
+                break;
+
         }
 
         switch (decal) {
@@ -252,6 +270,9 @@ public class GameBuilder {
                 break;
             case "cat":
                 charEnt.setPet(new Pet());
+                break;
+            default:
+                break;
         }
     }
 

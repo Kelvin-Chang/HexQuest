@@ -247,6 +247,7 @@ public class Zone implements Updateable {
     public void update() {
         updateCharacterLocations();
         doInteractions();
+        updateCharacterDeaths();
     }
 
     public void updateCharacterLocations() {
@@ -258,6 +259,14 @@ public class Zone implements Updateable {
     //                                         NPC STUFF           /////
 
 
+    public void updateCharacterDeaths() {
+        ArrayList<CharacterEntity> characterEntities = new ArrayList<>(getAllCharacterEntitys());
+        for(CharacterEntity characterEntity : characterEntities) {
+            if(characterEntity.isDead()) {
+                characterMap.remove(characterEntity.getLocation());
+            }
+        }
+    }
 
 
 

@@ -20,27 +20,27 @@ public class World implements Updateable {
 
     private Integer currentZone;
     private Player player;
-    private List<HostileNPCController> hostileNPCControllers;
-    private List<FriendlyNPCController> friendlyNPCControllers;
+    private ArrayList<HostileNPCController> hostileNPCControllers;
+    private ArrayList<FriendlyNPCController> friendlyNPCControllers;
     private Map<Integer, Zone> zoneHashMap = new HashMap<>();
 
     public World() {
-        this.currentZone = 0;
-        this.player = new Player();
-        this.hostileNPCControllers = new ArrayList<>();
-        this.friendlyNPCControllers = new ArrayList<>();
+        setHostileControllers(new ArrayList<HostileNPCController>());
+        setFriendlyControllers(new ArrayList<FriendlyNPCController>());
     }
 
-    public World(Integer currentWorld){
-        this.player = new Player();
-        this.hostileNPCControllers = new ArrayList<>();
-        this.friendlyNPCControllers = new ArrayList<>();
-        this.currentZone = currentWorld;
+    public void setHostileControllers(ArrayList<HostileNPCController> list) {
+        this.hostileNPCControllers = list;
+    }
+
+    public void setFriendlyControllers(ArrayList<FriendlyNPCController> list) {
+        this.friendlyNPCControllers = list;
     }
 
     public void addZone(Zone zone) {
         System.out.println("Adding zone to world: " + zone.getID());
         zoneHashMap.put(zone.getID(), zone);
+        System.out.println("Hostile list: " + hostileNPCControllers);
         hostileNPCControllers.add(currentZone, new HostileNPCController());
     }
     public void setCurrentZone(int currentWorld) {
@@ -78,6 +78,7 @@ public class World implements Updateable {
 
     public void processHostileNPCMovements(){
         HostileNPCController controller = hostileNPCControllers.get(currentZone);
+        System.out.println(hostileNPCControllers.get(currentZone));
         ArrayList<Point> pointsInIR = getRadialOfPointsFromRadius(player.getLocation(),3, getCurrentZone().getTerrainMap());
         for(CharacterEntity character : controller.getNpcs()){
             for(Point p : pointsInIR) {

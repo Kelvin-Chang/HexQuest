@@ -5,7 +5,7 @@ public class Mount extends Entity{
     private boolean hasOwner;
 
     Mount(){
-        speedMod = 1;
+        speedMod = 2;
         hasOwner = false;
     }
 

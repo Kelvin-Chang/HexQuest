@@ -32,7 +32,10 @@
                 {
                   "bindWounds" : 100,
                   "bargain" : 100,
-                  "observation" : 100
+                  "observation" : 100,
+                  "twoHanded": 100,
+                  "brawl": 100,
+                  "oneHanded": 100
                 }
               ]
             },
@@ -266,7 +269,7 @@
           },
           {
             "terrain": "grass",
-            "areaEffect": "river",
+            "areaEffect": "river-down",
             "item": "none",
             "decal": "none",
             "Entity": {
@@ -277,7 +280,7 @@
           },
           {
             "terrain": "grass",
-            "areaEffect": "river",
+            "areaEffect": "river-down",
             "item": "none",
             "decal": "none",
             "Entity": {
@@ -288,7 +291,7 @@
           },
           {
             "terrain": "grass",
-            "areaEffect": "river",
+            "areaEffect": "river-down",
             "item": "none",
             "decal": "none",
             "Entity": {
@@ -299,7 +302,7 @@
           },
           {
             "terrain": "grass",
-            "areaEffect": "river",
+            "areaEffect": "river-down",
             "item": "none",
             "decal": "none",
             "Entity": {
@@ -326,8 +329,7 @@
             "decal": "none",
             "Entity": {
               "type": "HostileNPC",
-              "name": "dave",
-              "class": "smasher",
+              "name": "mean",
               "level": 1,
               "maxHealth": 100,
               "currentHealth": 100,
