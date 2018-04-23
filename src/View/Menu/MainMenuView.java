@@ -65,7 +65,7 @@ public class MainMenuView extends AbstractView {
 
     private Text topPaneText() {
         Text t = new Text();
-        t.setText("Literally 2 Lines of Code");
+        t.setText("The Search for 2 Lines of Code");
         t.setFont(Font.font("Elephant", 50));
         t.setFill(Paint.valueOf("#ff00ff"));
 
@@ -74,7 +74,7 @@ public class MainMenuView extends AbstractView {
 
     private Text topPaneSubText() {
         Text t = new Text();
-        t.setText("(I actually have no idea how to do this)");
+        t.setText("It's Literally 2 Lines of Code");
         t.setFont(Font.font("Elephant", 16));
         t.setFill(Paint.valueOf("#ff00ff"));
 
