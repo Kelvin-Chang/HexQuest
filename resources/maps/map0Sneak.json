@@ -1057,7 +1057,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "none",
+            "item": "sniperRifle",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -1068,7 +1068,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "none",
+            "item": "shotgun",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -1079,7 +1079,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "none",
+            "item": "blowDart",
             "decal": "none",
             "Entity": {
               "type": "none"

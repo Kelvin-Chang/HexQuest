@@ -331,9 +331,9 @@ public class CharacterEntityTests {
         sneak.setAttack(25);
         smasher.setCurrentHealth(100);
         smasher.setMaxHealth(100);
-        RangedWeapon rangedWeapon = itemFactory.produceRangedWeapon(50, EffectShape.RADIAL, 2);
+        //RangedWeapon rangedWeapon = itemFactory.produceRangedWeapon(50, EffectShape.RADIAL, 2);
 
-        sneak.getInventory().equipItem(rangedWeapon, sneak);
+        //sneak.getInventory().equipItem(rangedWeapon, sneak);
         sneak.useSkill(SkillType.RANGEDWEAPONSKILL);
         assertEquals(25, smasher.getCurrentHealth());
     }

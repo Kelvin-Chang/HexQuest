@@ -202,7 +202,15 @@ public class GameBuilder {
             case "club":
                 zone.add(point, itemFactory.produceClub(5));
                 break;
-
+            case "sniperRifle":
+                zone.add(point, itemFactory.produceSniperRifle(50, EffectShape.LINEAR, 10));
+                break;
+            case "shotgun":
+                zone.add(point, itemFactory.produceShotun(15, EffectShape.RADIAL, 5));
+                break;
+            case "blowDart":
+                zone.add(point, itemFactory.produceBlowDart(10, EffectShape.LINEAR, 5));
+                break;
         }
     }
 

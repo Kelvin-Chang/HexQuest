@@ -57,6 +57,9 @@ public class SpriteBase {
         itemSprites.put("Great Sword", getImage(filePath + "/src/assets/Items/greatSword.png"));
         itemSprites.put("Battle Axe", getImage(filePath + "/src/assets/Items/battleAxe.png"));
         itemSprites.put("Club", getImage(filePath + "/src/assets/Items/club.png"));
+        itemSprites.put("Sniper Rifle", getImage(filePath + "/src/assets/Items/sniperRifle.png"));
+        itemSprites.put("Shotgun", getImage(filePath + "/src/assets/Items/shotgun.png"));
+        itemSprites.put("Blow Dart", getImage(filePath + "/src/assets/Items/blowDart.png"));
         itemSprites.put("Armor", getImage(filePath + "/src/assets/Items/armor.png"));
     }
 

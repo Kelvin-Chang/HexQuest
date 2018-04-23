@@ -125,9 +125,18 @@ public class ItemFactory {
         return new DecreaseObservationEnchantment(manaCost, skillDecrease, effectShape, range);
     }
 
-    public static RangedWeapon produceRangedWeapon(int damage, EffectShape effectShape, int range) {
-        return new RangedWeapon(damage, effectShape, range);
+    public static RangedWeapon produceSniperRifle(int damage, EffectShape effectShape, int range) {
+        return new RangedWeapon(damage, effectShape, range, "Sniper Rifle");
     }
+
+    public static RangedWeapon produceShotun(int damage, EffectShape effectShape, int range) {
+        return new RangedWeapon(damage, effectShape, range, "Shotgun");
+    }
+
+    public static RangedWeapon produceBlowDart(int damage, EffectShape effectShape, int range) {
+        return new RangedWeapon(damage, effectShape, range, "Blow Dart");
+    }
+
 
     public InteractiveArmor produceInteractiveArmor(int defense, Requirement requirement) {
         return new InteractiveArmor(defense, requirement);
