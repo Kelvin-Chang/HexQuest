@@ -52,8 +52,11 @@ public class HostileNPCController {
 
     public void addMove(CharacterEntity character, Orientation nextMove){
         int i = getNPCposition(character);
-        if(i != -1 )
-            nextMoves.add(i ,nextMove);
+        if(i != -1 ) {
+            if (nextMoves.size() == 0) {
+                nextMoves.add(0 ,nextMove);
+            }
+        }
     }
     public void addMove(int i, Orientation nextMove){
         nextMoves.add(i,nextMove);
