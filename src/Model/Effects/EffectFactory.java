@@ -1,6 +1,7 @@
 package Model.Effects;
 
 import Model.Entity.Character.CharacterEntity;
+import Model.Enums.Orientation;
 import Model.Enums.SkillType;
 import Model.Zone.World;
 
@@ -36,9 +37,7 @@ public class EffectFactory {
         return new MoneyModifierEffect(moneyChange);
     }
 
-//    public static Effect produceTeleportEffect(int dest, CharacterEntity character, World gameWorld){
-//        return new TeleportEffect(dest, character, gameWorld);
-//    }
+    public static Effect produceRiverEffect(Orientation orientation) {return new RiverEffect(orientation); }
 
     public static Effect produceSkillModifierEffect(int skillChange, SkillType skillType) {
         return new SkillModifierEffect(skillChange, skillType);
