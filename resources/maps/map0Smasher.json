@@ -33,9 +33,9 @@
                   "bindWounds" : 100,
                   "bargain" : 100,
                   "observation" : 100,
-                  "twoHanded": 100,
-                  "brawl": 100,
-                  "oneHanded": 100
+                  "brawl" : 100,
+                  "oneHanded" : 100,
+                  "twoHanded" : 100
                 }
               ]
             },

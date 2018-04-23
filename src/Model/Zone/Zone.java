@@ -3,6 +3,7 @@ package Model.Zone;
 import Model.AreaEffects.AreaEffect;
 import Model.Effects.Effect;
 import Model.Entity.Character.CharacterEntity;
+import Model.Entity.Pet;
 import Model.Enums.Orientation;
 import Model.Items.Item;
 import Model.Items.ObstacleItem;
@@ -25,6 +26,9 @@ public class Zone implements Updateable {
     private Map<Point, Item> itemMap;
     private Map<Point, ObstacleItem> obstacleItemMap;
     private Map<Point, Decal> decalMap;
+    private Map<Point, Pet> PetMap;
+
+
 
     private int id;
     private int rows;
@@ -35,6 +39,7 @@ public class Zone implements Updateable {
         this.terrainMap = new HashMap<>();
         this.characterMap = new HashMap<>();
         this.areaEffectMap = new HashMap<>();
+        this.PetMap = new HashMap<>();
         this.effectsMap = new HashMap<>();
         this.itemMap = new HashMap<>();
         this.obstacleItemMap = new HashMap<>();
@@ -49,6 +54,7 @@ public class Zone implements Updateable {
     public Zone() {
         this.terrainMap = new HashMap<>();
         this.characterMap = new HashMap<>();
+        this.PetMap = new HashMap<>();
         this.areaEffectMap = new HashMap<>();
         this.effectsMap = new HashMap<>();
         this.itemMap = new HashMap<>();
@@ -75,12 +81,14 @@ public class Zone implements Updateable {
     public void add(Point point, Item item) { itemMap.put(point, item); }
     public void add(Point point, ObstacleItem obstacle) { obstacleItemMap.put(point, obstacle); }
     public void add(Point point, Decal decal) { decalMap.put(point, decal); }
+    public void add(Point point, Pet pet) { PetMap.put(point, pet); }
     public void add(Point point, Effect effects) { effectsMap.put(point, effects); }
 
 
     public void removeTerrain(Point point) { terrainMap.remove(point); }
     public void removeEntity(Point point) { characterMap.remove(point); }
     public void removeAreaEffect(Point point) { areaEffectMap.remove(point); }
+    public void removeEffect(Point point) { effectsMap.remove(point); }
     public void removeItem(Point point) { itemMap.remove(point); }
     public void removeItem(Item item) {
         for(Point point : getAllItemPoints())
@@ -123,6 +131,7 @@ public class Zone implements Updateable {
     public Terrain getTerrain(Point point) { return terrainMap.getOrDefault(point, Terrain.EMPTY); }
     public CharacterEntity getCharacterEntity(Point point) { return characterMap.get(point); }
     public AreaEffect getAreaEffect(Point point) { return areaEffectMap.get(point); }
+    public Effect getEffect(Point point) { return effectsMap.get(point); }
     public Item getItem(Point point) { return itemMap.get(point); }
     public ObstacleItem getObstacleItem(Point point) { return obstacleItemMap.get(point); }
     public Decal getDecal(Point point) { return decalMap.get(point); }
@@ -148,6 +157,7 @@ public class Zone implements Updateable {
     public Collection<Point> getAllTerrainPoints() { return terrainMap.keySet(); }
     public Collection<Terrain> getAllTerrains() {return terrainMap.values(); }
     public Collection<Point> getAllAreaEffectPoints() { return areaEffectMap.keySet(); }
+    public Collection<Point> getAllEffectPoints() { return effectsMap.keySet(); }
     public Collection<Point> getAllItemPoints() { return itemMap.keySet(); }
     public Collection<Point> getAllObstacleItemPoints() { return obstacleItemMap.keySet(); }
     public Collection<Point> getAllDecalPoints() { return decalMap.keySet(); }
@@ -160,6 +170,15 @@ public class Zone implements Updateable {
             }
         }
         return entities;
+    }
+    public ArrayList<Pet> getPetOnArea(ArrayList<Point> area) {
+        ArrayList<Pet> pets = new ArrayList<>();
+        for (Point point : area) {
+            if (PetMap.get(point) != null) {
+                pets.add(PetMap.get(point));
+            }
+        }
+        return pets;
     }
 
     public Collection<Point> getAllCharacterPoints() { return characterMap.keySet(); }
@@ -219,7 +238,7 @@ public class Zone implements Updateable {
             moveCharacter(sourcePoint, destination);
         } else {
             if(characterMap.get(destination) != null) {
-                //GameViewNotifier.notifyInteraction(characterMap.get(destination));
+                System.out.println("Move is illegal, there is " + getCharacterEntity(destination) + " there.");
             }
             else
                 System.out.println("Move is illegal, there is " + getTerrain(destination).toString() + " there.");

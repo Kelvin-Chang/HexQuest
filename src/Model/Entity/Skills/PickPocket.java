@@ -9,5 +9,10 @@ public class PickPocket extends Skill {
     }
 
     @Override
-    public void activateSkill(CharacterEntity player) {}
+    public void activateSkill(CharacterEntity player) {
+        CharacterEntity pickPocketPartner = player.getInteractionPartner();
+        if (pickPocketPartner != null) {
+            player.pickPocket(pickPocketPartner);
+        }
+    }
 }

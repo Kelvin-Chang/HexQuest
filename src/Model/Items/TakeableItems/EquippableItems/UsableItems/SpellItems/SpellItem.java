@@ -7,7 +7,7 @@ import Model.Entity.Skills.Skill;
 import Model.Enums.EffectShape;
 import Model.Enums.ItemSlot;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.UsableItem;
-import Model.Zone.EffectedAreaCoordinatesCalculator;
+import Model.Zone.HexFormulas;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -35,8 +35,8 @@ public abstract class SpellItem extends UsableItem {
     public void useItem(CharacterEntity player, Skill skill) {}
 
     public ArrayList<Point> getEffectedCoordinates(CharacterEntity player) {
-        EffectedAreaCoordinatesCalculator coordinatesCalculator = new EffectedAreaCoordinatesCalculator();
-        return coordinatesCalculator.calculateCoordinates(player.getLocation(), player.getOrientation(), effectShape, range);
+        HexFormulas hexFormulas = new HexFormulas();
+        return hexFormulas.getEffectedCoordinates(player.getLocation(), range, player.getZone().getTerrainMap(), player.getOrientation(), effectShape);
     }
 
     public boolean hasEnoughMana(CharacterEntity player) {

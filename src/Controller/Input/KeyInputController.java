@@ -56,10 +56,10 @@ public class KeyInputController {
         smasherCommandMap.put(KeyCode.DIGIT6, SkillType.TWOHANDEDWEAPONSKILL);
 
         sneakCommandMap = new HashMap<>();
-        sneakCommandMap.put(KeyCode.DIGIT6, SkillType.PICKPOCKETSKILL);
-        sneakCommandMap.put(KeyCode.DIGIT6, SkillType.REMOVETRAPSKILL);
+        sneakCommandMap.put(KeyCode.DIGIT4, SkillType.PICKPOCKETSKILL);
+        sneakCommandMap.put(KeyCode.DIGIT5, SkillType.REMOVETRAPSKILL);
         sneakCommandMap.put(KeyCode.DIGIT6, SkillType.CREEPSKILL);
-        sneakCommandMap.put(KeyCode.DIGIT6, SkillType.RANGEDWEAPONSKILL);
+        sneakCommandMap.put(KeyCode.DIGIT7, SkillType.RANGEDWEAPONSKILL);
 
     }
 
@@ -125,10 +125,7 @@ public class KeyInputController {
                         playerController.pressCreep();
                         break;
                     case PICKPOCKETSKILL:
-                        CharacterEntity pickPocketTarget = playerController.pressPickPocket();
-                        if (pickPocketTarget != null) {
-                            gameMediator.pickPocketToTakePlace(pickPocketTarget);
-                        }
+                        playerController.pressPickPocket();
                         break;
                     case REMOVETRAPSKILL:
                         playerController.pressRemoveTrap();

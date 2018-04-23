@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.AreaEffects.AreaEffect;
+import Model.Effects.Effect;
 import Model.Entity.Character.CharacterEntity;
 import Model.Items.Item;
 import Model.Items.ObstacleItem;
@@ -12,6 +13,7 @@ import View.Menu.GameplayView;
 import View.SpriteBase;
 import View.Status.StatusView;
 import View.Zone.AreaEffectView;
+import View.Zone.EffectView;
 import View.Zone.Items.ItemView;
 import View.Zone.Items.ObstacleView;
 import View.Zone.MapView;
@@ -41,6 +43,7 @@ public class Renderer {
     private ItemView itemView;
     private MapView mapView;
     private AreaEffectView areaEffectView;
+    private EffectView effectView;
     private FogOfWarHandler fow;
     private Point cameraPosition;
     private boolean cameraControl;
@@ -60,6 +63,7 @@ public class Renderer {
         obstacleView = new ObstacleView(graphicsContext, sprites);
         itemView = new ItemView(graphicsContext, sprites);
         areaEffectView = new AreaEffectView(graphicsContext, sprites);
+        effectView = new EffectView(graphicsContext, sprites);
         fow = new FogOfWarHandler(world.getPlayer());
         fow.updateZone(world.getCurrentZone());
         graphicsContext.setFill(Color.BLACK);
@@ -80,6 +84,7 @@ public class Renderer {
         renderVisibleTiles(cameraPosition);
         renderPlayer(cameraPosition);
         renderOtherEntities(cameraPosition);
+        renderEffects(cameraPosition);
         renderObstacles(cameraPosition);
         renderItems(cameraPosition);
         statusView.render(world.getPlayer());
@@ -97,6 +102,7 @@ public class Renderer {
         obstacleView = new ObstacleView(graphicsContext, sprites);
         itemView = new ItemView(graphicsContext, sprites);
         areaEffectView = new AreaEffectView(graphicsContext, sprites);
+        effectView = new EffectView(graphicsContext, sprites);
         graphicsContext.setFill(Color.BLACK);
         graphicsContext.fillRect(0, 0, canvas.getWidth(),canvas.getHeight());
     }
@@ -284,6 +290,34 @@ public class Renderer {
 
         }
     }
+
+    private void renderEffects(Point cameraPosition) {
+        Zone zone = world.getCurrentZone();
+        Collection<Point> effectCollection = zone.getAllEffectPoints();
+        Point[] effectArray = effectCollection.toArray(new Point[effectCollection.size()]);
+        for (int i = 0; i < effectArray.length; i++) {
+            if (isVisible(effectArray[i])) {
+                Effect effect = zone.getEffect(effectArray[i]);
+                Point2D imageCoordinates = calculateImageCoordinates((int) effectArray[i].getX(), (int) effectArray[i].getY(), radius, cameraPosition);
+                effectView.render(effect, imageCoordinates, radius);
+                zone.removeEffect(effectArray[i]);
+            } else if (isSeen(effectArray[i])) {
+                graphicsContext.setGlobalAlpha(.75);
+                graphicsContext.setEffect(new BoxBlur(radius *.25, radius * .25, 1));
+                Effect effect = zone.getEffect(effectArray[i]);
+                Point2D imageCoordinates = calculateImageCoordinates((int) effectArray[i].getX(), (int) effectArray[i].getY(), radius, cameraPosition);
+                effectView.render(effect, imageCoordinates, radius);
+                zone.removeEffect(effectArray[i]);
+            } else {
+
+            }
+            graphicsContext.setGlobalAlpha(1);
+            graphicsContext.setEffect(null);
+
+        }
+    }
+
+
 
     public void updateMap(Zone z) {
         fow.updateZone(z);
