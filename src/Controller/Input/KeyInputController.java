@@ -16,8 +16,6 @@ public class KeyInputController {
     private HashMap<KeyCode, SkillType> summonerCommandMap;
     private HashMap<KeyCode, SkillType> smasherCommandMap;
     private HashMap<KeyCode, SkillType> sneakCommandMap;
-    private HashMap<KeyCode, SkillType> commandMap;
-    private HashMap<KeyCode, MovementCommand> moveMap;
     private ArrayList<SkillType> availableActions;
     private PlayerController playerController;
     private GameMediator gameMediator;
@@ -40,30 +38,17 @@ public class KeyInputController {
         commmonCommandMap.put(KeyCode.DIGIT1, SkillType.BINDWOUNDSSKILL);
         commmonCommandMap.put(KeyCode.DIGIT2, SkillType.BARGAINSKILL);
         commmonCommandMap.put(KeyCode.DIGIT3, SkillType.OBSERVATIONSKILL);
+        commmonCommandMap.put(KeyCode.Z, SkillType.TOGGLECAMERA);
+        commmonCommandMap.put(KeyCode.I, SkillType.CAMERAUP);
+        commmonCommandMap.put(KeyCode.L, SkillType.CAMERARIGHT);
+        commmonCommandMap.put(KeyCode.K, SkillType.CAMERADOWN);
+        commmonCommandMap.put(KeyCode.J, SkillType.CAMERALEFT);
 
         summonerCommandMap = new HashMap<>();
         summonerCommandMap.put(KeyCode.DIGIT4, SkillType.ENCHANTMENTSKILL);
         summonerCommandMap.put(KeyCode.DIGIT5, SkillType.BOONSKILL);
         summonerCommandMap.put(KeyCode.DIGIT6, SkillType.BANESKILL);
         summonerCommandMap.put(KeyCode.DIGIT7, SkillType.STAFFSKILL);
-
-        commandMap.put(KeyCode.DIGIT4, SkillType.ENCHANTMENTSKILL);
-        commandMap.put(KeyCode.DIGIT5, SkillType.BOONSKILL);
-        commandMap.put(KeyCode.DIGIT6, SkillType.BANESKILL);
-        commandMap.put(KeyCode.DIGIT7, SkillType.STAFFSKILL);
-        commandMap.put(KeyCode.Z, SkillType.TOGGLECAMERA);
-        commandMap.put(KeyCode.I, SkillType.CAMERAUP);
-        commandMap.put(KeyCode.L, SkillType.CAMERARIGHT);
-        commandMap.put(KeyCode.K, SkillType.CAMERADOWN);
-        commandMap.put(KeyCode.J, SkillType.CAMERALEFT);
-
-        moveMap = new HashMap<>();
-//        moveMap.put(KeyCode.DEAD_TILDE, MovementCommand.TOGGLECAMERA);
-//        moveMap.put(KeyCode.I, MovementCommand.CAMERAUP);
-//        moveMap.put(KeyCode.L, MovementCommand.CAMERARIGHT);
-//        moveMap.put(KeyCode.K, MovementCommand.CAMERADOWN);
-//        moveMap.put(KeyCode.J, MovementCommand.CAMERALEFT);
-
 
         smasherCommandMap = new HashMap<>();
         smasherCommandMap.put(KeyCode.DIGIT4, SkillType.BRAWLSKILL);
