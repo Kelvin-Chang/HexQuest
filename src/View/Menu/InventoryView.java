@@ -172,8 +172,6 @@ public class InventoryView extends AbstractView{
             // TODO: pass in image and/or item name to display
 
             // create radio button
-
-            // TODO: give the radio button the name of the item and stuff to identify which one it is
             RadioButton rb = new RadioButton();
 
             // give the radio button the item that is selected

@@ -41,6 +41,7 @@ public abstract class CharacterEntity {
     private Zone zone;
     private boolean aggroed;
     private boolean chasing;
+    private int unusedSkillPoints;
 
     private int money;
 
@@ -61,6 +62,7 @@ public abstract class CharacterEntity {
         this.movementQueue = new LinkedList<>();
         this.aggroed = false;
         this.chasing = false;
+        this.unusedSkillPoints = 0;
     }
 
     public String getSkillClass(){
@@ -403,6 +405,14 @@ public abstract class CharacterEntity {
 
     public void setChasing(boolean chasing) {
         this.chasing = chasing;
+    }
+
+    public int getUnusedSkillPoints() {
+        return unusedSkillPoints;
+    }
+
+    public void setUnusedSkillPoints(int unusedSkillPoints) {
+        this.unusedSkillPoints = unusedSkillPoints;
     }
 
 }
