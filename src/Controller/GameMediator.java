@@ -66,8 +66,8 @@ public class GameMediator extends Application {
         viewController.switchToMainMenuView();
     }
 
-    public void loadGame(ArrayList<String> saveFileLocation) {
-        if (!loaded) {
+    public void loadGame(ArrayList<String> saveFileLocation, boolean fromStartGame) {
+        if (!loaded || fromStartGame) {
             gameLoader = new GameLoader(gameBuilder);
             for(String save : saveFileLocation)
                 gameLoader.loadGame(save);
