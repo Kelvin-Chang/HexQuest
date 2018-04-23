@@ -2,6 +2,8 @@ package Controller.Input;
 
 import Controller.GameMediator;
 
+import Model.Entity.Character.CharacterEntity;
+import Model.Entity.Character.ShopKeep;
 import View.Menu.*;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -9,6 +11,8 @@ import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 
 public class ViewController {
     private Scene scene;
@@ -69,7 +73,14 @@ public class ViewController {
         SettingsView view = new SettingsView(viewController);
         createScene(view);
     }
-
+    public void switchToGamePlayView(boolean fromStartGame) {
+        gameplayView = new GameplayView(viewController, stage);
+        createScene(gameplayView);
+        ArrayList<String> saveFileLocations = new ArrayList<>();
+        saveFileLocations.add("resources/maps/map0.json");
+        saveFileLocations.add("resources/maps/map1.json");
+        gameMediator.loadGame(saveFileLocations);
+    }
     public void switchToGamePlayView(boolean fromStartGame, ArrayList<String> filepath) {
         gameplayView = new GameplayView(viewController, stage);
         createScene(gameplayView);
@@ -101,6 +112,25 @@ public class ViewController {
 
     public void switchToSkillView() {
         SkillView view = new SkillView(viewController, gameMediator.getWorld().getPlayer());
+        createScene(view);
+    }
+
+    public void switchToShopkeeperView() {
+
+        ShopKeep shopkeeper = null;
+
+        Collection allCharacterEntities = gameMediator.getWorld().getCurrentZone().getAllCharacterEntitys();
+
+        Iterator<CharacterEntity> iterator = allCharacterEntities.iterator();
+
+        // TODO: get rid of typechecking somehow
+        while (iterator.hasNext()) {
+            if (iterator.next() instanceof ShopKeep) {
+                shopkeeper = (ShopKeep) iterator.next();
+            }
+        }
+
+        ShopkeeperView view = new ShopkeeperView(viewController, gameMediator.getWorld().getPlayer(), shopkeeper);
         createScene(view);
     }
 }

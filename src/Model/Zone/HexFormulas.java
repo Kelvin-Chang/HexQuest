@@ -8,8 +8,9 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import static Model.Enums.Orientation.correspondingNumber;
+import static Model.Enums.Orientation.oddq_directions;
 
-                                    //POINTS ARE (X,Y) where
+//POINTS ARE (X,Y) where
                                     //X IS THE COLUMN NUMBER
                                     //AND Y IS THE ROW NUMBER
 
@@ -18,7 +19,7 @@ public class HexFormulas {
     //get neighbor point point
     public static Point getNeighborPointFromOrientation(Point hex, Orientation directionYouAreMoving){
         int parity = hex.x & 1;
-        Point dir = Orientation.oddq_directions[parity][correspondingNumber(directionYouAreMoving)];
+        Point dir = oddq_directions[parity][correspondingNumber(directionYouAreMoving)];
         return new Point((int)(hex.getX() + dir.getX()), (int)(hex.getY() + dir.getY()));
     }
 
@@ -27,7 +28,7 @@ public class HexFormulas {
         int parity = hex.x & 1;
 
         for(int i = 0; i < 6; ++i){
-            Point dir = Orientation.oddq_directions[parity][i];
+            Point dir = oddq_directions[parity][i];
             list.add(new Point((int)(hex.getY() + dir.getY()), (int)(hex.getX() + dir.getX())));
         }
         return list;
@@ -37,12 +38,12 @@ public class HexFormulas {
         ArrayList<Point> list = new ArrayList<>();
         int parity = hex.x & 1;
 
-        Point coordsToAdd = Orientation.oddq_directions[parity][correspondingNumber(directionYouAreMoving)];
+        Point coordsToAdd = oddq_directions[parity][correspondingNumber(directionYouAreMoving)];
         Point p = new Point((int) (hex.getX() + coordsToAdd.getX()), (int) (hex.getY() + coordsToAdd.getY()));
         list.add(p);
         for (int i = 0; i < range-1; i++) {
             parity = p.x & 1;
-            coordsToAdd = Orientation.oddq_directions[parity][correspondingNumber(directionYouAreMoving)];
+            coordsToAdd = oddq_directions[parity][correspondingNumber(directionYouAreMoving)];
             p = new Point((int) (p.getX() + coordsToAdd.getX()), (int) (p.getY() + coordsToAdd.getY()));
             list.add(p);
         }
@@ -53,25 +54,27 @@ public class HexFormulas {
         ArrayList<Point> list = new ArrayList<>();
         int parity = hex.x & 1;
 
-        Point coordsToAdd = Orientation.oddq_directions[parity][correspondingNumber(directionYouAreFacing)];
+        Point coordsToAdd = oddq_directions[parity][correspondingNumber(directionYouAreFacing)];
         Point p = new Point((int) (hex.getX() + coordsToAdd.getX()), (int) (hex.getY() + coordsToAdd.getY()));
-        list.add(p);
-        for (int i = 0; i < range-1; i++) {
-            parity = p.x & 1;
+
+        for(int i = 1; i < 4; ++i){
             coordsToAdd = Orientation.oddq_directions[parity][correspondingNumber(directionYouAreFacing)];
-            p = new Point((int) (p.getX() + coordsToAdd.getX()), (int) (p.getY() + coordsToAdd.getY()));
+            p = new Point((int) (hex.getX() + i *coordsToAdd.getX()), (int) (hex.getY() + i * coordsToAdd.getY()));
+            list.add(p);
+        }
+        for(int i = 1; i < 4; ++i){
+            coordsToAdd = Orientation.oddq_directions[parity][correspondingNumber(directionYouAreFacing) - 1];
+            p = new Point((int) (hex.getX() + i *coordsToAdd.getX()), (int) (hex.getY() + i * coordsToAdd.getY()));
+            list.add(p);
+        }
+        for(int i = 1; i < 4; ++i){
+            coordsToAdd = Orientation.oddq_directions[parity][correspondingNumber(directionYouAreFacing) + 1];
+            p = new Point((int) (hex.getX() + i *coordsToAdd.getX()), (int) (hex.getY() + i * coordsToAdd.getY()));
             list.add(p);
         }
         return list;
     }
 
-    public static void rGetAngularPoints(Point hex, int radius, Map<Point, Terrain> terrainMap, Orientation directionYouAreFacing, ArrayList<Point> list, int decreasingRadius) {
-        //BASE CASE:
-        if (decreasingRadius == 0 /*|| terrainMap.keySet().contains()*/){
-
-        }
-
-    }
     public static ArrayList<Point> getRadialOfPointsFromRadius(Point hex, int radius, Map<Point, Terrain> terrainMap) {
         ArrayList<Point> list = new ArrayList<>();
 

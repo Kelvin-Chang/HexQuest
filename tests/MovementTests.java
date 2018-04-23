@@ -24,7 +24,7 @@ public class MovementTests {
         zone.attemptMove(characterSmash);
 
         Assert.assertTrue(zone.getCharacterLocation(characterSmash).x == 3 && zone.getCharacterLocation(characterSmash).y==4);
-        System.out.println(characterSmash.getLocation());
+        //System.out.println(characterSmash.getLocation());
 
         characterSmash.addDownToMovementQueue();
         zone.attemptMove(characterSmash);

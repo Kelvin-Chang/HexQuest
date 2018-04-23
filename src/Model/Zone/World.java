@@ -108,7 +108,6 @@ public class World implements Updateable {
         for(CharacterEntity character : controller.getNpcs()){
 
         }
-
         controller.doOrientations();
     }
 

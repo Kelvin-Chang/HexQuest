@@ -100,8 +100,6 @@ public class InventoryView extends AbstractView{
 
         for (int i = 0; i < numberOfUnequippedItems; i++) {
             // create radio button
-
-            // TODO: give the radio button the name of the item and stuff to identify which one it is
             RadioButton rb = new RadioButton();
 
             // give the radio button the item that is selected
