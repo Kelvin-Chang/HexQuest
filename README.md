@@ -1,3 +1,13 @@
-# OOP-Iteration-3
+# HexQuest
 
-Nikita Buslov(buslovna)
+Nikita Buslov (buslovna)
+
+Kelvin Chang (Kelvin-Chang)
+
+Thomas Headley (thead9)
+
+Keanu Kerr (keanuk)
+
+Carlo Romo (delebot)
+
+Lorenzo Tabares (tabareslorenzo)
