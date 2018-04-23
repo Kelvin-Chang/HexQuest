@@ -306,7 +306,13 @@ public abstract class CharacterEntity {
     }
 
     public void addToInventory(TakeableItem item){
-        this.inventory.addToInventory(item);
+        if (item != null) {
+            this.inventory.addToInventory(item);
+        }
+    }
+
+    public TakeableItem removeItem(int i) {
+        return this.inventory.removeFirstItem(i);
     }
 
     public void useItemSlotRequiringSkill(ItemSlot slot, Skill skill) {
@@ -330,6 +336,13 @@ public abstract class CharacterEntity {
             return bargainPartner.remove(0);
         }
         return null;
+    }
+
+    public void pickPocket(CharacterEntity characterEntity) {
+        TakeableItem item = characterEntity.removeItem(0);
+        if (item != null) {
+            addToInventory(item);
+        }
     }
 
     public void effectEntities(ArrayList<Point> area, Effect effect) {

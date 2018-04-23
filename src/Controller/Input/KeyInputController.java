@@ -125,10 +125,7 @@ public class KeyInputController {
                         playerController.pressCreep();
                         break;
                     case PICKPOCKETSKILL:
-                        CharacterEntity pickPocketTarget = playerController.pressPickPocket();
-                        if (pickPocketTarget != null) {
-                            gameMediator.pickPocketToTakePlace(pickPocketTarget);
-                        }
+                        playerController.pressPickPocket();
                         break;
                     case REMOVETRAPSKILL:
                         playerController.pressRemoveTrap();

@@ -44,16 +44,24 @@ public class HexFormulas {
             parity = p.x & 1;
             coordsToAdd = Orientation.oddq_directions[parity][correspondingNumber(directionYouAreMoving)];
             p = new Point((int) (p.getX() + coordsToAdd.getX()), (int) (p.getY() + coordsToAdd.getY()));
-            list.add(p); //UNTIL YOU REACH THE END OF THE MAP OR HIT SOMETHING
+            list.add(p);
         }
         return list;
     }
 
-    public static ArrayList<Point> getAngularPoints(Point hex, int radius, Map<Point, Terrain> terrainMap, Orientation directionYouAreFacing) {
+    public static ArrayList<Point> getAngularPoints(Point hex, int range, Map<Point, Terrain> terrainMap, Orientation directionYouAreFacing) {
         ArrayList<Point> list = new ArrayList<>();
+        int parity = hex.x & 1;
 
-        rGetAngularPoints(hex, radius, terrainMap, directionYouAreFacing, list, radius);
-
+        Point coordsToAdd = Orientation.oddq_directions[parity][correspondingNumber(directionYouAreFacing)];
+        Point p = new Point((int) (hex.getX() + coordsToAdd.getX()), (int) (hex.getY() + coordsToAdd.getY()));
+        list.add(p);
+        for (int i = 0; i < range-1; i++) {
+            parity = p.x & 1;
+            coordsToAdd = Orientation.oddq_directions[parity][correspondingNumber(directionYouAreFacing)];
+            p = new Point((int) (p.getX() + coordsToAdd.getX()), (int) (p.getY() + coordsToAdd.getY()));
+            list.add(p);
+        }
         return list;
     }
 

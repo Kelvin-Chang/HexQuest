@@ -32,6 +32,13 @@ public class Inventory {
             unequippedItems[nextSpace] = item;
     }
 
+    public TakeableItem removeFirstItem(int i) {
+        if (unequippedItems[i] != null) {
+            return unequippedItems[i];
+        }
+        return null;
+    }
+
     private int nextAvailableSpace(){
         for(int i = 0; i < unequippedItemBagSize; ++i){
             if (unequippedItems[i] != null)
