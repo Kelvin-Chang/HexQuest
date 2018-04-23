@@ -87,6 +87,11 @@ public class MapGenerator {
                     type.put("type","none");
                 }
                 else{
+                    JSONArray inventory = new JSONArray();
+                    JSONArray skills = new JSONArray();
+                    JSONArray EquippedItems = new JSONArray();
+                    JSONArray UnequippedItems = new JSONArray();
+
                     type.put("type",EntityMap.get(new Point(i,j)).getClass().getName().toString().replace("Model.Entity.Character.",""));
                     type.put("class",EntityMap.get(new Point(i,j)).getSkillClass());
                     type.put("name",EntityMap.get(new Point(i,j)).getName());
@@ -98,14 +103,37 @@ public class MapGenerator {
                     type.put("attack", Integer.toString(EntityMap.get(new Point(i,j)).getAttack()));
                     type.put("defense", Integer.toString(EntityMap.get(new Point(i,j)).getDefense()));
                     type.put("speed", Integer.toString(EntityMap.get(new Point(i,j)).getSpeed()));
-                    type.put("Inventory", Integer.toString(EntityMap.get(new Point(i,j)).getAttack()));
-                    type.put("Skills", Integer.toString(EntityMap.get(new Point(i,j)).getAttack()));
+
+                    //skills
+                    EntityMap.get(new Point(i,j)).getSkills();
+                    EntityMap.get(new Point(i,j)).getSkills().forEach((k, v) ->{
+                        skills.put(v);
+                    });
+                    type.put("Skills", skills);
+
+                    //Weapons
+                    //    BRAWL, ONEHANDED, TWOHANDED, BANE, BOON, ENCHANTMENT, STAFF, RANGED, ARMOR, RING;
+                    EntityMap.get(new Point(i,j)).getInventory().getEquippedItems().forEach((k, v) ->{
+                        EquippedItems.put(v);
+                    });
+
+                    for(int k = 0; k < EntityMap.get(new Point(i,j)).getInventory().getEquippedItems().size(); k++)
+                    {
+                        UnequippedItems.put(EntityMap.get(new Point(i,j)).getInventory().getUnequippedItems()[k]);
+                    }
+
+                    inventory.put(UnequippedItems);
+                    inventory.put(EquippedItems);
+                    type.put("Inventory", inventory);
+
                     if(EntityMap.get(new Point(i,j)).getPet() != null)
                     {
                         type.put("pet", EntityMap.get(new Point(i,j)).getPetName());
                     }else {
                         type.put("pet", "none");
                     }
+
+                    //orientation
                     //UP, UPRIGHT, DOWNRIGHT, DOWN, DOWNLEFT, UPLEFT;
                     String OrString = "";
                     switch (EntityMap.get(new Point(i,j)).getOrientation()) {
@@ -128,6 +156,7 @@ public class MapGenerator {
                             OrString = "downright";
                             break;
                     }
+
                     type.put("orientation", OrString);
 
 
