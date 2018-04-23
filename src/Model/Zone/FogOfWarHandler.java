@@ -6,9 +6,7 @@ import Model.Entity.Entity;
 
 import java.awt.*;
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
+import java.util.*;
 
 public class FogOfWarHandler {
     HashMap<Zone, ArrayList<Point>> visited;
@@ -45,21 +43,22 @@ public class FogOfWarHandler {
             }
 
         }
-        for (Point currLoc : currentZone.getCharacterMap().keySet()) {
-            if (currLoc != player.getLocation()) {
-                if (seenMap.get(currentZone).containsKey(currLoc) && !HexFormulas.getRadialOfPointsFromRadius(player.getLocation(),2,currentZone.getTerrainMap()).contains(currLoc)) {
-                    entMap.get(currentZone).replace(currLoc, currentZone.getCharacterMap().get(currLoc));
-                } else {
-                    entMap.get(currentZone).put(currLoc, currentZone.getCharacterMap().get(currLoc));
-                }
-            }
-        }
-        for (Point currLoc : entMap.get(currentZone).keySet()) {
-            if (!currentZone.getCharacterMap().keySet().contains(currLoc) && HexFormulas.getRadialOfPointsFromRadius(player.getLocation(),2,currentZone.getTerrainMap()).contains(currLoc)) {
-                entMap.get(currentZone).remove(currLoc);
-            }
-        }
+//        for (Point currLoc : currentZone.getCharacterMap().keySet()) {
+//            if (currLoc != player.getLocation()) {
+//                if (seenMap.get(currentZone).containsKey(currLoc) && !HexFormulas.getRadialOfPointsFromRadius(player.getLocation(),2,currentZone.getTerrainMap()).contains(currLoc)) {
+//                    entMap.get(currentZone).replace(currLoc, currentZone.getCharacterMap().get(currLoc));
+//                } else {
+//                    entMap.get(currentZone).put(currLoc, currentZone.getCharacterMap().get(currLoc));
+//                }
+//            }
+//        }
+//        for (Point currLoc : entMap.get(currentZone).keySet()) {
+//            if (!currentZone.getCharacterMap().keySet().contains(currLoc) && HexFormulas.getRadialOfPointsFromRadius(player.getLocation(),2,currentZone.getTerrainMap()).contains(currLoc)) {
+//                entMap.get(currentZone).remove(currLoc);
+//            }
+//        }
     }
+
 
     public HashMap<Point,Terrain> getSeenTiles() {
         return seenMap.get(currentZone);

@@ -35,11 +35,13 @@ public class World implements Updateable {
     public void addZone(Zone zone) {
         System.out.println("Adding zone to world: " + zone.getID());
         zoneHashMap.put(zone.getID(), zone);
-        hostileNPCControllers.put(currentZone, new HostileNPCController());
+        hostileNPCControllers.putIfAbsent(currentZone, new HostileNPCController());
     }
     public void setCurrentZone(int currentZone) {
         System.out.println("New current world is " + currentZone);
         this.currentZone = currentZone;
+        hostileNPCControllers.putIfAbsent(currentZone, new HostileNPCController());
+
     }
 
     public Zone getCurrentZone() {
