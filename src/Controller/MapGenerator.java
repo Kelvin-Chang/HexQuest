@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Collection;
 import java.util.HashMap;
+import Model.Enums.SkillType;
 
 public class MapGenerator {
     private String mapDir = "/Users/lorenzo/Documents/GitHub/OOP-Iteration-3/resources/maps/";
@@ -107,7 +108,52 @@ public class MapGenerator {
                     //skills
                     EntityMap.get(new Point(i,j)).getSkills();
                     EntityMap.get(new Point(i,j)).getSkills().forEach((k, v) ->{
-                        skills.put(v);
+                        JSONObject skill = new JSONObject();
+                        switch (k) {
+                            case BINDWOUNDSSKILL:
+                                skill.put("bindWounds", v.getSkillLevel());
+                                break;
+                            case BARGAINSKILL:
+                                skill.put("bargain", v.getSkillLevel());
+                                break;
+                            case OBSERVATIONSKILL:
+                                skill.put("observation", v.getSkillLevel());
+                                break;
+                            case BRAWLSKILL:
+                                skill.put("brawl", v.getSkillLevel());
+                                break;
+                            case ONEHANDEDWEAPONSKILL:
+                                skill.put("oneHanded", v.getSkillLevel());
+                                break;
+                            case TWOHANDEDWEAPONSKILL:
+                                skill.put("twoHanded", v.getSkillLevel());
+                                break;
+                            case BANESKILL:
+                                skill.put("bane", v.getSkillLevel());
+                                break;
+                            case BOONSKILL:
+                                skill.put("boon", v.getSkillLevel());
+                                break;
+                            case ENCHANTMENTSKILL:
+                                skill.put("enchantment", v.getSkillLevel());
+                                break;
+                            case STAFFSKILL:
+                                skill.put("staff", v.getSkillLevel());
+                                break;
+                            case PICKPOCKETSKILL:
+                                skill.put("pickPocket", v.getSkillLevel());
+                                break;
+                            case REMOVETRAPSKILL:
+                                skill.put("removeTrap", v.getSkillLevel());
+                                break;
+                            case CREEPSKILL:
+                                skill.put("creep", v.getSkillLevel());
+                                break;
+                            case RANGEDWEAPONSKILL:
+                                skill.put("ranged", v.getSkillLevel());
+                                break;
+                        }
+                        skills.put(skill);
                     });
                     type.put("Skills", skills);
 
