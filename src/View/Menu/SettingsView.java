@@ -2,6 +2,8 @@ package View.Menu;
 
 import Controller.Input.ViewController;
 import Controller.LoadSave.ControllerConfigLoader;
+import Controller.buttons.MainMenuSelectable;
+import Controller.buttons.Selectable;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -12,10 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -41,7 +40,7 @@ public class SettingsView extends AbstractView {
         bp.setTop(topPane());
         bp.setCenter(gridPane(settingsView));
 
-        //bp.setBottom(bottomPane());
+        bp.setBottom(bottomPane(settingsView));
         return bp;
     }
 
@@ -230,7 +229,19 @@ public class SettingsView extends AbstractView {
         return gridpane;
     }
 
-    private TextField generateTextField(String propertyName, Properties properties) {
+    private HBox bottomPane(SettingsView settingsView) {
+        HBox hBox = new HBox();
+        Selectable clickable = new MainMenuSelectable("Main Menu", viewController);
+        Button selectable = new Button(clickable.getName());
+        selectable.getStyleClass().add("button1");
+        selectable.setOnAction(clickable);
+
+        hBox.getChildren().add(selectable);
+        return hBox;
+    }
+
+
+        private TextField generateTextField(String propertyName, Properties properties) {
         TextField textField = new TextField(properties.getProperty(propertyName));
         textField.setPromptText(propertyName);
         return textField;
