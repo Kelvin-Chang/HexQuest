@@ -35,6 +35,7 @@ public class StartNewGameSelectable extends Selectable {
 
         ArrayList<String> loadFiles = new ArrayList<>();
 
+        loadFiles.add("resources/maps/map2.json");
         loadFiles.add("resources/maps/map1.json");
         loadFiles.add(newGameView.getCharacterChoice());
 

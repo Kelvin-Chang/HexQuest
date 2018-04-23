@@ -80,15 +80,16 @@ public class Renderer {
             cameraPosition = world.getPlayer().getLocation();
         }
         fow.updateOnTick();
-        renderSeenTiles(cameraPosition);
-        renderVisibleTiles(cameraPosition);
-        renderPlayer(cameraPosition);
-        renderOtherEntities(cameraPosition);
-        renderEffects(cameraPosition);
-        renderObstacles(cameraPosition);
-        renderItems(cameraPosition);
-        statusView.render(world.getPlayer());
-
+        if (world.getPlayer().getLocation() != null) {
+            renderSeenTiles(cameraPosition);
+            renderVisibleTiles(cameraPosition);
+            renderPlayer(cameraPosition);
+            renderOtherEntities(cameraPosition);
+            renderEffects(cameraPosition);
+            renderObstacles(cameraPosition);
+            renderItems(cameraPosition);
+            statusView.render(world.getPlayer());
+        }
     }
 
     public void resetCanvas(GameplayView gameplayView) {
@@ -352,6 +353,7 @@ public class Renderer {
 
 
     public void updateMap(Zone z) {
+
         fow.updateZone(z);
     }
 

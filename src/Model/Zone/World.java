@@ -42,6 +42,7 @@ public class World implements Updateable {
         this.currentZone = currentZone;
         hostileNPCControllers.putIfAbsent(currentZone, new HostileNPCController());
 
+
     }
 
     public Zone getCurrentZone() {
@@ -75,31 +76,33 @@ public class World implements Updateable {
     public void processHostileNPCMovements(){
         HostileNPCController controller = hostileNPCControllers.get(currentZone);
         CharacterEntity npc = getCurrentZone().getCharacter(new Point(2,5));
-        ArrayList<Point> pointsInIR = getRadialOfPointsFromRadius(getZoneByID(currentZone).getCharacterLocation(player),3, getCurrentZone().getTerrainMap());
-        if (!controller.getNpcs().isEmpty()) {
-            for(CharacterEntity character : controller.getNpcs()){
-                for(Point p : pointsInIR) {
-                    if (getCurrentZone().getCharacterEntity(p) == character) {
-                        if (character.isChasing() && distanceToPoint(getPlayer().getLocation(), p) == 2){
-                            controller.addMove(character, calculateNPCtoPlayerOrientation(getCurrentZone(), p));
-                            break;
-                        }
+        if (getZoneByID(currentZone).getCharacterLocation(player) != null) {
+            ArrayList<Point> pointsInIR = getRadialOfPointsFromRadius(getZoneByID(currentZone).getCharacterLocation(player),3, getCurrentZone().getTerrainMap());
+            if (!controller.getNpcs().isEmpty()) {
+                for(CharacterEntity character : controller.getNpcs()){
+                    for(Point p : pointsInIR) {
+                        if (getCurrentZone().getCharacterEntity(p) == character) {
+                            if (character.isChasing() && distanceToPoint(getPlayer().getLocation(), p) == 2){
+                                controller.addMove(character, calculateNPCtoPlayerOrientation(getCurrentZone(), p));
+                                break;
+                            }
 
-                        else if (character.isChasing() == true && distanceToPoint(getPlayer().getLocation(), p) == 1){
-                            controller.addMove(character, calculateNPCtoPlayerOrientation(getCurrentZone(), p));
-                            character.useSkill(SkillType.BRAWLSKILL);
-                            break;
-                        }
-                        else {
-                            character.setChasing(true);
-                            break;
+                            else if (character.isChasing() == true && distanceToPoint(getPlayer().getLocation(), p) == 1){
+                                controller.addMove(character, calculateNPCtoPlayerOrientation(getCurrentZone(), p));
+                                character.useSkill(SkillType.BRAWLSKILL);
+                                break;
+                            }
+                            else {
+                                character.setChasing(true);
+                                break;
+                            }
                         }
                     }
                 }
             }
+
+            controller.doOrientations();
         }
-        
-        controller.doOrientations();
     }
 
     public void processFriendlyNPCMovements(){

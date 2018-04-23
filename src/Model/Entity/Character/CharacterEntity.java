@@ -354,16 +354,16 @@ public abstract class CharacterEntity {
 
     public void effectEntities(ArrayList<Point> area, Effect effect) {
         for (Point point : area) {
-            if (point.getX() != getLocation().getX() || point.getY() != getLocation().getY()) {
+            //if (point.getX() != getLocation().getX() || point.getY() != getLocation().getY()) {
                 zone.add(point, effect);
-            }
+            //}
         }
         ArrayList<CharacterEntity> entities = zone.getEntitiesOnArea(area);
         for (CharacterEntity entity: entities) {
-            if (entity.getLocation() != getLocation()) {
+            //if (entity.getLocation() != getLocation()) {
                 effect.trigger(entity);
                 System.out.println(entity.getCurrentHealth());
-            }
+            //}
         }
     }
 

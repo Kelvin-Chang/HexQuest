@@ -33,7 +33,7 @@
                   "bindWounds" : 80,
                   "bargain" : 80,
                   "observation" : 80,
-                  "boon" : 80,
+                  "boon" : 100,
                   "bane" : 80,
                   "enchantment" : 80,
                   "staff" : 80
@@ -61,7 +61,7 @@
             "decal": "none",
             "Entity": {
               "type": "shopKeep",
-              "name": "dave",
+              "name": "shop",
               "class": "smasher",
               "level": 1,
               "maxHealth": 100,
@@ -1029,7 +1029,7 @@
           },
           {
             "terrain": "grass",
-            "areaEffect": "none",
+            "areaEffect": "teleport1",
             "item": "none",
             "decal": "none",
             "Entity": {

@@ -1,6 +1,7 @@
 package Controller.LoadSave;
 
 import Model.AreaEffects.*;
+import Model.Effects.HealthModifierEffect;
 import Model.Entity.Character.*;
 import Model.Entity.Pet;
 import Model.Enums.EffectShape;
@@ -111,8 +112,17 @@ public class GameBuilder {
             case "level":
                 zone.add(point, new LevelUp());
                 break;
-            case "teleport":
+            case "teleport0":
+                zone.add(point, new TeleportEffect(0, player, world));
+                break;
+            case "teleport1":
                 zone.add(point, new TeleportEffect(1, player, world));
+                break;
+            case "teleport2":
+                zone.add(point, new TeleportEffect(2, player, world));
+                break;
+            case "teleport3":
+                zone.add(point, new TeleportEffect(3, player, world));
                 break;
             case "river-up":
                 zone.add(point, new River(Orientation.UP));
@@ -129,10 +139,12 @@ public class GameBuilder {
             case "river-downleft":
                 zone.add(point, new River(Orientation.DOWNLEFT));
                 break;
-            case "river-updownright":
+            case "river-downright":
                 zone.add(point, new River(Orientation.DOWNRIGHT));
                 break;
-
+            case "trap":
+                zone.add(point, new Trap(new HealthModifierEffect(-50), 10));
+                break;
         }
 
         switch (decal) {
@@ -166,7 +178,7 @@ public class GameBuilder {
                 zone.add(point, itemFactory.produceManaBoon(10, 11));
                 break;
             case "healthBane":
-                zone.add(point, itemFactory.produceHealthBane(10, 5, EffectShape.LINEAR, 1));
+                zone.add(point, itemFactory.produceHealthBane(10, 5, EffectShape.RADIAL, 1));
                 break;
             case "defenseBane":
                 zone.add(point, itemFactory.produceDefenseBane(10, 5, EffectShape.LINEAR, 1));

@@ -1,9 +1,9 @@
 {
   "World": {
-    "currentMap": 0,
+    "currentMap": 2,
     "Map": [
       {
-        "id": 0,
+        "id": 2,
         "rows": 10,
         "columns": 10,
         "Tile": [
@@ -13,31 +13,7 @@
             "item": "none",
             "decal": "none",
             "Entity" : {
-              "type": "player",
-              "name": "dave",
-              "class": "smasher",
-              "level": 1,
-              "maxHealth": 100,
-              "currentHealth": 100,
-              "maxMana": 100,
-              "currentMana": 100,
-              "attack": 10,
-              "defense": 10,
-              "speed": 1,
-              "money": 100,
-              "orientation": "up",
-              "pet": "none",
-              "Inventory": [],
-              "Skills": [
-                {
-                  "bindWounds" : 80,
-                  "bargain" : 80,
-                  "observation" : 80,
-                  "brawl" : 80,
-                  "oneHanded" : 80,
-                  "twoHanded" : 80
-                }
-              ]
+              "type": "none"
             },
             "x": 0,
             "y": 0
@@ -59,29 +35,14 @@
             "item": "none",
             "decal": "none",
             "Entity": {
-              "type": "shopKeep",
-              "name": "shop",
-              "class": "smasher",
-              "level": 1,
-              "maxHealth": 100,
-              "currentHealth": 100,
-              "maxMana": 100,
-              "currentMana": 100,
-              "attack": 10,
-              "defense": 10,
-              "speed": 1,
-              "money": 500,
-              "orientation": "up",
-              "pet": "none",
-              "Inventory": [],
-              "Skills": []
+              "type": "none"
             },
             "x": 0,
             "y": 2
           },
           {
             "terrain": "grass",
-            "areaEffect": "damage",
+            "areaEffect": "none",
             "item": "none",
             "decal": "none",
             "Entity": {
@@ -92,7 +53,7 @@
           },
           {
             "terrain": "grass",
-            "areaEffect": "none",
+            "areaEffect": "damage",
             "item": "none",
             "decal": "none",
             "Entity": {
@@ -103,7 +64,7 @@
           },
           {
             "terrain": "grass",
-            "areaEffect": "none",
+            "areaEffect": "damage",
             "item": "none",
             "decal": "none",
             "Entity": {
@@ -125,8 +86,8 @@
           },
           {
             "terrain": "grass",
-            "areaEffect": "none",
-            "item": "obstacle",
+            "areaEffect": "heal",
+            "item": "none",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -136,7 +97,7 @@
           },
           {
             "terrain": "grass",
-            "areaEffect": "none",
+            "areaEffect": "heal",
             "item": "none",
             "decal": "none",
             "Entity": {
@@ -147,7 +108,7 @@
           },
           {
             "terrain": "grass",
-            "areaEffect": "trap",
+            "areaEffect": "none",
             "item": "none",
             "decal": "none",
             "Entity": {
@@ -203,7 +164,7 @@
           },
           {
             "terrain": "grass",
-            "areaEffect": "none",
+            "areaEffect": "damage",
             "item": "none",
             "decal": "none",
             "Entity": {
@@ -214,7 +175,7 @@
           },
           {
             "terrain": "grass",
-            "areaEffect": "none",
+            "areaEffect": "damage",
             "item": "none",
             "decal": "none",
             "Entity": {
@@ -233,424 +194,6 @@
             },
             "x": 1,
             "y": 6
-          },
-          {
-            "terrain": "grass",
-            "areaEffect": "none",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 1,
-            "y": 7
-          },
-          {
-            "terrain": "grass",
-            "areaEffect": "none",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 1,
-            "y": 8
-          },
-          {
-            "terrain": "grass",
-            "areaEffect": "none",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 1,
-            "y": 9
-          },
-          {
-            "terrain": "grass",
-            "areaEffect": "river-down",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 2,
-            "y": 0
-          },
-          {
-            "terrain": "grass",
-            "areaEffect": "river-down",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 2,
-            "y": 1
-          },
-          {
-            "terrain": "grass",
-            "areaEffect": "river-down",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 2,
-            "y": 2
-          },
-          {
-            "terrain": "grass",
-            "areaEffect": "river-down",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 2,
-            "y": 3
-          },
-          {
-            "terrain": "grass",
-            "areaEffect": "none",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 2,
-            "y": 4
-          },
-          {
-            "terrain": "grass",
-            "areaEffect": "none",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 2,
-            "y": 5
-          },
-          {
-            "terrain": "grass",
-            "areaEffect": "none",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 2,
-            "y": 6
-          },
-          {
-            "terrain": "grass",
-            "areaEffect": "none",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 2,
-            "y": 7
-          },
-          {
-            "terrain": "water",
-            "areaEffect": "none",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 2,
-            "y": 8
-          },
-          {
-            "terrain": "mountain",
-            "areaEffect": "none",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 2,
-            "y": 9
-          },
-          {
-            "terrain": "water",
-            "areaEffect": "none",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 3,
-            "y": 0
-          },
-          {
-            "terrain": "grass",
-            "areaEffect": "none",
-            "item": "moneyBag",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 3,
-            "y": 1
-          },
-          {
-            "terrain": "grass",
-            "areaEffect": "none",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 3,
-            "y": 2
-          },
-          {
-            "terrain": "water",
-            "areaEffect": "none",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 3,
-            "y": 3
-          },
-          {
-            "terrain": "grass",
-            "areaEffect": "none",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 3,
-            "y": 4
-          },
-          {
-            "terrain": "grass",
-            "areaEffect": "none",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 3,
-            "y": 5
-          },
-          {
-            "terrain": "grass",
-            "areaEffect": "none",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 3,
-            "y": 6
-          },
-          {
-            "terrain": "grass",
-            "areaEffect": "none",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 3,
-            "y": 7
-          },
-          {
-            "terrain": "grass",
-            "areaEffect": "none",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 3,
-            "y": 8
-          },
-          {
-            "terrain": "grass",
-            "areaEffect": "none",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 3,
-            "y": 9
-          },
-          {
-            "terrain": "water",
-            "areaEffect": "none",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 4,
-            "y": 0
-          },
-          {
-            "terrain": "grass",
-            "areaEffect": "none",
-            "item": "specialArmor",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 4,
-            "y": 1
-          },
-          {
-            "terrain": "grass",
-            "areaEffect": "none",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 4,
-            "y": 2
-          },
-          {
-            "terrain": "grass",
-            "areaEffect": "none",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 4,
-            "y": 3
-          },
-          {
-            "terrain": "mountain",
-            "areaEffect": "none",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 4,
-            "y": 4
-          },
-          {
-            "terrain": "mountain",
-            "areaEffect": "none",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 4,
-            "y": 5
-          },
-          {
-            "terrain": "mountain",
-            "areaEffect": "none",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 4,
-            "y": 6
-          },
-          {
-            "terrain": "grass",
-            "areaEffect": "none",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 4,
-            "y": 7
-          },
-          {
-            "terrain": "grass",
-            "areaEffect": "none",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 4,
-            "y": 8
-          },
-          {
-            "terrain": "grass",
-            "areaEffect": "none",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 4,
-            "y": 9
-          },
-          {
-            "terrain": "water",
-            "areaEffect": "none",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 5,
-            "y": 0
-          },
-          {
-            "terrain": "grass",
-            "areaEffect": "none",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 5,
-            "y": 1
-          },
-          {
-            "terrain": "grass",
-            "areaEffect": "none",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 5,
-            "y": 2
-          },
-          {
-            "terrain": "grass",
-            "areaEffect": "none",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 5,
-            "y": 3
-          },
-          {
-            "terrain": "mountain",
-            "areaEffect": "none",
-            "item": "none",
-            "decal": "none",
-            "Entity": {
-              "type": "none"
-            },
-            "x": 5,
-            "y": 4
           },
           {
             "terrain": "grass",
@@ -660,8 +203,436 @@
             "Entity": {
               "type": "none"
             },
-            "x": 5,
+            "x": 1,
+            "y": 7
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "heal",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 1,
+            "y": 8
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 1,
+            "y": 9
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 2,
+            "y": 0
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 2,
+            "y": 1
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 2,
+            "y": 2
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 2,
+            "y": 3
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 2,
+            "y": 4
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 2,
             "y": 5
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 2,
+            "y": 6
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 2,
+            "y": 7
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 2,
+            "y": 8
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 2,
+            "y": 9
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 3,
+            "y": 0
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 3,
+            "y": 1
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 3,
+            "y": 2
+          },
+          {
+            "terrain": "none",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 3,
+            "y": 3
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 3,
+            "y": 4
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 3,
+            "y": 5
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 3,
+            "y": 6
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 3,
+            "y": 7
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 3,
+            "y": 8
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 3,
+            "y": 9
+          },
+          {
+            "terrain": "water",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "HostileNPC",
+              "name": "mean",
+              "level": 1,
+              "maxHealth": 100,
+              "currentHealth": 100,
+              "maxMana": 100,
+              "currentMana": 100,
+              "attack": 10,
+              "defense": 10,
+              "speed": 1,
+              "money": 100,
+              "orientation": "up",
+              "pet": "none",
+              "Inventory": [],
+              "Skills": [
+
+              ]
+            },
+            "x": 4,
+            "y": 0
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 4,
+            "y": 1
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 4,
+            "y": 2
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 4,
+            "y": 3
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 4,
+            "y": 4
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "HostileNPC",
+              "name": "mean",
+              "level": 1,
+              "maxHealth": 100,
+              "currentHealth": 100,
+              "maxMana": 100,
+              "currentMana": 100,
+              "attack": 10,
+              "defense": 10,
+              "speed": 1,
+              "money": 100,
+              "orientation": "up",
+              "pet": "none",
+              "Inventory": [],
+              "Skills": [
+
+              ]
+            },
+            "x": 4,
+            "y": 5
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 4,
+            "y": 6
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 4,
+            "y": 7
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 4,
+            "y": 8
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 4,
+            "y": 9
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 5,
+            "y": 0
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 5,
+            "y": 1
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 5,
+            "y": 2
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "none",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 5,
+            "y": 3
           },
           {
             "terrain": "mountain",
@@ -672,6 +643,28 @@
               "type": "none"
             },
             "x": 5,
+            "y": 4
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "trap",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 5,
+            "y": 5
+          },
+          {
+            "terrain": "grass",
+            "areaEffect": "trap",
+            "item": "none",
+            "decal": "none",
+            "Entity": {
+              "type": "none"
+            },
+            "x": 5,
             "y": 6
           },
           {
@@ -691,7 +684,23 @@
             "item": "none",
             "decal": "none",
             "Entity": {
-              "type": "none"
+              "type": "HostileNPC",
+              "name": "mean",
+              "level": 1,
+              "maxHealth": 100,
+              "currentHealth": 100,
+              "maxMana": 100,
+              "currentMana": 100,
+              "attack": 10,
+              "defense": 10,
+              "speed": 1,
+              "money": 100,
+              "orientation": "up",
+              "pet": "none",
+              "Inventory": [],
+              "Skills": [
+
+              ]
             },
             "x": 5,
             "y": 8
@@ -724,7 +733,23 @@
             "item": "none",
             "decal": "none",
             "Entity": {
-              "type": "none"
+              "type": "HostileNPC",
+              "name": "mean",
+              "level": 1,
+              "maxHealth": 100,
+              "currentHealth": 100,
+              "maxMana": 100,
+              "currentMana": 100,
+              "attack": 10,
+              "defense": 10,
+              "speed": 1,
+              "money": 100,
+              "orientation": "up",
+              "pet": "none",
+              "Inventory": [],
+              "Skills": [
+
+              ]
             },
             "x": 6,
             "y": 1
@@ -812,7 +837,23 @@
             "item": "none",
             "decal": "none",
             "Entity": {
-              "type": "none"
+              "type": "HostileNPC",
+              "name": "mean",
+              "level": 1,
+              "maxHealth": 100,
+              "currentHealth": 100,
+              "maxMana": 100,
+              "currentMana": 100,
+              "attack": 10,
+              "defense": 10,
+              "speed": 1,
+              "money": 100,
+              "orientation": "up",
+              "pet": "none",
+              "Inventory": [],
+              "Skills": [
+
+              ]
             },
             "x": 6,
             "y": 9
@@ -845,7 +886,23 @@
             "item": "none",
             "decal": "none",
             "Entity": {
-              "type": "none"
+              "type": "HostileNPC",
+              "name": "mean",
+              "level": 1,
+              "maxHealth": 100,
+              "currentHealth": 100,
+              "maxMana": 100,
+              "currentMana": 100,
+              "attack": 10,
+              "defense": 10,
+              "speed": 1,
+              "money": 100,
+              "orientation": "up",
+              "pet": "none",
+              "Inventory": [],
+              "Skills": [
+
+              ]
             },
             "x": 7,
             "y": 2
@@ -928,7 +985,7 @@
             "y": 9
           },
           {
-            "terrain": "water",
+            "terrain": "grass",
             "areaEffect": "none",
             "item": "none",
             "decal": "none",
@@ -1028,7 +1085,7 @@
           },
           {
             "terrain": "grass",
-            "areaEffect": "teleport1",
+            "areaEffect": "none",
             "item": "none",
             "decal": "none",
             "Entity": {
@@ -1038,7 +1095,7 @@
             "y": 9
           },
           {
-            "terrain": "water",
+            "terrain": "grass",
             "areaEffect": "none",
             "item": "none",
             "decal": "none",
@@ -1051,7 +1108,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "gauntlet",
+            "item": "none",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -1062,7 +1119,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "brassKnuckles",
+            "item": "none",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -1073,7 +1130,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "boxingGloves",
+            "item": "none",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -1084,7 +1141,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "dagger",
+            "item": "none",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -1095,7 +1152,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "crowbar",
+            "item": "none",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -1106,7 +1163,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "mace",
+            "item": "none",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -1117,7 +1174,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "greatSword",
+            "item": "none",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -1128,7 +1185,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "battleAxe",
+            "item": "none",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -1139,7 +1196,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "club",
+            "item": "none",
             "decal": "none",
             "Entity": {
               "type": "none"
