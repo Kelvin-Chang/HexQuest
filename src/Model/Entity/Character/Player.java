@@ -9,7 +9,7 @@ import java.util.HashMap;
 public class Player extends CharacterEntity {
 
 
-    Player(){
+    public Player(){
 
     }
     public Player(HashMap<SkillType, Skill> skillList) {

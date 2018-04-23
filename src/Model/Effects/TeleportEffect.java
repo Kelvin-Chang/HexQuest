@@ -22,6 +22,7 @@ public class TeleportEffect extends AreaEffect {
         character.setZoneId(destWorld);
         gameWorld.setCurrentZone(destWorld);
         gameWorld.getZoneByID(destWorld).addPlayer(gameWorld.getZoneByID(destWorld).getSpawnPoint(), character);
+
     }
 
     @Override

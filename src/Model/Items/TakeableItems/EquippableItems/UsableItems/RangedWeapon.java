@@ -20,12 +20,12 @@ public class RangedWeapon extends UsableItem{
     private int range;
     private Effect triggerEffect;
 
-    public RangedWeapon(int damage, EffectShape effectShape, int range) {
+    public RangedWeapon(int damage, EffectShape effectShape, int range, String name) {
         super(RANGED);
         this.damage = damage;
         this.effectShape = effectShape;
         this.range = range;
-        setName("Ranged Weapon");
+        setName(name);
     }
 
     public void useItem(CharacterEntity player, Skill skill) {

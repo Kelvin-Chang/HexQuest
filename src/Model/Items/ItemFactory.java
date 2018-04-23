@@ -1,5 +1,6 @@
 package Model.Items;
 
+import Model.Effects.Effect;
 import Model.Effects.EffectFactory;
 import Model.Enums.EffectShape;
 import Model.Enums.ItemSlot;
@@ -25,9 +26,13 @@ import Model.Requirements.RequirementFactory;
 
 public class ItemFactory {
 
-    private RequirementFactory requirementFactory = new RequirementFactory();
+    private RequirementFactory requirementFactory;
+    private EffectFactory effectFactory;
 
-    public ItemFactory() {}
+    public ItemFactory() {
+        requirementFactory = new RequirementFactory();
+        effectFactory = new EffectFactory();
+    }
 
     public static Key produceKeyItem() {
         return new Key();
@@ -35,10 +40,6 @@ public class ItemFactory {
 
     public static Ring produceRingItem(int manaChange) {
         return new Ring(manaChange);
-    }
-
-    public static OneShotItem produceDamageOneShot() {
-        return new OneShotItem(EffectFactory.produceHealthModifierEffect(-10));
     }
 
     public static ObstacleItem produceObstableItem() {
@@ -49,16 +50,40 @@ public class ItemFactory {
         return new Armor(defense);
     }
 
-    public static SmasherWeapon produceBrawlItem(int damage) {
-        return new SmasherWeapon(damage, ItemSlot.BRAWL);
+    public static SmasherWeapon produceGauntlet(int damage) {
+        return new SmasherWeapon(damage, ItemSlot.BRAWL, "Gauntlet");
     }
 
-    public static SmasherWeapon produceOneHandedItem(int damage) {
-        return new SmasherWeapon(damage, ItemSlot.ONEHANDED);
+    public static SmasherWeapon produceBrassKnuckles(int damage) {
+        return new SmasherWeapon(damage, ItemSlot.BRAWL, "Brass Knuckles");
     }
 
-    public static SmasherWeapon produceTwoHandedItem(int damage) {
-        return new SmasherWeapon(damage, ItemSlot.TWOHANDED);
+    public static SmasherWeapon produceBoxingGloves(int damage) {
+        return new SmasherWeapon(damage, ItemSlot.BRAWL, "Boxing Gloves");
+    }
+
+    public static SmasherWeapon produceDagger(int damage) {
+        return new SmasherWeapon(damage, ItemSlot.ONEHANDED, "Dagger");
+    }
+
+    public static SmasherWeapon produceCrowbar(int damage) {
+        return new SmasherWeapon(damage, ItemSlot.ONEHANDED, "Crowbar");
+    }
+
+    public static SmasherWeapon produceMace(int damage) {
+        return new SmasherWeapon(damage, ItemSlot.ONEHANDED, "Mace");
+    }
+
+    public static SmasherWeapon produceGreatSword(int damage) {
+        return new SmasherWeapon(damage, ItemSlot.TWOHANDED, "Great Sword");
+    }
+
+    public static SmasherWeapon produceBattleAxe(int damage) {
+        return new SmasherWeapon(damage, ItemSlot.TWOHANDED, "Battle Axe");
+    }
+
+    public static SmasherWeapon produceClub(int damage) {
+        return new SmasherWeapon(damage, ItemSlot.TWOHANDED, "Club");
     }
 
     public static StaffItem produceStaffItem(int damage) {
@@ -101,8 +126,20 @@ public class ItemFactory {
         return new DecreaseObservationEnchantment(manaCost, skillDecrease, effectShape, range);
     }
 
-    public static RangedWeapon produceRangedWeapon(int damage, EffectShape effectShape, int range) {
-        return new RangedWeapon(damage, effectShape, range);
+    public static RangedWeapon produceSniperRifle(int damage, EffectShape effectShape, int range) {
+        return new RangedWeapon(damage, effectShape, range, "Sniper Rifle");
+    }
+
+    public static RangedWeapon produceShotun(int damage, EffectShape effectShape, int range) {
+        return new RangedWeapon(damage, effectShape, range, "Shotgun");
+    }
+
+    public static RangedWeapon produceBlowDart(int damage, EffectShape effectShape, int range) {
+        return new RangedWeapon(damage, effectShape, range, "Blow Dart");
+    }
+
+    public OneShotItem produceMoneyBag(int money) {
+        return new OneShotItem(effectFactory.produceMoneyModifierEffect(money), "Money Bag");
     }
 
     public InteractiveArmor produceInteractiveArmor(int defense, Requirement requirement) {

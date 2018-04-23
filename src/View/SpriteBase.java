@@ -48,8 +48,21 @@ public class SpriteBase {
         itemSprites.put("Bargaining Enchantment", getImage(filePath + "/src/assets/Items/bargainingEnchantment.png"));
         itemSprites.put("Bind Wounds Enchantment", getImage(filePath + "/src/assets/Items/bindWoundsEnchantment.png"));
         itemSprites.put("Observation Enchantment", getImage(filePath + "/src/assets/Items/observationEnchantment.png"));
-        itemSprites.put("Staff", getImage(filePath + "/src/assets/Items/staff.png"));
+        itemSprites.put("Gauntlet", getImage(filePath + "/src/assets/Items/gauntlet.png"));
+        itemSprites.put("Brass Knuckles", getImage(filePath + "/src/assets/Items/brassKnuckles.png"));
+        itemSprites.put("Boxing Gloves", getImage(filePath + "/src/assets/Items/boxingGloves.png"));
+        itemSprites.put("Dagger", getImage(filePath + "/src/assets/Items/dagger.png"));
+        itemSprites.put("Crowbar", getImage(filePath + "/src/assets/Items/crowbar.png"));
+        itemSprites.put("Mace", getImage(filePath + "/src/assets/Items/mace.png"));
+        itemSprites.put("Great Sword", getImage(filePath + "/src/assets/Items/greatSword.png"));
+        itemSprites.put("Battle Axe", getImage(filePath + "/src/assets/Items/battleAxe.png"));
+        itemSprites.put("Club", getImage(filePath + "/src/assets/Items/club.png"));
+        itemSprites.put("Sniper Rifle", getImage(filePath + "/src/assets/Items/sniperRifle.png"));
+        itemSprites.put("Shotgun", getImage(filePath + "/src/assets/Items/shotgun.png"));
+        itemSprites.put("Blow Dart", getImage(filePath + "/src/assets/Items/blowDart.png"));
         itemSprites.put("Armor", getImage(filePath + "/src/assets/Items/armor.png"));
+        itemSprites.put("Special Armor", getImage(filePath + "/src/assets/Items/specialArmor.png"));
+        itemSprites.put("Money Bag", getImage(filePath + "/src/assets/items/moneyBag.png"));
     }
 
     public Image getTileSprite(int ID) {
