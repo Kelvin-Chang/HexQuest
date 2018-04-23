@@ -47,7 +47,7 @@ public class FormulaTests {
         World world = new World();
         Zone zone = new Zone(0, 7, 7);
         Player characterSmash = PlayerFactory.produceSmasher();
-        CharacterEntity npc = new HostileNPC(zone);
+        CharacterEntity npc = new HostileNPC();
 
         world.addZone(zone);
         world.setPlayer(characterSmash);
@@ -83,7 +83,7 @@ public class FormulaTests {
         World world = new World();
         Zone zone = new Zone(0, 7, 7);
         Player characterSmash = PlayerFactory.produceSmasher();
-        CharacterEntity npc = new HostileNPC(zone);
+        CharacterEntity npc = new HostileNPC();
 
         world.addZone(zone);
         world.setPlayer(characterSmash);
