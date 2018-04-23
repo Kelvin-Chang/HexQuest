@@ -1046,7 +1046,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "none",
+            "item": "gauntlet",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -1057,7 +1057,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "none",
+            "item": "brassKnuckles",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -1068,7 +1068,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "none",
+            "item": "boxingGloves",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -1079,7 +1079,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "none",
+            "item": "dagger",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -1090,7 +1090,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "none",
+            "item": "crowbar",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -1101,7 +1101,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "none",
+            "item": "mace",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -1112,7 +1112,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "none",
+            "item": "greatSword",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -1123,7 +1123,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "none",
+            "item": "battleAxe",
             "decal": "none",
             "Entity": {
               "type": "none"
@@ -1134,7 +1134,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "none",
+            "item": "club",
             "decal": "none",
             "Entity": {
               "type": "none"

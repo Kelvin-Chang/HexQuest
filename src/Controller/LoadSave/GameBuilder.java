@@ -173,20 +173,36 @@ public class GameBuilder {
                 zone.add(point, itemFactory.produceDecreaseObservationEnchantment(10, 5, EffectShape.LINEAR, 1));
                 break;
             case "staff":
-                zone.add(point, itemFactory.produceStaffItem(5));
+                zone.add(point, itemFactory.produceStaffItem(2));
                 break;
             case "gauntlet":
-                zone.add(point, itemFactory.produceGauntlet(5));
+                zone.add(point, itemFactory.produceGauntlet(6));
                 break;
             case "brassKnuckles":
                 zone.add(point, itemFactory.produceBrassKnuckles(5));
                 break;
             case "boxingGloves":
-                zone.add(point, itemFactory.produceBoxingGloves(5));
+                zone.add(point, itemFactory.produceBoxingGloves(4));
                 break;
             case "dagger":
-                zone.add(point, itemFactory.produceDagger(5));
+                zone.add(point, itemFactory.produceDagger(16));
                 break;
+            case "crowbar":
+                zone.add(point, itemFactory.produceCrowbar(15));
+                break;
+            case "mace":
+                zone.add(point, itemFactory.produceMace(14));
+                break;
+            case "greatSword":
+                zone.add(point, itemFactory.produceGreatSword(26));
+                break;
+            case "battleAxe":
+                zone.add(point, itemFactory.produceBattleAxe(25));
+                break;
+            case "club":
+                zone.add(point, itemFactory.produceClub(5));
+                break;
+
         }
     }
 
