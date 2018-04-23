@@ -270,33 +270,33 @@ public class Renderer {
                     graphicsContext.drawImage(sprites.getCharacterSprite(1), imageCoordinates.getX()+10, imageCoordinates.getY()+10, 1.5*radius, 1.5*radius);
                 }
             }
-//            else if (isSeen(characterLocation)) {
-//                graphicsContext.setGlobalAlpha(.75);
-//                graphicsContext.setEffect(new BoxBlur(radius *.25, radius * .25, 1));
-//                if (characterLocation != world.getPlayer().getLocation()) {
-//                    Point2D imageCoordinates = calculateImageCoordinates((int) characterLocation.getX(),(int) characterLocation.getY(), radius, cameraPosition);
-//                    graphicsContext.drawImage(sprites.getCharacterSprite(1), imageCoordinates.getX()+10, imageCoordinates.getY()+10, 1.5*radius, 1.5*radius);
-//                }
-//            } else {
-//
-//            }
-//            graphicsContext.setGlobalAlpha(1);
-//            graphicsContext.setEffect(null);
-        }
-        for (Point characterLocation : seenMap.keySet()) {
-            if (isSeen(characterLocation)) {
+            else if (isSeen(characterLocation)) {
                 graphicsContext.setGlobalAlpha(.75);
                 graphicsContext.setEffect(new BoxBlur(radius *.25, radius * .25, 1));
                 if (characterLocation != world.getPlayer().getLocation()) {
                     Point2D imageCoordinates = calculateImageCoordinates((int) characterLocation.getX(),(int) characterLocation.getY(), radius, cameraPosition);
                     graphicsContext.drawImage(sprites.getCharacterSprite(1), imageCoordinates.getX()+10, imageCoordinates.getY()+10, 1.5*radius, 1.5*radius);
                 }
+            } else {
+
             }
             graphicsContext.setGlobalAlpha(1);
             graphicsContext.setEffect(null);
         }
-        graphicsContext.setGlobalAlpha(1);
-        graphicsContext.setEffect(null);
+//        for (Point characterLocation : seenMap.keySet()) {
+//            if (isSeen(characterLocation)) {
+//                graphicsContext.setGlobalAlpha(.75);
+//                graphicsContext.setEffect(new BoxBlur(radius *.25, radius * .25, 1));
+//                if (characterLocation != world.getPlayer().getLocation()) {
+//                    Point2D imageCoordinates = calculateImageCoordinates((int) characterLocation.getX(),(int) characterLocation.getY(), radius, cameraPosition);
+//                    graphicsContext.drawImage(sprites.getCharacterSprite(1), imageCoordinates.getX()+10, imageCoordinates.getY()+10, 1.5*radius, 1.5*radius);
+//                }
+//            }
+//            graphicsContext.setGlobalAlpha(1);
+//            graphicsContext.setEffect(null);
+//        }
+//        graphicsContext.setGlobalAlpha(1);
+//        graphicsContext.setEffect(null);
     }
 
     private void renderItems(Point cameraPosition) {
