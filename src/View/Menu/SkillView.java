@@ -7,9 +7,13 @@ import Controller.buttons.Selectable;
 import Model.Entity.Character.CharacterEntity;
 import Model.Entity.Skills.Skill;
 import Model.Enums.SkillType;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -29,7 +33,9 @@ public class SkillView extends AbstractView {
     private ViewController viewController;
     private CharacterEntity characterEntity;
     private SkillType skillType;
+    private Skill skill;
     private BorderPane borderPane;
+    private Button levelUpSkillButton;
 
     public SkillView(ViewController viewController, CharacterEntity characterEntity) {
         this.viewController = viewController;
@@ -86,6 +92,27 @@ public class SkillView extends AbstractView {
 
         }
 
+        skillToggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+            @Override
+            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
+                if(newValue != null){
+                    // TODO: see if it is possible to avoid casting
+                    skill = (Skill) skillToggleGroup.getSelectedToggle().getUserData();
+                    refresh(character);
+
+                    if (character.getUnusedSkillPoints() <= 0) {
+                        levelUpSkillButton.setDisable(false);
+                    }
+
+                    else {
+                        levelUpSkillButton.setDisable(true);
+                    }
+                }
+            }
+        });
+
+        // No initially selected item
+
 
 
         return options;
@@ -128,7 +155,24 @@ public class SkillView extends AbstractView {
         hbox.setPrefSize(1000,72);
         hbox.setAlignment(Pos.TOP_CENTER);
 
+        levelUpSkillButton = new Button(options.get(0).getName());
+        levelUpSkillButton.getStyleClass().add("button4");
+        levelUpSkillButton.setOnAction(options.get(0));
 
+        if (character.getUnusedSkillPoints() <= 0) {
+            levelUpSkillButton.setDisable(false);
+        }
+
+        else {
+            levelUpSkillButton.setDisable(true);
+        }
+
+        Button gameplayButton = new Button(options.get(1).getName());
+        gameplayButton.getStyleClass().add("button4");
+        gameplayButton.setOnAction(options.get(1));
+
+        hbox.getChildren().add(levelUpSkillButton);
+        hbox.getChildren().add(gameplayButton);
 
 
         return hbox;
