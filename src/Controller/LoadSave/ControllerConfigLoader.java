@@ -3,9 +3,7 @@ package Controller.LoadSave;
 import Model.Enums.SkillType;
 import javafx.scene.input.KeyCode;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Properties;
 
@@ -68,6 +66,21 @@ public class ControllerConfigLoader {
         sneakCommands.put(getKeyCode(prop.getProperty("CREEPSKILL")), SkillType.TWOHANDEDWEAPONSKILL);
         sneakCommands.put(getKeyCode(prop.getProperty("RANGEDWEAPONSKILL")), SkillType.TWOHANDEDWEAPONSKILL);
 
+    }
+
+    public void writeConfig(Properties properties) {
+        File file = new File(filePath + "/resources/controllerConfig.properties");
+        FileOutputStream fileOut = null;
+        try {
+            fileOut = new FileOutputStream(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            properties.store(fileOut, "Controller");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
