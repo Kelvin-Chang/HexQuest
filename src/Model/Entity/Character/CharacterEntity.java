@@ -40,6 +40,7 @@ public abstract class CharacterEntity {
     private Pet pet;
     private Zone zone;
     private int zoneId;
+    private int money;
 
     public CharacterEntity() {
         this.level = 0;
@@ -104,6 +105,9 @@ public abstract class CharacterEntity {
     public void setSpeed(int speed) {
         this.speed = speed;
     }
+    public void setMoney(int money) {
+        this.money = money;
+    }
     public void setInventory(Inventory inventory) {
         this.inventory = inventory;
     }
@@ -153,6 +157,9 @@ public abstract class CharacterEntity {
     }
     public int getSpeed() {
         return speed;
+    }
+    public int getMoney() {
+        return money;
     }
     public Inventory getInventory() {
         return inventory;
@@ -259,6 +266,14 @@ public abstract class CharacterEntity {
 
     public void modifySkillLevel(int skillChange, SkillType skillType) {
         skills.get(skillType).updateSkillLevel(skillChange);
+    }
+
+    public void modifyMoney(int moneyChange) {
+        if (money + moneyChange <= 0) {
+            money = 0;
+        } else {
+            money = money + moneyChange;
+        }
     }
 
     public void levelUp() {

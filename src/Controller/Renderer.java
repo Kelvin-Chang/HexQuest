@@ -127,7 +127,6 @@ public class Renderer {
         graphicsContext.setGlobalAlpha(.75);
         graphicsContext.setEffect(new BoxBlur(radius *.25, radius * .25, 1));
 
-        System.out.println("Tile: "+ tsize + " Point: " + size);
         for (int i = 0; i < size; i++) {
             Point currP = seen[i];
             Terrain currT = tiles.get(currP);
@@ -139,6 +138,7 @@ public class Renderer {
                 areaEffectView.render(currAE, imageCoordinates, radius);
             }
         }
+
         graphicsContext.setGlobalAlpha(1);
         graphicsContext.setEffect(null);
     }
@@ -184,9 +184,21 @@ public class Renderer {
         Collection<Point> obstacleCollection = zone.getAllObstacleItemPoints();
         Point[] obstacleArr = obstacleCollection.toArray(new Point[obstacleCollection.size()]);
         for (int i = 0; i < obstacleArr.length; i++) {
-            ObstacleItem obstacle = zone.getObstacleItem(obstacleArr[i]);
-            Point2D imageCoordinates = calculateImageCoordinates((int) obstacleArr[i].getX(), (int) obstacleArr[i].getY(), radius);
-            obstacleView.render(imageCoordinates, radius);
+            if (isVisible(obstacleArr[i])){
+                ObstacleItem obstacle = zone.getObstacleItem(obstacleArr[i]);
+                Point2D imageCoordinates = calculateImageCoordinates((int) obstacleArr[i].getX(), (int) obstacleArr[i].getY(), radius);
+                obstacleView.render(imageCoordinates, radius);
+            } else if (isSeen(obstacleArr[i])) {
+                graphicsContext.setGlobalAlpha(.75);
+                graphicsContext.setEffect(new BoxBlur(radius *.25, radius * .25, 1));
+                ObstacleItem obstacle = zone.getObstacleItem(obstacleArr[i]);
+                Point2D imageCoordinates = calculateImageCoordinates((int) obstacleArr[i].getX(), (int) obstacleArr[i].getY(), radius);
+                obstacleView.render(imageCoordinates, radius);
+            } else {
+
+            }
+            graphicsContext.setGlobalAlpha(1);
+            graphicsContext.setEffect(null);
         }
     }
 
@@ -199,10 +211,23 @@ public class Renderer {
     private void renderOtherEntities() {
         Map<Point, CharacterEntity> characterMap = world.getCurrentZone().getCharacterMap();
         for (Point characterLocation : characterMap.keySet()) {
-            if (characterLocation != world.getPlayer().getLocation()) {
-                Point2D imageCoordinates = calculateImageCoordinates((int) characterLocation.getX(),(int) characterLocation.getY(), radius);
-                graphicsContext.drawImage(sprites.getCharacterSprite(1), imageCoordinates.getX()+10, imageCoordinates.getY()+10, 1.5*radius, 1.5*radius);
+            if (isVisible(characterLocation)) {
+                if (characterLocation != world.getPlayer().getLocation()) {
+                    Point2D imageCoordinates = calculateImageCoordinates((int) characterLocation.getX(),(int) characterLocation.getY(), radius);
+                    graphicsContext.drawImage(sprites.getCharacterSprite(1), imageCoordinates.getX()+10, imageCoordinates.getY()+10, 1.5*radius, 1.5*radius);
+                }
+            } else if (isSeen(characterLocation)) {
+                graphicsContext.setGlobalAlpha(.75);
+                graphicsContext.setEffect(new BoxBlur(radius *.25, radius * .25, 1));
+                if (characterLocation != world.getPlayer().getLocation()) {
+                    Point2D imageCoordinates = calculateImageCoordinates((int) characterLocation.getX(),(int) characterLocation.getY(), radius);
+                    graphicsContext.drawImage(sprites.getCharacterSprite(1), imageCoordinates.getX()+10, imageCoordinates.getY()+10, 1.5*radius, 1.5*radius);
+                }
+            } else {
+
             }
+            graphicsContext.setGlobalAlpha(1);
+            graphicsContext.setEffect(null);
         }
     }
 
@@ -211,12 +236,33 @@ public class Renderer {
         Collection<Point> obstacleCollection = zone.getAllItemPoints();
         Point[] itemArray = obstacleCollection.toArray(new Point[obstacleCollection.size()]);
         for (int i = 0; i < itemArray.length; i++) {
-            Item item = zone.getItem(itemArray[i]);
-            Point2D imageCoordinates = calculateImageCoordinates((int) itemArray[i].getX(), (int) itemArray[i].getY(), radius);
-            itemView.render(item.getName(), imageCoordinates, radius);
+            if (isVisible(itemArray[i])) {
+                Item item = zone.getItem(itemArray[i]);
+                Point2D imageCoordinates = calculateImageCoordinates((int) itemArray[i].getX(), (int) itemArray[i].getY(), radius);
+                itemView.render(item.getName(), imageCoordinates, radius);
+            } else if (isSeen(itemArray[i])) {
+                graphicsContext.setGlobalAlpha(.75);
+                graphicsContext.setEffect(new BoxBlur(radius *.25, radius * .25, 1));
+                Item item = zone.getItem(itemArray[i]);
+                Point2D imageCoordinates = calculateImageCoordinates((int) itemArray[i].getX(), (int) itemArray[i].getY(), radius);
+                itemView.render(item.getName(), imageCoordinates, radius);
+            } else {
+
+            }
+            graphicsContext.setGlobalAlpha(1);
+            graphicsContext.setEffect(null);
+
         }
     }
 
+    private boolean isVisible(Point p) {
+        if (fow.returnVisibleTiles().contains(p)) return true;
+        else return false;
+    }
+    private boolean isSeen(Point p) {
+        if (fow.returnSeenTiles().contains(p)) return true;
+        else return false;
+    }
     private Point2D calculateImageCoordinates(int x, int y, int radius) {
         double a = 0, b = 0;
 
