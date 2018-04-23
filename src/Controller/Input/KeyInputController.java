@@ -1,12 +1,14 @@
 package Controller.Input;
 
 import Controller.GameMediator;
+import Controller.LoadSave.ControllerConfigLoader;
 import Controller.Renderer;
 import Model.Entity.Character.CharacterEntity;
 import Model.Enums.MovementCommand;
 import Model.Enums.SkillType;
 import javafx.scene.input.KeyCode;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -18,6 +20,7 @@ public class KeyInputController {
     private HashMap<KeyCode, SkillType> sneakCommandMap;
     private ArrayList<SkillType> availableActions;
     private PlayerController playerController;
+    private ControllerConfigLoader controllerConfigLoader = new ControllerConfigLoader();
     private GameMediator gameMediator;
     private Renderer renderer;
 
@@ -26,40 +29,43 @@ public class KeyInputController {
         this.playerController = playerController;
         this.gameMediator = gameMediator;
         this.renderer = renderer;
-
-        // testing stuff
         commmonCommandMap = new HashMap<>();
-        commmonCommandMap.put(KeyCode.Q, SkillType.MOVEUPLEFT);
-        commmonCommandMap.put(KeyCode.W, SkillType.MOVEUP);
-        commmonCommandMap.put(KeyCode.E, SkillType.MOVEUPRIGHT);
-        commmonCommandMap.put(KeyCode.A, SkillType.MOVEDOWNLEFT);
-        commmonCommandMap.put(KeyCode.S, SkillType.MOVEDOWN);
-        commmonCommandMap.put(KeyCode.D, SkillType.MOVEDOWNRIGHT);
-        commmonCommandMap.put(KeyCode.DIGIT1, SkillType.BINDWOUNDSSKILL);
-        commmonCommandMap.put(KeyCode.DIGIT2, SkillType.BARGAINSKILL);
-        commmonCommandMap.put(KeyCode.DIGIT3, SkillType.OBSERVATIONSKILL);
-        commmonCommandMap.put(KeyCode.Z, SkillType.TOGGLECAMERA);
-        commmonCommandMap.put(KeyCode.I, SkillType.CAMERAUP);
-        commmonCommandMap.put(KeyCode.L, SkillType.CAMERARIGHT);
-        commmonCommandMap.put(KeyCode.K, SkillType.CAMERADOWN);
-        commmonCommandMap.put(KeyCode.J, SkillType.CAMERALEFT);
-
         summonerCommandMap = new HashMap<>();
-        summonerCommandMap.put(KeyCode.DIGIT4, SkillType.ENCHANTMENTSKILL);
-        summonerCommandMap.put(KeyCode.DIGIT5, SkillType.BOONSKILL);
-        summonerCommandMap.put(KeyCode.DIGIT6, SkillType.BANESKILL);
-        summonerCommandMap.put(KeyCode.DIGIT7, SkillType.STAFFSKILL);
-
         smasherCommandMap = new HashMap<>();
-        smasherCommandMap.put(KeyCode.DIGIT4, SkillType.BRAWLSKILL);
-        smasherCommandMap.put(KeyCode.DIGIT5, SkillType.ONEHANDEDWEAPONSKILL);
-        smasherCommandMap.put(KeyCode.DIGIT6, SkillType.TWOHANDEDWEAPONSKILL);
-
         sneakCommandMap = new HashMap<>();
-        sneakCommandMap.put(KeyCode.DIGIT4, SkillType.PICKPOCKETSKILL);
-        sneakCommandMap.put(KeyCode.DIGIT5, SkillType.REMOVETRAPSKILL);
-        sneakCommandMap.put(KeyCode.DIGIT6, SkillType.CREEPSKILL);
-        sneakCommandMap.put(KeyCode.DIGIT7, SkillType.RANGEDWEAPONSKILL);
+
+        try {
+            controllerConfigLoader.loadConfig(commmonCommandMap, summonerCommandMap, smasherCommandMap, sneakCommandMap);
+        } catch (IOException e) {
+            commmonCommandMap.put(KeyCode.Q, SkillType.MOVEUPLEFT);
+            commmonCommandMap.put(KeyCode.W, SkillType.MOVEUP);
+            commmonCommandMap.put(KeyCode.E, SkillType.MOVEUPRIGHT);
+            commmonCommandMap.put(KeyCode.A, SkillType.MOVEDOWNLEFT);
+            commmonCommandMap.put(KeyCode.S, SkillType.MOVEDOWN);
+            commmonCommandMap.put(KeyCode.D, SkillType.MOVEDOWNRIGHT);
+            commmonCommandMap.put(KeyCode.DIGIT1, SkillType.BINDWOUNDSSKILL);
+            commmonCommandMap.put(KeyCode.DIGIT2, SkillType.BARGAINSKILL);
+            commmonCommandMap.put(KeyCode.DIGIT3, SkillType.OBSERVATIONSKILL);
+            commmonCommandMap.put(KeyCode.Z, SkillType.TOGGLECAMERA);
+            commmonCommandMap.put(KeyCode.I, SkillType.CAMERAUP);
+            commmonCommandMap.put(KeyCode.L, SkillType.CAMERARIGHT);
+            commmonCommandMap.put(KeyCode.K, SkillType.CAMERADOWN);
+            commmonCommandMap.put(KeyCode.J, SkillType.CAMERALEFT);
+
+            summonerCommandMap.put(KeyCode.DIGIT4, SkillType.ENCHANTMENTSKILL);
+            summonerCommandMap.put(KeyCode.DIGIT5, SkillType.BOONSKILL);
+            summonerCommandMap.put(KeyCode.DIGIT6, SkillType.BANESKILL);
+            summonerCommandMap.put(KeyCode.DIGIT7, SkillType.STAFFSKILL);
+
+            smasherCommandMap.put(KeyCode.DIGIT4, SkillType.BRAWLSKILL);
+            smasherCommandMap.put(KeyCode.DIGIT5, SkillType.ONEHANDEDWEAPONSKILL);
+            smasherCommandMap.put(KeyCode.DIGIT6, SkillType.TWOHANDEDWEAPONSKILL);
+
+            sneakCommandMap.put(KeyCode.DIGIT4, SkillType.PICKPOCKETSKILL);
+            sneakCommandMap.put(KeyCode.DIGIT5, SkillType.REMOVETRAPSKILL);
+            sneakCommandMap.put(KeyCode.DIGIT6, SkillType.CREEPSKILL);
+            sneakCommandMap.put(KeyCode.DIGIT7, SkillType.RANGEDWEAPONSKILL);
+        }
 
     }
 

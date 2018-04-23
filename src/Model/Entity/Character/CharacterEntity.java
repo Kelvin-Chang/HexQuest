@@ -3,6 +3,7 @@ package Model.Entity.Character;
 import Model.Effects.Effect;
 import Model.Effects.NPCEffect;
 import Model.Entity.Pet;
+import Model.Entity.Skills.Observation;
 import Model.Entity.Skills.Skill;
 import Model.Enums.EffectShape;
 import Model.Enums.ItemSlot;
@@ -190,6 +191,10 @@ public abstract class CharacterEntity {
 
     public Skill getSpecificSkill(SkillType skillType) {
         return skills.get(skillType);
+    }
+
+    public int getObservation() {
+        return ((Observation)skills.get(SkillType.OBSERVATIONSKILL)).getObservation();
     }
 
     public void setSkillLevel(SkillType skillType, int level) {
