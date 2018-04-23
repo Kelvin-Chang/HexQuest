@@ -1,5 +1,6 @@
 package Model.Zone;
 
+import Model.Enums.EffectShape;
 import Model.Enums.Orientation;
 
 import java.awt.*;
@@ -32,19 +33,19 @@ public class HexFormulas {
         return list;
     }
 
-    public static ArrayList<Point> getAllLinearPoints(Point hex, Orientation directionYouAreMoving){
+    public static ArrayList<Point> getLinearPoints(Point hex, Orientation directionYouAreMoving, int range){
         ArrayList<Point> list = new ArrayList<>();
         int parity = hex.x & 1;
 
-        for(Point p = new Point(hex); p != null; ) {
-            Point coordsToAdd = Orientation.oddq_directions[parity][correspondingNumber(directionYouAreMoving)];
-            p = new Point((int) (hex.getY() + coordsToAdd.getY()), (int) (hex.getX() + coordsToAdd.getX()));
-            //TODO:
-
-            list.add(p); //UNTIL YOU REACH THE END OF THE MAP OR HIT SOMETHING
+        Point coordsToAdd = Orientation.oddq_directions[parity][correspondingNumber(directionYouAreMoving)];
+        Point p = new Point((int) (hex.getX() + coordsToAdd.getX()), (int) (hex.getY() + coordsToAdd.getY()));
+        list.add(p);
+        for (int i = 0; i < range-1; i++) {
             parity = p.x & 1;
+            coordsToAdd = Orientation.oddq_directions[parity][correspondingNumber(directionYouAreMoving)];
+            p = new Point((int) (p.getX() + coordsToAdd.getX()), (int) (p.getY() + coordsToAdd.getY()));
+            list.add(p); //UNTIL YOU REACH THE END OF THE MAP OR HIT SOMETHING
         }
-
         return list;
     }
 
@@ -138,5 +139,17 @@ public class HexFormulas {
             return (x == null && y == null) || (x != null && x.equals(y));
         }
 
+    }
+
+    public ArrayList<Point> getEffectedCoordinates(Point hex, int range, Map<Point, Terrain> terrainMap, Orientation orientation, EffectShape effectShape) {
+        switch (effectShape) {
+            case LINEAR:
+                return getLinearPoints(hex, orientation, range);
+            case RADIAL:
+                return getRadialOfPointsFromRadius(hex, range, terrainMap);
+            case ANGULAR:
+                return new ArrayList<Point>();
+        }
+        return new ArrayList<>();
     }
 }

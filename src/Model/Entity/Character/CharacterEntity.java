@@ -10,7 +10,7 @@ import Model.Enums.Orientation;
 import Model.Enums.SkillType;
 import Model.Items.Item;
 import Model.Items.TakeableItems.TakeableItem;
-import Model.Zone.EffectedAreaCoordinatesCalculator;
+import Model.Zone.HexFormulas;
 import Model.Zone.Zone;
 
 import java.awt.*;
@@ -324,9 +324,8 @@ public abstract class CharacterEntity {
     }
 
     public CharacterEntity getInteractionPartner() {
-        EffectedAreaCoordinatesCalculator coordinatesCalculator = new EffectedAreaCoordinatesCalculator();
-        ArrayList<Point> bargainSpot =
-                coordinatesCalculator.calculateCoordinates(getLocation(), orientation, EffectShape.LINEAR, 1);
+        HexFormulas hexFormulas = new HexFormulas();
+        ArrayList<Point> bargainSpot =  hexFormulas.getEffectedCoordinates(getLocation(), 1, getZone().getTerrainMap(), orientation, EffectShape.LINEAR);
 
         ArrayList<CharacterEntity> bargainPartner = zone.getEntitiesOnArea(bargainSpot);
         if (!bargainPartner.isEmpty()) {
@@ -337,12 +336,16 @@ public abstract class CharacterEntity {
 
     public void effectEntities(ArrayList<Point> area, Effect effect) {
         for (Point point : area) {
-            zone.add(point, effect);
+            if (point.getX() != getLocation().getX() || point.getY() != getLocation().getY()) {
+                zone.add(point, effect);
+            }
         }
         ArrayList<CharacterEntity> entities = zone.getEntitiesOnArea(area);
         for (CharacterEntity entity: entities) {
-            effect.trigger(entity);
-            System.out.println(entity.getCurrentHealth());
+            if (entity.getLocation() != getLocation()) {
+                effect.trigger(entity);
+                System.out.println(entity.getCurrentHealth());
+            }
         }
     }
 
