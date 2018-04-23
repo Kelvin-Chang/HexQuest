@@ -10,7 +10,10 @@ import java.util.HashMap;
 
 public class KeyInputController {
 
-    private HashMap<KeyCode, SkillType> commandMap;
+    private HashMap<KeyCode, SkillType> commmonCommandMap;
+    private HashMap<KeyCode, SkillType> summonerCommandMap;
+    private HashMap<KeyCode, SkillType> smasherCommandMap;
+    private HashMap<KeyCode, SkillType> sneakCommandMap;
     private ArrayList<SkillType> availableActions;
     private PlayerController playerController;
     private GameMediator gameMediator;
@@ -21,27 +24,49 @@ public class KeyInputController {
         this.gameMediator = gameMediator;
 
         // testing stuff
-        commandMap = new HashMap<>();
-        commandMap.put(KeyCode.Q, SkillType.MOVEUPLEFT);
-        commandMap.put(KeyCode.W, SkillType.MOVEUP);
-        commandMap.put(KeyCode.E, SkillType.MOVEUPRIGHT);
-        commandMap.put(KeyCode.A, SkillType.MOVEDOWNLEFT);
-        commandMap.put(KeyCode.S, SkillType.MOVEDOWN);
-        commandMap.put(KeyCode.D, SkillType.MOVEDOWNRIGHT);
-        commandMap.put(KeyCode.DIGIT1, SkillType.BINDWOUNDSSKILL);
-        commandMap.put(KeyCode.DIGIT2, SkillType.BARGAINSKILL);
-        commandMap.put(KeyCode.DIGIT3, SkillType.OBSERVATIONSKILL);
+        commmonCommandMap = new HashMap<>();
+        commmonCommandMap.put(KeyCode.Q, SkillType.MOVEUPLEFT);
+        commmonCommandMap.put(KeyCode.W, SkillType.MOVEUP);
+        commmonCommandMap.put(KeyCode.E, SkillType.MOVEUPRIGHT);
+        commmonCommandMap.put(KeyCode.A, SkillType.MOVEDOWNLEFT);
+        commmonCommandMap.put(KeyCode.S, SkillType.MOVEDOWN);
+        commmonCommandMap.put(KeyCode.D, SkillType.MOVEDOWNRIGHT);
+        commmonCommandMap.put(KeyCode.DIGIT1, SkillType.BINDWOUNDSSKILL);
+        commmonCommandMap.put(KeyCode.DIGIT2, SkillType.BARGAINSKILL);
+        commmonCommandMap.put(KeyCode.DIGIT3, SkillType.OBSERVATIONSKILL);
 
-        commandMap.put(KeyCode.DIGIT4, SkillType.ENCHANTMENTSKILL);
-        commandMap.put(KeyCode.DIGIT5, SkillType.BOONSKILL);
-        commandMap.put(KeyCode.DIGIT6, SkillType.BANESKILL);
-        commandMap.put(KeyCode.DIGIT7, SkillType.STAFFSKILL);
+        summonerCommandMap = new HashMap<>();
+        summonerCommandMap.put(KeyCode.DIGIT4, SkillType.ENCHANTMENTSKILL);
+        summonerCommandMap.put(KeyCode.DIGIT5, SkillType.BOONSKILL);
+        summonerCommandMap.put(KeyCode.DIGIT6, SkillType.BANESKILL);
+        summonerCommandMap.put(KeyCode.DIGIT7, SkillType.STAFFSKILL);
+
+        smasherCommandMap = new HashMap<>();
+        smasherCommandMap.put(KeyCode.DIGIT4, SkillType.BRAWLSKILL);
+        smasherCommandMap.put(KeyCode.DIGIT5, SkillType.ONEHANDEDWEAPONSKILL);
+        smasherCommandMap.put(KeyCode.DIGIT6, SkillType.TWOHANDEDWEAPONSKILL);
+
+        sneakCommandMap = new HashMap<>();
+        sneakCommandMap.put(KeyCode.DIGIT6, SkillType.PICKPOCKETSKILL);
+        sneakCommandMap.put(KeyCode.DIGIT6, SkillType.REMOVETRAPSKILL);
+        sneakCommandMap.put(KeyCode.DIGIT6, SkillType.CREEPSKILL);
+        sneakCommandMap.put(KeyCode.DIGIT6, SkillType.RANGEDWEAPONSKILL);
+
     }
 
     public void issueCommand(KeyCode keyCode) {
-        if (commandMap.get(keyCode) != null) {
-            if (availableActions.contains(commandMap.get(keyCode))) {
-                switch (commandMap.get(keyCode)) {
+        if (commmonCommandMap.get(keyCode) != null || summonerCommandMap.get(keyCode) != null || smasherCommandMap.get(keyCode) != null || sneakCommandMap.get(keyCode) != null) {
+            HashMap<KeyCode, SkillType> mapToSwitchOn = new HashMap<>();
+            if (availableActions.contains(commmonCommandMap.get(keyCode))) {
+                mapToSwitchOn = commmonCommandMap;
+            } else if (availableActions.contains(summonerCommandMap.get(keyCode))) {
+                mapToSwitchOn = summonerCommandMap;
+            } else if (availableActions.contains(smasherCommandMap.get(keyCode))) {
+                mapToSwitchOn = smasherCommandMap;
+            } else if (availableActions.contains(sneakCommandMap.get(keyCode))) {
+                mapToSwitchOn = sneakCommandMap;
+            } {
+                switch (mapToSwitchOn.get(keyCode)) {
                     case MOVEUP:
                         playerController.pressUp();
                         break;
