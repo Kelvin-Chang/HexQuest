@@ -217,6 +217,8 @@ public class SkillView extends AbstractView {
 
     private void refresh(CharacterEntity character) {
         borderPane.setTop(null);
+        borderPane.setBottom(null);
         borderPane.setTop(topPane(character));
+        borderPane.setBottom(bottomPane(character));
     }
 }
