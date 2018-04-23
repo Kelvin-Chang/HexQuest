@@ -71,7 +71,7 @@ public class SkillView extends AbstractView {
 
         ArrayList<RadioButton> options = new ArrayList<RadioButton>();
 
-
+        HashMap<SkillType, Skill> skillHashMap = characterEntity.getSkills();
         Set<SkillType> skillKeys = characterEntity.getSkills().keySet();
 
 
@@ -81,7 +81,7 @@ public class SkillView extends AbstractView {
             rb.setUserData(key);
 
 //            rb.setUserData(skillHashMap.get(key));
-//            rb.setText(skillHashMap.get(key).);
+            rb.setText(skillHashMap.get(key).getName());
 
             options.add(rb);
 
@@ -111,12 +111,24 @@ public class SkillView extends AbstractView {
         return options;
     }
 
+    private Text centerPaneText(CharacterEntity characterEntity) {
+        Text t = new Text();
+        t.setText("Skillpoints: " + characterEntity.getUnusedSkillPoints());
+        t.setFont(Font.font("Elephant", 16));
+        t.setFill(Paint.valueOf("#ff00ff"));
+
+        return t;
+    }
+
 
     private VBox centerPane(CharacterEntity character) {
         ArrayList<RadioButton> options = centerPaneRadioButtons(character);
         VBox vbox = new VBox();
         vbox.setSpacing(30);
         vbox.setPrefSize(1000,628);
+
+        vbox.getChildren().add(centerPaneText(characterEntity));
+
         vbox.setAlignment(Pos.TOP_CENTER);
 
         for(RadioButton clickable: options) {
