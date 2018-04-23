@@ -167,15 +167,15 @@ public class Zone implements Updateable {
     public Collection<Point> getAllObstacleItemPoints() { return obstacleItemMap.keySet(); }
     public Collection<Point> getAllDecalPoints() { return decalMap.keySet(); }
 
-    public ArrayList<Trap> getAreaEffectOnArea(ArrayList<Point> area) {
-        ArrayList<Trap> AreaEffects = new ArrayList<>();
-        for (Point point : area) {
-            if (areaEffectMap.get(point) != null) {
-                AreaEffects.add(areaEffectMap.get(point));
-            }
-        }
-        return AreaEffects;
-    }
+//    public ArrayList<Trap> getAreaEffectOnArea(ArrayList<Point> area) {
+//        ArrayList<Trap> AreaEffects = new ArrayList<>();
+//        for (Point point : area) {
+//            if (areaEffectMap.get(point) != null) {
+//                AreaEffects.add(areaEffectMap.get(point));
+//            }
+//        }
+//        return AreaEffects;
+//    }
 
     public ArrayList<CharacterEntity> getEntitiesOnArea(ArrayList<Point> area) {
         ArrayList<CharacterEntity> entities = new ArrayList<>();
