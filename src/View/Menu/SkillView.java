@@ -109,11 +109,11 @@ public class SkillView extends AbstractView {
                     refresh(character);
 
                     if (character.getUnusedSkillPoints() <= 0) {
-                        levelUpSkillButton.setDisable(false);
+                        levelUpSkillButton.setDisable(true);
                     }
 
-                    else {
-                        levelUpSkillButton.setDisable(true);
+                    if (character.getUnusedSkillPoints() > 0) {
+                        levelUpSkillButton.setDisable(false);
                     }
                 }
             }

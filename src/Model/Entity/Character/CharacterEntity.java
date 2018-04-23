@@ -415,4 +415,6 @@ public abstract class CharacterEntity {
         this.unusedSkillPoints = unusedSkillPoints;
     }
 
+
+
 }
