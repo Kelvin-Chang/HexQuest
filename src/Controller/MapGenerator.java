@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Collection;
 import java.util.HashMap;
+import Model.Enums.SkillType;
 
 public class MapGenerator {
     private String mapDir = "/Users/lorenzo/Documents/GitHub/OOP-Iteration-3/resources/maps/";
@@ -87,6 +88,11 @@ public class MapGenerator {
                     type.put("type","none");
                 }
                 else{
+                    JSONArray inventory = new JSONArray();
+                    JSONArray skills = new JSONArray();
+                    JSONArray EquippedItems = new JSONArray();
+                    JSONArray UnequippedItems = new JSONArray();
+
                     type.put("type",EntityMap.get(new Point(i,j)).getClass().getName().toString().replace("Model.Entity.Character.",""));
                     type.put("class",EntityMap.get(new Point(i,j)).getSkillClass());
                     type.put("name",EntityMap.get(new Point(i,j)).getName());
@@ -98,14 +104,82 @@ public class MapGenerator {
                     type.put("attack", Integer.toString(EntityMap.get(new Point(i,j)).getAttack()));
                     type.put("defense", Integer.toString(EntityMap.get(new Point(i,j)).getDefense()));
                     type.put("speed", Integer.toString(EntityMap.get(new Point(i,j)).getSpeed()));
-                    type.put("Inventory", Integer.toString(EntityMap.get(new Point(i,j)).getAttack()));
-                    type.put("Skills", Integer.toString(EntityMap.get(new Point(i,j)).getAttack()));
+
+                    //skills
+                    EntityMap.get(new Point(i,j)).getSkills();
+                    EntityMap.get(new Point(i,j)).getSkills().forEach((k, v) ->{
+                        JSONObject skill = new JSONObject();
+                        switch (k) {
+                            case BINDWOUNDSSKILL:
+                                skill.put("bindWounds", v.getSkillLevel());
+                                break;
+                            case BARGAINSKILL:
+                                skill.put("bargain", v.getSkillLevel());
+                                break;
+                            case OBSERVATIONSKILL:
+                                skill.put("observation", v.getSkillLevel());
+                                break;
+                            case BRAWLSKILL:
+                                skill.put("brawl", v.getSkillLevel());
+                                break;
+                            case ONEHANDEDWEAPONSKILL:
+                                skill.put("oneHanded", v.getSkillLevel());
+                                break;
+                            case TWOHANDEDWEAPONSKILL:
+                                skill.put("twoHanded", v.getSkillLevel());
+                                break;
+                            case BANESKILL:
+                                skill.put("bane", v.getSkillLevel());
+                                break;
+                            case BOONSKILL:
+                                skill.put("boon", v.getSkillLevel());
+                                break;
+                            case ENCHANTMENTSKILL:
+                                skill.put("enchantment", v.getSkillLevel());
+                                break;
+                            case STAFFSKILL:
+                                skill.put("staff", v.getSkillLevel());
+                                break;
+                            case PICKPOCKETSKILL:
+                                skill.put("pickPocket", v.getSkillLevel());
+                                break;
+                            case REMOVETRAPSKILL:
+                                skill.put("removeTrap", v.getSkillLevel());
+                                break;
+                            case CREEPSKILL:
+                                skill.put("creep", v.getSkillLevel());
+                                break;
+                            case RANGEDWEAPONSKILL:
+                                skill.put("ranged", v.getSkillLevel());
+                                break;
+                        }
+                        skills.put(skill);
+                    });
+                    type.put("Skills", skills);
+
+                    //Weapons
+                    //    BRAWL, ONEHANDED, TWOHANDED, BANE, BOON, ENCHANTMENT, STAFF, RANGED, ARMOR, RING;
+                    EntityMap.get(new Point(i,j)).getInventory().getEquippedItems().forEach((k, v) ->{
+                        EquippedItems.put(v);
+                    });
+
+                    for(int k = 0; k < EntityMap.get(new Point(i,j)).getInventory().getEquippedItems().size(); k++)
+                    {
+                        UnequippedItems.put(EntityMap.get(new Point(i,j)).getInventory().getUnequippedItems()[k]);
+                    }
+
+                    inventory.put(UnequippedItems);
+                    inventory.put(EquippedItems);
+                    type.put("Inventory", inventory);
+
                     if(EntityMap.get(new Point(i,j)).getPet() != null)
                     {
                         type.put("pet", EntityMap.get(new Point(i,j)).getPetName());
                     }else {
                         type.put("pet", "none");
                     }
+
+                    //orientation
                     //UP, UPRIGHT, DOWNRIGHT, DOWN, DOWNLEFT, UPLEFT;
                     String OrString = "";
                     switch (EntityMap.get(new Point(i,j)).getOrientation()) {
@@ -128,6 +202,7 @@ public class MapGenerator {
                             OrString = "downright";
                             break;
                     }
+
                     type.put("orientation", OrString);
 
 

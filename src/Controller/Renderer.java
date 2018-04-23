@@ -40,6 +40,8 @@ public class Renderer {
     private MapView mapView;
     private AreaEffectView areaEffectView;
     private FogOfWarHandler fow;
+    private Point cameraPosition;
+    private boolean cameraControl;
 
     // sets the radius/size of tiles and stuff
     private final int radius = 32;
@@ -50,6 +52,7 @@ public class Renderer {
         this.canvas = gameplayView.getCanvas();
         this.graphicsContext = canvas.getGraphicsContext2D();
         this.world = world;
+        cameraPosition = world.getPlayer().getLocation();
         sprites = new SpriteBase();
         statusView = new StatusView(canvas);
         mapView = new MapView(graphicsContext, sprites);
@@ -68,13 +71,16 @@ public class Renderer {
         graphicsContext.setFill(Color.BLACK);
         graphicsContext.fillRect(0, 0, canvas.getWidth(),canvas.getHeight());
 
+        if (!cameraControl) {
+            cameraPosition = world.getPlayer().getLocation();
+        }
         fow.updateOnTick();
-        renderSeenTiles();
-        renderVisibleTiles();
-        renderPlayer();
-        renderOtherEntities();
-        renderObstacles();
-        renderItems();
+        renderSeenTiles(cameraPosition);
+        renderVisibleTiles(cameraPosition);
+        renderPlayer(cameraPosition);
+        renderOtherEntities(cameraPosition);
+        renderObstacles(cameraPosition);
+        renderItems(cameraPosition);
         statusView.render(world.getPlayer());
 
     }
@@ -98,7 +104,7 @@ public class Renderer {
         return canvas;
     }
 
-    public void renderVisibleTiles() {
+    public void renderVisibleTiles(Point cameraPosition) {
         int size = fow.returnVisibleTiles().size();
         Point[] visible = fow.returnVisibleTiles().toArray(new Point[size]);
         Zone zone = world.getCurrentZone();
@@ -108,7 +114,7 @@ public class Renderer {
             for (int j = 0; j < visible.length; j++) {
                 if (zoneArr[i] == visible[j]) {
                     Terrain zoneTerrain = zone.getTerrain(zoneArr[i]);
-                    Point2D imageCoordinates = calculateImageCoordinates((int) zoneArr[i].getX(), (int) zoneArr[i].getY(), radius);
+                    Point2D imageCoordinates = calculateImageCoordinates((int) zoneArr[i].getX(), (int) zoneArr[i].getY(), radius, cameraPosition);
                     mapView.render(zoneTerrain, imageCoordinates, radius);
                     if (zone.getAreaEffect(zoneArr[i]) != null) {
                         AreaEffect currAE = zone.getAreaEffect(zoneArr[i]);
@@ -119,7 +125,7 @@ public class Renderer {
         }
     }
 
-    public void renderSeenTiles() {
+    public void renderSeenTiles(Point cameraPosition) {
         int size = fow.returnSeenTiles().size();
         int tsize = fow.getSeenTiles().size();
         Point[] seen = fow.returnSeenTiles().toArray(new Point[size]);
@@ -130,7 +136,7 @@ public class Renderer {
         for (int i = 0; i < size; i++) {
             Point currP = seen[i];
             Terrain currT = tiles.get(currP);
-            Point2D imageCoordinates = calculateImageCoordinates((int)currP.getX(), (int)currP.getY(), radius);
+            Point2D imageCoordinates = calculateImageCoordinates((int)currP.getX(), (int)currP.getY(), radius, cameraPosition);
             mapView.render(currT, imageCoordinates, radius);
             Zone zone = world.getCurrentZone();
             if (zone.getAreaEffect(currP) != null) {
@@ -179,20 +185,20 @@ public class Renderer {
 //
 //    }
 
-    public void renderObstacles() {
+    public void renderObstacles(Point cameraPosition) {
         Zone zone = world.getCurrentZone();
         Collection<Point> obstacleCollection = zone.getAllObstacleItemPoints();
         Point[] obstacleArr = obstacleCollection.toArray(new Point[obstacleCollection.size()]);
         for (int i = 0; i < obstacleArr.length; i++) {
             if (isVisible(obstacleArr[i])){
                 ObstacleItem obstacle = zone.getObstacleItem(obstacleArr[i]);
-                Point2D imageCoordinates = calculateImageCoordinates((int) obstacleArr[i].getX(), (int) obstacleArr[i].getY(), radius);
+                Point2D imageCoordinates = calculateImageCoordinates((int) obstacleArr[i].getX(), (int) obstacleArr[i].getY(), radius, cameraPosition);
                 obstacleView.render(imageCoordinates, radius);
             } else if (isSeen(obstacleArr[i])) {
                 graphicsContext.setGlobalAlpha(.75);
                 graphicsContext.setEffect(new BoxBlur(radius *.25, radius * .25, 1));
                 ObstacleItem obstacle = zone.getObstacleItem(obstacleArr[i]);
-                Point2D imageCoordinates = calculateImageCoordinates((int) obstacleArr[i].getX(), (int) obstacleArr[i].getY(), radius);
+                Point2D imageCoordinates = calculateImageCoordinates((int) obstacleArr[i].getX(), (int) obstacleArr[i].getY(), radius, cameraPosition);
                 obstacleView.render(imageCoordinates, radius);
             } else {
 
@@ -202,25 +208,25 @@ public class Renderer {
         }
     }
 
-    private void renderPlayer() {
+    private void renderPlayer(Point cameraPosition) {
         Point playerLocation = world.getPlayer().getLocation();
-        Point2D imageCoordinates = calculateImageCoordinates((int) playerLocation.getX(),(int) playerLocation.getY(), radius);
+        Point2D imageCoordinates = calculateImageCoordinates((int) playerLocation.getX(),(int) playerLocation.getY(), radius, cameraPosition);
         graphicsContext.drawImage(sprites.getCharacterSprite(0), imageCoordinates.getX() + 10, imageCoordinates.getY() + 10, 1.5*radius, 1.5*radius);
     }
 
-    private void renderOtherEntities() {
+    private void renderOtherEntities(Point cameraPosition) {
         Map<Point, CharacterEntity> characterMap = world.getCurrentZone().getCharacterMap();
         for (Point characterLocation : characterMap.keySet()) {
             if (isVisible(characterLocation)) {
                 if (characterLocation != world.getPlayer().getLocation()) {
-                    Point2D imageCoordinates = calculateImageCoordinates((int) characterLocation.getX(),(int) characterLocation.getY(), radius);
+                    Point2D imageCoordinates = calculateImageCoordinates((int) characterLocation.getX(),(int) characterLocation.getY(), radius, cameraPosition);
                     graphicsContext.drawImage(sprites.getCharacterSprite(1), imageCoordinates.getX()+10, imageCoordinates.getY()+10, 1.5*radius, 1.5*radius);
                 }
             } else if (isSeen(characterLocation)) {
                 graphicsContext.setGlobalAlpha(.75);
                 graphicsContext.setEffect(new BoxBlur(radius *.25, radius * .25, 1));
                 if (characterLocation != world.getPlayer().getLocation()) {
-                    Point2D imageCoordinates = calculateImageCoordinates((int) characterLocation.getX(),(int) characterLocation.getY(), radius);
+                    Point2D imageCoordinates = calculateImageCoordinates((int) characterLocation.getX(),(int) characterLocation.getY(), radius, cameraPosition);
                     graphicsContext.drawImage(sprites.getCharacterSprite(1), imageCoordinates.getX()+10, imageCoordinates.getY()+10, 1.5*radius, 1.5*radius);
                 }
             } else {
@@ -231,20 +237,20 @@ public class Renderer {
         }
     }
 
-    private void renderItems() {
+    private void renderItems(Point cameraPosition) {
         Zone zone = world.getCurrentZone();
         Collection<Point> obstacleCollection = zone.getAllItemPoints();
         Point[] itemArray = obstacleCollection.toArray(new Point[obstacleCollection.size()]);
         for (int i = 0; i < itemArray.length; i++) {
             if (isVisible(itemArray[i])) {
                 Item item = zone.getItem(itemArray[i]);
-                Point2D imageCoordinates = calculateImageCoordinates((int) itemArray[i].getX(), (int) itemArray[i].getY(), radius);
+                Point2D imageCoordinates = calculateImageCoordinates((int) itemArray[i].getX(), (int) itemArray[i].getY(), radius, cameraPosition);
                 itemView.render(item.getName(), imageCoordinates, radius);
             } else if (isSeen(itemArray[i])) {
                 graphicsContext.setGlobalAlpha(.75);
                 graphicsContext.setEffect(new BoxBlur(radius *.25, radius * .25, 1));
                 Item item = zone.getItem(itemArray[i]);
-                Point2D imageCoordinates = calculateImageCoordinates((int) itemArray[i].getX(), (int) itemArray[i].getY(), radius);
+                Point2D imageCoordinates = calculateImageCoordinates((int) itemArray[i].getX(), (int) itemArray[i].getY(), radius, cameraPosition);
                 itemView.render(item.getName(), imageCoordinates, radius);
             } else {
 
@@ -253,6 +259,10 @@ public class Renderer {
             graphicsContext.setEffect(null);
 
         }
+    }
+
+    public void updateMap(Zone z) {
+        fow.updateZone(z);
     }
 
     private boolean isVisible(Point p) {
@@ -263,19 +273,71 @@ public class Renderer {
         if (fow.returnSeenTiles().contains(p)) return true;
         else return false;
     }
-    private Point2D calculateImageCoordinates(int x, int y, int radius) {
+    private Point2D calculateImageCoordinates(int x, int y, int radius, Point cameraPosition) {
         double a = 0, b = 0;
 
         if (x % 2 == 1) {
-            a = radius * 1.5 * x;
-            b = (2 * radius * y) + radius;
+            a = (radius * 1.5 * x) - (cameraPosition.getX()*1.5*radius) + (int)(canvas.getWidth()/2);
+            b = (2 * radius * y + radius) - (cameraPosition.getY()*1.5*radius) + (int)(canvas.getHeight()/2);
         }
         if (x % 2 == 0) {
-            a = radius * 1.5 * x;
-            b = radius * 2 * y;
+            a = radius * 1.5 * x - (cameraPosition.getX()*1.5*radius) + (int)(canvas.getWidth()/2);
+            b = radius * 2 * y - (cameraPosition.getY()*1.5*radius) + (int)(canvas.getHeight()/2);
         }
 
 
         return new Point2D.Double(a, b);
     }
+    public void toggleCamera() {
+        System.out.println("Camera control toggled: " + cameraControl);
+        cameraControl = !cameraControl;
+    }
+
+    public void moveUp() {
+        if (cameraPosition.getY() >= 0) {
+            System.out.println("Moving Up: " + cameraControl);
+
+            cameraPosition = new Point((int)cameraPosition.getX(), (int)cameraPosition.getY()-1);
+        }
+    }
+    public void moveRight() {
+        if (cameraPosition.getX() <= world.getCurrentZone().getColumns()) {
+            System.out.println("Moving Right: " + cameraControl);
+
+            cameraPosition = new Point((int)cameraPosition.getX()+1, (int)cameraPosition.getY());
+        }
+    }
+    public void moveDown() {
+        if (cameraPosition.getY() <= world.getCurrentZone().getRows()) {
+            System.out.println("Moving Down: " + cameraControl);
+
+            cameraPosition = new Point((int)cameraPosition.getX(), (int)cameraPosition.getY()+1);
+        }
+    }
+    public void moveLeft() {
+        if (cameraPosition.getX() >= 0) {
+            System.out.println("Moving Left: " + cameraControl);
+
+            cameraPosition = new Point((int)cameraPosition.getX()-1, (int)cameraPosition.getY());
+        }
+    }
+
+    public void resetCamera() {
+        cameraPosition = world.getPlayer().getLocation();
+    }
+//    private Point2D calculateImageCoordinates(int x, int y, int radius) {
+//        double a = 0, b = 0;
+//
+//        if (x % 2 == 1) {
+//            a = radius * 1.5 * x;
+//            b = (2 * radius * y) + radius;
+//        }
+//        if (x % 2 == 0) {
+//            a = radius * 1.5 * x;
+//            b = radius * 2 * y;
+//        }
+//
+//
+//        return new Point2D.Double(a, b);
+//    }
 }

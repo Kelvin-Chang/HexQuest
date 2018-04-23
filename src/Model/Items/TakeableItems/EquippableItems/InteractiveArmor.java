@@ -16,7 +16,7 @@ public class InteractiveArmor extends EquippableItem implements HasEquipUnequipE
         this.requirement = requirement;
         makeEquipEffect();
         makeUnequipEffect();
-        setName("Interactive Armor");
+        setName("Special Armor");
     }
 
     public void makeEquipEffect() {
@@ -28,9 +28,11 @@ public class InteractiveArmor extends EquippableItem implements HasEquipUnequipE
     }
 
     @Override
-    public void trigger(CharacterEntity characterEntity) {
+    public boolean trigger(CharacterEntity characterEntity) {
         if (requirement.characterMeetsRequirement(characterEntity)) {
             characterEntity.addToInventory(this);
+            return true;
         }
+        return false;
     }
 }

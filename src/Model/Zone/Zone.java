@@ -197,8 +197,10 @@ public class Zone implements Updateable {
             if (item != null) {
                 //boolean entityIsPlayer = character.equals(player);
                 //TODO: change when introducing npcs
-                item.trigger(character);
-                removeItem(item);
+                boolean removeItem = item.trigger(character);
+                if (removeItem) {
+                    removeItem(item);
+                }
             }
         }
     }

@@ -7,8 +7,9 @@ public abstract class Item {
     Effect effect;
     private String name;
 
-    public void trigger(CharacterEntity entity) {
-            effect.trigger(entity);
+    public boolean trigger(CharacterEntity entity) {
+        effect.trigger(entity);
+        return true;
     }
 
     public String getName() {
