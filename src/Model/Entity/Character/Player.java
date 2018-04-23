@@ -8,11 +8,23 @@ import java.util.HashMap;
 
 public class Player extends CharacterEntity {
 
+    String playerClass;
+
 
     public Player(){
 
     }
     public Player(HashMap<SkillType, Skill> skillList) {
         super(skillList);
+    }
+
+
+
+    public String getPlayerClass() {
+        return playerClass;
+    }
+
+    public void setPlayerClass(String playerClass) {
+        this.playerClass = playerClass;
     }
 }
