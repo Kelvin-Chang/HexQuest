@@ -20,6 +20,7 @@ import Model.Items.TakeableItems.EquippableItems.Armor;
 import Model.Items.TakeableItems.EquippableItems.Ring;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItems.HealthBane;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BoonItems.HealthBoon;
+import Model.Requirements.RequirementFactory;
 import Model.Zone.Decal;
 import Model.Zone.Terrain;
 import Model.Zone.World;
@@ -43,6 +44,7 @@ public class GameBuilder {
     private StatusView statusView;
     private Player player;
     private ItemFactory itemFactory = new ItemFactory();
+    private RequirementFactory requirementFactory = new RequirementFactory();
 
 
     public GameBuilder(World world){
@@ -213,6 +215,9 @@ public class GameBuilder {
                 break;
             case "moneyBag":
                 zone.add(point, itemFactory.produceMoneyBag(1000));
+                break;
+            case "specialArmor":
+                zone.add(point, itemFactory.produceInteractiveArmor(50, requirementFactory.produceLevelRequirement(2)));
                 break;
         }
     }

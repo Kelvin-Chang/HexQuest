@@ -13,7 +13,8 @@ public class OneShotItem extends Item {
     }
 
     @Override
-    public void trigger(CharacterEntity entity) {
+    public boolean trigger(CharacterEntity entity) {
         effect.trigger(entity);
+        return true;
     }
 }

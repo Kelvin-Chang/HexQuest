@@ -498,7 +498,7 @@
           {
             "terrain": "grass",
             "areaEffect": "none",
-            "item": "none",
+            "item": "specialArmor",
             "decal": "none",
             "Entity": {
               "type": "none"
