@@ -1,6 +1,7 @@
 package Model.Zone;
 
 import Model.AreaEffects.AreaEffect;
+import Model.AreaEffects.Trap;
 import Model.Effects.Effect;
 import Model.Entity.Character.CharacterEntity;
 import Model.Entity.Pet;
@@ -27,6 +28,8 @@ public class Zone implements Updateable {
     private Map<Point, ObstacleItem> obstacleItemMap;
     private Map<Point, Decal> decalMap;
     private Map<Point, Pet> PetMap;
+    private Map<Point, Trap> TrapMap;
+
 
 
 
@@ -40,6 +43,7 @@ public class Zone implements Updateable {
         this.characterMap = new HashMap<>();
         this.areaEffectMap = new HashMap<>();
         this.PetMap = new HashMap<>();
+        this.TrapMap = new HashMap<>();
         this.effectsMap = new HashMap<>();
         this.itemMap = new HashMap<>();
         this.obstacleItemMap = new HashMap<>();
@@ -55,6 +59,7 @@ public class Zone implements Updateable {
         this.terrainMap = new HashMap<>();
         this.characterMap = new HashMap<>();
         this.PetMap = new HashMap<>();
+        this.TrapMap = new HashMap<>();
         this.areaEffectMap = new HashMap<>();
         this.effectsMap = new HashMap<>();
         this.itemMap = new HashMap<>();
@@ -161,6 +166,16 @@ public class Zone implements Updateable {
     public Collection<Point> getAllItemPoints() { return itemMap.keySet(); }
     public Collection<Point> getAllObstacleItemPoints() { return obstacleItemMap.keySet(); }
     public Collection<Point> getAllDecalPoints() { return decalMap.keySet(); }
+
+//    public ArrayList<Trap> getAreaEffectOnArea(ArrayList<Point> area) {
+//        ArrayList<Trap> AreaEffects = new ArrayList<>();
+//        for (Point point : area) {
+//            if (areaEffectMap.get(point) != null) {
+//                AreaEffects.add(areaEffectMap.get(point));
+//            }
+//        }
+//        return AreaEffects;
+//    }
 
     public ArrayList<CharacterEntity> getEntitiesOnArea(ArrayList<Point> area) {
         ArrayList<CharacterEntity> entities = new ArrayList<>();
