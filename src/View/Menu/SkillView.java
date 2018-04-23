@@ -65,7 +65,7 @@ public class SkillView extends AbstractView {
     }
 
 
-    private VBox topPane() {
+    private VBox topPane(CharacterEntity characterEntity) {
         VBox vbox = new VBox();
         vbox.setPrefSize(1000,130);
         vbox.setPadding(new Insets(10,10,10,10));
@@ -205,7 +205,7 @@ public class SkillView extends AbstractView {
         // create new borderpane for formatting
         BorderPane bp = new BorderPane();
 
-        bp.setTop(topPane());
+        bp.setTop(topPane(characterEntity));
         bp.setCenter(centerPane(character));
 
         bp.setBottom(bottomPane(character));
@@ -217,6 +217,6 @@ public class SkillView extends AbstractView {
 
     private void refresh(CharacterEntity character) {
         borderPane.setTop(null);
-        borderPane.setTop(topPane());
+        borderPane.setTop(topPane(character));
     }
 }
