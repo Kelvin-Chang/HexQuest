@@ -3,6 +3,8 @@ package View.Zone;
 import Model.AreaEffects.AreaEffect;
 import View.SpriteBase;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.transform.Rotate;
 
 import java.awt.geom.Point2D;
 
@@ -32,15 +34,27 @@ public class AreaEffectView {
                 graphicsContext.drawImage(sprites.getEffectSprite(3), imageCoordinates.getX(), imageCoordinates.getY(), 2 * radius, 2 * radius);
                 break;
             case "Teleport":
-                graphicsContext.drawImage(sprites.getEffectSprite(4), imageCoordinates.getX(), imageCoordinates.getY(), 2 * radius, 2 * radius);
+                graphicsContext.drawImage(sprites.getEffectSprite(3), imageCoordinates.getX(), imageCoordinates.getY(), 2 * radius, 2 * radius);
                 break;
             case "River":
-                graphicsContext.drawImage(sprites.getEffectSprite(5), imageCoordinates.getX(), imageCoordinates.getY(), 2 * radius, 2 * radius);
+                graphicsContext.drawImage(sprites.getEffectSprite(5), imageCoordinates.getX(), imageCoordinates.getY(), 2*radius, 2*radius);
                 break;
             default:
                 break;
         }
 
+    }
+
+    private void rotate(GraphicsContext gc, double angle, double px, double py) {
+        Rotate r = new Rotate(angle, px, py);
+        gc.setTransform(r.getMxx(), r.getMyx(), r.getMxy(), r.getMyy(), r.getTx(), r.getTy());
+    }
+
+    private void drawRotatedImage(Image image, double angle, double tlpx, double tlpy) {
+        graphicsContext.save(); // saves the current state on stack, including the current transform
+        rotate(graphicsContext, angle, tlpx + image.getWidth() / 2, tlpy + image.getHeight() / 2);
+        graphicsContext.drawImage(image, tlpx, tlpy);
+        graphicsContext.restore(); // back to original state (before rotation)
     }
 
 }

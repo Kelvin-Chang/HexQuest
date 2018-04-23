@@ -18,7 +18,9 @@ import View.Zone.MapView;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.BoxBlur;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.transform.Rotate;
 
 import java.awt.Point;
 import java.awt.geom.*;
@@ -211,6 +213,29 @@ public class Renderer {
         Point playerLocation = world.getPlayer().getLocation();
         Point2D imageCoordinates = calculateImageCoordinates((int) playerLocation.getX(),(int) playerLocation.getY(), radius, cameraPosition);
         graphicsContext.drawImage(sprites.getCharacterSprite(0), imageCoordinates.getX() + 10, imageCoordinates.getY() + 10, 1.5*radius, 1.5*radius);
+        switch(world.getPlayer().getOrientation()) {
+            case UP:
+                drawRotatedImage(sprites.getMiscSprite(0), 0, imageCoordinates.getX() + 20, imageCoordinates.getY()+ 0);
+                break;
+            case UPRIGHT:
+                drawRotatedImage(sprites.getMiscSprite(0), 45, imageCoordinates.getX() + 20, imageCoordinates.getY() + 0);
+                break;
+            case DOWNRIGHT:
+                drawRotatedImage(sprites.getMiscSprite(0), 135, imageCoordinates.getX() + 20, imageCoordinates.getY() + 30);
+                break;
+            case DOWN:
+                drawRotatedImage(sprites.getMiscSprite(0), 180, imageCoordinates.getX() + 20, imageCoordinates.getY() + 30);
+                break;
+            case DOWNLEFT:
+                drawRotatedImage(sprites.getMiscSprite(0), 225, imageCoordinates.getX() + 20, imageCoordinates.getY() + 30);
+                break;
+            case UPLEFT:
+                drawRotatedImage(sprites.getMiscSprite(0), 315, imageCoordinates.getX() + 20, imageCoordinates.getY() + 0);
+                break;
+            default:
+                break;
+
+        }
     }
 
     private void renderOtherEntities(Point cameraPosition) {
@@ -323,6 +348,18 @@ public class Renderer {
 
     public void resetCamera() {
         cameraPosition = world.getPlayer().getLocation();
+    }
+
+    private void rotate(GraphicsContext gc, double angle, double px, double py) {
+        Rotate r = new Rotate(angle, px, py);
+        gc.setTransform(r.getMxx(), r.getMyx(), r.getMxy(), r.getMyy(), r.getTx(), r.getTy());
+    }
+
+    private void drawRotatedImage(Image image, double angle, double tlpx, double tlpy) {
+        graphicsContext.save(); // saves the current state on stack, including the current transform
+        rotate(graphicsContext, angle, tlpx + image.getWidth() / 2, tlpy + image.getHeight() / 2);
+        graphicsContext.drawImage(image, tlpx, tlpy);
+        graphicsContext.restore(); // back to original state (before rotation)
     }
 //    private Point2D calculateImageCoordinates(int x, int y, int radius) {
 //        double a = 0, b = 0;

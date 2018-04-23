@@ -10,6 +10,7 @@ public class SpriteBase {
     private ArrayList<Image> characterSprites;
     private ArrayList<Image> effectSprites;
     private ArrayList<Image> obstacleSprites;
+    private ArrayList<Image> miscSprites;
     private HashMap<String, Image> itemSprites;
 
     private final String filePath = System.getProperty("user.dir");
@@ -19,7 +20,9 @@ public class SpriteBase {
         characterSprites = new ArrayList<Image>();
         effectSprites = new ArrayList<Image>();
         obstacleSprites = new ArrayList<Image>();
+        miscSprites = new ArrayList<Image>();
         itemSprites = new HashMap<>();
+
         startUp();
     }
 
@@ -36,9 +39,11 @@ public class SpriteBase {
         effectSprites.add(getImage(filePath + "/src/assets/AEdecals/death.png"));
         effectSprites.add(getImage(filePath + "/src/assets/AEdecals/levelUp.png"));
         effectSprites.add(getImage(filePath + "/src/assets/amulet.png"));
-        effectSprites.add(getImage(filePath + "/src/assets/water.png"));
+        effectSprites.add(getImage(filePath + "/src/assets/river.png"));
 
         obstacleSprites.add(getImage(filePath + "/src/assets/obstacle.png"));
+
+        miscSprites.add(getImage(filePath + "/src/assets/arrow.png"));
 
         itemSprites.put("Health Bane", getImage(filePath + "/src/assets/Items/healthBane.png"));
         itemSprites.put("Defense Bane", getImage(filePath + "/src/assets/Items/defenseBane.png"));
@@ -79,6 +84,8 @@ public class SpriteBase {
     public Image getObstacleSprite(int ID) { return obstacleSprites.get(ID); }
 
     public Image getItemSprite(String name) { return itemSprites.get(name); }
+
+    public Image getMiscSprite(int ID) { return miscSprites.get(ID); }
 
     private Image getImage(String fp) {
         File file = new File(fp);
