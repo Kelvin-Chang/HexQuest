@@ -340,10 +340,10 @@ public class CharacterEntityTests {
 
     @Test
     public void testMovingUp() {
-        System.out.println(sneak.getLocation());
+        //System.out.println(sneak.getLocation());
         sneak.addUpToMovementQueue();
         world.update();
-        System.out.println(sneak.getLocation());
+        //System.out.println(sneak.getLocation());
     }
 
     @Test

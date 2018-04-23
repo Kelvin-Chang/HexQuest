@@ -197,15 +197,11 @@ public class Zone implements Updateable {
         triggerTraps();
     }
 
-
-
     private void triggerAreaEffects() {
         ArrayList<Point> points = new ArrayList<>(characterMap.keySet());
         for(Point point : points) {
             CharacterEntity character = getCharacterEntity(point);
-
             AreaEffect effect = areaEffectMap.get(point);
-
             if (effect != null) {
                 effect.trigger(character);
             }
@@ -215,24 +211,18 @@ public class Zone implements Updateable {
     public void triggerTraps() {
         for(Point point : characterMap.keySet()) {
             CharacterEntity character = getCharacter(point);
-
             Trap trap = trapMap.get(point);
-
             if(trap != null) {
                 trap.fireTrap(character);
             }
         }
     }
     private void triggerItems() {
-        ArrayList<Point> entities = new ArrayList<>(characterMap.keySet());
-        for(Point point : entities) {
+        ArrayList<Point> characters = new ArrayList<>(characterMap.keySet());
+        for(Point point : characters) {
             CharacterEntity character = getCharacter(point);
-
             Item item = itemMap.get(point);
-
             if (item != null) {
-                //boolean entityIsPlayer = character.equals(player);
-                //TODO: change when introducing npcs
                 boolean removeItem = item.trigger(character);
                 if (removeItem) {
                     removeItem(item);
@@ -241,49 +231,49 @@ public class Zone implements Updateable {
         }
     }
 
-    public void disarmTrap(CharacterEntity character, int trapSuccessShance) {
+    public void disarmTrap(CharacterEntity character, int trapSuccessChance) {
         Point charPoint = getCharacterLocation(character);
 
         // search in a circle around the entity for traps, then try to either reveal them, or disarm them
         if(getTrap(new Point(charPoint.x + -1, charPoint.y + -1)) != null) {
             Trap trap = getTrap(new Point(charPoint.x + -1, charPoint.y + -1));
 
-            trap.disarm(character, trapSuccessShance);
+            trap.disarm(character, trapSuccessChance);
         }
         if(getTrap(new Point(charPoint.x + -1, charPoint.y + 0)) != null) {
             Trap trap = getTrap(new Point(charPoint.x + -1, charPoint.y + 0));
 
-            trap.disarm(character, trapSuccessShance);
+            trap.disarm(character, trapSuccessChance);
         }
         if(getTrap(new Point(charPoint.x + -1, charPoint.y + 1)) != null) {
             Trap trap = getTrap(new Point(charPoint.x + -1, charPoint.y + 1));
 
-            trap.disarm(character, trapSuccessShance);
+            trap.disarm(character, trapSuccessChance);
         }
         if(getTrap(new Point(charPoint.x + 0, charPoint.y + -1)) != null) {
             Trap trap = getTrap(new Point(charPoint.x + 0, charPoint.y + -1));
 
-            trap.disarm(character, trapSuccessShance);
+            trap.disarm(character, trapSuccessChance);
         }
         if(getTrap(new Point(charPoint.x + 0, charPoint.y + 1)) != null) {
             Trap trap = getTrap(new Point(charPoint.x + 0, charPoint.y + 1));
 
-            trap.disarm(character, trapSuccessShance);
+            trap.disarm(character, trapSuccessChance);
         }
         if(getTrap(new Point(charPoint.x + 1, charPoint.y + -1)) != null) {
             Trap trap = getTrap(new Point(charPoint.x + 1, charPoint.y + -1));
 
-            trap.disarm(character, trapSuccessShance);
+            trap.disarm(character, trapSuccessChance);
         }
         if(getTrap(new Point(charPoint.x + 1, charPoint.y + 0)) != null) {
             Trap trap = getTrap(new Point(charPoint.x + 1, charPoint.y + 0));
 
-            trap.disarm(character, trapSuccessShance);
+            trap.disarm(character, trapSuccessChance);
         }
         if(getTrap(new Point(charPoint.x + 1, charPoint.y + 1)) != null) {
             Trap trap = getTrap(new Point(charPoint.x + 1, charPoint.y + 1));
 
-            trap.disarm(character, trapSuccessShance);
+            trap.disarm(character, trapSuccessChance);
         }
     }
     //MOVEMENT STUFF
@@ -300,7 +290,8 @@ public class Zone implements Updateable {
 
         if (isValidMove(destination)) {
             moveCharacter(sourcePoint, destination);
-        } else {
+        }
+        else {
             if(characterMap.get(destination) != null) {
                 System.out.println("Move is illegal, there is " + getCharacterEntity(destination) + " there.");
             }
@@ -353,16 +344,4 @@ public class Zone implements Updateable {
 
     }
 
-
-
-    public void updateAreaEffects() {
-
-    }
-
-    public void attach(MapView v) {
-
-    }
-    public void detach(MapView v) {
-
-    }
 }
