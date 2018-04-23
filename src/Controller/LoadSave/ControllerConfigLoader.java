@@ -61,10 +61,10 @@ public class ControllerConfigLoader {
         smasherCommands.put(getKeyCode(prop.getProperty("ONEHANDEDWEAPONSKILL")), SkillType.ONEHANDEDWEAPONSKILL);
         smasherCommands.put(getKeyCode(prop.getProperty("TWOHANDEDWEAPONSKILL")), SkillType.TWOHANDEDWEAPONSKILL);
 
-        sneakCommands.put(getKeyCode(prop.getProperty("PICKPOCKETSKILL")), SkillType.TWOHANDEDWEAPONSKILL);
-        sneakCommands.put(getKeyCode(prop.getProperty("REMOVETRAPSKILL")), SkillType.TWOHANDEDWEAPONSKILL);
-        sneakCommands.put(getKeyCode(prop.getProperty("CREEPSKILL")), SkillType.TWOHANDEDWEAPONSKILL);
-        sneakCommands.put(getKeyCode(prop.getProperty("RANGEDWEAPONSKILL")), SkillType.TWOHANDEDWEAPONSKILL);
+        sneakCommands.put(getKeyCode(prop.getProperty("PICKPOCKETSKILL")), SkillType.PICKPOCKETSKILL);
+        sneakCommands.put(getKeyCode(prop.getProperty("REMOVETRAPSKILL")), SkillType.REMOVETRAPSKILL);
+        sneakCommands.put(getKeyCode(prop.getProperty("CREEPSKILL")), SkillType.CREEPSKILL);
+        sneakCommands.put(getKeyCode(prop.getProperty("RANGEDWEAPONSKILL")), SkillType.RANGEDWEAPONSKILL);
 
     }
 
