@@ -30,6 +30,7 @@ public class StatusView {
         renderMana(p.getCurrentMana(), p.getMaxMana());
         renderLevel(p.getLevel());
         renderExp(p.getExp());
+        renderMoney(p.getMoney());
     }
     public void renderStatusBackground() {
         gContext.setFill(Color.WHITE);
@@ -88,5 +89,12 @@ public class StatusView {
         gContext.setFont(Font.font("Arial", FontWeight.BOLD, 16));
         gContext.fillText("Experience: " + Integer.toString(xp) + "/100" +
                 " (" + xpdb + "%)", canvas.getWidth()-300, 105);
+    }
+    public void renderMoney(int money) {
+        gContext.setFill(Color.GOLD);
+        gContext.fillRect(canvas.getWidth()-305, 115, 290, 20);
+        gContext.setFill(Color.BLACK);
+        gContext.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+        gContext.fillText("Money: " + money, canvas.getWidth()-300, 130);
     }
 }
