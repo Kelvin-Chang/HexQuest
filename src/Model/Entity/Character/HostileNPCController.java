@@ -14,6 +14,7 @@ public class HostileNPCController {
     public HostileNPCController (){
         this.npcs = new ArrayList<>();
         this.nextMoves = new ArrayList<>();
+        trails = new ArrayList<>();
     }
 
     public void doOrientations(){

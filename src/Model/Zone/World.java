@@ -81,27 +81,29 @@ public class World implements Updateable {
         if(getCurrentZone().getCharacterEntity(new Point(2,5) )== null)
             System.out.println("Moved");
         ArrayList<Point> pointsInIR = getRadialOfPointsFromRadius(getZoneByID(currentZone).getCharacterLocation(player),3, getCurrentZone().getTerrainMap());
-        for(CharacterEntity character : controller.getNpcs()){
-            for(Point p : pointsInIR) {
-                if (getCurrentZone().getCharacterEntity(p) == character) {
-                    if (character.isChasing() && distanceToPoint(getPlayer().getLocation(), p) == 2){
-                        controller.addMove(character, calculateNPCtoPlayerOrientation(getCurrentZone(), p));
-                        break;
-                    }
+        if (!controller.getNpcs().isEmpty()) {
+            for(CharacterEntity character : controller.getNpcs()){
+                for(Point p : pointsInIR) {
+                    if (getCurrentZone().getCharacterEntity(p) == character) {
+                        if (character.isChasing() && distanceToPoint(getPlayer().getLocation(), p) == 2){
+                            controller.addMove(character, calculateNPCtoPlayerOrientation(getCurrentZone(), p));
+                            break;
+                        }
 
-                    else if (character.isChasing() == true && distanceToPoint(getPlayer().getLocation(), p) == 1){
-                        controller.addMove(character, calculateNPCtoPlayerOrientation(getCurrentZone(), p));
-                        character.useSkill(SkillType.BRAWLSKILL);
-                        break;
-                    }
-                    else {
-                        character.setChasing(true);
-                        break;
+                        else if (character.isChasing() == true && distanceToPoint(getPlayer().getLocation(), p) == 1){
+                            controller.addMove(character, calculateNPCtoPlayerOrientation(getCurrentZone(), p));
+                            character.useSkill(SkillType.BRAWLSKILL);
+                            break;
+                        }
+                        else {
+                            character.setChasing(true);
+                            break;
+                        }
                     }
                 }
             }
         }
-
+        
         controller.doOrientations();
     }
 

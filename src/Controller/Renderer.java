@@ -218,7 +218,23 @@ public class Renderer {
     private void renderPlayer(Point cameraPosition) {
         Point playerLocation = world.getPlayer().getLocation();
         Point2D imageCoordinates = calculateImageCoordinates((int) playerLocation.getX(),(int) playerLocation.getY(), radius, cameraPosition);
-        graphicsContext.drawImage(sprites.getCharacterSprite(0), imageCoordinates.getX() + 10, imageCoordinates.getY() + 10, 1.5*radius, 1.5*radius);
+        int res;
+        switch (world.getPlayer().getPlayerClass()) {
+            case "sneak":
+                res = 0;
+                break;
+            case "smasher":
+                res = 2;
+                break;
+            case "summoner":
+                res = 3;
+                break;
+            default:
+                res = 0;
+                break;
+
+        }
+        graphicsContext.drawImage(sprites.getCharacterSprite(res), imageCoordinates.getX() + 10, imageCoordinates.getY() + 10, 1.5*radius, 1.5*radius);
         switch(world.getPlayer().getOrientation()) {
             case UP:
                 drawRotatedImage(sprites.getMiscSprite(0), 0, imageCoordinates.getX() + 20, imageCoordinates.getY()+ 0);
@@ -246,25 +262,41 @@ public class Renderer {
 
     private void renderOtherEntities(Point cameraPosition) {
         Map<Point, CharacterEntity> characterMap = world.getCurrentZone().getCharacterMap();
+        HashMap<Point, CharacterEntity> seenMap = fow.returnSeenEntities();
         for (Point characterLocation : characterMap.keySet()) {
             if (isVisible(characterLocation)) {
                 if (characterLocation != world.getPlayer().getLocation()) {
                     Point2D imageCoordinates = calculateImageCoordinates((int) characterLocation.getX(),(int) characterLocation.getY(), radius, cameraPosition);
                     graphicsContext.drawImage(sprites.getCharacterSprite(1), imageCoordinates.getX()+10, imageCoordinates.getY()+10, 1.5*radius, 1.5*radius);
                 }
-            } else if (isSeen(characterLocation)) {
+            }
+//            else if (isSeen(characterLocation)) {
+//                graphicsContext.setGlobalAlpha(.75);
+//                graphicsContext.setEffect(new BoxBlur(radius *.25, radius * .25, 1));
+//                if (characterLocation != world.getPlayer().getLocation()) {
+//                    Point2D imageCoordinates = calculateImageCoordinates((int) characterLocation.getX(),(int) characterLocation.getY(), radius, cameraPosition);
+//                    graphicsContext.drawImage(sprites.getCharacterSprite(1), imageCoordinates.getX()+10, imageCoordinates.getY()+10, 1.5*radius, 1.5*radius);
+//                }
+//            } else {
+//
+//            }
+//            graphicsContext.setGlobalAlpha(1);
+//            graphicsContext.setEffect(null);
+        }
+        for (Point characterLocation : seenMap.keySet()) {
+            if (isSeen(characterLocation)) {
                 graphicsContext.setGlobalAlpha(.75);
                 graphicsContext.setEffect(new BoxBlur(radius *.25, radius * .25, 1));
                 if (characterLocation != world.getPlayer().getLocation()) {
                     Point2D imageCoordinates = calculateImageCoordinates((int) characterLocation.getX(),(int) characterLocation.getY(), radius, cameraPosition);
                     graphicsContext.drawImage(sprites.getCharacterSprite(1), imageCoordinates.getX()+10, imageCoordinates.getY()+10, 1.5*radius, 1.5*radius);
                 }
-            } else {
-
             }
             graphicsContext.setGlobalAlpha(1);
             graphicsContext.setEffect(null);
         }
+        graphicsContext.setGlobalAlpha(1);
+        graphicsContext.setEffect(null);
     }
 
     private void renderItems(Point cameraPosition) {
