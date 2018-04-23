@@ -50,6 +50,10 @@ public class ItemFactory {
         return new Armor(defense);
     }
 
+    //public static OneShotItem produceHorse(Effect effect){
+        //
+    //}
+
     public static SmasherWeapon produceGauntlet(int damage) {
         return new SmasherWeapon(damage, ItemSlot.BRAWL, "Gauntlet");
     }
