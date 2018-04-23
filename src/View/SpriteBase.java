@@ -56,6 +56,7 @@ public class SpriteBase {
         itemSprites.put("Bargaining Enchantment", getImage(filePath + "/src/assets/Items/bargainingEnchantment.png"));
         itemSprites.put("Bind Wounds Enchantment", getImage(filePath + "/src/assets/Items/bindWoundsEnchantment.png"));
         itemSprites.put("Observation Enchantment", getImage(filePath + "/src/assets/Items/observationEnchantment.png"));
+        itemSprites.put("Staff", getImage(filePath + "/src/assets/Items/staff.png"));
         itemSprites.put("Gauntlet", getImage(filePath + "/src/assets/Items/gauntlet.png"));
         itemSprites.put("Brass Knuckles", getImage(filePath + "/src/assets/Items/brassKnuckles.png"));
         itemSprites.put("Boxing Gloves", getImage(filePath + "/src/assets/Items/boxingGloves.png"));

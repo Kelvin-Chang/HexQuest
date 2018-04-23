@@ -73,7 +73,6 @@ public class ViewController {
         SettingsView view = new SettingsView(viewController);
         createScene(view);
     }
-
     public void switchToGamePlayView(boolean fromStartGame) {
         gameplayView = new GameplayView(viewController, stage);
         createScene(gameplayView);
@@ -82,7 +81,6 @@ public class ViewController {
         saveFileLocations.add("resources/maps/map1.json");
         gameMediator.loadGame(saveFileLocations);
     }
-
     public void switchToGamePlayView(boolean fromStartGame, ArrayList<String> filepath) {
         gameplayView = new GameplayView(viewController, stage);
         createScene(gameplayView);

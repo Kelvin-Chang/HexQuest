@@ -18,16 +18,31 @@ public class HostileNPCController {
     }
 
     public void doOrientations(){
+        System.out.println("NPC Controller arrayList: " + npcs.size());
         for( int i = 0; i < npcs.size(); ++i){
-            for(Orientation o : nextMoves)
-            switch(Orientation.correspondingNumber(o)){
-                case 0: npcs.get(i).addUpLeftToMovementQueue(); break;
-                case 1: npcs.get(i).addUpToMovementQueue(); break;
-                case 2: npcs.get(i).addUpRightToMovementQueue(); break;
-                case 3: npcs.get(i).addDownLeftToMovementQueue(); break;
-                case 4: npcs.get(i).addDownToMovementQueue(); break;
-                case 5: npcs.get(i).addDownRightToMovementQueue(); break;
+            System.out.println("npcController");
+            for(Orientation o : nextMoves) {
+                switch (Orientation.correspondingNumber(o)) {
+                    case 0:
+                        npcs.get(i).addUpLeftToMovementQueue();
+                        break;
+                    case 1:
+                        npcs.get(i).addUpToMovementQueue();
+                        break;
+                    case 2:
+                        npcs.get(i).addUpRightToMovementQueue();
+                        break;
+                    case 3:
+                        npcs.get(i).addDownLeftToMovementQueue();
+                        break;
+                    case 4:
+                        npcs.get(i).addDownToMovementQueue();
+                        break;
+                    case 5:
+                        npcs.get(i).addDownRightToMovementQueue();
+                        break;
 
+                }
             }
         }
     }
