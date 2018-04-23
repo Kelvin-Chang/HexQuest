@@ -19,7 +19,7 @@ public class ControllerConfigLoader {
 
     public ControllerConfigLoader() {}
 
-    public void getControllerConfig() throws IOException{
+    public Properties getControllerConfig() throws IOException{
         try {
             input = new FileInputStream(filePath + "/resources/controllerConfig.properties");
 
@@ -33,10 +33,11 @@ public class ControllerConfigLoader {
                 }
             }
         }
+        return prop;
     }
 
     public void loadConfig(HashMap<KeyCode, SkillType> commonCommands, HashMap<KeyCode, SkillType> summonerCommands, HashMap<KeyCode, SkillType> smasherCommands, HashMap<KeyCode, SkillType> sneakCommands) throws IOException {
-        getControllerConfig();
+        prop = getControllerConfig();
 
         commonCommands.put(getKeyCode(prop.getProperty("MOVEUPLEFT")), SkillType.MOVEUPLEFT);
         commonCommands.put(getKeyCode(prop.getProperty("MOVEUP")), SkillType.MOVEUP);
