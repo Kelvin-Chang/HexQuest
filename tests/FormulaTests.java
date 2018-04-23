@@ -82,6 +82,7 @@ public class FormulaTests {
     public void testChasing(){
         World world = new World();
         Zone zone = new Zone(0, 7, 7);
+        world.setCurrentZone(0);
         Player characterSmash = PlayerFactory.produceSmasher();
         CharacterEntity npc = new HostileNPC();
 

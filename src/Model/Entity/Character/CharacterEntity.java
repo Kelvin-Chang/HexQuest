@@ -221,8 +221,9 @@ public abstract class CharacterEntity {
     }
     
     public boolean isDead(){
-        if(currentHealth == 0 )
+        if(currentHealth == 0 ) {
             return true;
+        }
         return false;
     }
 

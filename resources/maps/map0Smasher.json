@@ -269,7 +269,7 @@
           },
           {
             "terrain": "grass",
-            "areaEffect": "river",
+            "areaEffect": "river-down",
             "item": "none",
             "decal": "none",
             "Entity": {
@@ -280,7 +280,7 @@
           },
           {
             "terrain": "grass",
-            "areaEffect": "river",
+            "areaEffect": "river-down",
             "item": "none",
             "decal": "none",
             "Entity": {
@@ -291,7 +291,7 @@
           },
           {
             "terrain": "grass",
-            "areaEffect": "river",
+            "areaEffect": "river-down",
             "item": "none",
             "decal": "none",
             "Entity": {
@@ -302,7 +302,7 @@
           },
           {
             "terrain": "grass",
-            "areaEffect": "river",
+            "areaEffect": "river-down",
             "item": "none",
             "decal": "none",
             "Entity": {
@@ -329,8 +329,7 @@
             "decal": "none",
             "Entity": {
               "type": "HostileNPC",
-              "name": "dave",
-              "class": "smasher",
+              "name": "mean",
               "level": 1,
               "maxHealth": 100,
               "currentHealth": 100,

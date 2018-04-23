@@ -5,8 +5,8 @@ import Model.Entity.Character.CharacterEntity;
 import Model.Enums.Orientation;
 
 public class River extends AreaEffect {
-    public River() {
-        this.effect = EffectFactory.produceRiverEffect(Orientation.UP);
+    public River(Orientation orientation) {
+        this.effect = EffectFactory.produceRiverEffect(orientation);
     }
 
     @Override
