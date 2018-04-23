@@ -26,8 +26,6 @@ public class World implements Updateable {
     private Map<Integer, Zone> zoneHashMap;
 
     public World() {
-        this.currentZone = 0;
-        this.player = new Player();
         this.hostileNPCControllers = new HashMap<>();
         this.friendlyNPCControllers = new HashMap<>();
         this.zoneHashMap = new HashMap<Integer, Zone>();
@@ -75,11 +73,6 @@ public class World implements Updateable {
     public void processHostileNPCMovements(){
         HostileNPCController controller = hostileNPCControllers.get(currentZone);
         CharacterEntity npc = getCurrentZone().getCharacter(new Point(2,5));
-
-        System.out.println(npc);
-        System.out.println(currentZone);
-        if(getCurrentZone().getCharacterEntity(new Point(2,5) )== null)
-            System.out.println("Moved");
         ArrayList<Point> pointsInIR = getRadialOfPointsFromRadius(getZoneByID(currentZone).getCharacterLocation(player),3, getCurrentZone().getTerrainMap());
         if (!controller.getNpcs().isEmpty()) {
             for(CharacterEntity character : controller.getNpcs()){
