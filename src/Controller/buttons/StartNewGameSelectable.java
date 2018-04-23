@@ -4,6 +4,8 @@ import Controller.Input.ViewController;
 import View.Menu.NewGameView;
 import javafx.event.ActionEvent;
 
+import java.util.ArrayList;
+
 public class StartNewGameSelectable extends Selectable {
 
     // dont know if necessary
@@ -22,6 +24,8 @@ public class StartNewGameSelectable extends Selectable {
         this.newGameView = newGameView;
     }
 
+
+
     @Override
     public void handle(ActionEvent event) {
 
@@ -29,7 +33,12 @@ public class StartNewGameSelectable extends Selectable {
 
         // load
 
-        viewController.switchToGamePlayView(true);
+        ArrayList<String> loadFiles = new ArrayList<>();
+
+        loadFiles.add(newGameView.getCharacterChoice());
+        loadFiles.add("resources/maps/map1.json");
+
+        viewController.switchToGamePlayView(true, loadFiles);
     }
 
 

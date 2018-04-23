@@ -24,6 +24,7 @@ public abstract class CharacterEntity {
     private int level;
     private int exp;
     private String name;
+    private String skillclass;
     private int maxHealth;
     private int currentHealth;
     private int maxMana;
@@ -57,6 +58,14 @@ public abstract class CharacterEntity {
         this.zoneId = 0;
         this.movementQueue = new LinkedList<>();
     }
+
+    public String getSkillClass(){
+        return this.skillclass;
+    }
+    public void setSkillClass(String str){
+        this.skillclass = str;
+    }
+
     public CharacterEntity(Zone zone){
         this();
         this.zone = zone;
@@ -154,6 +163,7 @@ public abstract class CharacterEntity {
     public Pet getPet() {
         return pet;
     }
+    public String getPetName(){return pet.getName();}
     public HashMap<SkillType, Skill> getSkills() {
         return skills;
     }
@@ -303,6 +313,7 @@ public abstract class CharacterEntity {
         ArrayList<CharacterEntity> entities = zone.getEntitiesOnArea(area);
         for (CharacterEntity entity: entities) {
             effect.trigger(entity);
+            System.out.println(entity.getCurrentHealth());
         }
     }
 

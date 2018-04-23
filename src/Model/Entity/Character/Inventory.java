@@ -18,8 +18,8 @@ public class Inventory {
     private int equippedItemBagSize;
 
     public Inventory() {
-        this.equippedItemBagSize = 10;
-        this.unequippedItemBagSize = 10;
+        this.equippedItemBagSize = 15;
+        this.unequippedItemBagSize = 15;
         this.unequippedItems = new TakeableItem[unequippedItemBagSize];
         this.equippedItems = new HashMap<>();
 
@@ -93,6 +93,15 @@ public class Inventory {
         if (equippedItems.get(slot) != null) {
             unequippedItems[nextAvailableSpace()] = (equippedItems.get(slot));
             equippedItems.put(slot, item);
+            ArrayList<TakeableItem> arrayList = new ArrayList<TakeableItem>(Arrays.asList(unequippedItems));
+            arrayList.remove(item);
+            TakeableItem[] takeableItems = new TakeableItem[unequippedItemBagSize];
+            for (int i = 0; i < unequippedItems.length; i++) {
+                if (i < arrayList.size()) {
+                    takeableItems[i] = arrayList.get(i);
+                }
+            }
+            unequippedItems = takeableItems;
         } else {
             equippedItems.put(slot, item);
             ArrayList<TakeableItem> arrayList = new ArrayList<TakeableItem>(Arrays.asList(unequippedItems));

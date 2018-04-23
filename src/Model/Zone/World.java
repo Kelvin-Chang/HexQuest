@@ -41,10 +41,12 @@ public class World implements Updateable {
     }
 
     public void addZone(Zone zone) {
+        System.out.println("Adding zone to world: " + zone.getID());
         zoneHashMap.put(zone.getID(), zone);
         hostileNPCControllers.add(currentZone, new HostileNPCController());
     }
     public void setCurrentZone(int currentWorld) {
+        System.out.println("New current world is " + currentWorld);
         this.currentZone = currentWorld;
     }
 
@@ -73,8 +75,9 @@ public class World implements Updateable {
     public void update() {
         zoneHashMap.get(currentZone).update();
         processNPCMovements();
-
     }
+
+
     public void processNPCMovements(){
         HostileNPCController controller = hostileNPCControllers.get(currentZone);
         for(int i = 0; i < controller.getNpcs().size(); ++i){

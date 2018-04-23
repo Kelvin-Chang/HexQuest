@@ -10,8 +10,13 @@ import Model.Items.TakeableItems.EquippableItems.UsableItems.RangedWeapon;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SmasherWeapon;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItems.DefenseBane;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItems.HealthBane;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BaneItems.ManaBane;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BoonItems.DefenseBoon;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BoonItems.HealthBoon;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.BoonItems.ManaBoon;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.EnchantmentItems.DecreaseBargainingEnchantment;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.EnchantmentItems.DecreaseBindWoundsEnchantment;
+import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.EnchantmentItems.DecreaseObservationEnchantment;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.SpellItems.SpellItem;
 import Model.Items.TakeableItems.EquippableItems.UsableItems.StaffItem;
 import Model.Items.TakeableItems.Key;
@@ -44,16 +49,40 @@ public class ItemFactory {
         return new Armor(defense);
     }
 
-    public static SmasherWeapon produceBrawlItem(int damage) {
-        return new SmasherWeapon(damage, ItemSlot.BRAWL);
+    public static SmasherWeapon produceGauntlet(int damage) {
+        return new SmasherWeapon(damage, ItemSlot.BRAWL, "Gauntlet");
     }
 
-    public static SmasherWeapon produceOneHandedItem(int damage) {
-        return new SmasherWeapon(damage, ItemSlot.ONEHANDED);
+    public static SmasherWeapon produceBrassKnuckles(int damage) {
+        return new SmasherWeapon(damage, ItemSlot.BRAWL, "Brass Knuckles");
     }
 
-    public static SmasherWeapon produceTwoHandedItem(int damage) {
-        return new SmasherWeapon(damage, ItemSlot.TWOHANDED);
+    public static SmasherWeapon produceBoxingGloves(int damage) {
+        return new SmasherWeapon(damage, ItemSlot.BRAWL, "Boxing Gloves");
+    }
+
+    public static SmasherWeapon produceDagger(int damage) {
+        return new SmasherWeapon(damage, ItemSlot.ONEHANDED, "Dagger");
+    }
+
+    public static SmasherWeapon produceCrowbar(int damage) {
+        return new SmasherWeapon(damage, ItemSlot.ONEHANDED, "Crowbar");
+    }
+
+    public static SmasherWeapon produceMace(int damage) {
+        return new SmasherWeapon(damage, ItemSlot.ONEHANDED, "Mace");
+    }
+
+    public static SmasherWeapon produceGreatSword(int damage) {
+        return new SmasherWeapon(damage, ItemSlot.TWOHANDED, "Great Sword");
+    }
+
+    public static SmasherWeapon produceBattleAxe(int damage) {
+        return new SmasherWeapon(damage, ItemSlot.TWOHANDED, "Battle Axe");
+    }
+
+    public static SmasherWeapon produceClub(int damage) {
+        return new SmasherWeapon(damage, ItemSlot.TWOHANDED, "Club");
     }
 
     public static StaffItem produceStaffItem(int damage) {
@@ -68,17 +97,46 @@ public class ItemFactory {
         return new HealthBane(manaCost, healthChange, effectShape, range);
     }
 
+    public static SpellItem produceManaBane(int manaCost, int manaChange, EffectShape effectShape, int range) {
+        return new ManaBane(manaCost, manaChange, effectShape, range);
+    }
+
     public static SpellItem produceHealthBoon(int manaCost, int healthChange) {
         return new HealthBoon(manaCost, healthChange);
+    }
+
+    public static SpellItem produceDefenseBoon(int manaCost, int defenseChange) {
+        return new DefenseBoon(manaCost, defenseChange);
+    }
+
+    public static SpellItem produceManaBoon(int manaCost, int manaChange) {
+        return new ManaBoon(manaCost, manaChange);
     }
 
     public static SpellItem produceDecreaseBargainingEnchantment(int manaCost, int skillDecrease, EffectShape effectShape, int range) {
         return new DecreaseBargainingEnchantment(manaCost, skillDecrease, effectShape, range);
     }
 
-    public static RangedWeapon produceRangedWeapon(int damage, EffectShape effectShape, int range) {
-        return new RangedWeapon(damage, effectShape, range);
+    public static SpellItem produceDecreaseBindWoundsEnchantment(int manaCost, int skillDecrease, EffectShape effectShape, int range) {
+        return new DecreaseBindWoundsEnchantment(manaCost, skillDecrease, effectShape, range);
     }
+
+    public static SpellItem produceDecreaseObservationEnchantment(int manaCost, int skillDecrease, EffectShape effectShape, int range) {
+        return new DecreaseObservationEnchantment(manaCost, skillDecrease, effectShape, range);
+    }
+
+    public static RangedWeapon produceSniperRifle(int damage, EffectShape effectShape, int range) {
+        return new RangedWeapon(damage, effectShape, range, "Sniper Rifle");
+    }
+
+    public static RangedWeapon produceShotun(int damage, EffectShape effectShape, int range) {
+        return new RangedWeapon(damage, effectShape, range, "Shotgun");
+    }
+
+    public static RangedWeapon produceBlowDart(int damage, EffectShape effectShape, int range) {
+        return new RangedWeapon(damage, effectShape, range, "Blow Dart");
+    }
+
 
     public InteractiveArmor produceInteractiveArmor(int defense, Requirement requirement) {
         return new InteractiveArmor(defense, requirement);

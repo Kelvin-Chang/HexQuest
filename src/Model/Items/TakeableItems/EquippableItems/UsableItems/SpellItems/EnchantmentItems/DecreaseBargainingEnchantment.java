@@ -10,6 +10,7 @@ public class DecreaseBargainingEnchantment extends EnchantmentItem {
 
     public DecreaseBargainingEnchantment(int manaCost, int skillDecrease, EffectShape effectShape, int range) {
         super(manaCost, skillDecrease, effectShape, range);
+        setName("Bargaining Enchantment");
     }
 
     @Override

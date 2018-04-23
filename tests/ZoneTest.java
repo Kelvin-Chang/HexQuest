@@ -70,7 +70,7 @@ public class ZoneTest {
         Assert.assertTrue(  zone.getItem(new Point(1,1) ) == null);
         Assert.assertTrue(  zone.getItem(new Point(1,0) ) != null);
 
-        zone.add(new Point(1,1), ItemFactory.produceBrawlItem(10));
+        //zone.add(new Point(1,1), ItemFactory.produceBrawlItem(10));
         Assert.assertTrue(  zone.getItem(new Point(0,0) ) != null);
         Assert.assertTrue(  zone.getItem(new Point(0,1) ) != null);
         Assert.assertTrue(  zone.getItem(new Point(1,1) ) != null);
@@ -158,7 +158,7 @@ public class ZoneTest {
         Zone zoneone = new Zone(1, 1, 1);
         Point p = new Point(0,0);
         Player characterSmash = PlayerFactory.produceSmasher();
-        World world = new World(0);
+        World world = new World();
         world.addZone(zone);
         world.addZone(zoneone);
         Effect effect = null;
@@ -166,7 +166,7 @@ public class ZoneTest {
         int x = characterSmash.getLevel();
 //        Teleport teleport = new Teleport(effect,1, characterSmash, world);
 //        zone.add((new Point(0,0)), EffectFactory.produceLevelUpEffect());
-        zone.add((new Point(0,0)), EffectFactory.produceTeleportEffect(1, characterSmash, world) );
+//        zone.add((new Point(0,0)), EffectFactory.produceTeleportEffect(1, characterSmash, world) );
 //        zone.addPlayer(new Point(0,0), characterSmash);
 
 

@@ -9,6 +9,7 @@ public class DefenseBane extends BaneItem {
 
     public DefenseBane(int manaCost, int defenseChange, EffectShape effectShape, int range) {
         super(manaCost, defenseChange, effectShape, range);
+        setName("Defense Bane");
     }
 
     @Override

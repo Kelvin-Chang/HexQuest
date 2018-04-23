@@ -9,6 +9,7 @@ public class HealthBane extends BaneItem {
 
     public HealthBane(int manaCost, int defenseChange, EffectShape effectShape, int range) {
         super(manaCost, defenseChange, effectShape, range);
+        setName("Health Bane");
     }
 
     @Override

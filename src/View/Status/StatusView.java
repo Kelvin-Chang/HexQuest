@@ -28,6 +28,7 @@ public class StatusView {
         renderStatusBackground();
         renderHealth(p.getCurrentHealth(), p.getMaxHealth());
         renderMana(p.getCurrentMana(), p.getMaxMana());
+        renderLevel(p.getLevel());
         renderExp(p.getExp());
     }
     public void renderStatusBackground() {
@@ -69,15 +70,23 @@ public class StatusView {
 
     }
 
+    public void renderLevel(int level) {
+        gContext.setFill(Color.LIGHTGOLDENRODYELLOW);
+        gContext.fillRect(canvas.getWidth()-305, 65, 290, 20);
+        gContext.setFill(Color.BLACK);
+        gContext.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+        gContext.fillText("Level: " + level, canvas.getWidth()-300, 80);
+    }
+
     public void renderExp(int xp) {
         float exptonext = (float)xp/(float)100 * 100;
         BigDecimal xpdb = new BigDecimal(Float.toString(exptonext));
         xpdb = xpdb.setScale(2, BigDecimal.ROUND_HALF_UP);
         gContext.setFill(Color.LIGHTGOLDENRODYELLOW);
-        gContext.fillRect(canvas.getWidth()-305, 65, 290, 20);
+        gContext.fillRect(canvas.getWidth()-305, 90, 290, 20);
         gContext.setFill(Color.BLACK);
         gContext.setFont(Font.font("Arial", FontWeight.BOLD, 16));
         gContext.fillText("Experience: " + Integer.toString(xp) + "/100" +
-                " (" + xpdb + "%)", canvas.getWidth()-300, 80);
+                " (" + xpdb + "%)", canvas.getWidth()-300, 105);
     }
 }
