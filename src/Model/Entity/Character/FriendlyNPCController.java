@@ -5,13 +5,13 @@ import Model.Enums.Orientation;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class HostileNPCController {
+public class FriendlyNPCController {
 
     private ArrayList<CharacterEntity> npcs;
     private ArrayList<Orientation> nextMoves;
     private ArrayList<ArrayList<Point>> trails;
 
-    public HostileNPCController (){
+    public FriendlyNPCController(){
         this.npcs = new ArrayList<>();
         this.nextMoves = new ArrayList<>();
     }

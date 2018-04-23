@@ -172,6 +172,8 @@ public class Zone implements Updateable {
         //
     }
 
+
+
     private void triggerAreaEffects() {
         ArrayList<Point> points = new ArrayList<>(characterMap.keySet());
         for(Point point : points) {
