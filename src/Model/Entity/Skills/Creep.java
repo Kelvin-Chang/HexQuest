@@ -36,13 +36,10 @@ public class Creep extends VariableEffectSkill {
 
             player.effectEntities(effectedCoordinates, backStabEffect);
 
-            creepEffect = effectFactory.produceAbleToBeAggroedEffect(true);
-            player.effectAllEntities(creepEffect);
+            player.effectAllEntities(creepEffect, player.getLocation());
         } else {
             isCreeping = true;
-
-            creepEffect = effectFactory.produceAbleToBeAggroedEffect(false);
-            player.effectAllEntities(creepEffect);
+            player.effectAllEntities(creepEffect, player.getLocation());
         }
     }
 }

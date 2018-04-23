@@ -82,6 +82,7 @@ public class Zone implements Updateable {
     public void removeTerrain(Point point) { terrainMap.remove(point); }
     public void removeEntity(Point point) { characterMap.remove(point); }
     public void removeAreaEffect(Point point) { areaEffectMap.remove(point); }
+    public void removeEffect(Point point) { effectsMap.remove(point); }
     public void removeItem(Point point) { itemMap.remove(point); }
     public void removeItem(Item item) {
         for(Point point : getAllItemPoints())
@@ -124,6 +125,7 @@ public class Zone implements Updateable {
     public Terrain getTerrain(Point point) { return terrainMap.getOrDefault(point, Terrain.EMPTY); }
     public CharacterEntity getCharacterEntity(Point point) { return characterMap.get(point); }
     public AreaEffect getAreaEffect(Point point) { return areaEffectMap.get(point); }
+    public Effect getEffect(Point point) { return effectsMap.get(point); }
     public Item getItem(Point point) { return itemMap.get(point); }
     public ObstacleItem getObstacleItem(Point point) { return obstacleItemMap.get(point); }
     public Decal getDecal(Point point) { return decalMap.get(point); }
@@ -149,6 +151,7 @@ public class Zone implements Updateable {
     public Collection<Point> getAllTerrainPoints() { return terrainMap.keySet(); }
     public Collection<Terrain> getAllTerrains() {return terrainMap.values(); }
     public Collection<Point> getAllAreaEffectPoints() { return areaEffectMap.keySet(); }
+    public Collection<Point> getAllEffectPoints() { return effectsMap.keySet(); }
     public Collection<Point> getAllItemPoints() { return itemMap.keySet(); }
     public Collection<Point> getAllObstacleItemPoints() { return obstacleItemMap.keySet(); }
     public Collection<Point> getAllDecalPoints() { return decalMap.keySet(); }

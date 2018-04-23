@@ -32,7 +32,11 @@
                 {
                   "bindWounds" : 100,
                   "bargain" : 100,
-                  "observation" : 100
+                  "observation" : 100,
+                  "pickPocket" : 100,
+                  "removeTrap" : 100,
+                  "creep" : 100,
+                  "ranged" : 100
                 }
               ]
             },

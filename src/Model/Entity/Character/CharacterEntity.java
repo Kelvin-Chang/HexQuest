@@ -331,6 +331,9 @@ public abstract class CharacterEntity {
     }
 
     public void effectEntities(ArrayList<Point> area, Effect effect) {
+        for (Point point : area) {
+            zone.add(point, effect);
+        }
         ArrayList<CharacterEntity> entities = zone.getEntitiesOnArea(area);
         for (CharacterEntity entity: entities) {
             effect.trigger(entity);
@@ -338,11 +341,11 @@ public abstract class CharacterEntity {
         }
     }
 
-    public void effectAllEntities(NPCEffect effect) {
-        ArrayList<CharacterEntity> entities = new ArrayList<CharacterEntity>(zone.getAllCharacterEntitys());
-        entities.remove(getLocation());
-        for (CharacterEntity entity : entities) {
-            effect.trigger((NPC) entity);
+    public void effectAllEntities(NPCEffect effect, Point playerLocation) {
+        for (CharacterEntity entity : zone.getAllCharacterEntitys()) {
+            if (entity.getLocation() != playerLocation) {
+                effect.trigger((NPC) entity);
+            }
         }
     }
 

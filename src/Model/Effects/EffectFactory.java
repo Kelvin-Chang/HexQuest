@@ -44,8 +44,4 @@ public class EffectFactory {
         return new SkillModifierEffect(skillChange, skillType);
     }
 
-    public static NPCEffect produceAbleToBeAggroedEffect(boolean ableToBeAggroed) {
-        return new AbleToBeAggroedEffect(ableToBeAggroed);
-    }
-
 }
