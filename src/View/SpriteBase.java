@@ -36,6 +36,7 @@ public class SpriteBase {
         effectSprites.add(getImage(filePath + "/src/assets/AEdecals/death.png"));
         effectSprites.add(getImage(filePath + "/src/assets/AEdecals/levelUp.png"));
         effectSprites.add(getImage(filePath + "/src/assets/amulet.png"));
+        effectSprites.add(getImage(filePath + "/src/assets/water.png"));
 
         obstacleSprites.add(getImage(filePath + "/src/assets/obstacle.png"));
 

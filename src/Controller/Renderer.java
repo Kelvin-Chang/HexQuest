@@ -46,7 +46,6 @@ public class Renderer {
     // sets the radius/size of tiles and stuff
     private final int radius = 32;
 
-    // TODO: CHANGE TO ADD PROPER IMPLEMENTATION
     public Renderer(World world, GameplayView gameplayView) {
         this.gameplayView = gameplayView;
         this.canvas = gameplayView.getCanvas();

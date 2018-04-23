@@ -309,14 +309,16 @@ public class GameBuilder {
     }
 
     public void initFriendlyNPC(String name, int level, int maxHealth, int currentHealth, int maxMana, int currentMana, int attack, int defense, int speed, int money, String orientation, String pet, JSONArray inventory, JSONArray skills, Point point) {
-        FriendlyNPC npc = new FriendlyNPC();
+        CharacterEntity npc = new FriendlyNPC();
         world.getCurrentZone().addPlayer(point, npc);
         setCharAttributes(npc, name, level, maxHealth, currentHealth, maxMana, currentMana, attack, defense, speed, money, orientation, pet, inventory, skills);
     }
 
     public void initHostileNPC(String name, int level, int maxHealth, int currentHealth, int maxMana, int currentMana, int attack, int defense, int speed, int money, String orientation, String pet, JSONArray inventory, JSONArray skills, Point point) {
-        FriendlyNPC npc = new FriendlyNPC();
+        System.out.println("Creating hostile");
+        CharacterEntity npc = new HostileNPC();
         world.getCurrentZone().addPlayer(point, npc);
+        world.addHostileNPC(npc);
         setCharAttributes(npc, name, level, maxHealth, currentHealth, maxMana, currentMana, attack, defense, speed, money, orientation, pet, inventory, skills);
     }
 
