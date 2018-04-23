@@ -55,15 +55,25 @@ public class SkillView extends AbstractView {
         return t;
     }
 
+    private Text topPaneSkillText(CharacterEntity characterEntity) {
+        Text t = new Text();
+        t.setText("Skillpoints: " + characterEntity.getUnusedSkillPoints());
+        t.setFont(Font.font("Elephant", 16));
+        t.setFill(Paint.valueOf("#ff00ff"));
 
-    private StackPane topPane() {
-        StackPane stackPane = new StackPane();
-        stackPane.setPrefSize(1000,100);
-        stackPane.setPadding(new Insets(10,10,10,10));
-        stackPane.setAlignment(Pos.BOTTOM_CENTER);
-        stackPane.getChildren().add(topPaneText());
+        return t;
+    }
 
-        return stackPane;
+
+    private VBox topPane() {
+        VBox vbox = new VBox();
+        vbox.setPrefSize(1000,130);
+        vbox.setPadding(new Insets(10,10,10,10));
+        vbox.setAlignment(Pos.BOTTOM_CENTER);
+        vbox.getChildren().add(topPaneText());
+        vbox.getChildren().add(topPaneSkillText(characterEntity));
+
+        return vbox;
     }
 
     private ArrayList<RadioButton> centerPaneRadioButtons(CharacterEntity character) {
@@ -81,7 +91,9 @@ public class SkillView extends AbstractView {
             rb.setUserData(key);
 
 //            rb.setUserData(skillHashMap.get(key));
-            rb.setText(skillHashMap.get(key).getName());
+            rb.setText(skillHashMap.get(key).getName() + ": " + skillHashMap.get(key).getSkillLevel());
+
+            rb.setToggleGroup(skillToggleGroup);
 
             options.add(rb);
 
@@ -93,6 +105,7 @@ public class SkillView extends AbstractView {
                 if(newValue != null){
                     // TODO: see if it is possible to avoid casting
                     skillType = (SkillType) skillToggleGroup.getSelectedToggle().getUserData();
+
                     refresh(character);
 
                     if (character.getUnusedSkillPoints() <= 0) {
@@ -111,23 +124,12 @@ public class SkillView extends AbstractView {
         return options;
     }
 
-    private Text centerPaneText(CharacterEntity characterEntity) {
-        Text t = new Text();
-        t.setText("Skillpoints: " + characterEntity.getUnusedSkillPoints());
-        t.setFont(Font.font("Elephant", 16));
-        t.setFill(Paint.valueOf("#ff00ff"));
-
-        return t;
-    }
-
 
     private VBox centerPane(CharacterEntity character) {
         ArrayList<RadioButton> options = centerPaneRadioButtons(character);
         VBox vbox = new VBox();
         vbox.setSpacing(30);
-        vbox.setPrefSize(1000,628);
-
-        vbox.getChildren().add(centerPaneText(characterEntity));
+        vbox.setPrefSize(1000,598);
 
         vbox.setAlignment(Pos.TOP_CENTER);
 
@@ -214,7 +216,7 @@ public class SkillView extends AbstractView {
     }
 
     private void refresh(CharacterEntity character) {
-        borderPane.setCenter(null);
-        borderPane.setCenter(centerPane(character));
+        borderPane.setTop(null);
+        borderPane.setTop(topPane());
     }
 }
