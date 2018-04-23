@@ -32,6 +32,10 @@ public class EffectFactory {
         return new HealthModifierEffect(healthChange);
     }
 
+    public static Effect produceMoneyModifierEffect(int moneyChange) {
+        return new MoneyModifierEffect(moneyChange);
+    }
+
 //    public static Effect produceTeleportEffect(int dest, CharacterEntity character, World gameWorld){
 //        return new TeleportEffect(dest, character, gameWorld);
 //    }

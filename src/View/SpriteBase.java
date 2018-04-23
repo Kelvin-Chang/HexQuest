@@ -61,6 +61,7 @@ public class SpriteBase {
         itemSprites.put("Shotgun", getImage(filePath + "/src/assets/Items/shotgun.png"));
         itemSprites.put("Blow Dart", getImage(filePath + "/src/assets/Items/blowDart.png"));
         itemSprites.put("Armor", getImage(filePath + "/src/assets/Items/armor.png"));
+        itemSprites.put("Money Bag", getImage(filePath + "/src/assets/items/moneyBag.png"));
     }
 
     public Image getTileSprite(int ID) {

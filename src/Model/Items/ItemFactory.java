@@ -1,5 +1,6 @@
 package Model.Items;
 
+import Model.Effects.Effect;
 import Model.Effects.EffectFactory;
 import Model.Enums.EffectShape;
 import Model.Enums.ItemSlot;
@@ -25,9 +26,13 @@ import Model.Requirements.RequirementFactory;
 
 public class ItemFactory {
 
-    private RequirementFactory requirementFactory = new RequirementFactory();
+    private RequirementFactory requirementFactory;
+    private EffectFactory effectFactory;
 
-    public ItemFactory() {}
+    public ItemFactory() {
+        requirementFactory = new RequirementFactory();
+        effectFactory = new EffectFactory();
+    }
 
     public static Key produceKeyItem() {
         return new Key();
@@ -35,10 +40,6 @@ public class ItemFactory {
 
     public static Ring produceRingItem(int manaChange) {
         return new Ring(manaChange);
-    }
-
-    public static OneShotItem produceDamageOneShot() {
-        return new OneShotItem(EffectFactory.produceHealthModifierEffect(-10));
     }
 
     public static ObstacleItem produceObstableItem() {
@@ -137,6 +138,9 @@ public class ItemFactory {
         return new RangedWeapon(damage, effectShape, range, "Blow Dart");
     }
 
+    public OneShotItem produceMoneyBag(int money) {
+        return new OneShotItem(effectFactory.produceMoneyModifierEffect(money), "Money Bag");
+    }
 
     public InteractiveArmor produceInteractiveArmor(int defense, Requirement requirement) {
         return new InteractiveArmor(defense, requirement);

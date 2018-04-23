@@ -211,10 +211,13 @@ public class GameBuilder {
             case "blowDart":
                 zone.add(point, itemFactory.produceBlowDart(10, EffectShape.LINEAR, 5));
                 break;
+            case "moneyBag":
+                zone.add(point, itemFactory.produceMoneyBag(1000));
+                break;
         }
     }
 
-    private void setCharAttributes(CharacterEntity charEnt, String name, int level, int maxHealth, int currentHealth, int maxMana, int currentMana, int attack, int defense, int speed, String orientation, String pet, JSONArray inventory, JSONArray skills) {
+    private void setCharAttributes(CharacterEntity charEnt, String name, int level, int maxHealth, int currentHealth, int maxMana, int currentMana, int attack, int defense, int speed, int money, String orientation, String pet, JSONArray inventory, JSONArray skills) {
         charEnt.setName(name);
         charEnt.setLevel(level);
         charEnt.setMaxHealth(maxHealth);
@@ -224,6 +227,7 @@ public class GameBuilder {
         charEnt.setAttack(attack);
         charEnt.setDefense(defense);
         charEnt.setSpeed(speed);
+        charEnt.setMoney(money);
         setSkills(charEnt, skills);
 
         switch (orientation) {
@@ -308,22 +312,22 @@ public class GameBuilder {
         }
     }
 
-    public void initFriendlyNPC(String name, int level, int maxHealth, int currentHealth, int maxMana, int currentMana, int attack, int defense, int speed, String orientation, String pet, JSONArray inventory, JSONArray skills, Point point) {
+    public void initFriendlyNPC(String name, int level, int maxHealth, int currentHealth, int maxMana, int currentMana, int attack, int defense, int speed, int money, String orientation, String pet, JSONArray inventory, JSONArray skills, Point point) {
         FriendlyNPC npc = new FriendlyNPC();
         world.getCurrentZone().addPlayer(point, npc);
-        setCharAttributes(npc, name, level, maxHealth, currentHealth, maxMana, currentMana, attack, defense, speed, orientation, pet, inventory, skills);
+        setCharAttributes(npc, name, level, maxHealth, currentHealth, maxMana, currentMana, attack, defense, speed, money, orientation, pet, inventory, skills);
     }
 
-    public void initHostileNPC(String name, int level, int maxHealth, int currentHealth, int maxMana, int currentMana, int attack, int defense, int speed, String orientation, String pet, JSONArray inventory, JSONArray skills, Point point) {
+    public void initHostileNPC(String name, int level, int maxHealth, int currentHealth, int maxMana, int currentMana, int attack, int defense, int speed, int money, String orientation, String pet, JSONArray inventory, JSONArray skills, Point point) {
         FriendlyNPC npc = new FriendlyNPC();
         world.getCurrentZone().addPlayer(point, npc);
-        setCharAttributes(npc, name, level, maxHealth, currentHealth, maxMana, currentMana, attack, defense, speed, orientation, pet, inventory, skills);
+        setCharAttributes(npc, name, level, maxHealth, currentHealth, maxMana, currentMana, attack, defense, speed, money, orientation, pet, inventory, skills);
     }
 
-    public void initShopKeep(String name, int level, int maxHealth, int currentHealth, int maxMana, int currentMana, int attack, int defense, int speed, String orientation, String pet, JSONArray inventory, JSONArray skills, Point point) {
+    public void initShopKeep(String name, int level, int maxHealth, int currentHealth, int maxMana, int currentMana, int attack, int defense, int speed, int money, String orientation, String pet, JSONArray inventory, JSONArray skills, Point point) {
         ShopKeep sk = new ShopKeep();
         world.getCurrentZone().addPlayer(point, sk);
-        setCharAttributes(sk, name, level, maxHealth, currentHealth, maxMana, currentMana, attack, defense, speed, orientation, pet, inventory, skills);
+        setCharAttributes(sk, name, level, maxHealth, currentHealth, maxMana, currentMana, attack, defense, speed, money, orientation, pet, inventory, skills);
     }
 
     public void initPet(String name) {
@@ -334,7 +338,7 @@ public class GameBuilder {
 
     }
 
-    public void initPlayer(String name, String charClass, int level, int maxHealth, int currentHealth, int maxMana, int currentMana, int attack, int defense, int speed, String orientation, String pet, JSONArray inventory, JSONArray skills, Point point) {
+    public void initPlayer(String name, String charClass, int level, int maxHealth, int currentHealth, int maxMana, int currentMana, int attack, int defense, int speed, int money, String orientation, String pet, JSONArray inventory, JSONArray skills, Point point) {
         switch (charClass) {
             case "smasher":
                 player = PlayerFactory.produceSmasher();
@@ -352,6 +356,6 @@ public class GameBuilder {
         world.setPlayer(player);
         world.getCurrentZone().addPlayer(point, player);
 
-        setCharAttributes(player, name, level, maxHealth, currentHealth, maxMana, currentMana, attack, defense, speed, orientation, pet, inventory, skills);
+        setCharAttributes(player, name, level, maxHealth, currentHealth, maxMana, currentMana, attack, defense, speed, money, orientation, pet, inventory, skills);
     }
 }
