@@ -16,6 +16,6 @@ public class GameplayViewSelectable extends Selectable {
     @Override
     public void handle(ActionEvent event) {
         System.out.println("Switch to Gameplay View");
-
+        viewController.switchToGamePlayView(false);
     }
 }
