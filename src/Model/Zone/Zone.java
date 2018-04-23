@@ -67,7 +67,6 @@ public class Zone implements Updateable {
     public void addPlayer(Point point, CharacterEntity entity) {
         characterMap.put(point, entity);
         entity.setZone(this);
-        entity.setZoneId(this.id);
     }
     public void add(Point point, AreaEffect effect) {
         System.out.println("Adding area effect at point: " + point);

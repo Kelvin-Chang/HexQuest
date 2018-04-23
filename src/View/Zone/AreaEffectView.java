@@ -32,7 +32,11 @@ public class AreaEffectView {
                 graphicsContext.drawImage(sprites.getEffectSprite(3), imageCoordinates.getX(), imageCoordinates.getY(), 2 * radius, 2 * radius);
                 break;
             case "Teleport":
-                graphicsContext.drawImage(sprites.getEffectSprite(3), imageCoordinates.getX(), imageCoordinates.getY(), 2 * radius, 2 * radius);
+                graphicsContext.drawImage(sprites.getEffectSprite(4), imageCoordinates.getX(), imageCoordinates.getY(), 2 * radius, 2 * radius);
+                break;
+            case "River":
+                graphicsContext.drawImage(sprites.getEffectSprite(5), imageCoordinates.getX(), imageCoordinates.getY(), 2 * radius, 2 * radius);
+                break;
             default:
                 break;
         }

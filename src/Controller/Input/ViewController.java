@@ -107,4 +107,9 @@ public class ViewController {
         InGameMenuView view = new InGameMenuView(viewController);
         createScene(view);
     }
+
+    public void switchToSkillView() {
+        SkillView view = new SkillView(viewController, gameMediator.getWorld().getPlayer());
+        createScene(view);
+    }
 }
