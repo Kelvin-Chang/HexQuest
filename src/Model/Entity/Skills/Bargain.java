@@ -4,7 +4,9 @@ import Model.Entity.Character.CharacterEntity;
 
 public class Bargain extends Skill {
 
-    public Bargain() {}
+    public Bargain() {
+        super("Bargain");
+    }
 
     @Override
     public void activateSkill(CharacterEntity player) {}

@@ -6,7 +6,9 @@ import static Model.Enums.ItemSlot.RANGED;
 
 public class RangedWeapon extends VariableEffectSkill {
 
-    public RangedWeapon() {}
+    public RangedWeapon() {
+        super("RangedWeapon");
+    }
 
     @Override
     public void activateSkill(CharacterEntity player) {

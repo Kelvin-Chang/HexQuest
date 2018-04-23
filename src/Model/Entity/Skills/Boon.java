@@ -6,7 +6,9 @@ import static Model.Enums.ItemSlot.BOON;
 
 public class Boon extends VariableEffectSkill {
 
-    public Boon() {}
+    public Boon() {
+        super("Boon");
+    }
 
     @Override
     public void activateSkill(CharacterEntity player) {

@@ -4,7 +4,9 @@ import Model.Entity.Character.CharacterEntity;
 
 public class RemoveTrap extends Skill {
 
-    public RemoveTrap() {}
+    public RemoveTrap() {
+        super("RemoveTrap");
+    }
 
     @Override
     public void activateSkill(CharacterEntity player) {

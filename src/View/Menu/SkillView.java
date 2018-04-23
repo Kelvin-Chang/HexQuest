@@ -46,14 +46,6 @@ public class SkillView extends AbstractView {
     }
 
 
-    private StackPane centerPane(CharacterEntity character) {
-        StackPane stackPane = new StackPane();
-        stackPane.setMaxWidth(0);
-
-        return stackPane;
-    }
-
-
     private Text topPaneText() {
         Text t = new Text();
         t.setText("Skills");
@@ -79,16 +71,19 @@ public class SkillView extends AbstractView {
 
         ArrayList<RadioButton> options = new ArrayList<RadioButton>();
 
-        HashMap<SkillType, Skill> skillHashMap = character.getSkills();
+
         Set<SkillType> skillKeys = characterEntity.getSkills().keySet();
 
 
         for (SkillType key: skillKeys) {
             RadioButton rb = new RadioButton();
 
-            rb.setUserData(skillHashMap.get(key));
+            rb.setUserData(key);
+
+//            rb.setUserData(skillHashMap.get(key));
 //            rb.setText(skillHashMap.get(key).);
 
+            options.add(rb);
 
         }
 
@@ -97,7 +92,7 @@ public class SkillView extends AbstractView {
             public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
                 if(newValue != null){
                     // TODO: see if it is possible to avoid casting
-                    skill = (Skill) skillToggleGroup.getSelectedToggle().getUserData();
+                    skillType = (SkillType) skillToggleGroup.getSelectedToggle().getUserData();
                     refresh(character);
 
                     if (character.getUnusedSkillPoints() <= 0) {
@@ -113,9 +108,27 @@ public class SkillView extends AbstractView {
 
         // No initially selected item
 
-
-
         return options;
+    }
+
+
+    private VBox centerPane(CharacterEntity character) {
+        ArrayList<RadioButton> options = centerPaneRadioButtons(character);
+        VBox vbox = new VBox();
+        vbox.setSpacing(30);
+        vbox.setPrefSize(1000,628);
+        vbox.setAlignment(Pos.TOP_CENTER);
+
+        for(RadioButton clickable: options) {
+
+            // sets selectable style
+            clickable.getStyleClass().add("button2");
+
+            // add to vbox
+            vbox.getChildren().add(clickable);
+        }
+
+        return vbox;
     }
 
     private StackPane leftPane() {
@@ -159,13 +172,8 @@ public class SkillView extends AbstractView {
         levelUpSkillButton.getStyleClass().add("button4");
         levelUpSkillButton.setOnAction(options.get(0));
 
-        if (character.getUnusedSkillPoints() <= 0) {
-            levelUpSkillButton.setDisable(false);
-        }
+        levelUpSkillButton.setDisable(true);
 
-        else {
-            levelUpSkillButton.setDisable(true);
-        }
 
         Button gameplayButton = new Button(options.get(1).getName());
         gameplayButton.getStyleClass().add("button4");
