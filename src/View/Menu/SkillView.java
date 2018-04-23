@@ -164,7 +164,7 @@ public class SkillView extends AbstractView {
 
     private ArrayList<Selectable> bottomPaneButtons(ViewController viewController, CharacterEntity character) {
         ArrayList<Selectable> options = new ArrayList<Selectable>() {{
-            add(new LevelUpSkillSelectable("Level Up Skill", skillType, character));
+            add(new LevelUpSkillSelectable("Level Up Skill", skillType, character, viewController));
             add(new GameplayViewSelectable("Back to Game", viewController));
         }};
 

@@ -287,6 +287,7 @@ public abstract class CharacterEntity {
 
     public void levelUp() {
         level = level + 1;
+        unusedSkillPoints = unusedSkillPoints + 5;
     }
 
     public void modifySpeed(int speedChange) {
