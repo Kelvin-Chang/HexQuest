@@ -30,13 +30,13 @@
               "Inventory": [],
               "Skills": [
                 {
-                  "bindWounds" : 100,
-                  "bargain" : 100,
-                  "observation" : 100,
+                  "bindWounds" : 80,
+                  "bargain" : 80,
+                  "observation" : 80,
                   "boon" : 80,
-                  "bane" : 100,
-                  "enchantment" : 100,
-                  "staff" : 100
+                  "bane" : 80,
+                  "enchantment" : 80,
+                  "staff" : 80
                 }
               ]
             },

@@ -12,6 +12,12 @@ public abstract class VariableEffectSkill extends Skill {
         return healthChange;
     }
 
+    public int calculateDeviation(int correctValue) {
+        double percent = percentOfChangeToBeDealt();
+        int healthChange = (int) ((1-percent) * correctValue);
+        return healthChange;
+    }
+
     protected double percentOfChangeToBeDealt() {
         double percent = (double) ( getRandom().nextInt(101 - getSkillLevel()) + getSkillLevel() ) / 100;
         return percent;
