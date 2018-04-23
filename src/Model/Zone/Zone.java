@@ -3,6 +3,7 @@ package Model.Zone;
 import Model.AreaEffects.AreaEffect;
 import Model.Effects.Effect;
 import Model.Entity.Character.CharacterEntity;
+import Model.Entity.Pet;
 import Model.Enums.Orientation;
 import Model.Items.Item;
 import Model.Items.ObstacleItem;
@@ -25,6 +26,9 @@ public class Zone implements Updateable {
     private Map<Point, Item> itemMap;
     private Map<Point, ObstacleItem> obstacleItemMap;
     private Map<Point, Decal> decalMap;
+    private Map<Point, Pet> PetMap;
+
+
 
     private int id;
     private int rows;
@@ -35,6 +39,7 @@ public class Zone implements Updateable {
         this.terrainMap = new HashMap<>();
         this.characterMap = new HashMap<>();
         this.areaEffectMap = new HashMap<>();
+        this.PetMap = new HashMap<>();
         this.effectsMap = new HashMap<>();
         this.itemMap = new HashMap<>();
         this.obstacleItemMap = new HashMap<>();
@@ -49,6 +54,7 @@ public class Zone implements Updateable {
     public Zone() {
         this.terrainMap = new HashMap<>();
         this.characterMap = new HashMap<>();
+        this.PetMap = new HashMap<>();
         this.areaEffectMap = new HashMap<>();
         this.effectsMap = new HashMap<>();
         this.itemMap = new HashMap<>();
@@ -75,6 +81,7 @@ public class Zone implements Updateable {
     public void add(Point point, Item item) { itemMap.put(point, item); }
     public void add(Point point, ObstacleItem obstacle) { obstacleItemMap.put(point, obstacle); }
     public void add(Point point, Decal decal) { decalMap.put(point, decal); }
+    public void add(Point point, Pet pet) { PetMap.put(point, pet); }
     public void add(Point point, Effect effects) { effectsMap.put(point, effects); }
 
 
@@ -163,6 +170,15 @@ public class Zone implements Updateable {
             }
         }
         return entities;
+    }
+    public ArrayList<Pet> getPetOnArea(ArrayList<Point> area) {
+        ArrayList<Pet> pets = new ArrayList<>();
+        for (Point point : area) {
+            if (PetMap.get(point) != null) {
+                pets.add(PetMap.get(point));
+            }
+        }
+        return pets;
     }
 
     public Collection<Point> getAllCharacterPoints() { return characterMap.keySet(); }

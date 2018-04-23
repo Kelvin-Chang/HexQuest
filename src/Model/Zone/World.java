@@ -8,6 +8,7 @@ import Model.Updateable;
 
 import java.awt.*;
 import java.lang.reflect.Array;
+import java.time.ZoneId;
 import java.util.*;
 import java.util.List;
 
@@ -20,33 +21,27 @@ public class World implements Updateable {
 
     private Integer currentZone;
     private Player player;
-    private List<HostileNPCController> hostileNPCControllers;
-    private List<FriendlyNPCController> friendlyNPCControllers;
+    private HashMap<Integer, HostileNPCController> hostileNPCControllers;
+    private HashMap<Integer, FriendlyNPCController> friendlyNPCControllers;
     private Map<Integer, Zone> zoneHashMap;
 
     public World() {
         this.currentZone = 0;
         this.player = new Player();
-        this.hostileNPCControllers = new ArrayList<>();
-        this.friendlyNPCControllers = new ArrayList<>();
+        this.hostileNPCControllers = new HashMap<>();
+        this.friendlyNPCControllers = new HashMap<>();
         this.zoneHashMap = new HashMap<Integer, Zone>();
     }
 
-    public World(Integer currentWorld){
-        this.player = new Player();
-        this.hostileNPCControllers = new ArrayList<>();
-        this.friendlyNPCControllers = new ArrayList<>();
-        this.currentZone = currentWorld;
-    }
 
     public void addZone(Zone zone) {
         System.out.println("Adding zone to world: " + zone.getID());
         zoneHashMap.put(zone.getID(), zone);
-        hostileNPCControllers.add(currentZone, new HostileNPCController());
+        hostileNPCControllers.put(currentZone, new HostileNPCController());
     }
-    public void setCurrentZone(int currentWorld) {
-        System.out.println("New current world is " + currentWorld);
-        this.currentZone = currentWorld;
+    public void setCurrentZone(int currentZone) {
+        System.out.println("New current world is " + currentZone);
+        this.currentZone = currentZone;
     }
 
     public Zone getCurrentZone() {
@@ -67,7 +62,7 @@ public class World implements Updateable {
     }
 
     public void addHostileNPC(CharacterEntity npc){
-        //hostileNPCControllers.add(get).addHostileNpc(npc);
+        hostileNPCControllers.get(currentZone).addHostileNpc(npc);
     }
 
     @Override
@@ -78,9 +73,14 @@ public class World implements Updateable {
 
 
     public void processHostileNPCMovements(){
-
         HostileNPCController controller = hostileNPCControllers.get(currentZone);
-        ArrayList<Point> pointsInIR = getRadialOfPointsFromRadius(player.getLocation(),3, getCurrentZone().getTerrainMap());
+        CharacterEntity npc = getCurrentZone().getCharacter(new Point(2,5));
+
+        System.out.println(npc);
+        System.out.println(currentZone);
+        if(getCurrentZone().getCharacterEntity(new Point(2,5) )== null)
+            System.out.println("Moved");
+        ArrayList<Point> pointsInIR = getRadialOfPointsFromRadius(getZoneByID(currentZone).getCharacterLocation(player),3, getCurrentZone().getTerrainMap());
         for(CharacterEntity character : controller.getNpcs()){
             for(Point p : pointsInIR) {
                 if (getCurrentZone().getCharacterEntity(p) == character) {

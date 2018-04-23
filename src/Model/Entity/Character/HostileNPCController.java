@@ -33,7 +33,10 @@ public class HostileNPCController {
 
     public void addHostileNpc(CharacterEntity npc){
         npcs.add(npc);
+        System.out.println("Adding Hostile NPC in Controller");
     }
+
+
     public void addMove(CharacterEntity character, Orientation nextMove){
         int i = getNPCposition(character);
         if(i != -1 )
@@ -48,7 +51,7 @@ public class HostileNPCController {
     }
 
     public ArrayList<CharacterEntity> getNpcs() {
-        return npcs;
+        return this.npcs;
     }
 
     public ArrayList<Orientation> getNextMoves() {
