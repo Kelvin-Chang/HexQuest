@@ -317,9 +317,10 @@ public class GameBuilder {
     public void initHostileNPC(String name, int level, int maxHealth, int currentHealth, int maxMana, int currentMana, int attack, int defense, int speed, int money, String orientation, String pet, JSONArray inventory, JSONArray skills, Point point) {
         System.out.println("Creating hostile");
         CharacterEntity npc = new HostileNPC();
+        setCharAttributes(npc, name, level, maxHealth, currentHealth, maxMana, currentMana, attack, defense, speed, money, orientation, pet, inventory, skills);
         world.getCurrentZone().addPlayer(point, npc);
         world.addHostileNPC(npc);
-        setCharAttributes(npc, name, level, maxHealth, currentHealth, maxMana, currentMana, attack, defense, speed, money, orientation, pet, inventory, skills);
+
     }
 
     public void initShopKeep(String name, int level, int maxHealth, int currentHealth, int maxMana, int currentMana, int attack, int defense, int speed, int money, String orientation, String pet, JSONArray inventory, JSONArray skills, Point point) {
