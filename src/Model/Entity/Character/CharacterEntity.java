@@ -40,6 +40,9 @@ public abstract class CharacterEntity {
     private Pet pet;
     private Zone zone;
     private int zoneId;
+    private boolean aggroed;
+    private boolean chasing;
+
     private int money;
 
     public CharacterEntity() {
@@ -58,6 +61,8 @@ public abstract class CharacterEntity {
         this.zone = new Zone(0, 4,4);
         this.zoneId = 0;
         this.movementQueue = new LinkedList<>();
+        this.aggroed = false;
+        this.chasing = false;
     }
 
     public String getSkillClass(){
@@ -397,6 +402,14 @@ public abstract class CharacterEntity {
 
     public Orientation getNextMove() {
         return movementQueue.poll();
+    }
+
+    public boolean isChasing() {
+        return chasing;
+    }
+
+    public void setChasing(boolean chasing) {
+        this.chasing = chasing;
     }
 
 }

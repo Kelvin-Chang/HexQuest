@@ -48,6 +48,7 @@ public class FormulaTests {
         world.addZone(zone);
         world.setPlayer(characterSmash);
         world.addHostileNPC(npc);
+        characterSmash.setZone(zone);
 
         for(int i = 0; i < 7; ++i){
             for(int j = 0; j < 7; ++j)
@@ -57,6 +58,55 @@ public class FormulaTests {
         zone.addPlayer(new Point(0,1), characterSmash);
         zone.addPlayer(new Point(6,6), npc);
 
+        System.out.println(zone.getCharacterLocation(characterSmash));
+        System.out.println(zone.getCharacterLocation(npc));
+
+        world.update();
+
+        System.out.println(zone.getCharacterLocation(characterSmash));
+        System.out.println(zone.getCharacterLocation(npc));
+
+        world.update();
+
+        System.out.println(zone.getCharacterLocation(characterSmash));
+        System.out.println(zone.getCharacterLocation(npc));
+        //System.out.println(world.calculateNPCtoPlayerTrail(zone, new Point(6,6)));
+
+    }
+
+    @Test
+    public void testChasing(){
+        World world = new World();
+        Zone zone = new Zone(0, 7, 7);
+        Player characterSmash = PlayerFactory.produceSmasher();
+        CharacterEntity npc = new HostileNPC(zone);
+
+        world.addZone(zone);
+        world.setPlayer(characterSmash);
+        world.addHostileNPC(npc);
+
+        for(int i = 0; i < 7; ++i){
+            for(int j = 0; j < 7; ++j)
+                zone.add(new Point(i,j), Terrain.GRASS);
+        }
+
+        zone.addPlayer(new Point(1,1), characterSmash);
+        zone.addPlayer(new Point(1,3), npc);
+
+        System.out.println(zone.getCharacterLocation(characterSmash));
+        System.out.println(zone.getCharacterLocation(npc));
+
+        world.update();
+
+        System.out.println(zone.getCharacterLocation(characterSmash));
+        System.out.println(zone.getCharacterLocation(npc));
+
+        world.update();
+        world.update();
+        world.update();
+
+        System.out.println(zone.getCharacterLocation(characterSmash));
+        System.out.println(zone.getCharacterLocation(npc));
         //System.out.println(world.calculateNPCtoPlayerTrail(zone, new Point(6,6)));
 
     }

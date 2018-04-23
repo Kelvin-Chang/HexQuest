@@ -1,9 +1,6 @@
 package Model.Zone;
 
-import Model.Entity.Character.CharacterEntity;
-import Model.Entity.Character.HostileNPC;
-import Model.Entity.Character.HostileNPCController;
-import Model.Entity.Character.Player;
+import Model.Entity.Character.*;
 import Model.Entity.Skills.Skill;
 import Model.Enums.Orientation;
 import Model.Enums.SkillType;
@@ -16,6 +13,7 @@ import java.util.List;
 
 import static Model.Zone.HexFormulas.distanceToPoint;
 import static Model.Zone.HexFormulas.getNeighborPointFromOrientation;
+import static Model.Zone.HexFormulas.getRadialOfPointsFromRadius;
 
 public class World implements Updateable {
 
@@ -23,20 +21,20 @@ public class World implements Updateable {
     private Integer currentZone;
     private Player player;
     private List<HostileNPCController> hostileNPCControllers;
-    private ArrayList<CharacterEntity> friendlyNPCs;
+    private List<FriendlyNPCController> friendlyNPCControllers;
     private Map<Integer, Zone> zoneHashMap = new HashMap<>();
 
     public World() {
         this.currentZone = 0;
         this.player = new Player();
         this.hostileNPCControllers = new ArrayList<>();
-        this.friendlyNPCs = new ArrayList<>();
+        this.friendlyNPCControllers = new ArrayList<>();
     }
 
     public World(Integer currentWorld){
         this.player = new Player();
         this.hostileNPCControllers = new ArrayList<>();
-        this.friendlyNPCs = new ArrayList<>();
+        this.friendlyNPCControllers = new ArrayList<>();
         this.currentZone = currentWorld;
     }
 
@@ -74,17 +72,47 @@ public class World implements Updateable {
     @Override
     public void update() {
         zoneHashMap.get(currentZone).update();
-        processNPCMovements();
+        processHostileNPCMovements();
     }
 
 
-    public void processNPCMovements(){
+    public void processHostileNPCMovements(){
         HostileNPCController controller = hostileNPCControllers.get(currentZone);
-        for(int i = 0; i < controller.getNpcs().size(); ++i){
-            controller.addMove(i, calculateNPCtoPlayerOrientation(getCurrentZone(), controller.getNpcs().get(i).getLocation()));
+        ArrayList<Point> pointsInIR = getRadialOfPointsFromRadius(player.getLocation(),3, getCurrentZone().getTerrainMap());
+        for(CharacterEntity character : controller.getNpcs()){
+            for(Point p : pointsInIR) {
+                if (getCurrentZone().getCharacterEntity(p) == character) {
+                    if (character.isChasing() && distanceToPoint(getPlayer().getLocation(), p) == 2){
+                        controller.addMove(character, calculateNPCtoPlayerOrientation(getCurrentZone(), p));
+                        break;
+                    }
+
+                    else if (character.isChasing() == true && distanceToPoint(getPlayer().getLocation(), p) == 1){
+                        controller.addMove(character, calculateNPCtoPlayerOrientation(getCurrentZone(), p));
+                        character.useSkill(SkillType.BRAWLSKILL);
+                        break;
+                    }
+                    else {
+                        character.setChasing(true);
+                        break;
+                    }
+                }
+            }
         }
+
         controller.doOrientations();
     }
+
+    public void processFriendlyNPCMovements(){
+        FriendlyNPCController controller = friendlyNPCControllers.get(currentZone);
+        ArrayList<Point> pointsInIR = getRadialOfPointsFromRadius(player.getLocation(),3, getCurrentZone().getTerrainMap());
+        for(CharacterEntity character : controller.getNpcs()){
+
+        }
+
+        controller.doOrientations();
+    }
+
     public ArrayList<SkillType> playerActions() {
         return player.getPlayerActions();
     }

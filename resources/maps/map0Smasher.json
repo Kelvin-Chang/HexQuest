@@ -269,7 +269,7 @@
           },
           {
             "terrain": "grass",
-            "areaEffect": "none",
+            "areaEffect": "river",
             "item": "none",
             "decal": "none",
             "Entity": {
@@ -280,7 +280,7 @@
           },
           {
             "terrain": "grass",
-            "areaEffect": "none",
+            "areaEffect": "river",
             "item": "none",
             "decal": "none",
             "Entity": {
@@ -291,7 +291,7 @@
           },
           {
             "terrain": "grass",
-            "areaEffect": "none",
+            "areaEffect": "river",
             "item": "none",
             "decal": "none",
             "Entity": {
@@ -302,7 +302,7 @@
           },
           {
             "terrain": "grass",
-            "areaEffect": "none",
+            "areaEffect": "river",
             "item": "none",
             "decal": "none",
             "Entity": {

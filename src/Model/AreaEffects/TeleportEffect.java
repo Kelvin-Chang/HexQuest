@@ -1,4 +1,4 @@
-package Model.Effects;
+package Model.AreaEffects;
 
 import Controller.GameMediator;
 import Model.AreaEffects.AreaEffect;
