@@ -42,6 +42,12 @@ public class SpriteBase {
         effectSprites.add(getImage(filePath + "/src/assets/AEdecals/levelUp.png"));
         effectSprites.add(getImage(filePath + "/src/assets/amulet.png"));
         effectSprites.add(getImage(filePath + "/src/assets/river.png"));
+        effectSprites.add(getImage(filePath + "/src/assets/river1.png"));
+        effectSprites.add(getImage(filePath + "/src/assets/river2.png"));
+        effectSprites.add(getImage(filePath + "/src/assets/river3.png"));
+        effectSprites.add(getImage(filePath + "/src/assets/river4.png"));
+        effectSprites.add(getImage(filePath + "/src/assets/river5.png"));
+
 
         obstacleSprites.add(getImage(filePath + "/src/assets/obstacle.png"));
 

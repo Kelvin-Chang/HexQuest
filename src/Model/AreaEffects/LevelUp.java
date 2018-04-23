@@ -3,6 +3,7 @@ package Model.AreaEffects;
 import Model.Effects.Effect;
 import Model.Effects.EffectFactory;
 import Model.Entity.Character.CharacterEntity;
+import Model.Enums.Orientation;
 
 public class LevelUp extends AreaEffect {
 
@@ -13,6 +14,10 @@ public class LevelUp extends AreaEffect {
         hasNotBeenTriggered = true;
     }
 
+    @Override
+    public Orientation getDir() {
+        return null;
+    }
     public String toString() { return "Level"; }
 
     @Override

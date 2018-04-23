@@ -3,6 +3,7 @@ package Model.AreaEffects;
 import Controller.GameMediator;
 import Model.AreaEffects.AreaEffect;
 import Model.Entity.Character.CharacterEntity;
+import Model.Enums.Orientation;
 import Model.Zone.World;
 
 public class TeleportEffect extends AreaEffect {
@@ -14,6 +15,10 @@ public class TeleportEffect extends AreaEffect {
         this.destWorld = dest;
         this.character = character;
         this.gameWorld = gameWorld;
+    }
+    @Override
+    public Orientation getDir() {
+        return null;
     }
     @Override
     public void trigger(CharacterEntity character){
