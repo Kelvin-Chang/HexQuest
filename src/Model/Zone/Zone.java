@@ -219,7 +219,7 @@ public class Zone implements Updateable {
             moveCharacter(sourcePoint, destination);
         } else {
             if(characterMap.get(destination) != null) {
-                //GameViewNotifier.notifyInteraction(characterMap.get(destination));
+                System.out.println("Move is illegal, there is " + getCharacterEntity(destination) + " there.");
             }
             else
                 System.out.println("Move is illegal, there is " + getTerrain(destination).toString() + " there.");

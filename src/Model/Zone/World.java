@@ -22,13 +22,14 @@ public class World implements Updateable {
     private Player player;
     private List<HostileNPCController> hostileNPCControllers;
     private List<FriendlyNPCController> friendlyNPCControllers;
-    private Map<Integer, Zone> zoneHashMap = new HashMap<>();
+    private Map<Integer, Zone> zoneHashMap;
 
     public World() {
         this.currentZone = 0;
         this.player = new Player();
         this.hostileNPCControllers = new ArrayList<>();
         this.friendlyNPCControllers = new ArrayList<>();
+        this.zoneHashMap = new HashMap<Integer, Zone>();
     }
 
     public World(Integer currentWorld){
@@ -66,7 +67,7 @@ public class World implements Updateable {
     }
 
     public void addHostileNPC(CharacterEntity npc){
-        hostileNPCControllers.get(currentZone).addHostileNpc(npc);
+        //hostileNPCControllers.add(get).addHostileNpc(npc);
     }
 
     @Override
@@ -77,6 +78,7 @@ public class World implements Updateable {
 
 
     public void processHostileNPCMovements(){
+
         HostileNPCController controller = hostileNPCControllers.get(currentZone);
         ArrayList<Point> pointsInIR = getRadialOfPointsFromRadius(player.getLocation(),3, getCurrentZone().getTerrainMap());
         for(CharacterEntity character : controller.getNpcs()){
