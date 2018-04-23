@@ -35,8 +35,8 @@ public class StartNewGameSelectable extends Selectable {
 
         ArrayList<String> loadFiles = new ArrayList<>();
 
-        loadFiles.add(newGameView.getCharacterChoice());
         loadFiles.add("resources/maps/map1.json");
+        loadFiles.add(newGameView.getCharacterChoice());
 
         viewController.switchToGamePlayView(true, loadFiles);
     }

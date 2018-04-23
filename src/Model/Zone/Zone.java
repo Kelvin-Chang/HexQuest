@@ -300,6 +300,7 @@ public class Zone implements Updateable {
                 characterMap.remove(characterEntity.getLocation());
             }
         }
+
     }
 
 
