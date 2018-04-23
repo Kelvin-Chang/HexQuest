@@ -80,9 +80,10 @@ public class GameMediator extends Application {
             deathHandler = new DeathHandler(world.getPlayer(), renderer.getCanvas());
             startTimer();
             loaded = true;
+        } else {
+            renderer.resetCanvas(viewController.getGameplayView());
+            viewController.getScene().addEventFilter(KeyEvent.KEY_RELEASED, keyEvent -> keyInputController.issueCommand(keyEvent.getCode()));
         }
-        renderer.resetCanvas(viewController.getGameplayView());
-        viewController.getScene().addEventFilter(KeyEvent.KEY_RELEASED, keyEvent -> keyInputController.issueCommand(keyEvent.getCode()));
     }
 
     public GameBuilder getGameBuilder() {
