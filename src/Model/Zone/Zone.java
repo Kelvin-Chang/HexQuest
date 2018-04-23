@@ -28,8 +28,7 @@ public class Zone implements Updateable {
     private Map<Point, ObstacleItem> obstacleItemMap;
     private Map<Point, Decal> decalMap;
     private Map<Point, Pet> PetMap;
-    private Map<Point, Trap> TrapMap;
-
+    private Map<Point, Trap> trapMap;
 
 
 
@@ -43,9 +42,9 @@ public class Zone implements Updateable {
         this.characterMap = new HashMap<>();
         this.areaEffectMap = new HashMap<>();
         this.PetMap = new HashMap<>();
-        this.TrapMap = new HashMap<>();
         this.effectsMap = new HashMap<>();
         this.itemMap = new HashMap<>();
+        this.trapMap = new HashMap<>();
         this.obstacleItemMap = new HashMap<>();
         this.decalMap = new HashMap<>();
         this.size = new Pair(0,0);
@@ -57,9 +56,9 @@ public class Zone implements Updateable {
 
     public Zone() {
         this.terrainMap = new HashMap<>();
+        this.trapMap = new HashMap<>();
         this.characterMap = new HashMap<>();
         this.PetMap = new HashMap<>();
-        this.TrapMap = new HashMap<>();
         this.areaEffectMap = new HashMap<>();
         this.effectsMap = new HashMap<>();
         this.itemMap = new HashMap<>();
@@ -75,6 +74,7 @@ public class Zone implements Updateable {
 
 
     public void add(Point point, Terrain terrain) { terrainMap.put(point, terrain); }
+    public void add(Point point, Trap trap) { trapMap.put(point, trap); }
     public void addPlayer(Point point, CharacterEntity entity) {
         characterMap.put(point, entity);
         entity.setZone(this);
@@ -91,6 +91,7 @@ public class Zone implements Updateable {
 
 
     public void removeTerrain(Point point) { terrainMap.remove(point); }
+    public void removeTrap(Point point) { trapMap.remove(point); }
     public void removeEntity(Point point) { characterMap.remove(point); }
     public void removeAreaEffect(Point point) { areaEffectMap.remove(point); }
     public void removeEffect(Point point) { effectsMap.remove(point); }
@@ -124,7 +125,7 @@ public class Zone implements Updateable {
     public Map<Point, Item> getItemMap() {
         return itemMap;
     }
-
+    public Map<Point, Trap> getTrapMap() {return trapMap;}
     public Map<Point, Terrain> getTerrainMap() {
         return terrainMap;
     }
@@ -132,7 +133,7 @@ public class Zone implements Updateable {
     public Map<Point, ObstacleItem> getObstacleItemMap() {
         return obstacleItemMap;
     }
-
+    public Trap getTrap(Point point) { return trapMap.get(point); }
     public Terrain getTerrain(Point point) { return terrainMap.getOrDefault(point, Terrain.EMPTY); }
     public CharacterEntity getCharacterEntity(Point point) { return characterMap.get(point); }
     public AreaEffect getAreaEffect(Point point) { return areaEffectMap.get(point); }
@@ -161,21 +162,12 @@ public class Zone implements Updateable {
     public Collection<CharacterEntity> getAllCharacterEntitys() {return characterMap.values(); };
     public Collection<Point> getAllTerrainPoints() { return terrainMap.keySet(); }
     public Collection<Terrain> getAllTerrains() {return terrainMap.values(); }
+    public Collection<Trap> getAllTraps() {return trapMap.values(); }
     public Collection<Point> getAllAreaEffectPoints() { return areaEffectMap.keySet(); }
     public Collection<Point> getAllEffectPoints() { return effectsMap.keySet(); }
     public Collection<Point> getAllItemPoints() { return itemMap.keySet(); }
     public Collection<Point> getAllObstacleItemPoints() { return obstacleItemMap.keySet(); }
     public Collection<Point> getAllDecalPoints() { return decalMap.keySet(); }
-
-//    public ArrayList<Trap> getAreaEffectOnArea(ArrayList<Point> area) {
-//        ArrayList<Trap> AreaEffects = new ArrayList<>();
-//        for (Point point : area) {
-//            if (areaEffectMap.get(point) != null) {
-//                AreaEffects.add(areaEffectMap.get(point));
-//            }
-//        }
-//        return AreaEffects;
-//    }
 
     public ArrayList<CharacterEntity> getEntitiesOnArea(ArrayList<Point> area) {
         ArrayList<CharacterEntity> entities = new ArrayList<>();
@@ -202,7 +194,7 @@ public class Zone implements Updateable {
     public void doInteractions() {
         triggerAreaEffects();
         triggerItems();
-        //
+        triggerTraps();
     }
 
 
@@ -220,6 +212,17 @@ public class Zone implements Updateable {
         }
     }
 
+    public void triggerTraps() {
+        for(Point point : characterMap.keySet()) {
+            CharacterEntity character = getCharacter(point);
+
+            Trap trap = trapMap.get(point);
+
+            if(trap != null) {
+                trap.fireTrap(character);
+            }
+        }
+    }
     private void triggerItems() {
         ArrayList<Point> entities = new ArrayList<>(characterMap.keySet());
         for(Point point : entities) {
@@ -235,6 +238,52 @@ public class Zone implements Updateable {
                     removeItem(item);
                 }
             }
+        }
+    }
+
+    public void disarmTrap(CharacterEntity character, int trapSuccessShance) {
+        Point charPoint = getCharacterLocation(character);
+
+        // search in a circle around the entity for traps, then try to either reveal them, or disarm them
+        if(getTrap(new Point(charPoint.x + -1, charPoint.y + -1)) != null) {
+            Trap trap = getTrap(new Point(charPoint.x + -1, charPoint.y + -1));
+
+            trap.disarm(character, trapSuccessShance);
+        }
+        if(getTrap(new Point(charPoint.x + -1, charPoint.y + 0)) != null) {
+            Trap trap = getTrap(new Point(charPoint.x + -1, charPoint.y + 0));
+
+            trap.disarm(character, trapSuccessShance);
+        }
+        if(getTrap(new Point(charPoint.x + -1, charPoint.y + 1)) != null) {
+            Trap trap = getTrap(new Point(charPoint.x + -1, charPoint.y + 1));
+
+            trap.disarm(character, trapSuccessShance);
+        }
+        if(getTrap(new Point(charPoint.x + 0, charPoint.y + -1)) != null) {
+            Trap trap = getTrap(new Point(charPoint.x + 0, charPoint.y + -1));
+
+            trap.disarm(character, trapSuccessShance);
+        }
+        if(getTrap(new Point(charPoint.x + 0, charPoint.y + 1)) != null) {
+            Trap trap = getTrap(new Point(charPoint.x + 0, charPoint.y + 1));
+
+            trap.disarm(character, trapSuccessShance);
+        }
+        if(getTrap(new Point(charPoint.x + 1, charPoint.y + -1)) != null) {
+            Trap trap = getTrap(new Point(charPoint.x + 1, charPoint.y + -1));
+
+            trap.disarm(character, trapSuccessShance);
+        }
+        if(getTrap(new Point(charPoint.x + 1, charPoint.y + 0)) != null) {
+            Trap trap = getTrap(new Point(charPoint.x + 1, charPoint.y + 0));
+
+            trap.disarm(character, trapSuccessShance);
+        }
+        if(getTrap(new Point(charPoint.x + 1, charPoint.y + 1)) != null) {
+            Trap trap = getTrap(new Point(charPoint.x + 1, charPoint.y + 1));
+
+            trap.disarm(character, trapSuccessShance);
         }
     }
     //MOVEMENT STUFF
