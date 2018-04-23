@@ -6,7 +6,9 @@ import static Model.Enums.ItemSlot.STAFF;
 
 public class Staff extends VariableEffectSkill {
 
-    public Staff() {}
+    public Staff() {
+        super("Staff");
+    }
 
     @Override
     public void activateSkill(CharacterEntity player) {

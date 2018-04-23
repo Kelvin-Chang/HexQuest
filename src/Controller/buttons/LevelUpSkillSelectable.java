@@ -26,6 +26,7 @@ public class LevelUpSkillSelectable extends Selectable {
     @Override
     public void handle(ActionEvent event) {
         characterEntity.getSkills().get(skillType).updateSkillLevel(1);
+        characterEntity.setUnusedSkillPoints(characterEntity.getUnusedSkillPoints() - 1);
     }
 
 }

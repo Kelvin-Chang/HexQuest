@@ -6,7 +6,9 @@ import static Model.Enums.ItemSlot.ENCHANTMENT;
 
 public class Enchantment extends VariableEffectSkill {
 
-    public Enchantment() {}
+    public Enchantment() {
+        super("Enchantment");
+    }
 
     @Override
     public void activateSkill(CharacterEntity player) {

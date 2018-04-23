@@ -8,7 +8,9 @@ public class BindWounds extends VariableEffectSkill {
 
     EffectFactory effectFactory = new EffectFactory();
 
-    public BindWounds() {}
+    public BindWounds() {
+        super("BindWounds");
+    }
 
     @Override
     public void activateSkill(CharacterEntity player) {

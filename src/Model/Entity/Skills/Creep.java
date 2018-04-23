@@ -18,6 +18,7 @@ public class Creep extends VariableEffectSkill {
     private EffectFactory effectFactory = new EffectFactory();
 
     public Creep() {
+        super("Creep");
         isCreeping = false;
     }
 

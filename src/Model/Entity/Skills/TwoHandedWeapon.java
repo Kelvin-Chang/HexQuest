@@ -6,7 +6,9 @@ import static Model.Enums.ItemSlot.TWOHANDED;
 
 public class TwoHandedWeapon extends VariableEffectSkill {
 
-    public TwoHandedWeapon() {}
+    public TwoHandedWeapon() {
+        super("TwoHandedWeapon");
+    }
 
     @Override
     public void activateSkill(CharacterEntity player) {
