@@ -1,7 +1,9 @@
 package Controller.Input;
 
 import Controller.GameMediator;
+import Controller.Renderer;
 import Model.Entity.Character.CharacterEntity;
+import Model.Enums.MovementCommand;
 import Model.Enums.SkillType;
 import javafx.scene.input.KeyCode;
 
@@ -14,14 +16,18 @@ public class KeyInputController {
     private HashMap<KeyCode, SkillType> summonerCommandMap;
     private HashMap<KeyCode, SkillType> smasherCommandMap;
     private HashMap<KeyCode, SkillType> sneakCommandMap;
+    private HashMap<KeyCode, SkillType> commandMap;
+    private HashMap<KeyCode, MovementCommand> moveMap;
     private ArrayList<SkillType> availableActions;
     private PlayerController playerController;
     private GameMediator gameMediator;
+    private Renderer renderer;
 
-    public KeyInputController(String pathToControllerConfig, ArrayList<SkillType> availableActions, PlayerController playerController, GameMediator gameMediator) {
+    public KeyInputController(String pathToControllerConfig, ArrayList<SkillType> availableActions, PlayerController playerController, GameMediator gameMediator, Renderer renderer) {
         this.availableActions = availableActions;
         this.playerController = playerController;
         this.gameMediator = gameMediator;
+        this.renderer = renderer;
 
         // testing stuff
         commmonCommandMap = new HashMap<>();
@@ -40,6 +46,24 @@ public class KeyInputController {
         summonerCommandMap.put(KeyCode.DIGIT5, SkillType.BOONSKILL);
         summonerCommandMap.put(KeyCode.DIGIT6, SkillType.BANESKILL);
         summonerCommandMap.put(KeyCode.DIGIT7, SkillType.STAFFSKILL);
+
+        commandMap.put(KeyCode.DIGIT4, SkillType.ENCHANTMENTSKILL);
+        commandMap.put(KeyCode.DIGIT5, SkillType.BOONSKILL);
+        commandMap.put(KeyCode.DIGIT6, SkillType.BANESKILL);
+        commandMap.put(KeyCode.DIGIT7, SkillType.STAFFSKILL);
+        commandMap.put(KeyCode.Z, SkillType.TOGGLECAMERA);
+        commandMap.put(KeyCode.I, SkillType.CAMERAUP);
+        commandMap.put(KeyCode.L, SkillType.CAMERARIGHT);
+        commandMap.put(KeyCode.K, SkillType.CAMERADOWN);
+        commandMap.put(KeyCode.J, SkillType.CAMERALEFT);
+
+        moveMap = new HashMap<>();
+//        moveMap.put(KeyCode.DEAD_TILDE, MovementCommand.TOGGLECAMERA);
+//        moveMap.put(KeyCode.I, MovementCommand.CAMERAUP);
+//        moveMap.put(KeyCode.L, MovementCommand.CAMERARIGHT);
+//        moveMap.put(KeyCode.K, MovementCommand.CAMERADOWN);
+//        moveMap.put(KeyCode.J, MovementCommand.CAMERALEFT);
+
 
         smasherCommandMap = new HashMap<>();
         smasherCommandMap.put(KeyCode.DIGIT4, SkillType.BRAWLSKILL);
@@ -69,21 +93,27 @@ public class KeyInputController {
                 switch (mapToSwitchOn.get(keyCode)) {
                     case MOVEUP:
                         playerController.pressUp();
+//                        renderer.resetCamera();
                         break;
                     case MOVEUPRIGHT:
                         playerController.pressUpRight();
+//                        renderer.resetCamera();
                         break;
                     case MOVEDOWNRIGHT:
                         playerController.pressDownRight();
+//                        renderer.resetCamera();
                         break;
                     case MOVEDOWN:
                         playerController.pressDown();
+//                        renderer.resetCamera();
                         break;
                     case MOVEDOWNLEFT:
                         playerController.pressDownLeft();
+//                        renderer.resetCamera();
                         break;
                     case MOVEUPLEFT:
                         playerController.pressUpLeft();
+//                        renderer.resetCamera();
                         break;
                     case BRAWLSKILL:
                         playerController.pressBrawl();
@@ -138,6 +168,21 @@ public class KeyInputController {
                         if (talkingPartner != null) {
                             gameMediator.talkingTakingPlace(talkingPartner);
                         }
+                        break;
+                    case TOGGLECAMERA:
+                        renderer.toggleCamera();
+                        break;
+                    case CAMERAUP:
+                        renderer.moveUp();
+                        break;
+                    case CAMERALEFT:
+                        renderer.moveLeft();
+                        break;
+                    case CAMERADOWN:
+                        renderer.moveDown();
+                        break;
+                    case CAMERARIGHT:
+                        renderer.moveRight();
                         break;
                 }
             }

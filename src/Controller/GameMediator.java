@@ -9,6 +9,7 @@ import Controller.LoadSave.GameLoader;
 import Model.DeathHandler;
 import Model.Entity.Character.CharacterEntity;
 import Model.Zone.World;
+import Model.Zone.Zone;
 import View.Menu.GameplayView;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -71,9 +72,9 @@ public class GameMediator extends Application {
             for(String save : saveFileLocation)
                 gameLoader.loadGame(save);
             world = gameBuilder.getWorld();
-            keyInputController = new KeyInputController("", world.playerActions(), new PlayerController(world.getPlayer()), this);
-            Collection<Point> allPts = world.getCurrentZone().getAllTerrainPoints();
             renderer = new Renderer(world, viewController.getGameplayView());
+            keyInputController = new KeyInputController("", world.playerActions(), new PlayerController(world.getPlayer()), this, renderer);
+            Collection<Point> allPts = world.getCurrentZone().getAllTerrainPoints();
             viewController.getScene().addEventFilter(KeyEvent.KEY_RELEASED, keyEvent -> keyInputController.issueCommand(keyEvent.getCode()));
             renderer.render();
             loaded = true;
@@ -100,9 +101,13 @@ public class GameMediator extends Application {
         @Override
         public void run() {
             if(loaded) {
+                Zone curr = world.getCurrentZone();
                 renderer.render();
                 world.update();
                 deathHandler.checkDeath();
+                if (curr != world.getCurrentZone()) {
+                    renderer.updateMap(world.getCurrentZone());
+                }
             }
 
         }

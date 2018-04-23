@@ -203,6 +203,12 @@ public abstract class CharacterEntity {
         actions.add(SkillType.MOVEDOWNLEFT);
         actions.add(SkillType.MOVEUPLEFT);
         actions.add(SkillType.TALK);
+
+        actions.add(SkillType.TOGGLECAMERA);
+        actions.add(SkillType.CAMERAUP);
+        actions.add(SkillType.CAMERALEFT);
+        actions.add(SkillType.CAMERADOWN);
+        actions.add(SkillType.CAMERARIGHT);
         return actions;
     }
     
