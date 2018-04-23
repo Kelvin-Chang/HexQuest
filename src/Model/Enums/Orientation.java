@@ -30,5 +30,27 @@ public enum Orientation {
             default: return 6;
         }
     }
+    public static Orientation getRequiredOrientationForMove(Point current, Point previous){
+        int parity = previous.x & 1;
+        for(int i = 0; i < 6; ++i){
+            if(oddq_directions[parity][i].equals(new Point(current.x - previous.x, current.y - previous.y)) ) {
+                switch (i) {
+                    case 0:
+                        return UPLEFT;
+                    case 1:
+                        return UP;
+                    case 2:
+                        return UPRIGHT;
+                    case 3:
+                        return DOWNLEFT;
+                    case 4:
+                        return DOWN;
+                    case 5:
+                        return DOWNRIGHT;
 
+                }
+            }
+        }
+        return null;
+    }
 }
