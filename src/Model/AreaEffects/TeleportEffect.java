@@ -17,10 +17,11 @@ public class TeleportEffect extends AreaEffect {
     }
     @Override
     public void trigger(CharacterEntity character){
-        System.out.println("Triggering teleport to zone: " + destWorld);
-        System.out.println("Destination world: " + gameWorld.getZoneByID(1));
-        gameWorld.setCurrentZone(destWorld);
-        gameWorld.getZoneByID(destWorld).addPlayer(gameWorld.getZoneByID(destWorld).getSpawnPoint(), character);
+            System.out.println("destworld: " + destWorld);
+            System.out.println("gameWorld zoneid spawnpoint: " + gameWorld.getZoneByID(destWorld).getSpawnPoint());
+            System.out.println("Character: " + character);
+            gameWorld.setCurrentZone(destWorld);
+            gameWorld.getZoneByID(destWorld).addPlayer(gameWorld.getZoneByID(destWorld).getSpawnPoint(), character);
 
     }
 

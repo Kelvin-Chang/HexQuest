@@ -18,9 +18,7 @@ public class HostileNPCController {
     }
 
     public void doOrientations(){
-        System.out.println("NPC Controller arrayList: " + npcs.size());
         for( int i = 0; i < npcs.size(); ++i){
-            System.out.println("npcController");
             for(Orientation o : nextMoves) {
                 switch (Orientation.correspondingNumber(o)) {
                     case 0:
@@ -49,7 +47,6 @@ public class HostileNPCController {
 
     public void addHostileNpc(CharacterEntity npc){
         npcs.add(npc);
-        System.out.println("Adding Hostile NPC in Controller");
     }
 
 

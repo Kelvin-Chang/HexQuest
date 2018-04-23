@@ -352,6 +352,7 @@ public class Renderer {
 
 
     public void updateMap(Zone z) {
+
         fow.updateZone(z);
     }
 

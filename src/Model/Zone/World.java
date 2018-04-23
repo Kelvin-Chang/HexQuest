@@ -42,6 +42,7 @@ public class World implements Updateable {
         this.currentZone = currentZone;
         hostileNPCControllers.putIfAbsent(currentZone, new HostileNPCController());
 
+
     }
 
     public Zone getCurrentZone() {
