@@ -12,7 +12,9 @@ public class ManaModifierEffect implements Effect {
 
     @Override
     public void trigger(CharacterEntity character) {
+        System.out.println(character.getCurrentMana());
         character.modifyMana(manaChange);
+        System.out.println(character.getCurrentMana());
     }
 
 }

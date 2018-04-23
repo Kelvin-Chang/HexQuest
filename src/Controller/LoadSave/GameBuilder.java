@@ -178,7 +178,7 @@ public class GameBuilder {
                 zone.add(point, itemFactory.produceManaBoon(10, 11));
                 break;
             case "healthBane":
-                zone.add(point, itemFactory.produceHealthBane(10, 5, EffectShape.LINEAR, 1));
+                zone.add(point, itemFactory.produceHealthBane(10, 5, EffectShape.RADIAL, 1));
                 break;
             case "defenseBane":
                 zone.add(point, itemFactory.produceDefenseBane(10, 5, EffectShape.LINEAR, 1));
