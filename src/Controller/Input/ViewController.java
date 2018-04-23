@@ -80,13 +80,13 @@ public class ViewController {
         ArrayList<String> saveFileLocations = new ArrayList<>();
         saveFileLocations.add("resources/maps/map0.json");
         saveFileLocations.add("resources/maps/map1.json");
-        gameMediator.loadGame(saveFileLocations);
+        gameMediator.loadGame(saveFileLocations, fromStartGame);
     }
 
     public void switchToGamePlayView(boolean fromStartGame, ArrayList<String> filepath) {
         gameplayView = new GameplayView(viewController, stage);
         createScene(gameplayView);
-        gameMediator.loadGame(filepath);
+        gameMediator.loadGame(filepath, fromStartGame);
     }
 
     // swap to "exit view"
