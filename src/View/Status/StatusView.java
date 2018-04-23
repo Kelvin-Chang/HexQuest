@@ -91,8 +91,8 @@ public class StatusView {
                 " (" + xpdb + "%)", canvas.getWidth()-300, 105);
     }
     public void renderMoney(int money) {
-        gContext.setFill(Color.LIGHTGOLDENRODYELLOW);
-        gContext.fillRect(canvas.getWidth()-305, 90, 290, 20);
+        gContext.setFill(Color.GOLD);
+        gContext.fillRect(canvas.getWidth()-305, 115, 290, 20);
         gContext.setFill(Color.BLACK);
         gContext.setFont(Font.font("Arial", FontWeight.BOLD, 16));
         gContext.fillText("Money: " + money, canvas.getWidth()-300, 130);
