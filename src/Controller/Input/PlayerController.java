@@ -98,14 +98,9 @@ public class PlayerController {
         System.out.println("Staff pressed");
     }
 
-    public CharacterEntity pressPickPocket() {
+    public void pressPickPocket() {
         System.out.println("PickPocket pressed");
-        CharacterEntity pickPocketTarget = this.character.getInteractionPartner();
-        if (pickPocketTarget != null) {
-            return pickPocketTarget;
-        } else {
-            return null;
-        }
+        character.useSkill(SkillType.PICKPOCKETSKILL);
     }
 
     public void pressRemoveTrap() {

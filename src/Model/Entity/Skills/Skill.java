@@ -8,6 +8,11 @@ public abstract class Skill {
 
     private static final Random random = new Random();
     private int skillLevel;
+    private String name;
+
+    public Skill(String name) {
+        this.name = name;
+    }
 
     public static Random getRandom() {
         return random;
@@ -42,5 +47,9 @@ public abstract class Skill {
         } else {
             skillLevel = skillLevel + skillChange;
         }
+    }
+
+    public String getName() {
+        return name;
     }
 }

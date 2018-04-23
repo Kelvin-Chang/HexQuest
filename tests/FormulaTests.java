@@ -2,6 +2,8 @@ import Model.Entity.Character.CharacterEntity;
 import Model.Entity.Character.HostileNPC;
 import Model.Entity.Character.Player;
 import Model.Entity.Character.PlayerFactory;
+import Model.Enums.Orientation;
+import Model.Zone.HexFormulas;
 import Model.Zone.Terrain;
 import Model.Zone.World;
 import Model.Zone.Zone;
@@ -9,8 +11,10 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 import static Model.Zone.HexFormulas.distanceToPoint;
+import static Model.Zone.HexFormulas.hexToCube;
 
 public class FormulaTests {
 
@@ -109,5 +113,14 @@ public class FormulaTests {
         System.out.println(zone.getCharacterLocation(npc));
         //System.out.println(world.calculateNPCtoPlayerTrail(zone, new Point(6,6)));
 
+    }
+
+    @Test
+    public void testLinearFormula() {
+        HexFormulas hexFormulas = new HexFormulas();
+        ArrayList<Point> points = hexFormulas.getLinearPoints(new Point(0,0), Orientation.DOWNRIGHT, 2);
+        for (Point point : points) {
+            System.out.println("x:" + point.getX() + " y:" + point.getY());
+        }
     }
 }

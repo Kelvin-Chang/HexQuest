@@ -10,7 +10,7 @@ import Model.Enums.Orientation;
 import Model.Enums.SkillType;
 import Model.Items.Item;
 import Model.Items.TakeableItems.TakeableItem;
-import Model.Zone.EffectedAreaCoordinatesCalculator;
+import Model.Zone.HexFormulas;
 import Model.Zone.Zone;
 
 import java.awt.*;
@@ -41,6 +41,7 @@ public abstract class CharacterEntity {
     private Zone zone;
     private boolean aggroed;
     private boolean chasing;
+    private int unusedSkillPoints;
 
     private int money;
 
@@ -61,6 +62,7 @@ public abstract class CharacterEntity {
         this.movementQueue = new LinkedList<>();
         this.aggroed = false;
         this.chasing = false;
+        this.unusedSkillPoints = 0;
     }
 
     public String getSkillClass(){
@@ -285,6 +287,7 @@ public abstract class CharacterEntity {
 
     public void levelUp() {
         level = level + 1;
+        unusedSkillPoints = unusedSkillPoints + 5;
     }
 
     public void modifySpeed(int speedChange) {
@@ -304,7 +307,13 @@ public abstract class CharacterEntity {
     }
 
     public void addToInventory(TakeableItem item){
-        this.inventory.addToInventory(item);
+        if (item != null) {
+            this.inventory.addToInventory(item);
+        }
+    }
+
+    public TakeableItem removeItem(int i) {
+        return this.inventory.removeFirstItem(i);
     }
 
     public void useItemSlotRequiringSkill(ItemSlot slot, Skill skill) {
@@ -320,9 +329,8 @@ public abstract class CharacterEntity {
     }
 
     public CharacterEntity getInteractionPartner() {
-        EffectedAreaCoordinatesCalculator coordinatesCalculator = new EffectedAreaCoordinatesCalculator();
-        ArrayList<Point> bargainSpot =
-                coordinatesCalculator.calculateCoordinates(getLocation(), orientation, EffectShape.LINEAR, 1);
+        HexFormulas hexFormulas = new HexFormulas();
+        ArrayList<Point> bargainSpot =  hexFormulas.getEffectedCoordinates(getLocation(), 1, getZone().getTerrainMap(), orientation, EffectShape.LINEAR);
 
         ArrayList<CharacterEntity> bargainPartner = zone.getEntitiesOnArea(bargainSpot);
         if (!bargainPartner.isEmpty()) {
@@ -331,19 +339,33 @@ public abstract class CharacterEntity {
         return null;
     }
 
-    public void effectEntities(ArrayList<Point> area, Effect effect) {
-        ArrayList<CharacterEntity> entities = zone.getEntitiesOnArea(area);
-        for (CharacterEntity entity: entities) {
-            effect.trigger(entity);
-            System.out.println(entity.getCurrentHealth());
+    public void pickPocket(CharacterEntity characterEntity) {
+        TakeableItem item = characterEntity.removeItem(0);
+        if (item != null) {
+            addToInventory(item);
         }
     }
 
-    public void effectAllEntities(NPCEffect effect) {
-        ArrayList<CharacterEntity> entities = new ArrayList<CharacterEntity>(zone.getAllCharacterEntitys());
-        entities.remove(getLocation());
-        for (CharacterEntity entity : entities) {
-            effect.trigger((NPC) entity);
+    public void effectEntities(ArrayList<Point> area, Effect effect) {
+        for (Point point : area) {
+            if (point.getX() != getLocation().getX() || point.getY() != getLocation().getY()) {
+                zone.add(point, effect);
+            }
+        }
+        ArrayList<CharacterEntity> entities = zone.getEntitiesOnArea(area);
+        for (CharacterEntity entity: entities) {
+            if (entity.getLocation() != getLocation()) {
+                effect.trigger(entity);
+                System.out.println(entity.getCurrentHealth());
+            }
+        }
+    }
+
+    public void effectAllEntities(NPCEffect effect, Point playerLocation) {
+        for (CharacterEntity entity : zone.getAllCharacterEntitys()) {
+            if (entity.getLocation() != playerLocation) {
+                effect.trigger((NPC) entity);
+            }
         }
     }
 
@@ -404,5 +426,15 @@ public abstract class CharacterEntity {
     public void setChasing(boolean chasing) {
         this.chasing = chasing;
     }
+
+    public int getUnusedSkillPoints() {
+        return unusedSkillPoints;
+    }
+
+    public void setUnusedSkillPoints(int unusedSkillPoints) {
+        this.unusedSkillPoints = unusedSkillPoints;
+    }
+
+
 
 }

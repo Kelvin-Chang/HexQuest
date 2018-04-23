@@ -15,4 +15,13 @@ public class HealthModifierEffect implements Effect {
         character.modifyHealth(healthChange);
     }
 
+    @Override
+    public String toString() {
+        if (healthChange >=0 ) {
+            return "Heal";
+        } else {
+            return "Damage";
+        }
+    }
+
 }

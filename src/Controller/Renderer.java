@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.AreaEffects.AreaEffect;
+import Model.Effects.Effect;
 import Model.Entity.Character.CharacterEntity;
 import Model.Items.Item;
 import Model.Items.ObstacleItem;
@@ -12,13 +13,16 @@ import View.Menu.GameplayView;
 import View.SpriteBase;
 import View.Status.StatusView;
 import View.Zone.AreaEffectView;
+import View.Zone.EffectView;
 import View.Zone.Items.ItemView;
 import View.Zone.Items.ObstacleView;
 import View.Zone.MapView;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.BoxBlur;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.transform.Rotate;
 
 import java.awt.Point;
 import java.awt.geom.*;
@@ -39,6 +43,7 @@ public class Renderer {
     private ItemView itemView;
     private MapView mapView;
     private AreaEffectView areaEffectView;
+    private EffectView effectView;
     private FogOfWarHandler fow;
     private Point cameraPosition;
     private boolean cameraControl;
@@ -58,6 +63,7 @@ public class Renderer {
         obstacleView = new ObstacleView(graphicsContext, sprites);
         itemView = new ItemView(graphicsContext, sprites);
         areaEffectView = new AreaEffectView(graphicsContext, sprites);
+        effectView = new EffectView(graphicsContext, sprites);
         fow = new FogOfWarHandler(world.getPlayer());
         fow.updateZone(world.getCurrentZone());
         graphicsContext.setFill(Color.BLACK);
@@ -78,6 +84,7 @@ public class Renderer {
         renderVisibleTiles(cameraPosition);
         renderPlayer(cameraPosition);
         renderOtherEntities(cameraPosition);
+        renderEffects(cameraPosition);
         renderObstacles(cameraPosition);
         renderItems(cameraPosition);
         statusView.render(world.getPlayer());
@@ -95,6 +102,7 @@ public class Renderer {
         obstacleView = new ObstacleView(graphicsContext, sprites);
         itemView = new ItemView(graphicsContext, sprites);
         areaEffectView = new AreaEffectView(graphicsContext, sprites);
+        effectView = new EffectView(graphicsContext, sprites);
         graphicsContext.setFill(Color.BLACK);
         graphicsContext.fillRect(0, 0, canvas.getWidth(),canvas.getHeight());
     }
@@ -211,6 +219,29 @@ public class Renderer {
         Point playerLocation = world.getPlayer().getLocation();
         Point2D imageCoordinates = calculateImageCoordinates((int) playerLocation.getX(),(int) playerLocation.getY(), radius, cameraPosition);
         graphicsContext.drawImage(sprites.getCharacterSprite(0), imageCoordinates.getX() + 10, imageCoordinates.getY() + 10, 1.5*radius, 1.5*radius);
+        switch(world.getPlayer().getOrientation()) {
+            case UP:
+                drawRotatedImage(sprites.getMiscSprite(0), 0, imageCoordinates.getX() + 20, imageCoordinates.getY()+ 0);
+                break;
+            case UPRIGHT:
+                drawRotatedImage(sprites.getMiscSprite(0), 45, imageCoordinates.getX() + 20, imageCoordinates.getY() + 0);
+                break;
+            case DOWNRIGHT:
+                drawRotatedImage(sprites.getMiscSprite(0), 135, imageCoordinates.getX() + 20, imageCoordinates.getY() + 30);
+                break;
+            case DOWN:
+                drawRotatedImage(sprites.getMiscSprite(0), 180, imageCoordinates.getX() + 20, imageCoordinates.getY() + 30);
+                break;
+            case DOWNLEFT:
+                drawRotatedImage(sprites.getMiscSprite(0), 225, imageCoordinates.getX() + 20, imageCoordinates.getY() + 30);
+                break;
+            case UPLEFT:
+                drawRotatedImage(sprites.getMiscSprite(0), 315, imageCoordinates.getX() + 20, imageCoordinates.getY() + 0);
+                break;
+            default:
+                break;
+
+        }
     }
 
     private void renderOtherEntities(Point cameraPosition) {
@@ -259,6 +290,34 @@ public class Renderer {
 
         }
     }
+
+    private void renderEffects(Point cameraPosition) {
+        Zone zone = world.getCurrentZone();
+        Collection<Point> effectCollection = zone.getAllEffectPoints();
+        Point[] effectArray = effectCollection.toArray(new Point[effectCollection.size()]);
+        for (int i = 0; i < effectArray.length; i++) {
+            if (isVisible(effectArray[i])) {
+                Effect effect = zone.getEffect(effectArray[i]);
+                Point2D imageCoordinates = calculateImageCoordinates((int) effectArray[i].getX(), (int) effectArray[i].getY(), radius, cameraPosition);
+                effectView.render(effect, imageCoordinates, radius);
+                zone.removeEffect(effectArray[i]);
+            } else if (isSeen(effectArray[i])) {
+                graphicsContext.setGlobalAlpha(.75);
+                graphicsContext.setEffect(new BoxBlur(radius *.25, radius * .25, 1));
+                Effect effect = zone.getEffect(effectArray[i]);
+                Point2D imageCoordinates = calculateImageCoordinates((int) effectArray[i].getX(), (int) effectArray[i].getY(), radius, cameraPosition);
+                effectView.render(effect, imageCoordinates, radius);
+                zone.removeEffect(effectArray[i]);
+            } else {
+
+            }
+            graphicsContext.setGlobalAlpha(1);
+            graphicsContext.setEffect(null);
+
+        }
+    }
+
+
 
     public void updateMap(Zone z) {
         fow.updateZone(z);
@@ -323,6 +382,18 @@ public class Renderer {
 
     public void resetCamera() {
         cameraPosition = world.getPlayer().getLocation();
+    }
+
+    private void rotate(GraphicsContext gc, double angle, double px, double py) {
+        Rotate r = new Rotate(angle, px, py);
+        gc.setTransform(r.getMxx(), r.getMyx(), r.getMxy(), r.getMyy(), r.getTx(), r.getTy());
+    }
+
+    private void drawRotatedImage(Image image, double angle, double tlpx, double tlpy) {
+        graphicsContext.save(); // saves the current state on stack, including the current transform
+        rotate(graphicsContext, angle, tlpx + image.getWidth() / 2, tlpy + image.getHeight() / 2);
+        graphicsContext.drawImage(image, tlpx, tlpy);
+        graphicsContext.restore(); // back to original state (before rotation)
     }
 //    private Point2D calculateImageCoordinates(int x, int y, int radius) {
 //        double a = 0, b = 0;

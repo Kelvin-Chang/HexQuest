@@ -5,6 +5,7 @@ import Controller.buttons.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -64,22 +65,32 @@ public class MainMenuView extends AbstractView {
 
     private Text topPaneText() {
         Text t = new Text();
-        t.setText("Meme Teme");
+        t.setText("Literally 2 Lines of Code");
         t.setFont(Font.font("Elephant", 50));
         t.setFill(Paint.valueOf("#ff00ff"));
 
         return t;
     }
 
+    private Text topPaneSubText() {
+        Text t = new Text();
+        t.setText("(I actually have no idea how to do this)");
+        t.setFont(Font.font("Elephant", 16));
+        t.setFill(Paint.valueOf("#ff00ff"));
 
-    private StackPane topPane() {
-        StackPane stackPane = new StackPane();
-        stackPane.setPrefSize(1000,300);
-        stackPane.setPadding(new Insets(10,10,10,10));
-        stackPane.setAlignment(Pos.BOTTOM_CENTER);
-        stackPane.getChildren().add(topPaneText());
+        return t;
+    }
 
-        return stackPane;
+
+    private VBox topPane() {
+        VBox vbox = new VBox();
+        vbox.setPrefSize(1000,300);
+        vbox.setPadding(new Insets(10,10,10,10));
+        vbox.setAlignment(Pos.BOTTOM_CENTER);
+        vbox.getChildren().add(topPaneText());
+        vbox.getChildren().add(topPaneSubText());
+
+        return vbox;
     }
 
     // following panes set the panes to size 0 so the borderpane is essentially two panes stacked on top of each other

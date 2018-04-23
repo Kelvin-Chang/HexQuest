@@ -6,7 +6,7 @@ import Model.Entity.Skills.Skill;
 import Model.Entity.Skills.VariableEffectSkill;
 import Model.Enums.EffectShape;
 import Model.Enums.ItemSlot;
-import Model.Zone.EffectedAreaCoordinatesCalculator;
+import Model.Zone.HexFormulas;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -34,9 +34,8 @@ public class RangedWeapon extends UsableItem{
 
         triggerEffect = getEffectFactory().produceHealthModifierEffect(-healthChange);
 
-        EffectedAreaCoordinatesCalculator coordinatesCalculator = new EffectedAreaCoordinatesCalculator();
-        ArrayList<Point> effectedCoordinates =
-                coordinatesCalculator.calculateCoordinates(player.getLocation(), player.getOrientation(), effectShape, range);
+        HexFormulas hexFormulas = new HexFormulas();
+        ArrayList<Point> effectedCoordinates = hexFormulas.getEffectedCoordinates(player.getLocation(), range, player.getZone().getTerrainMap(), player.getOrientation(), effectShape);
 
         player.effectEntities(effectedCoordinates, triggerEffect);
         System.out.println("RangedWeapon used");
