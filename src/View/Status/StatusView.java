@@ -70,7 +70,6 @@ public class StatusView {
         gContext.setFont(Font.font("Arial", FontWeight.BOLD, 16));
         gContext.fillText("Mana: " + Integer.toString(mp) + "/" + Integer.toString(max) +
                 " (" + manabd + "%)", canvas.getWidth()-300, 55);
-
     }
 
     public void renderLevel(int level) {
