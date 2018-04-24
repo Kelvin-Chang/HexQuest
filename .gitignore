@@ -1,0 +1,17 @@
+.idea/
+*.iml
+OOP-Iteration-3.iml
+out/
+*.xml
+# User-specific stuff:
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/dictionaries
+# IntelliJ
+/out/
+# Gradle:
+.idea/**/gradle.xml
+.idea/**/libraries
+
+modules.xml
+*.ipr
